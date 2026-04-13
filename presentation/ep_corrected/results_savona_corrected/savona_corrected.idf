@@ -1,0 +1,146 @@
+!- Savona mini greenhouse (5x5m, asymmetric roof 30/60deg)
+!- PI heated, no ventilation, no canopy
+!- Same PI: Kp=200 W/K, Ti=600s, SP=18C, Qmax=5000W
+
+Version, 25.1;
+
+SimulationControl, No, No, No, No, Yes, No, 1;
+
+Building, Savona_NoVent, 0.0, Suburbs, 0.04, 0.004, FullExterior, 25, 6;
+
+Timestep, 60;
+
+RunPeriod,
+  Run1, 12, 10, , 12, 16, , Sunday, No, No, No, Yes, Yes;
+
+SizingPeriod:DesignDay,
+  WinterDD, 12, 10, WinterDesignDay, 5.0, 0, DefaultMultipliers, ,
+  Wetbulb, 3.0, , , , , 101325, 3.0, 0,
+  No, No, No, ASHRAEClearSky, , , , , 1.0;
+
+Site:Location, Brussels, 50.9, 4.53, 1, 58;
+
+Site:GroundTemperature:BuildingSurface,
+  10.7, 10.7, 10.7, 10.7, 10.7, 10.7,
+  10.7, 10.7, 10.7, 10.7, 10.7, 10.7;
+
+!- MATERIALS
+Material, Glass_1mm, Smooth, 0.001, 1.0, 2600, 840, 0.84, 0.1, 0.1;
+Material, Floor_Concrete, MediumRough, 0.01, 1.7, 2300, 870, 0.89, 0.5, 0.5;
+Material, Soil_Layer, Rough, 0.50, 0.85, 1500, 1153, 0.9, 0.5, 0.5;
+
+Construction, Glass_Roof, Glass_1mm;
+Construction, Ground_Floor, Floor_Concrete, Soil_Layer;
+
+!- GEOMETRY
+!- 5x5m, gutter=2m, ridge=4.165m, asymmetric roof (30deg south, 60deg north)
+!- Oriented N-S: length along Y
+
+GlobalGeometryRules, UpperLeftCorner, Counterclockwise, World;
+
+Zone, Greenhouse, 0, 0, 0, 0, 1, 1, 3.083, 77.1;
+
+!- Floor 5x5m
+BuildingSurface:Detailed,
+  Floor, Floor, Ground_Floor, Greenhouse, , Ground, , NoSun, NoWind, 0, 4,
+  0,0,0, 0,5,0, 5,5,0, 5,0,0;
+
+!- South roof (30deg slope), from south gutter to ridge
+!- South wall at x=0, ridge at x=2.887m (W_GH * tan(60)/(tan(30)+tan(60)))
+!- Width on slope = rise/sin(30) = 2.165/0.5 = 4.330m
+BuildingSurface:Detailed,
+  Roof_South, Roof, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  0,0,2.0, 0,5,2.0, 2.887,5,4.165, 2.887,0,4.165;
+
+!- North roof (60deg slope), from ridge to north gutter
+!- Width on slope = rise/sin(60) = 2.165/0.866 = 2.500m
+BuildingSurface:Detailed,
+  Roof_North, Roof, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  2.887,0,4.165, 2.887,5,4.165, 5,5,2.0, 5,0,2.0;
+
+!- East wall (gable, triangle + rectangle)
+BuildingSurface:Detailed,
+  Wall_East, Wall, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 5,
+  5,0,2.0, 5,0,0, 0,0,0, 0,0,2.0, 2.887,0,4.165;
+
+!- West wall (gable)
+BuildingSurface:Detailed,
+  Wall_West, Wall, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 5,
+  0,5,2.0, 0,5,0, 5,5,0, 5,5,2.0, 2.887,5,4.165;
+
+!- South wall (below gutter)
+BuildingSurface:Detailed,
+  Wall_South, Wall, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  0,0,2.0, 0,0,0, 0,5,0, 0,5,2.0;
+
+!- North wall (below gutter)
+BuildingSurface:Detailed,
+  Wall_North, Wall, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  5,5,2.0, 5,5,0, 5,0,0, 5,0,2.0;
+
+!- NO INFILTRATION
+ZoneInfiltration:DesignFlowRate,
+  Infiltration, Greenhouse, AlwaysOn, AirChanges/Hour, , , , 0.0;
+
+!- SCHEDULES
+ScheduleTypeLimits, Any Number;
+Schedule:Compact, AlwaysOn, Any Number,
+  Through: 12/31, For: AllDays, Until: 24:00, 1;
+
+!- HEATING via OtherEquipment + EMS PI
+OtherEquipment,
+  PI_Heater, None, Greenhouse, AlwaysOn, EquipmentLevel, 0, , , 0, 0, 0;
+
+!- EMS PI Controller (Kp=200 W/K, Ti=600s, SP=18C, Qmax=5000W)
+EnergyManagementSystem:Sensor,
+  T_air_sensor, Greenhouse, Zone Mean Air Temperature;
+
+EnergyManagementSystem:Actuator,
+  Heating_Actuator, PI_Heater, OtherEquipment, Power Level;
+
+EnergyManagementSystem:GlobalVariable,
+  integral_error;
+
+EnergyManagementSystem:ProgramCallingManager,
+  PI_Init_Manager, BeginNewEnvironment, PI_Init_Program;
+
+EnergyManagementSystem:Program,
+  PI_Init_Program, SET integral_error = 0;
+
+EnergyManagementSystem:ProgramCallingManager,
+  PI_Heating_Controller, BeginTimestepBeforePredictor, PI_Control_Program;
+
+EnergyManagementSystem:Program,
+  PI_Control_Program,
+  SET Tsp = 18.0,
+  SET error = Tsp - T_air_sensor,
+  SET dt = SystemTimeStep * 3600,
+  SET integral_error = integral_error + error * dt,
+  SET Kp = 200,
+  SET Ti = 600,
+  SET Q_pi = Kp * error + Kp / Ti * integral_error,
+  SET Qmax = 5000,
+  IF Q_pi > Qmax,
+    SET Q_pi = Qmax,
+  ENDIF,
+  IF Q_pi < 0,
+    SET Q_pi = 0,
+    IF integral_error < 0,
+      SET integral_error = 0,
+    ENDIF,
+  ENDIF,
+  SET Heating_Actuator = Q_pi;
+
+EnergyManagementSystem:OutputVariable,
+  EMS Heating Power, Heating_Actuator, Averaged, ZoneTimeStep, , W;
+
+!- OUTPUT
+Output:Variable,*,Zone Mean Air Temperature,Timestep;
+Output:Variable,*,Site Outdoor Air Drybulb Temperature,Timestep;
+Output:Variable,*,Other Equipment Convective Heating Rate,Timestep;
+Output:Variable,*,EMS Heating Power,Timestep;
+Output:Variable,*,Surface Inside Face Temperature,Timestep;
+Output:Variable,*,Surface Outside Face Temperature,Timestep;
+
+OutputControl:Table:Style, HTML;
+Output:Table:SummaryReports, AllSummary;

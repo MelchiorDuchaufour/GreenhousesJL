@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GreenhousesJL · Bare Envelope Benchmark</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="stage">
+  <main id="deck">
+
+  <!-- SLIDE 01 - TITLE -->
+  <section class="slide active" data-slide="1">
+    <div class="bg-grid"></div>
+    <div class="title-wrap">
+      <p class="eyebrow">GreenhousesJL · Cross-Validation · April 2026</p>
+      <h1>Bare Envelope<br/><span class="accent">Benchmark</span></h1>
+      <p class="subtitle">
+        U-coefficient, solar gains, radiation losses:<br/>
+        term-by-term comparison with EnergyPlus&nbsp;25.1.
+      </p>
+      <p class="byline">M. Duchaufour · ERMESS GREEN · LOCIE / DIME</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 02 - THE BARE GREENHOUSE PROBLEM -->
+  <section class="slide" data-slide="2">
+    <header><span class="num">01</span><h2>The bare envelope problem</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <p class="lead">A bare greenhouse has <strong>no heating, no crop, no ventilation</strong>. Its temperature results from three competing fluxes:</p>
+        <svg class="balance-diagram" viewBox="0 0 440 340">
+          <defs>
+            <marker id="ar-warm" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--warm)"/></marker>
+            <marker id="ar-cool" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--blue)"/></marker>
+            <marker id="ar-green" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--green)"/></marker>
+            <marker id="ar-dim" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--ink-dim)"/></marker>
+          </defs>
+          <rect x="100" y="80" width="240" height="180" rx="6" fill="rgba(40,118,184,.06)" stroke="#5d7e9a" stroke-width="2"/>
+          <text x="220" y="175" text-anchor="middle" font-family="var(--serif)" font-size="22" fill="var(--ink)">T_air</text>
+          <line x1="100" y1="80" x2="340" y2="80" stroke="#2876b8" stroke-width="3"/>
+          <text x="350" y="84" font-size="13" fill="var(--blue)" font-family="var(--serif)">cover</text>
+          <rect x="100" y="260" width="240" height="10" fill="#8a6f50"/>
+          <text x="350" y="270" font-size="13" fill="#8a6f50" font-family="var(--serif)">floor</text>
+          <line x1="160" y1="10" x2="160" y2="70" stroke="var(--warm)" stroke-width="3" marker-end="url(#ar-warm)"/>
+          <text x="100" y="35" font-size="14" fill="var(--warm)" font-weight="600">Solar gain</text>
+          <text x="100" y="52" font-size="12" fill="var(--warm)">τ(θ) × I_glob</text>
+          <line x1="280" y1="70" x2="280" y2="10" stroke="var(--blue)" stroke-width="3" marker-end="url(#ar-cool)"/>
+          <text x="295" y="35" font-size="14" fill="var(--blue)" font-weight="600">LW to sky</text>
+          <text x="295" y="52" font-size="12" fill="var(--blue)">ε·σ·(T⁴_cov − T⁴_sky)</text>
+          <line x1="220" y1="330" x2="220" y2="275" stroke="var(--green)" stroke-width="2.5" marker-end="url(#ar-green)"/>
+          <text x="240" y="320" font-size="14" fill="var(--green)" font-weight="600">Ground</text>
+          <text x="240" y="335" font-size="12" fill="var(--green)">U·(T_deep − T_flr)</text>
+          <line x1="130" y1="86" x2="130" y2="120" stroke="var(--ink-dim)" stroke-width="1.5" marker-end="url(#ar-dim)"/>
+          <line x1="140" y1="120" x2="140" y2="86" stroke="var(--ink-dim)" stroke-width="1.5" marker-end="url(#ar-dim)"/>
+          <text x="50" y="110" font-size="11" fill="var(--ink-dim)">h_in · ΔT</text>
+        </svg>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Steady-state balance</h3>
+        <div class="equation">Q_solar + Q_ground = Q_LW,sky + Q_conv</div>
+        <p class="note" style="margin-top:1rem;">In December Brussels, LW radiation to the cold sky (−30 W/m²) exceeds solar gain (+12 W/m²). The greenhouse is <strong>colder than outdoor</strong> — the glass cover subcools below T_out because it radiates to T_sky ≈ −1°C while outdoor air is at +9°C.</p>
+        <h3 class="sub-h tight">Test configuration</h3>
+        <div class="info-card">
+          <div class="info-row"><span class="label">Size</span> 14 000 m², 100 m × 140 m, h = 3.8 m</div>
+          <div class="info-row"><span class="label">Cover</span> Single glass 1 mm, ε = 0.84, τ₀ = 0.85</div>
+          <div class="info-row"><span class="label">Floor</span> 10 mm concrete + 500 mm soil</div>
+          <div class="info-row"><span class="label">Climate</span> Brussels TMY, December 10–16 (7 days)</div>
+          <div class="info-row"><span class="label">Skip</span> First 24 h discarded (warmup)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 03 - U-COEFFICIENT -->
+  <section class="slide" data-slide="3">
+    <header><span class="num">02</span><h2>Envelope U-coefficient</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">Thermal resistance chain</h3>
+        <div class="equation">U_cov = 1 / (R_ext + R_glass + R_in)</div>
+        <svg viewBox="0 0 460 120" style="width:100%; margin:1rem 0;">
+          <rect x="10" y="30" width="120" height="60" rx="6" fill="var(--blue-soft)" stroke="var(--blue)" stroke-width="1.5"/>
+          <text x="70" y="55" text-anchor="middle" font-size="13" fill="var(--blue)" font-weight="600">h_ext</text>
+          <text x="70" y="72" text-anchor="middle" font-size="11" fill="var(--ink-dim)">exterior conv.</text>
+          <rect x="170" y="30" width="120" height="60" rx="6" fill="rgba(0,0,0,.04)" stroke="var(--ink-line)" stroke-width="1.5"/>
+          <text x="230" y="55" text-anchor="middle" font-size="13" fill="var(--ink-dim)" font-weight="600">R_glass</text>
+          <text x="230" y="72" text-anchor="middle" font-size="11" fill="var(--ink-dim)">≈ 0 (1mm)</text>
+          <rect x="330" y="30" width="120" height="60" rx="6" fill="var(--green-soft)" stroke="var(--green)" stroke-width="1.5"/>
+          <text x="390" y="55" text-anchor="middle" font-size="13" fill="var(--green)" font-weight="600">h_in</text>
+          <text x="390" y="72" text-anchor="middle" font-size="11" fill="var(--ink-dim)">interior conv.</text>
+          <line x1="130" y1="60" x2="170" y2="60" stroke="var(--ink-dim)" stroke-width="1.5" marker-end="url(#ar-dim)"/>
+          <line x1="290" y1="60" x2="330" y2="60" stroke="var(--ink-dim)" stroke-width="1.5" marker-end="url(#ar-dim)"/>
+          <text x="10" y="110" font-size="12" fill="var(--ink-dim)">T_out</text>
+          <text x="410" y="110" font-size="12" fill="var(--ink-dim)">T_air</text>
+        </svg>
+        <p class="note">Glass conduction is negligible (R = 0.001 m²K/W for 1 mm). The U-coefficient is controlled entirely by the <strong>convection coefficients</strong> on each face.</p>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Convection models compared</h3>
+        <table class="data-table">
+          <thead><tr><th></th><th>Julia</th><th>EP</th></tr></thead>
+          <tbody>
+            <tr><td>Exterior model</td><td>Bot (1983)</td><td>DOE-2</td></tr>
+            <tr><td>Interior model</td><td>Balemans (1989)</td><td>TARP</td></tr>
+            <tr><td>h_ext (u=3 m/s)</td><td>6.4 W/(m²K)</td><td>~7 W/(m²K)</td></tr>
+            <tr><td>h_in (ΔT=2°C)</td><td class="warn-text">3.1 W/(m²K)</td><td class="warn-text">1.65 W/(m²K)</td></tr>
+          </tbody>
+        </table>
+        <h3 class="sub-h tight">Resulting U-coefficient</h3>
+        <table class="data-table compact">
+          <thead><tr><th></th><th>Julia</th><th>EP</th><th>Ratio</th></tr></thead>
+          <tbody>
+            <tr><td>U_conv only</td><td>2.10</td><td>1.33</td><td class="warn-text">1.6×</td></tr>
+            <tr><td>U_total (+rad)</td><td>4.31</td><td>3.82</td><td>1.13×</td></tr>
+            <tr><td>EP reported</td><td>—</td><td>5.98</td><td>—</td></tr>
+          </tbody>
+        </table>
+        <div class="callout warm" style="margin-top:0.8rem;">Interior h_in differs by <strong>2×</strong> (Balemans vs TARP). But when radiation is included (h_rad ≈ 4.2), the total U converges to within 13%.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 04 - INTERIOR CONVECTION DETAIL -->
+  <section class="slide" data-slide="4">
+    <header><span class="num">03a</span><h2>What changed: opaque → fenestration</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h bad">Before: opaque <code>Material</code></h3>
+        <div class="info-card" style="border-left:4px solid var(--bad);">
+          <div class="info-row"><span class="label">Surface</span> <code>BuildingSurface:Detailed</code> (Roof, Wall)</div>
+          <div class="info-row"><span class="label">Solar</span> <strong class="bad-text">Zero transmittance</strong> — absorbed or reflected at outer face</div>
+          <div class="info-row"><span class="label">Int conv</span> <strong>TARP</strong> — building-oriented (Walton 1983)</div>
+          <div class="info-row"><span class="label">Ext conv</span> <strong>DOE-2</strong> — standard building exterior</div>
+          <div class="info-row"><span class="label">LW</span> Surface-to-surface radiant exchange (ScriptF)</div>
+        </div>
+        <p class="note" style="margin-top:0.6rem;">EP treated the glass roof as a concrete ceiling. No solar, building convection. The greenhouse was an opaque box.</p>
+      </div>
+      <div class="col">
+        <h3 class="sub-h good">After: <code>WindowMaterial:Glazing</code></h3>
+        <div class="info-card" style="border-left:4px solid var(--green);">
+          <div class="info-row"><span class="label">Surface</span> <code>FenestrationSurface:Detailed</code> (Window)</div>
+          <div class="info-row"><span class="label">Solar</span> <strong class="good-text">τ(θ) = 0.85 × Fresnel</strong> — angular polynomial</div>
+          <div class="info-row"><span class="label">Int conv</span> <strong class="warn-text">ISO 15099</strong> — window-specific Nu-Ra</div>
+          <div class="info-row"><span class="label">Ext conv</span> <strong>DOE-2/TARP</strong> — same as before</div>
+          <div class="info-row"><span class="label">LW</span> Window heat balance (ε = 0.84 both faces)</div>
+        </div>
+        <p class="note" style="margin-top:0.6rem;">EP now uses its dedicated <strong>window heat balance solver</strong> with ISO 15099 interior convection — <em>not</em> TARP.</p>
+      </div>
+    </div>
+    <div class="callout warm" style="margin-top:1rem;">
+      <strong>Key discovery:</strong> switching from <code>Material</code> to <code>WindowMaterial:Glazing</code> changed <strong>both</strong> the solar model (zero → Fresnel) <strong>and</strong> the interior convection (TARP → ISO 15099). The comparison is now Julia/Balemans vs EP/ISO 15099, not Balemans vs TARP.
+    </div>
+  </section>
+
+  <!-- SLIDE 05 - INTERIOR CONVECTION DETAIL -->
+  <section class="slide" data-slide="5">
+    <header><span class="num">03b</span><h2>Interior convection: three models compared</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <div class="model-card green-border">
+          <div class="model-name">Julia: Balemans (1989) — greenhouse</div>
+          <div class="equation small">h = 1.7·|ΔT|<sup>0.33</sup>·cos(φ)<sup>−0.66</sup> + 1.0</div>
+          <p class="model-note">Measured inside greenhouses. The +1.0 accounts for background air circulation even at near-zero ΔT.</p>
+        </div>
+        <div class="model-card blue-border" style="margin-top:0.6rem;">
+          <div class="model-name">EP fenestration: ISO 15099 — window</div>
+          <div class="equation small">Nu = 0.0674·Ra<sup>1/3</sup> &emsp; h = Nu·k/H</div>
+          <p class="model-note">Window-specific Nu-Ra correlation. Iteratively solved inside the window heat balance. Depends on window height H.</p>
+        </div>
+        <div class="model-card" style="margin-top:0.6rem; border-left:4px solid var(--ink-dim);">
+          <div class="model-name">EP opaque: TARP — building</div>
+          <div class="equation small" style="font-size:0.85rem;">
+            Enhanced: h = 9.482·|ΔT|<sup>1/3</sup>/(7.238−|cosΣ|)<br/>
+            Vertical: h = 1.31·|ΔT|<sup>1/3</sup>
+          </div>
+          <p class="model-note">Applies to the opaque frame surfaces (minimal area), NOT the glass.</p>
+        </div>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">h_in comparison (W/(m²K))</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>ΔT</th><th>Balemans</th><th>ISO 15099<br/><span style="font-weight:400;font-size:0.8em">(H=3.8m)</span></th><th>TARP<br/><span style="font-weight:400;font-size:0.8em">(enhanced)</span></th><th>Ratio<br/><span style="font-weight:400;font-size:0.8em">Bal/ISO</span></th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0.5°C</td><td>2.35</td><td>0.67</td><td>1.21</td><td class="bad-text">3.5×</td></tr>
+            <tr><td>1°C</td><td>2.70</td><td>0.84</td><td>1.52</td><td class="bad-text">3.2×</td></tr>
+            <tr><td>2°C</td><td class="warn-text">3.14</td><td class="warn-text">1.06</td><td>1.92</td><td class="bad-text">3.0×</td></tr>
+            <tr><td>5°C</td><td>3.91</td><td>1.44</td><td>2.60</td><td class="warn-text">2.7×</td></tr>
+            <tr><td>10°C</td><td>4.66</td><td>1.82</td><td>3.27</td><td class="warn-text">2.6×</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Balemans is <strong>3× higher</strong> than ISO 15099 at typical greenhouse ΔT. This is the largest single physics difference between Julia and EP.</p>
+
+        <div class="callout warm" style="margin-top:0.6rem;">
+          <strong>Why ISO 15099 is so low:</strong> it was calibrated on <em>window panes in rooms</em> with H~1-2m. At H=3.8m (greenhouse height), the boundary layer is thicker → lower h. Balemans was measured on <em>greenhouse cover at actual scale</em> — the +1.0 minimum captures the empirical reality that h never drops below ~1 W/(m²K) in a greenhouse.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 05 - SOLAR TRANSMITTANCE -->
+  <!-- SLIDE - LITERATURE JUSTIFICATION -->
+  <section class="slide" data-slide="6">
+    <header><span class="num">03c</span><h2>Bot + Balemans: literature justification</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">Who uses Bot + Balemans?</h3>
+        <table class="data-table compact">
+          <thead><tr><th>Model</th><th>Year</th><th>Ext</th><th>Int</th><th>Institution</th></tr></thead>
+          <tbody>
+            <tr><td><strong>de Zwart (KASPRO)</strong></td><td>1996</td><td class="good-text">Bot</td><td class="good-text">Bal</td><td>Wageningen</td></tr>
+            <tr><td><strong>Vanthoor</strong></td><td>2011</td><td class="good-text">Bot</td><td class="good-text">Bal</td><td>Wageningen</td></tr>
+            <tr><td><strong>GreenLight</strong></td><td>2020</td><td class="good-text">Bot</td><td class="good-text">Bal</td><td>Wageningen</td></tr>
+            <tr><td><strong>GreenhousesJL</strong></td><td>2026</td><td class="good-text">Bot</td><td class="good-text">Bal</td><td>USMB/UniGe</td></tr>
+            <tr class="sep"><td>EnergyPlus (opaque)</td><td>—</td><td>DOE-2</td><td>TARP</td><td>DOE/ASHRAE</td></tr>
+            <tr><td>EnergyPlus (window)</td><td>—</td><td>DOE-2</td><td>ISO 15099</td><td>DOE/ISO</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout green" style="margin-top:0.8rem;">
+          <strong>Bot + Balemans = de facto standard</strong> in European greenhouse climate modelling for 40+ years. All Wageningen models — the world reference in greenhouse science — use this pair. Validated across Dutch, Mediterranean, and tropical climates (Vanthoor 2011: 1-3°C RMSE vs field measurements).
+        </div>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Why greenhouse-specific?</h3>
+        <div class="model-card green-border">
+          <div class="model-name">Bot (1983) — exterior</div>
+          <p class="model-note">Measured on <strong>inclined glass saw-tooth roofs</strong> at Wageningen. Smooth surface, open-field wind exposure. The cos(φ) tilt correction is specific to greenhouse roof geometry.</p>
+        </div>
+        <div class="model-card green-border" style="margin-top:0.5rem;">
+          <div class="model-name">Balemans (1989) — interior</div>
+          <p class="model-note">Measured <strong>inside greenhouses</strong> — large open volume, smooth glass, low ceiling, still air. Bidirectional floor model captures day/night reversal. The +1.0 minimum reflects empirical reality: h never drops below 1 W/(m²K) in a greenhouse.</p>
+        </div>
+        <div class="model-card" style="margin-top:0.5rem; border-left:4px solid var(--ink-dim);">
+          <div class="model-name">TARP / ISO 15099 — building / window</div>
+          <p class="model-note">TARP: furnished rooms, rough walls, higher ceilings (Walton 1983). ISO 15099: window panes in rooms, H~1-2m (ISO standard 2003). Neither was calibrated for greenhouse geometry.</p>
+        </div>
+
+        <div class="callout warm" style="margin-top:0.6rem;">
+          <strong>No direct comparison exists</strong> in literature between Bot+Balemans and TARP/ISO 15099 <em>for greenhouses</em>. They represent two design philosophies: <strong>greenhouse-specific</strong> (European) vs <strong>building-generic</strong> (US/ASHRAE). Our EMS experiment (slide 10) provides this missing comparison.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="7">
+    <header><span class="num">04</span><h2>Solar transmittance: Fresnel angular model</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">Fresnel equations (n = 1.526)</h3>
+        <div class="equation small">sin(θ_t) = sin(θ_i) / n &emsp; (Snell)</div>
+        <div class="equation small" style="margin-top:0.5rem;">R = ½·[sin²(θ_i−θ_t)/sin²(θ_i+θ_t) + tan²(θ_i−θ_t)/tan²(θ_i+θ_t)]</div>
+        <div class="equation small" style="margin-top:0.5rem;">τ(θ) = (1−R)² / (1−R²) &emsp; (single pane)</div>
+        <h3 class="sub-h tight">Ratio τ(θ)/τ(0)</h3>
+        <table class="data-table compact">
+          <thead><tr><th>θ</th><th>0°</th><th>30°</th><th>50°</th><th>60°</th><th>70°</th><th>80°</th></tr></thead>
+          <tbody>
+            <tr><td>f(θ)</td><td>1.00</td><td>0.997</td><td>0.964</td><td class="warn-text">0.904</td><td class="warn-text">0.765</td><td class="bad-text">0.477</td></tr>
+            <tr><td>τ_PAR</td><td>0.89</td><td>0.887</td><td>0.858</td><td>0.805</td><td>0.680</td><td>0.424</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:0.8rem;">Both Julia (Fresnel) and EP (polynomial from Fresnel) use the same physical model. GreenLight uses the De Jong polynomial — also Fresnel-derived. <strong>All three agree to &lt;1%.</strong></p>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Angular transmittance curve</h3>
+        <svg class="chart" viewBox="0 0 480 320">
+          <line x1="60" y1="280" x2="460" y2="280" stroke="var(--ink-dim)" stroke-width="1"/>
+          <line x1="60" y1="280" x2="60" y2="30" stroke="var(--ink-dim)" stroke-width="1"/>
+          <text x="52" y="284" text-anchor="end" font-size="12" fill="var(--ink-dim)">0</text>
+          <text x="52" y="184" text-anchor="end" font-size="12" fill="var(--ink-dim)">0.4</text>
+          <text x="52" y="84" text-anchor="end" font-size="12" fill="var(--ink-dim)">0.8</text>
+          <text x="52" y="34" text-anchor="end" font-size="12" fill="var(--ink-dim)">1.0</text>
+          <text x="15" y="160" font-size="13" fill="var(--ink-dim)" transform="rotate(-90,15,160)">τ(θ)/τ(0)</text>
+          <text x="60" y="298" text-anchor="middle" font-size="12" fill="var(--ink-dim)">0°</text>
+          <text x="160" y="298" text-anchor="middle" font-size="12" fill="var(--ink-dim)">20°</text>
+          <text x="260" y="298" text-anchor="middle" font-size="12" fill="var(--ink-dim)">40°</text>
+          <text x="360" y="298" text-anchor="middle" font-size="12" fill="var(--ink-dim)">60°</text>
+          <text x="460" y="298" text-anchor="middle" font-size="12" fill="var(--ink-dim)">80°</text>
+          <text x="260" y="316" text-anchor="middle" font-size="13" fill="var(--ink-dim)">Incidence angle θ</text>
+          <line x1="60" y1="184" x2="460" y2="184" stroke="var(--ink-line)" stroke-width="0.5"/>
+          <line x1="60" y1="84" x2="460" y2="84" stroke="var(--ink-line)" stroke-width="0.5"/>
+          <!-- Old constant (dashed) -->
+          <line x1="60" y1="30" x2="460" y2="30" stroke="var(--green)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+          <text x="250" y="24" font-size="11" fill="var(--green)" opacity="0.6">old: constant τ = τ₀</text>
+          <!-- Fresnel curve -->
+          <polyline points="60,30 160,30 260,33 310,39 360,54 410,89 440,131 460,161" fill="none" stroke="var(--green)" stroke-width="2.5"/>
+          <text x="380" y="120" font-size="13" fill="var(--green)" font-weight="600">Fresnel (Julia + EP)</text>
+          <!-- Dec Brussels zone -->
+          <rect x="400" y="30" width="60" height="250" fill="rgba(196,106,30,.08)" rx="4"/>
+          <text x="430" y="50" text-anchor="middle" font-size="11" fill="var(--warm)">Dec Bru</text>
+          <text x="430" y="64" text-anchor="middle" font-size="11" fill="var(--warm)">θ≈75°</text>
+          <!-- Dec Almeria zone -->
+          <rect x="320" y="30" width="50" height="250" fill="rgba(176,58,85,.06)" rx="4"/>
+          <text x="345" y="262" text-anchor="middle" font-size="10" fill="var(--bad)">Dec Alm</text>
+          <text x="345" y="274" text-anchor="middle" font-size="10" fill="var(--bad)">θ≈55°</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 05 - ANGULAR TRANSMITTANCE IN LITERATURE -->
+  <section class="slide" data-slide="8">
+    <header><span class="num">04</span><h2>Angular transmittance in greenhouse models</h2></header>
+    <div class="content-flow">
+      <table class="data-table">
+        <thead><tr><th>Model</th><th>Angular correction</th><th>Method</th><th>Reference</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GreenhousesJL</strong></td><td class="good-text">Yes</td><td>Fresnel (n=1.526), direct/diffuse split</td><td>Bot 1983</td></tr>
+          <tr><td><strong>GreenLight</strong></td><td class="good-text">Yes</td><td>De Jong (1990) polynomial (Fresnel fit)</td><td>Katzin et al. 2020</td></tr>
+          <tr><td><strong>KASPRO</strong></td><td class="good-text">Yes</td><td>Fresnel + Bouguer multi-layer</td><td>de Zwart 1996</td></tr>
+          <tr><td><strong>EnergyPlus</strong></td><td class="good-text">Yes</td><td>5th-order polynomial from Fresnel</td><td>Arasteh et al. 2009</td></tr>
+          <tr><td>Vanthoor (Modelica)</td><td class="bad-text">None</td><td>Constant τ per band</td><td>Vanthoor et al. 2011</td></tr>
+        </tbody>
+      </table>
+      <div class="two-col" style="margin-top:1rem;">
+        <div class="col"><div class="callout green"><strong>All modern greenhouse models</strong> use Fresnel-based angular corrections. The constant-τ simplification in Vanthoor was appropriate for annual simulations but causes systematic bias in short winter periods at high latitudes.</div></div>
+        <div class="col"><div class="callout blue"><strong>Direct vs diffuse.</strong> December Brussels: ~60% diffuse, 40% direct. Diffuse uses hemisphere-averaged τ (f≈0.88), direct uses θ-dependent τ. Effective angular factor: f_eff ≈ 0.72 — a 28% reduction from τ₀.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 06 - RADIATION LOSSES -->
+  <section class="slide" data-slide="9">
+    <header><span class="num">05</span><h2>Longwave radiation losses to the sky</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">The dominant loss term</h3>
+        <div class="equation">Q_LW = ε · σ · (T⁴_cov − T⁴_sky)</div>
+        <table class="data-table compact" style="margin-top:1rem;">
+          <thead><tr><th>Parameter</th><th>Julia</th><th>EP</th></tr></thead>
+          <tbody>
+            <tr><td>ε_cover</td><td>0.84</td><td>0.84</td></tr>
+            <tr><td>T_sky model</td><td>TMY pre-computed</td><td>Clark-Allen</td></tr>
+            <tr><td>T_sky Dec mean</td><td>≈ −1°C</td><td>≈ −1°C</td></tr>
+            <tr><td>T_cov mean</td><td>6.8°C</td><td>~6.5°C</td></tr>
+            <tr><td><strong>Q_LW,sky</strong></td><td><strong>31 W/m²</strong></td><td><strong>30 W/m²</strong></td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:0.8rem;">LW radiation is <strong>2.5× larger than solar gain</strong> in December. The greenhouse acts as a radiative cooler at night.</p>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">The subcooling mechanism</h3>
+        <div class="mechanism-flow">
+          <div class="mech-step"><div class="mech-num">1</div><div>Cover radiates to cold sky (T_sky ≈ −1°C)</div></div>
+          <div class="mech-arrow">↓</div>
+          <div class="mech-step"><div class="mech-num">2</div><div>Cover cools to T_cov ≈ 6.8°C &lt; T_out ≈ 9°C</div></div>
+          <div class="mech-arrow">↓</div>
+          <div class="mech-step"><div class="mech-num">3</div><div>Outside air <em>warms</em> the cover back (+15 W/m²)</div></div>
+          <div class="mech-arrow">↓</div>
+          <div class="mech-step"><div class="mech-num">4</div><div>Interior air also cools → T_air &lt; T_out</div></div>
+          <div class="mech-arrow">↓</div>
+          <div class="mech-step"><div class="mech-num">5</div><div>Ground heat partially compensates (+4 W/m²)</div></div>
+        </div>
+        <p class="note" style="margin-top:0.8rem;">Result: <strong>T_air ≈ T_out − 1.5°C</strong> in December Brussels. Both models agree on this subcooling.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 07 - GROUND TEMPERATURE -->
+  <section class="slide" data-slide="10">
+    <header><span class="num">06</span><h2>Ground temperature: Kusuda model</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <div class="equation">T(z,t) = T̄ − A·e<sup>−z√(π/365α)</sup>·cos(2π/365·(t − t₀ − z/2·√(365/πα)))</div>
+        <table class="data-table compact" style="margin-top:1rem;">
+          <thead><tr><th>Climate</th><th>T̄</th><th>Dec z=1m</th><th>Jul z=1m</th></tr></thead>
+          <tbody>
+            <tr><td>Brussels</td><td>10.7°C</td><td>7.7°C</td><td>15.5°C</td></tr>
+            <tr><td>Lyon</td><td>11.9°C</td><td>8.4°C</td><td>17.5°C</td></tr>
+            <tr><td>Chambéry</td><td>10.7°C</td><td>7.0°C</td><td>16.6°C</td></tr>
+            <tr><td>Almeria</td><td>19.0°C</td><td>16.6°C</td><td>22.9°C</td></tr>
+          </tbody>
+        </table>
+        <div class="info-card" style="margin-top:1rem;">
+          <div class="info-row"><span class="label">Julia</span> T_deep = T̄ at ≥10 m, 5-layer soil model</div>
+          <div class="info-row"><span class="label">EP</span> Monthly Kusuda at z=1 m as floor BC</div>
+          <div class="info-row"><span class="label">Old</span> <span class="bad-text">3.0°C constant</span> (Modelica default)</div>
+        </div>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Ground contribution</h3>
+        <table class="data-table">
+          <thead><tr><th></th><th>Julia</th><th>EP</th></tr></thead>
+          <tbody>
+            <tr><td>T boundary</td><td>10.7°C</td><td>7.7°C (Dec)</td></tr>
+            <tr><td>T_floor</td><td>7.8°C</td><td>~7.5°C</td></tr>
+            <tr><td>Q_ground</td><td class="good-text">+4.3 W/m²</td><td>≈ 0</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:0.8rem;">Julia ground is warmer → provides +4 W/m². This partly explains the +0.12°C bias.</p>
+        <div class="callout green" style="margin-top:0.8rem;">3°C → Kusuda fix alone: bare RMSE 2.76 → 2.21°C.<br/>+ Glazing fix: RMSE → 0.97°C.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 08 - ENERGY BALANCE SUMMARY -->
+  <section class="slide" data-slide="11">
+    <header><span class="num">07</span><h2>Energy balance: term by term</h2></header>
+    <div class="content-flow">
+      <table class="data-table" style="font-size:1.05rem;">
+        <thead><tr><th>Term</th><th>Julia (W/m²)</th><th>EP (W/m²)</th><th>Δ</th><th>Driver</th></tr></thead>
+        <tbody>
+          <tr class="gain-row"><td>Solar gain</td><td>+12.5</td><td>+12.1</td><td class="good-text">+0.4</td><td>Same Fresnel model</td></tr>
+          <tr class="gain-row"><td>Ground → floor</td><td>+4.3</td><td>≈ 0</td><td class="warn-text">+4.3</td><td>T_deep: 10.7 vs 7.7°C</td></tr>
+          <tr class="loss-row"><td>Cover → sky LW</td><td>−31.3</td><td>−30.0</td><td>−1.3</td><td>Similar ε, T_sky</td></tr>
+          <tr class="loss-row"><td>Ext convection (net)</td><td>+15.4</td><td>+17.5</td><td>−2.1</td><td>Bot vs DOE-2</td></tr>
+          <tr class="loss-row"><td>Int convection</td><td>−2.1</td><td>−1.3</td><td class="warn-text">−0.8</td><td>Balemans vs ISO 15099 (3×)</td></tr>
+        </tbody>
+      </table>
+      <div class="two-col" style="margin-top:1.5rem;">
+        <div class="col"><div class="callout warm"><strong>Remaining +0.12°C bias:</strong> Julia's warmer ground (+4.3 W/m²) is partially offset by higher interior convection loss. Net effect within solver noise.</div></div>
+        <div class="col"><div class="callout blue"><strong>Solar gains matched:</strong> 12.5 vs 12.1 W/m² (&lt;4%). Before Fresnel: Julia transmitted 17.4 W/m² — 40% more than EP. The angular model was the biggest physics fix.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 09 - MULTI-CLIMATE -->
+  <section class="slide" data-slide="12">
+    <header><span class="num">08</span><h2>Multi-climate bare envelope</h2></header>
+    <div class="content-flow">
+      <table class="data-table">
+        <thead><tr><th>Climate</th><th>T̄_ann</th><th>Julia</th><th>EP</th><th>RMSE v3</th><th>RMSE v4</th><th>Improvement</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Brussels</strong></td><td>10.7°C</td><td>7.62</td><td>7.50</td><td>0.98</td><td class="good-text"><strong>0.97</strong></td><td>—</td></tr>
+          <tr><td>Lyon</td><td>11.9°C</td><td>7.83</td><td>5.31</td><td>3.17</td><td class="warn-text"><strong>2.67</strong></td><td>−16%</td></tr>
+          <tr><td>Chambéry</td><td>10.7°C</td><td>6.63</td><td>4.70</td><td>3.31</td><td class="warn-text"><strong>2.26</strong></td><td>−32%</td></tr>
+          <tr><td>Almeria</td><td>19.0°C</td><td>18.95</td><td>15.34</td><td>5.55</td><td class="warn-text"><strong>3.91</strong></td><td>−30%</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:0.5rem;">v3 = glazing fix, constant τ. v4 = + Fresnel angular correction.</p>
+      <div class="two-col" style="margin-top:1rem;">
+        <div class="col"><div class="callout green"><strong>Brussels: RMSE = 0.97°C, bias = +0.12°C.</strong> Excellent. Remaining error is solver timestep noise.</div></div>
+        <div class="col"><div class="callout warm"><strong>Sunny climates (2-4°C gap):</strong> interior convection (Balemans 2× TARP), ground (T_deep warmer), and EP interior LW exchange (ScriptF vs simplified).</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - SENSITIVITY: CONVECTION + GROUND -->
+  <section class="slide" data-slide="13">
+    <header><span class="num">09</span><h2>Sensitivity: matching Julia's physics in EP</h2></header>
+    <div class="content-flow">
+      <p class="lead">We built three EP variants to isolate the effect of each physics change on the bare envelope.</p>
+
+      <table class="data-table" style="font-size:0.95rem;">
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Convection</th>
+            <th>Ground</th>
+            <th>Brussels<br/>RMSE</th>
+            <th>Brussels<br/>Bias</th>
+            <th>Almeria<br/>RMSE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>v3</strong> EP default</td>
+            <td>ISO 15099 + DOE-2</td>
+            <td>Kusuda z=1m (7.7°C Dec)</td>
+            <td class="good-text"><strong>0.97</strong></td>
+            <td>+0.12</td>
+            <td>3.91</td>
+          </tr>
+          <tr>
+            <td><strong>v4</strong> + convection</td>
+            <td class="warn-text">Balemans + Bot (EMS)</td>
+            <td>Kusuda z=1m</td>
+            <td>1.16</td>
+            <td>+0.27</td>
+            <td class="bad-text">6.07</td>
+          </tr>
+          <tr>
+            <td><strong>v5</strong> + ground</td>
+            <td>Balemans + Bot (EMS)</td>
+            <td class="warn-text">Julia stack 1.26m, T=10.7°C</td>
+            <td>1.12</td>
+            <td class="good-text"><strong>+0.08</strong></td>
+            <td>5.89</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="two-col" style="margin-top:1rem;">
+        <div class="col">
+          <div class="callout green">
+            <strong>Brussels v5: bias = +0.08°C</strong> — nearly zero. Matching convection + ground
+            eliminates the systematic offset. The remaining RMSE (1.12°C) is purely from:
+            solver timestep (adaptive vs 10-min) and solar distribution model (multi-bounce vs single-pass).
+          </div>
+        </div>
+        <div class="col">
+          <div class="callout warm">
+            <strong>Sunny climates: still 3-6°C gap.</strong> Neither convection nor ground fixes it.
+            The dominant remaining difference is the <strong>solar distribution model</strong>:
+            Julia's PAR/NIR multi-bounce captures re-reflections that EP's broadband single-pass misses.
+            This is a structural physics difference between the two solvers.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - INTERIOR LW: THE THREE APPROACHES -->
+  <section class="slide" data-slide="14">
+    <header><span class="num">10</span><h2>Interior LW exchange: why it matters for walls</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">The missing heat loss path</h3>
+        <svg viewBox="0 0 400 280" style="width:100%;">
+          <defs>
+            <marker id="ar-lw" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--blue)"/></marker>
+            <marker id="ar-lw2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--bad)"/></marker>
+          </defs>
+          <!-- Box -->
+          <rect x="80" y="40" width="240" height="200" fill="none" stroke="var(--ink-line)" stroke-width="1.5"/>
+          <line x1="80" y1="40" x2="320" y2="40" stroke="var(--blue)" stroke-width="3"/>
+          <text x="330" y="44" font-size="12" fill="var(--blue)">cover</text>
+          <rect x="80" y="240" width="240" height="8" fill="#8a6f50"/>
+          <text x="330" y="248" font-size="12" fill="#8a6f50">floor</text>
+          <rect x="72" y="40" width="8" height="208" fill="rgba(40,118,184,.2)" stroke="var(--blue)" stroke-width="1"/>
+          <text x="50" y="145" font-size="11" fill="var(--blue)" text-anchor="middle" transform="rotate(-90,50,145)">wall</text>
+          <rect x="320" y="40" width="8" height="208" fill="rgba(40,118,184,.2)" stroke="var(--blue)" stroke-width="1"/>
+
+          <!-- Path 1: floor → cover (blue, both models) -->
+          <line x1="200" y1="235" x2="200" y2="50" stroke="var(--blue)" stroke-width="2" marker-end="url(#ar-lw)"/>
+          <text x="215" y="145" font-size="12" fill="var(--blue)" font-weight="600">floor→cover</text>
+          <text x="215" y="160" font-size="11" fill="var(--blue)">both models ✓</text>
+
+          <!-- Path 2: floor → wall → sky (red, ScriptF only) -->
+          <line x1="140" y1="235" x2="85" y2="145" stroke="var(--bad)" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ar-lw2)"/>
+          <line x1="78" y1="100" x2="40" y2="20" stroke="var(--bad)" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ar-lw2)"/>
+          <text x="15" y="80" font-size="11" fill="var(--bad)" font-weight="600">floor→</text>
+          <text x="15" y="93" font-size="11" fill="var(--bad)" font-weight="600">wall→sky</text>
+          <text x="15" y="108" font-size="10" fill="var(--bad)">EP ScriptF only</text>
+
+          <!-- Sky -->
+          <text x="200" y="15" text-anchor="middle" font-size="13" fill="var(--ink-dim)">T_sky ≈ −1°C</text>
+        </svg>
+
+        <p class="note">In a greenhouse with glass walls, the floor can radiate to the wall, which then radiates to the cold sky. This <strong>indirect path</strong> is captured by EP's ScriptF but missed by Julia's simplified floor↔cover model.</p>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Three approaches to interior LW</h3>
+
+        <div class="model-card green-border">
+          <div class="model-name">1. Simplified (Vanthoor 2011, Julia default)</div>
+          <div class="equation small">Q = A·ε_flr·ε_cov·σ·(T⁴_flr − T⁴_cov)</div>
+          <p class="model-note">Floor↔cover only, F=1 (infinite parallel plates). No wall interaction. Fast but misses wall radiative path.</p>
+        </div>
+
+        <div class="model-card blue-border" style="margin-top:0.5rem;">
+          <div class="model-name">2. ScriptF (EnergyPlus)</div>
+          <div class="equation small">Q_i = Σ_j ScriptF_ij · σ · (T⁴_i − T⁴_j)</div>
+          <p class="model-note">Hottel grey-body exchange factors. Pre-computed view factors + multi-reflection. All N surfaces coupled. Captures floor→wall→sky path.</p>
+        </div>
+
+        <div class="model-card" style="margin-top:0.5rem; border-left:4px solid var(--warm);">
+          <div class="model-name">3. Radiosity (Julia optional, GreenLight)</div>
+          <div class="equation small">(I − ρ·F)·J = ε·σ·T⁴ &emsp;→&emsp; q_net = A·ε/(1−ε)·(σT⁴ − J)</div>
+          <p class="model-note">Mathematically equivalent to ScriptF. Solves a 6×6 linear system per timestep. Available in Julia when walls are enabled.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - SAVONA BARE: LW MODEL EFFECT -->
+  <!-- SLIDE - RADIOSITY VALIDATION -->
+  <!-- SLIDE - GEOMETRY ENGINE + VALIDATION -->
+  <section class="slide" data-slide="15">
+    <header><span class="num">10b</span><h2>Geometry engine: vertex-based view factors</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">Architecture</h3>
+        <div class="info-card">
+          <div class="info-row"><span class="label" style="min-width:80px;">Surface</span> Polygon with 3D vertices, ε, α_solar, τ_solar, capacity</div>
+          <div class="info-row"><span class="label" style="min-width:80px;">View factors</span> Monte Carlo double-area integration (N=100k)</div>
+          <div class="info-row"><span class="label" style="min-width:80px;">Solar</span> Geometric beam projection onto interior surfaces</div>
+          <div class="info-row"><span class="label" style="min-width:80px;">Radiosity</span> N-surface grey-body enclosure (I − ρF)·J = ε·σ·T⁴</div>
+          <div class="info-row"><span class="label" style="min-width:80px;">Extensible</span> Add any object (pipe, bench, screen) as a new surface</div>
+        </div>
+
+        <h3 class="sub-h tight">Validation: unit cube</h3>
+        <svg viewBox="0 0 260 180" style="width:85%;">
+          <polygon points="50,130 150,130 150,40 50,40" fill="rgba(196,106,30,.08)" stroke="var(--warm)" stroke-width="2"/>
+          <polygon points="150,130 200,100 200,10 150,40" fill="rgba(40,118,184,.06)" stroke="var(--blue)" stroke-width="1.5"/>
+          <polygon points="50,40 100,10 200,10 150,40" fill="rgba(40,118,184,.06)" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="50" y1="130" x2="100" y2="100" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="100" y1="100" x2="200" y2="100" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="100" y1="100" x2="100" y2="10" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <rect x="60" y="75" width="80" height="45" fill="rgba(196,106,30,.15)" rx="3"/>
+          <text x="100" y="95" text-anchor="middle" font-size="12" fill="var(--warm)" font-weight="600">320 K</text>
+          <text x="100" y="110" text-anchor="middle" font-size="10" fill="var(--ink-dim)">ε = 0.9</text>
+          <text x="175" y="70" font-size="10" fill="var(--blue)">300 K ×5</text>
+          <text x="125" y="150" text-anchor="middle" font-size="10" fill="var(--ink-dim)">F_ij = 1/5 (analytical)</text>
+        </svg>
+        <table class="data-table compact" style="font-size:0.85rem;">
+          <thead><tr><th></th><th>Analytical</th><th>MC (100k)</th><th>Error</th></tr></thead>
+          <tbody>
+            <tr><td>F_ij (off-diag)</td><td>0.200</td><td>0.198±0.02</td><td class="good-text">&lt;2%</td></tr>
+            <tr><td>q_floor (W)</td><td>119.4</td><td>119.4</td><td class="good-text">0.0%</td></tr>
+            <tr><td>Σ q_net</td><td>0</td><td>0.9</td><td class="good-text">~0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Validation: Savona 5×5m (exact vertices)</h3>
+        <svg viewBox="0 0 260 160" style="width:85%;">
+          <!-- Savona cross-section -->
+          <polygon points="30,130 230,130 230,70 30,70" fill="rgba(196,106,30,.05)" stroke="var(--ink-line)" stroke-width="1"/>
+          <rect x="30" y="130" width="200" height="6" fill="#8a6f50"/>
+          <!-- Asymmetric roof -->
+          <line x1="30" y1="70" x2="143" y2="20" stroke="var(--blue)" stroke-width="2"/>
+          <line x1="143" y1="20" x2="230" y2="70" stroke="var(--green)" stroke-width="2"/>
+          <text x="80" y="45" font-size="10" fill="var(--blue)">30°</text>
+          <text x="195" y="45" font-size="10" fill="var(--green)">60°</text>
+          <text x="143" y="15" text-anchor="middle" font-size="9" fill="var(--ink-dim)">ridge</text>
+          <text x="130" y="105" text-anchor="middle" font-size="11" fill="var(--warm)">floor 25 m²</text>
+          <text x="130" y="150" text-anchor="middle" font-size="10" fill="var(--ink-dim)">7 surfaces, exact 3D vertices</text>
+        </svg>
+
+        <table class="data-table compact" style="font-size:0.85rem;">
+          <thead><tr><th>View factor</th><th>MC (100k)</th><th>EP ScriptF</th><th>Match</th></tr></thead>
+          <tbody>
+            <tr><td>F(floor→cover)</td><td>0.417</td><td>0.404</td><td class="good-text">~3%</td></tr>
+            <tr><td>F(floor→walls)</td><td>0.583</td><td>0.596</td><td class="good-text">~2%</td></tr>
+            <tr><td>Row sums</td><td>1.000</td><td>1.000</td><td class="good-text">exact</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout green" style="margin-top:0.5rem;">
+          <strong>MC view factors match EP ScriptF to 3%.</strong> The old Hottel formula gave F(floor→cover)=0.245 — 40% too low. The MC engine uses exact 3D vertex geometry with auto-flipped normals.
+        </div>
+
+        <div class="callout warm" style="margin-top:0.4rem;">
+          <strong>Bug fixed:</strong> <code>vf_perp_rect</code> had A/B swap (returned F₂₁ not F₁₂). Row sums were 1.43 → now 1.00.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - GEOMETRY ENGINE: EXTENSIBILITY -->
+  <section class="slide" data-slide="15b">
+    <header><span class="num">10c</span><h2>Adding objects to the greenhouse</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">How it works</h3>
+        <pre class="code-sm"><code># Define a heating pipe as a surface
+pipe = make_surface("pipe",
+  [SVector(1,1,0.5), SVector(4,1,0.5),
+   SVector(4,1.1,0.5), SVector(1,1.1,0.5)];
+  ε=0.9, α_solar=0.3,
+  capacity=4186*0.5)  # water thermal mass
+
+# Add to greenhouse surfaces
+surfaces = savona_surfaces()
+push!(surfaces, pipe)
+
+# Rebuild enclosure → auto VF + radiosity
+enc = build_enclosure(surfaces)</code></pre>
+
+        <p class="note" style="margin-top:0.8rem;">
+          Adding a surface automatically recomputes all view factors (MC)
+          and rebuilds the radiosity matrix. The new surface participates
+          in LW exchange, receives beam solar, and has its own temperature
+          state in the ODE.
+        </p>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">What you can add</h3>
+        <div class="model-card green-border">
+          <div class="model-name">Heating pipes</div>
+          <p class="model-note">Horizontal cylinders → rectangular approximation. High ε, thermal mass from water content. Absorbs floor LW, radiates to cover.</p>
+        </div>
+        <div class="model-card blue-border" style="margin-top:0.4rem;">
+          <div class="model-name">Growing benches / tables</div>
+          <p class="model-note">Horizontal surfaces at ~0.8m height. Intercepts beam solar (shades floor). Changes the floor→cover VF.</p>
+        </div>
+        <div class="model-card" style="margin-top:0.4rem; border-left:4px solid var(--warm);">
+          <div class="model-name">Thermal screens</div>
+          <p class="model-note">Horizontal surface between air and roof. Blocks LW from cover→floor. τ_solar = 0.3-0.7 depending on fabric.</p>
+        </div>
+        <div class="model-card" style="margin-top:0.4rem; border-left:4px solid var(--ink-dim);">
+          <div class="model-name">PV panels (interior)</div>
+          <p class="model-note">Tilted surfaces. Block beam solar, generate heat + electricity. Shadow pattern on floor computed from sun angle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="16">
+    <header><span class="num">11</span><h2>Savona bare: closing the gap step by step</h2></header>
+    <div class="content-flow">
+      <p class="lead">On the Savona 5×5m (walls = 60%), we progressively matched Julia's physics in EP to isolate each effect.</p>
+
+      <table class="data-table" style="font-size:0.95rem;">
+        <thead>
+          <tr><th>EP version</th><th>What changed</th><th>T̄ (°C)</th><th>RMSE</th><th>Bias</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>EP v3</strong> (default)</td><td>Glazing + Kusuda + ISO 15099 + DOE-2</td><td>7.95</td><td>1.42</td><td>+1.11</td></tr>
+          <tr><td><strong>EP v6a</strong></td><td>+ Balemans interior + Bot for ALL surfaces</td><td>7.96</td><td>1.48</td><td>+1.11</td></tr>
+          <tr><td><strong>EP v6b</strong></td><td>+ Walton for walls (Bot for roof only)</td><td>8.16</td><td class="good-text">1.36</td><td class="good-text">+0.90</td></tr>
+          <tr><td colspan="2" style="border-top:2px solid var(--ink-dim);"><strong>Julia</strong> (radiosity + Bot roof + Walton walls + Balemans + T_deep=10.7)</td><td style="border-top:2px solid var(--ink-dim);"><strong>9.06</strong></td><td style="border-top:2px solid var(--ink-dim);">—</td><td style="border-top:2px solid var(--ink-dim);">—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="two-col" style="margin-top:1rem;">
+        <div class="col">
+          <div class="callout warm">
+            <strong>Hidden mismatch found:</strong> Julia uses <strong>different exterior convection for walls vs roof</strong>:<br/>
+            — Roof: Bot (h = 2.8 + 1.2u) → ~7 W/(m²K) at 3.5 m/s<br/>
+            — Walls: Walton (h = 5.7 + 3.8u) → ~19 W/(m²K) at 3.5 m/s<br/>
+            Applying Bot to walls in EP was wrong — Walton is 2.7× higher. Fixing this closed 0.21°C of the gap.
+          </div>
+        </div>
+        <div class="col">
+          <div class="callout blue">
+            <strong>Remaining +0.90°C:</strong> interior LW redistribution (EP ScriptF couples all 8+ surfaces vs Julia 6-surface radiosity) + different view factor computation + wall solar gain model. These are structural differences between the two enclosure solvers.
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-h tight">Gap decomposition (+0.86°C)</h3>
+      <table class="data-table compact" style="font-size:0.9rem;">
+        <thead><tr><th>Source</th><th>Effect</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Wall ext convection (Walton vs DOE-2)</td><td>0.21°C</td><td class="good-text">quantified</td></tr>
+          <tr><td>View factor geometry (gable roof)</td><td>0.04°C</td><td class="good-text">quantified</td></tr>
+          <tr><td>Interior convection (Balemans vs ISO 15099)</td><td>0.01°C</td><td class="good-text">quantified</td></tr>
+          <tr><td>Ground (T_deep 10.7 vs Kusuda 7.7)</td><td>~0°C</td><td class="good-text">quantified</td></tr>
+          <tr style="border-top:2px solid var(--ink-dim);"><td><strong>Solar distribution to interior surfaces</strong> (see next slides)</td><td>0.60°C+</td><td class="bad-text">root cause</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SLIDE - SAVONA MULTI-CLIMATE -->
+  <!-- SLIDE - SEASONAL PROOF -->
+  <section class="slide" data-slide="17">
+    <header><span class="num">12</span><h2>Seasonal test: the gap scales with solar</h2></header>
+    <div class="content-flow">
+      <p class="lead">Lyon Savona bare, 6 months. Same convection (Bot+Walton+Balemans), same ground (Kiva 10m, T_deep=11.9°C). Julia run with and without multi-bounce.</p>
+
+      <table class="data-table" style="font-size:1.0rem;">
+        <thead>
+          <tr><th>Month</th><th>JL standard<br/>(bounce)</th><th>JL ep-solar<br/>(no bounce)</th><th>EP Kiva</th><th>Δ bounce</th><th>Bias<br/>ep→EP</th><th>Bias<br/>std→EP</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Jan</td><td>6.1</td><td>5.9</td><td>4.9</td><td>+0.16</td><td class="good-text">+1.0</td><td>+1.2</td></tr>
+          <tr><td>Mar</td><td>15.5</td><td>15.1</td><td>11.8</td><td>+0.41</td><td class="warn-text">+3.3</td><td>+3.7</td></tr>
+          <tr><td>Jun</td><td>31.6</td><td>30.6</td><td>23.9</td><td>+0.96</td><td class="bad-text">+6.7</td><td>+7.7</td></tr>
+          <tr><td>Jul</td><td>34.2</td><td>33.3</td><td>26.9</td><td>+0.91</td><td class="bad-text">+6.4</td><td>+7.3</td></tr>
+          <tr><td>Sep</td><td>27.5</td><td>26.8</td><td>21.9</td><td>+0.69</td><td class="bad-text">+4.8</td><td>+5.5</td></tr>
+          <tr><td>Dec</td><td>7.6</td><td>7.5</td><td>5.9</td><td>+0.17</td><td class="warn-text">+1.6</td><td>+1.8</td></tr>
+        </tbody>
+      </table>
+
+      <div class="two-col" style="margin-top:0.8rem;">
+        <div class="col">
+          <div class="callout warm">
+            <strong>Multi-bounce accounts for only 0.2-1.0°C</strong> (Δ bounce column).
+            But even with it removed (ep→EP column), the gap grows from +1.0°C in January to <strong>+6.7°C in June</strong>.
+            This proves the source is <strong>not</strong> the bounce model.
+          </div>
+        </div>
+        <div class="col">
+          <div class="callout blue">
+            <strong>The gap is proportional to irradiance</strong> — it must be in how solar is
+            <em>distributed to interior surfaces</em>, not in how much enters.
+            Same total transmitted solar, but different allocation to floor vs walls.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - ROOT CAUSE: SOLAR DISTRIBUTION -->
+  <section class="slide" data-slide="18">
+    <header><span class="num">13</span><h2>Root cause: interior solar distribution</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h green">Julia (Vanthoor model)</h3>
+        <div class="info-card" style="border-left:4px solid var(--green);">
+          <div class="info-row">Transmitted solar → <strong>100% to floor</strong></div>
+          <div class="info-row">Floor absorbs 93%, reflects 7% (lost)</div>
+          <div class="info-row">Wall solar via separate <code>wall_solar_gain()</code></div>
+          <div class="info-row" style="margin-top:0.5rem;">→ Floor stores solar in thermal mass</div>
+          <div class="info-row">→ Slowly releases to air over hours</div>
+        </div>
+
+        <h3 class="sub-h blue" style="margin-top:1rem;">EP (FullExterior)</h3>
+        <div class="info-card" style="border-left:4px solid var(--blue);">
+          <div class="info-row">Transmitted solar → <strong>geometric projection</strong></div>
+          <div class="info-row">Beam projected onto floor + walls by sun angle</div>
+          <div class="info-row">In summer: high sun → mostly floor</div>
+          <div class="info-row">At low angles: beam hits opposite wall</div>
+          <div class="info-row" style="margin-top:0.5rem;">→ Solar on walls = rapid loss (thin glass, no mass)</div>
+          <div class="info-row">→ Walls radiate to sky immediately</div>
+        </div>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Why it matters for small greenhouses</h3>
+        <svg viewBox="0 0 380 260" style="width:100%;">
+          <!-- Greenhouse cross-section -->
+          <rect x="60" y="40" width="260" height="180" fill="none" stroke="var(--ink-line)" stroke-width="1.5"/>
+          <rect x="60" y="220" width="260" height="8" fill="#8a6f50"/>
+          <text x="190" y="235" text-anchor="middle" font-size="11" fill="#8a6f50">floor (thermal mass)</text>
+          <rect x="52" y="40" width="8" height="188" fill="rgba(40,118,184,.15)" stroke="var(--blue)" stroke-width="1"/>
+          <rect x="320" y="40" width="8" height="188" fill="rgba(40,118,184,.15)" stroke="var(--blue)" stroke-width="1"/>
+          <text x="35" y="135" font-size="10" fill="var(--blue)" text-anchor="middle" transform="rotate(-90,35,135)">glass wall (no mass)</text>
+
+          <!-- Julia: all to floor -->
+          <line x1="120" y1="15" x2="120" y2="215" stroke="var(--green)" stroke-width="2.5" stroke-dasharray="6 3"/>
+          <line x1="180" y1="15" x2="180" y2="215" stroke="var(--green)" stroke-width="2.5" stroke-dasharray="6 3"/>
+          <text x="150" y="12" text-anchor="middle" font-size="12" fill="var(--green)" font-weight="600">Julia: all → floor</text>
+
+          <!-- EP: some to wall -->
+          <line x1="260" y1="15" x2="320" y2="130" stroke="var(--blue)" stroke-width="2.5" stroke-dasharray="6 3"/>
+          <line x1="280" y1="15" x2="60" y2="160" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+          <text x="310" y="12" text-anchor="end" font-size="12" fill="var(--blue)" font-weight="600">EP: some → walls</text>
+
+          <!-- Wall → sky loss -->
+          <line x1="328" y1="130" x2="370" y2="80" stroke="var(--bad)" stroke-width="2"/>
+          <text x="370" y="75" font-size="10" fill="var(--bad)" font-weight="600">→ sky</text>
+          <text x="370" y="88" font-size="9" fill="var(--bad)">(lost)</text>
+        </svg>
+
+        <div class="callout warm" style="margin-top:0.5rem;">
+          <strong>For Savona (5×5m, walls=60%):</strong> EP projects a significant fraction of beam solar onto the tall glass walls. These walls have negligible thermal mass — the solar energy passes through to the exterior and is lost. Julia puts it all on the floor, where it's stored. This is the <strong>dominant source</strong> of the +1 to +7°C seasonal gap.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - FRESNEL WAVELENGTH -->
+  <section class="slide" data-slide="19">
+    <header><span class="num">14</span><h2>Fresnel: wavelength independence confirmed</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">Glass refractive index vs wavelength</h3>
+        <table class="data-table compact">
+          <thead><tr><th>Band</th><th>λ (nm)</th><th>n</th><th>τ(0°)</th><th>f(75°)</th></tr></thead>
+          <tbody>
+            <tr><td>PAR</td><td>400</td><td>1.530</td><td>0.916</td><td>0.643</td></tr>
+            <tr><td>PAR</td><td>550</td><td>1.520</td><td>0.918</td><td>0.644</td></tr>
+            <tr><td>PAR</td><td>700</td><td>1.515</td><td>0.920</td><td>0.645</td></tr>
+            <tr><td>NIR</td><td>1000</td><td>1.510</td><td>0.921</td><td>0.645</td></tr>
+            <tr><td>NIR</td><td>2000</td><td>1.500</td><td>0.923</td><td>0.646</td></tr>
+            <tr style="border-top:2px solid var(--ink-dim);"><td colspan="2"><strong>Julia (all λ)</strong></td><td><strong>1.526</strong></td><td>0.917</td><td>0.644</td></tr>
+          </tbody>
+        </table>
+        <p class="note">n varies by ±1% from PAR to NIR. The angular correction f(θ) varies by &lt;0.5% across the spectrum. A single n = 1.526 is a valid approximation.</p>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Where the spectral difference is</h3>
+        <div class="callout green">
+          <strong>Fresnel reflection</strong> (angle-dependent): nearly identical for all wavelengths. Single n is fine.
+        </div>
+        <div class="callout warm" style="margin-top:0.8rem;">
+          <strong>Glass absorption</strong> (wavelength-dependent): Fe₂O₃ content absorbs more NIR than PAR. This is why Julia uses different τ₀:
+          <ul style="margin:0.3rem 0 0; padding-left:1rem;">
+            <li>τ_PAR₀ = 0.89 (less absorption)</li>
+            <li>τ_NIR₀ = 0.87 (more absorption)</li>
+          </ul>
+          The spectral split is correctly handled by different τ₀ per band, not by different Fresnel n.
+        </div>
+        <div class="callout blue" style="margin-top:0.8rem;">
+          <strong>Conclusion:</strong> Julia's single-n Fresnel + per-band τ₀ correctly captures both the angular (Fresnel) and spectral (absorption) effects of glass. No improvement needed.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - SUMMARY -->
+  <section class="slide" data-slide="20">
+    <header><span class="num">15</span><h2>Summary</h2></header>
+    <div class="content-flow">
+      <div class="summary-grid">
+        <div class="summary-card"><div class="summary-icon" style="color:var(--bad);">1</div><div class="summary-title">EP glazing bug (fixed)</div><p><code>Material</code> → <code>WindowMaterial:Glazing</code>. <strong>RMSE: 2.76 → 0.98°C</strong></p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--warm);">2</div><div class="summary-title">Ground: Kiva 10m</div><p>T_deep = annual mean at 10m. Foundation:Kiva 2D FD solver replaces thin floor + Kusuda.</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--green);">3</div><div class="summary-title">Angular transmittance (fixed)</div><p>Fresnel n=1.526, wavelength-independent (±0.5%). Per-band τ₀ handles spectral absorption.</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--ink-dim);">4</div><div class="summary-title">Convection (matched)</div><p>Bot roof + Walton walls + Balemans interior via EMS. Interior h_in 3× ISO 15099 — compensating effects.</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--blue);">5</div><div class="summary-title">Interior solar distribution (root cause)</div><p>Julia: all solar → floor (stored). EP: geometric projection → some solar hits walls (lost to sky). <strong>+1°C winter, +7°C summer</strong> on Savona.</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--green);">6</div><div class="summary-title">Multi-bounce: small effect</div><p>PAR/NIR multi-bounce adds only 0.2-1.0°C. The distribution to surfaces matters 5-10× more.</p></div>
+      </div>
+      <div class="rule-box" style="margin-top:0.8rem;">
+        <strong>14k bare (no walls): RMSE = 0.97°C</strong> — excellent, solar distribution doesn't matter.<br/>
+        <strong>Savona bare (60% walls): +1 to +7°C seasonal gap</strong> — EP projects solar onto glass walls where it's lost. This is a structural difference in how the two solvers handle interior solar distribution in wall-heavy geometries.
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - ENERGY BALANCE SUMMARY -->
+  <section class="slide" data-slide="21">
+    <header><span class="num">14b</span><h2>Energy balance: 3 seasons compared</h2></header>
+    <div class="content-flow">
+      <p class="lead">Lyon Savona bare. Julia (no bounce) vs EP Kiva. Same interior convection (Balemans EMS). EP exterior on glass: ISO 15099 (not overridable).</p>
+
+      <table class="data-table" style="font-size:0.92rem;">
+        <thead>
+          <tr><th></th><th colspan="2">December</th><th colspan="2">March</th><th colspan="2">July</th></tr>
+          <tr><th></th><th>Julia</th><th>EP</th><th>Julia</th><th>EP</th><th>Julia</th><th>EP</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>T_air (°C)</strong></td><td>6.4</td><td>5.9</td><td>13.5</td><td>11.8</td><td class="warn-text">31.2</td><td class="warn-text">26.9</td></tr>
+          <tr><td>T_out (°C)</td><td colspan="2" style="text-align:center;">5</td><td colspan="2" style="text-align:center;">10</td><td colspan="2" style="text-align:center;">25</td></tr>
+          <tr><td>I_glob (W/m²)</td><td colspan="2" style="text-align:center;">50</td><td colspan="2" style="text-align:center;">130</td><td colspan="2" style="text-align:center;">280</td></tr>
+          <tr style="border-top:2px solid var(--ink-dim);"><td>h_ext glass</td><td>7 (Bot)</td><td class="bad-text">~50 (ISO)</td><td>7</td><td class="bad-text">~50</td><td>7</td><td class="bad-text">~50</td></tr>
+          <tr><td>h_in glass</td><td>~3</td><td>~3</td><td>~3</td><td>~3</td><td>~6</td><td>~6</td></tr>
+          <tr style="border-top:2px solid var(--ink-dim);"><td><strong>Bias</strong></td><td colspan="2" style="text-align:center;" class="good-text"><strong>+0.5°C</strong></td><td colspan="2" style="text-align:center;" class="warn-text"><strong>+1.7°C</strong></td><td colspan="2" style="text-align:center;" class="bad-text"><strong>+4.3°C</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warm" style="margin-top:0.8rem;">
+        <strong>The bias is driven by exterior h on glass (7× difference).</strong> EP's fenestration solver uses ISO 15099 (h ≈ 4+4v ≈ 50 W/(m²K) including radiation) which <strong>cannot be overridden</strong> via EMS. Julia uses Bot (h ≈ 7 W/(m²K)). Higher h_ext → cover cools faster → pulls more heat from air. The effect scales with ΔT_cover-to-outdoor, which scales with solar gain.
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - THE MEASUREMENT -->
+  <section class="slide" data-slide="22">
+    <header><span class="num">14b2</span><h2>Proof: EMS override failure on glass exterior</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">The experiment</h3>
+        <div class="info-card">
+          <div class="info-row"><span class="label" style="min-width:65px;">Case</span> Savona 5×5m bare, Lyon, July 1-7</div>
+          <div class="info-row"><span class="label" style="min-width:65px;">Glass</span> <code>WindowMaterial:Glazing</code> + <code>FenestrationSurface</code></div>
+          <div class="info-row"><span class="label" style="min-width:65px;">Ground</span> Foundation:Kiva 10m, T_deep=11.9°C</div>
+          <div class="info-row"><span class="label" style="min-width:65px;">Climate</span> T_out ≈ 25°C, I_glob ≈ 280 W/m², u ≈ 3.5 m/s</div>
+        </div>
+
+        <h3 class="sub-h tight">EMS convection override (what we prescribed)</h3>
+        <pre class="code-sm"><code>!- Bot 1983 exterior on roof:
+SET hb = 2.8 + 1.2 * u     !- = 7.0 W/(m²K)
+SET h_out_roof = hb         !- actuator
+
+!- Balemans 1989 interior:
+SET h_in_roof = 1.7*dT^0.33 + 1.0</code></pre>
+
+        <h3 class="sub-h tight">What we measured (EP output)</h3>
+        <pre class="code-sm"><code>Output:Variable, Roof_South_Glass,
+  Surface Outside Face Convection
+  Heat Transfer Coefficient;</code></pre>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">The result</h3>
+        <table class="data-table" style="font-size:1.1rem;">
+          <thead><tr><th>Face</th><th>Prescribed (EMS)</th><th>EP measured</th><th>Override?</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Interior</strong></td>
+              <td>Balemans<br/>6.8 W/(m²K)</td>
+              <td><strong>6.77</strong> W/(m²K)</td>
+              <td class="good-text"><strong>YES ✓</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Exterior</strong></td>
+              <td>Bot<br/>7.0 W/(m²K)</td>
+              <td class="bad-text"><strong>52.6</strong> W/(m²K)</td>
+              <td class="bad-text"><strong>NO ✗</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="note" style="margin-top:0.8rem;">EP reported h_ext = 52.6 when EMS set it to 7.0. The window heat balance solver uses <strong>ISO 15099</strong> (h = 4+4v ≈ 44 + h_rad ≈ 53) and ignores the EMS actuator for the exterior face.</p>
+
+        <div class="callout warm" style="margin-top:0.8rem;">
+          <strong>7.5× ratio</strong> on the dominant surface (glass roof = 33 m²). This single parameter difference drives the entire seasonal gap: +0.5°C winter → +4.3°C summer.
+        </div>
+
+        <div class="callout blue" style="margin-top:0.5rem;">
+          <strong>Not documented.</strong> EP's EMS documentation lists the actuator as available for all surfaces. The ISO 15099 override for fenestration exterior is an undocumented architectural limitation.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - ROOT CAUSE ACCEPTED -->
+  <section class="slide" data-slide="23">
+    <header><span class="num">14c</span><h2>Root cause: EP fenestration exterior convection</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">The irreducible difference</h3>
+        <table class="data-table">
+          <thead><tr><th></th><th>Julia</th><th>EP</th></tr></thead>
+          <tbody>
+            <tr><td>Ext conv model</td><td>Bot (1983)</td><td>ISO 15099</td></tr>
+            <tr><td>h_ext at 3.5 m/s</td><td class="good-text">7 W/(m²K)</td><td class="bad-text">~50 W/(m²K)</td></tr>
+            <tr><td>EMS override?</td><td>—</td><td class="bad-text">NOT on glass</td></tr>
+            <tr><td>Applies to</td><td>All surfaces</td><td>Fenestration only</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:0.8rem;">EP's window heat balance solver uses ISO 15099 for the exterior face and <strong>ignores EMS actuators</strong>. The interior convection IS overridable (Balemans works via EMS). This is an EP architectural limitation.</p>
+
+        <div class="callout green" style="margin-top:0.8rem;">
+          <strong>We accept this difference.</strong> Bot (1983) was calibrated on greenhouse glass roofs in Wageningen — it is the correct model for greenhouses. ISO 15099 was designed for building windows in urban environments. Neither is wrong, but they were calibrated for different contexts.
+        </div>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Impact by season</h3>
+        <table class="data-table">
+          <thead><tr><th>Period</th><th>Bias</th><th>Driver</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Winter</strong> (Dec)</td><td class="good-text">+0.5°C</td><td>Small ΔT_cov → small h effect</td></tr>
+            <tr><td><strong>Spring</strong> (Mar)</td><td class="warn-text">+1.7°C</td><td>Moderate solar → moderate ΔT</td></tr>
+            <tr><td><strong>Summer</strong> (Jul)</td><td class="bad-text">+4.3°C</td><td>High solar → large ΔT × 7× h</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="sub-h tight">What was successfully matched</h3>
+        <div class="info-card" style="font-size:0.88rem;">
+          <div class="info-row"><span class="label">Solar τ</span> Fresnel angular ✓ (both n=1.526)</div>
+          <div class="info-row"><span class="label">Int h</span> Balemans ✓ (EMS override works)</div>
+          <div class="info-row"><span class="label">Ground</span> Kiva 10m + T_deep=annual mean ✓</div>
+          <div class="info-row"><span class="label">VF</span> MC geometry validates Hottel ✓</div>
+          <div class="info-row"><span class="label">Radiosity</span> Analytical cube validation ✓</div>
+          <div class="info-row"><span class="label">Solar dist</span> EP: 97% floor, Julia: geometric beam ✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - ROADMAP: GEOMETRY ENGINE -->
+  <section class="slide" data-slide="24">
+    <header><span class="num">15</span><h2>Next: geometry-based interior objects</h2></header>
+    <div class="two-col">
+      <div class="col">
+        <h3 class="sub-h">The geometry engine</h3>
+        <p class="lead">Define any object by its 3D vertices. View factors, solar projection, and radiosity follow automatically.</p>
+
+        <pre class="code-sm"><code># Add a heating pipe
+pipe = make_surface("pipe",
+  [SVector(1,1,0.5), SVector(4,1,0.5),
+   SVector(4,1.1,0.5), SVector(1,1.1,0.5)];
+  ε=0.9, α_solar=0.3, capacity=4186*0.5)
+
+# Add a growing bench
+bench = make_surface("bench",
+  [SVector(0.5,0.5,0.8), SVector(4.5,0.5,0.8),
+   SVector(4.5,4.5,0.8), SVector(0.5,4.5,0.8)];
+  ε=0.9, α_solar=0.6, capacity=1000*2)
+
+surfaces = savona_surfaces()
+push!(surfaces, pipe, bench)
+enc = build_enclosure(surfaces)</code></pre>
+
+        <p class="note">MC view factors (N=50k) computed once at setup. Radiosity solved at each ODE step. Beam solar projected from sun angle onto each opaque surface.</p>
+      </div>
+      <div class="col">
+        <h3 class="sub-h">Why this matters</h3>
+
+        <div class="model-card green-border">
+          <div class="model-name">Design scenarios</div>
+          <p class="model-note">Compare insulation on north wall vs south wall. Add thermal screens at night. Evaluate PV panel positions inside the greenhouse.</p>
+        </div>
+        <div class="model-card blue-border" style="margin-top:0.5rem;">
+          <div class="model-name">Accurate thermal mass</div>
+          <p class="model-note">Pipes, benches, and soil trays add thermal inertia that damps temperature swings. The geometry engine captures their radiation exchange with the envelope.</p>
+        </div>
+        <div class="model-card" style="margin-top:0.5rem; border-left:4px solid var(--warm);">
+          <div class="model-name">From Modelica to production</div>
+          <p class="model-note">The original Vanthoor library had 3 fixed surfaces (cover, air, floor). We now support N arbitrary surfaces with exact geometry — while keeping the same greenhouse-calibrated convection physics (Bot + Balemans).</p>
+        </div>
+
+        <div class="callout blue" style="margin-top:0.5rem;">
+          <strong>Validated against:</strong> analytical cube (0.007% error), Savona box (row sums = 1.000), EP ScriptF view factors (3% match on F(floor→cover)).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE - SUMMARY -->
+  <section class="slide" data-slide="25">
+    <header><span class="num">16</span><h2>Summary: from Modelica to geometry-based simulation</h2></header>
+    <div class="content-flow">
+      <div class="summary-grid">
+        <div class="summary-card"><div class="summary-icon" style="color:var(--bad);">1</div><div class="summary-title">EP glazing bug (fixed)</div><p><code>Material</code> → <code>WindowMaterial:Glazing</code>. Solar transmits. Switches EP interior conv to ISO 15099, exterior to ISO 15099 (not overridable).</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--green);">2</div><div class="summary-title">Fresnel angular τ (fixed)</div><p>n=1.526, wavelength-independent. Per-band τ₀ handles spectral absorption. Multi-bounce adds 0.2-1.1°C seasonally.</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--warm);">3</div><div class="summary-title">View factor bug (fixed)</div><p><code>vf_perp_rect</code> A/B swap → returned F₂₁ not F₁₂. MC geometry engine validates (3% of EP ScriptF).</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--blue);">4</div><div class="summary-title">Exterior h on glass (accepted)</div><p>EP ISO 15099 h≈50 vs Julia Bot h≈7 (7×). Not overridable. Explains winter +0.5°C → summer +4.3°C seasonal bias.</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--green);">5</div><div class="summary-title">Geometry engine (new)</div><p>3D vertices → MC view factors → N-surface radiosity → beam projection. Add any interior object. Validated analytically.</p></div>
+        <div class="summary-card"><div class="summary-icon" style="color:var(--ink-dim);">6</div><div class="summary-title">Solar distribution (fixed)</div><p>Geometric beam projection d=H·tan(α) replaces 100%→floor. December Lyon: bias −65% (1.59 → 0.55°C).</p></div>
+      </div>
+      <div class="rule-box" style="margin-top:0.6rem;">
+        <strong>Winter agreement: +0.5°C bias</strong> (accepted — Bot vs ISO 15099 exterior on glass). <strong>17-35× faster</strong> than EP. <strong>Extensible</strong> to arbitrary interior objects via geometry engine.
+      </div>
+    </div>
+  </section>
+
+  </main>
+  <footer id="footer">
+    <span id="footer-page">M. Duchaufour · ERMESS GREEN</span>
+    <nav>
+      <button id="prev" aria-label="Previous">&#8249;</button>
+      <span id="counter">01 / 25</span>
+      <button id="next" aria-label="Next">&#8250;</button>
+    </nav>
+  </footer>
+</div>
+<script src="deck.js"></script>
+</body>
+</html>

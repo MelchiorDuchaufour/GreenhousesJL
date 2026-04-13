@@ -1,0 +1,259 @@
+!- Heated greenhouse model with PI controller via EMS
+!- Same PI parameters as OpenModelica: Kp=100 W/(m2.K), Ti=300s, SP=16C
+!- Geometry: 14000 m2 floor, 3.8m height, single glass
+
+Version,
+  25.1;                    !- Version Identifier
+
+SimulationControl,
+  No,                      !- Do Zone Sizing Calculation
+  No,                      !- Do System Sizing Calculation
+  No,                      !- Do Plant Sizing Calculation
+  No,                      !- Run Simulation for Sizing Periods
+  Yes,                     !- Run Simulation for Weather File Run Periods
+  No,                      !- Do HVAC Sizing Simulation for Sizing Periods
+  1;                       !- Maximum Number of HVAC Sizing Simulation Passes
+
+Building,
+  Greenhouse_Heated,       !- Name
+  0.0,                     !- North Axis (deg)
+  Suburbs,                 !- Terrain
+  0.04,                    !- Loads Convergence Tolerance Value
+  0.004,                   !- Temperature Convergence Tolerance Value (deltaC)
+  FullExterior,            !- Solar Distribution
+  25,                      !- Maximum Number of Warmup Days
+  6;                       !- Minimum Number of Warmup Days
+
+Timestep,
+  60;                      !- Number of Timesteps per Hour (1-min steps)
+
+RunPeriod,
+  Run Period 1,            !- Name
+  12,                      !- Begin Month
+  10,                      !- Begin Day of Month
+  ,                        !- Begin Year
+  12,                      !- End Month
+  16,                      !- End Day of Month
+  ,                        !- End Year
+  Sunday,                  !- Day of Week for Start Day
+  No,                      !- Use Weather File Holidays and Special Days
+  No,                      !- Use Weather File Daylight Saving Period
+  No,                      !- Apply Weekend Holiday Rule
+  Yes,                     !- Use Weather File Rain Indicators
+  Yes;                     !- Use Weather File Snow Indicators
+
+SizingPeriod:DesignDay,
+  Winter Design Day,       !- Name
+  12,                      !- Month
+  10,                      !- Day of Month
+  WinterDesignDay,         !- Day Type
+  5.0,                     !- Maximum Dry-Bulb Temperature (C)
+  0,                       !- Daily Dry-Bulb Temperature Range (deltaC)
+  DefaultMultipliers,      !- Dry-Bulb Temperature Range Modifier Type
+  ,                        !- Dry-Bulb Temperature Range Modifier Day Schedule Name
+  Wetbulb,                 !- Humidity Condition Type
+  3.0,                     !- Wetbulb or DewPoint at Maximum Dry-Bulb (C)
+  ,                        !- Humidity Condition Day Schedule Name
+  ,                        !- Humidity Ratio at Maximum Dry-Bulb
+  ,                        !- Enthalpy at Maximum Dry-Bulb
+  ,                        !- Daily Wet-Bulb Temperature Range
+  101325,                  !- Barometric Pressure (Pa)
+  3.0,                     !- Wind Speed (m/s)
+  0,                       !- Wind Direction (deg)
+  No,                      !- Rain Indicator
+  No,                      !- Snow Indicator
+  No,                      !- Daylight Saving Time Indicator
+  ASHRAEClearSky,          !- Solar Model Indicator
+  ,                        !- Beam Solar Day Schedule Name
+  ,                        !- Diffuse Solar Day Schedule Name
+  ,                        !- ASHRAE Clear Sky taub
+  ,                        !- ASHRAE Clear Sky taud
+  1.0;                     !- Sky Clearness
+
+Site:Location,
+  Brussels, 50.9, 4.53, 1, 58;
+
+Site:GroundTemperature:BuildingSurface,
+  10.7, 10.7, 10.7, 10.7, 10.7, 10.7,
+  10.7, 10.7, 10.7, 10.7, 10.7, 10.7;
+
+!---------------------------------------------------------------------------
+!- MATERIALS (identical to bare model)
+!---------------------------------------------------------------------------
+
+Material,
+  Glass_1mm, Smooth, 0.001, 1.0, 2600, 840, 0.9, 0.1, 0.1;
+
+Material,
+  Floor_Concrete, MediumRough, 0.01, 1.7, 2300, 870, 0.89, 0.5, 0.5;
+
+Material,
+  Soil_Layer, Rough, 0.50, 0.85, 1500, 1153, 0.9, 0.5, 0.5;
+
+Construction,
+  Glass_Roof, Glass_1mm;
+
+Construction,
+  Ground_Floor, Floor_Concrete, Soil_Layer;
+
+!---------------------------------------------------------------------------
+!- GEOMETRY (identical to bare model)
+!---------------------------------------------------------------------------
+
+GlobalGeometryRules,
+  UpperLeftCorner, Counterclockwise, Relative;
+
+Zone,
+  Greenhouse, 0, 0, 0, 0, 1, 1, 3.8, 53200;
+
+BuildingSurface:Detailed,
+  Floor, Floor, Ground_Floor, Greenhouse, , Ground, , NoSun, NoWind, 0, 4,
+  0,0,0, 0,140,0, 100,140,0, 100,0,0;
+
+BuildingSurface:Detailed,
+  Roof, Roof, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  0,0,3.8, 0,140,3.8, 100,140,3.8, 100,0,3.8;
+
+BuildingSurface:Detailed,
+  Wall_N, Wall, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  0,140,3.8, 0,140,0, 100,140,0, 100,140,3.8;
+
+BuildingSurface:Detailed,
+  Wall_S, Wall, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  100,0,3.8, 100,0,0, 0,0,0, 0,0,3.8;
+
+BuildingSurface:Detailed,
+  Wall_E, Wall, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  100,140,3.8, 100,140,0, 100,0,0, 100,0,3.8;
+
+BuildingSurface:Detailed,
+  Wall_W, Wall, Glass_Roof, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  0,0,3.8, 0,0,0, 0,140,0, 0,140,3.8;
+
+!---------------------------------------------------------------------------
+!- NO INFILTRATION
+!---------------------------------------------------------------------------
+
+ZoneInfiltration:DesignFlowRate,
+  Infiltration, Greenhouse, AlwaysOn, AirChanges/Hour, , , , 0.0;
+
+!---------------------------------------------------------------------------
+!- HEATING VIA OtherEquipment (controlled by EMS PI controller)
+!---------------------------------------------------------------------------
+
+ScheduleTypeLimits,
+  Any Number;
+
+Schedule:Compact,
+  AlwaysOn, Any Number,
+  Through: 12/31, For: AllDays, Until: 24:00, 1;
+
+Schedule:Compact,
+  Heating_Power_Schedule, Any Number,
+  Through: 12/31, For: AllDays, Until: 24:00, 0;
+
+OtherEquipment,
+  PI_Heater,               !- Name
+  None,                    !- Fuel Type
+  Greenhouse,              !- Zone Name
+  AlwaysOn,                !- Schedule Name
+  EquipmentLevel,          !- Design Level Calculation Method
+  0,                       !- Design Level (W) - overridden by EMS actuator
+  ,                        !- Power per Zone Floor Area (W/m2)
+  ,                        !- Power per Person (W/person)
+  0,                       !- Fraction Latent
+  0,                       !- Fraction Radiant
+  0;                       !- Fraction Lost
+
+!---------------------------------------------------------------------------
+!- EMS: PI CONTROLLER (Kp=100 W/(m2.K), Ti=300s, SP=16C, Qmax=200 W/m2)
+!---------------------------------------------------------------------------
+
+EnergyManagementSystem:Sensor,
+  T_air_sensor,            !- Name
+  Greenhouse,              !- Output:Variable or Output:Meter Index Key Name
+  Zone Mean Air Temperature; !- Output:Variable or Output:Meter Name
+
+EnergyManagementSystem:Actuator,
+  Heating_Actuator,        !- Name
+  PI_Heater,               !- Actuated Component Unique Name
+  OtherEquipment,          !- Actuated Component Type
+  Power Level;             !- Actuated Component Control Type
+
+EnergyManagementSystem:GlobalVariable,
+  integral_error;          !- Erl Variable Name
+
+EnergyManagementSystem:ProgramCallingManager,
+  PI_Init_Manager,         !- Name
+  BeginNewEnvironment,     !- EnergyPlus Model Calling Point
+  PI_Init_Program;         !- Program Name 1
+
+EnergyManagementSystem:Program,
+  PI_Init_Program,         !- Name
+  SET integral_error = 0;
+
+EnergyManagementSystem:ProgramCallingManager,
+  PI_Heating_Controller,   !- Name
+  BeginTimestepBeforePredictor, !- EnergyPlus Model Calling Point
+  PI_Control_Program;      !- Program Name 1
+
+EnergyManagementSystem:Program,
+  PI_Control_Program,      !- Name
+  !- PI parameters: Kp=100 W/(m2.K), Ti=300s, A=14000m2, Qmax=2800000W
+  SET Tsp = 16.0,
+  SET error = Tsp - T_air_sensor,
+  SET dt = SystemTimeStep * 3600,
+  !- Integral with anti-windup: only integrate when not saturated
+  SET integral_error = integral_error + error * dt,
+  !- PI output
+  SET Kp = 100,
+  SET Ti = 300,
+  SET A_floor = 14000,
+  SET Q_pi = (Kp * error + Kp / Ti * integral_error) * A_floor,
+  !- Saturation
+  SET Qmax = 200 * A_floor,
+  IF Q_pi > Qmax,
+    SET Q_pi = Qmax,
+  ENDIF,
+  IF Q_pi < 0,
+    SET Q_pi = 0,
+    !- Anti-windup: clamp integral when output saturated at 0
+    IF integral_error < 0,
+      SET integral_error = 0,
+    ENDIF,
+  ENDIF,
+  SET Heating_Actuator = Q_pi;
+
+EnergyManagementSystem:OutputVariable,
+  EMS Heating Power,       !- Name
+  Heating_Actuator,        !- EMS Variable Name
+  Averaged,                !- Type of Data in Variable
+  ZoneTimeStep,            !- Update Frequency
+  ,                        !- EMS Program or Subroutine Name
+  W;                       !- Units
+
+EnergyManagementSystem:OutputVariable,
+  EMS Integral Error,      !- Name
+  integral_error,          !- EMS Variable Name
+  Averaged,                !- Type of Data in Variable
+  ZoneTimeStep,            !- Update Frequency
+  ,                        !- EMS Program or Subroutine Name
+  ;                        !- Units
+
+!---------------------------------------------------------------------------
+!- OUTPUT
+!---------------------------------------------------------------------------
+
+Output:Variable,*,Zone Mean Air Temperature,Timestep;
+Output:Variable,*,Site Outdoor Air Drybulb Temperature,Timestep;
+Output:Variable,*,Surface Inside Face Temperature,Timestep;
+Output:Variable,*,Surface Outside Face Temperature,Timestep;
+Output:Variable,*,EMS Heating Power,Timestep;
+Output:Variable,*,EMS Integral Error,Timestep;
+Output:Variable,*,Other Equipment Convective Heating Rate,Timestep;
+
+OutputControl:Table:Style,
+  HTML;
+
+Output:Table:SummaryReports,
+  AllSummary;

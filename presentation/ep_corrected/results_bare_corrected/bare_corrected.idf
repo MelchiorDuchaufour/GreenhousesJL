@@ -1,0 +1,324 @@
+!- Bare greenhouse model for comparison with Greenhouses Library
+!- Single glass cover, no heating, no plants, no ventilation
+!- Geometry: 14000 m2 floor, 3.8m height, 25deg roof slope
+
+Version,
+  25.1;                    !- Version Identifier
+
+!---------------------------------------------------------------------------
+!- SIMULATION PARAMETERS
+!---------------------------------------------------------------------------
+
+SimulationControl,
+  No,                      !- Do Zone Sizing Calculation
+  No,                      !- Do System Sizing Calculation
+  No,                      !- Do Plant Sizing Calculation
+  No,                      !- Run Simulation for Sizing Periods
+  Yes,                     !- Run Simulation for Weather File Run Periods
+  No,                      !- Do HVAC Sizing Simulation for Sizing Periods
+  1;                       !- Maximum Number of HVAC Sizing Simulation Passes
+
+Building,
+  Greenhouse_Bare,         !- Name
+  0.0,                     !- North Axis (deg)
+  Suburbs,                 !- Terrain
+  0.04,                    !- Loads Convergence Tolerance Value
+  0.004,                   !- Temperature Convergence Tolerance Value (deltaC)
+  FullExterior,            !- Solar Distribution
+  25,                      !- Maximum Number of Warmup Days
+  6;                       !- Minimum Number of Warmup Days
+
+Timestep,
+  6;                       !- Number of Timesteps per Hour (10-min steps)
+
+RunPeriod,
+  Run Period 1,            !- Name
+  12,                      !- Begin Month
+  10,                      !- Begin Day of Month
+  ,                        !- Begin Year
+  12,                      !- End Month
+  16,                      !- End Day of Month
+  ,                        !- End Year
+  Sunday,                  !- Day of Week for Start Day
+  No,                      !- Use Weather File Holidays and Special Days
+  No,                      !- Use Weather File Daylight Saving Period
+  No,                      !- Apply Weekend Holiday Rule
+  Yes,                     !- Use Weather File Rain Indicators
+  Yes;                     !- Use Weather File Snow Indicators
+
+SizingPeriod:DesignDay,
+  Winter Design Day,       !- Name
+  12,                      !- Month
+  10,                      !- Day of Month
+  WinterDesignDay,         !- Day Type
+  5.0,                     !- Maximum Dry-Bulb Temperature (C)
+  0,                       !- Daily Dry-Bulb Temperature Range (deltaC)
+  DefaultMultipliers,      !- Dry-Bulb Temperature Range Modifier Type
+  ,                        !- Dry-Bulb Temperature Range Modifier Day Schedule Name
+  Wetbulb,                 !- Humidity Condition Type
+  3.0,                     !- Wetbulb or DewPoint at Maximum Dry-Bulb (C)
+  ,                        !- Humidity Condition Day Schedule Name
+  ,                        !- Humidity Ratio at Maximum Dry-Bulb (kgWater/kgDryAir)
+  ,                        !- Enthalpy at Maximum Dry-Bulb (J/kg)
+  ,                        !- Daily Wet-Bulb Temperature Range (deltaC)
+  101325,                  !- Barometric Pressure (Pa)
+  3.0,                     !- Wind Speed (m/s)
+  0,                       !- Wind Direction (deg)
+  No,                      !- Rain Indicator
+  No,                      !- Snow Indicator
+  No,                      !- Daylight Saving Time Indicator
+  ASHRAEClearSky,          !- Solar Model Indicator
+  ,                        !- Beam Solar Day Schedule Name
+  ,                        !- Diffuse Solar Day Schedule Name
+  ,                        !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+  ,                        !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+  1.0;                     !- Sky Clearness
+
+!---------------------------------------------------------------------------
+!- LOCATION (Brussels approximation)
+!---------------------------------------------------------------------------
+
+Site:Location,
+  Brussels,                !- Name
+  50.9,                    !- Latitude (deg)
+  4.53,                    !- Longitude (deg)
+  1,                       !- Time Zone (hr)
+  58;                      !- Elevation (m)
+
+Site:GroundTemperature:BuildingSurface,
+  10.7, 10.7, 10.7, 10.7, 10.7, 10.7,
+  10.7, 10.7, 10.7, 10.7, 10.7, 10.7;
+
+!---------------------------------------------------------------------------
+!- MATERIALS
+!---------------------------------------------------------------------------
+
+!- Single glass (1mm, same as Greenhouses library cover)
+Material,
+  Glass_1mm,               !- Name
+  Smooth,                  !- Roughness
+  0.001,                   !- Thickness (m)
+  1.0,                     !- Conductivity (W/m-K)
+  2600,                    !- Density (kg/m3)
+  840,                     !- Specific Heat (J/kg-K)
+  0.9,                     !- Thermal Absorptance (LW emissivity)
+  0.1,                     !- Solar Absorptance
+  0.1;                     !- Visible Absorptance
+
+!- Floor: concrete-like with high thermal mass
+!- rho=1 kg/m3 * c_p=2e6 J/(kg.K) => rho*c_p = 2e6 J/(m3.K)
+!- Use real concrete values: rho=2300, c_p=870 => rho*c_p = 2.0e6
+Material,
+  Floor_Concrete,          !- Name
+  MediumRough,             !- Roughness
+  0.01,                    !- Thickness (m) - same as V/A = 0.01*A/A
+  1.7,                     !- Conductivity (W/m-K) - same as concrete layers
+  2300,                    !- Density (kg/m3)
+  870,                     !- Specific Heat (J/kg-K)
+  0.89,                    !- Thermal Absorptance (emissivity)
+  0.5,                     !- Solar Absorptance
+  0.5;                     !- Visible Absorptance
+
+!- Soil layers for ground contact
+Material,
+  Soil_Layer,              !- Name
+  Rough,                   !- Roughness
+  0.50,                    !- Thickness (m) - lumped soil
+  0.85,                    !- Conductivity (W/m-K)
+  1500,                    !- Density (kg/m3)
+  1153,                    !- Specific Heat (J/kg-K) - 1500*1153 ~ 1.73e6
+  0.9,                     !- Thermal Absorptance
+  0.5,                     !- Solar Absorptance
+  0.5;                     !- Visible Absorptance
+
+!---------------------------------------------------------------------------
+!- CONSTRUCTIONS
+!---------------------------------------------------------------------------
+
+Construction,
+  Glass_Roof,              !- Name
+  Glass_1mm;               !- Layer 1 (outside to inside)
+
+Construction,
+  Ground_Floor,            !- Name
+  Floor_Concrete,          !- Layer 1 (inside)
+  Soil_Layer;              !- Layer 2 (ground side)
+
+!---------------------------------------------------------------------------
+!- GEOMETRY
+!- Simplified: rectangular greenhouse 100m x 140m = 14000 m2
+!- Ridge height = 3.8 + 0.5*100*tan(25deg) = 3.8m at gutter
+!- Simplified as flat roof at 3.8m for thermal comparison
+!---------------------------------------------------------------------------
+
+GlobalGeometryRules,
+  UpperLeftCorner,         !- Starting Vertex Position
+  Counterclockwise,        !- Vertex Entry Direction
+  Relative;                !- Coordinate System
+
+Zone,
+  Greenhouse,              !- Name
+  0,                       !- Direction of Relative North (deg)
+  0, 0, 0,                 !- X,Y,Z Origin (m)
+  1,                       !- Type
+  1,                       !- Multiplier
+  3.8,                     !- Ceiling Height (m)
+  53200;                   !- Volume (m3) = 14000 * 3.8
+
+!- Floor
+BuildingSurface:Detailed,
+  Floor,                   !- Name
+  Floor,                   !- Surface Type
+  Ground_Floor,            !- Construction Name
+  Greenhouse,              !- Zone Name
+  ,                        !- Space Name
+  Ground,                  !- Outside Boundary Condition
+  ,                        !- Outside Boundary Condition Object
+  NoSun,                   !- Sun Exposure
+  NoWind,                  !- Wind Exposure
+  0,                       !- View Factor to Ground
+  4,                       !- Number of Vertices
+  0, 0, 0,                 !- Vertex 1 (m)
+  0, 140, 0,               !- Vertex 2
+  100, 140, 0,             !- Vertex 3
+  100, 0, 0;               !- Vertex 4
+
+!- Roof (glass, exposed to sun, wind, sky)
+BuildingSurface:Detailed,
+  Roof,                    !- Name
+  Roof,                    !- Surface Type
+  Glass_Roof,              !- Construction Name
+  Greenhouse,              !- Zone Name
+  ,                        !- Space Name
+  Outdoors,                !- Outside Boundary Condition
+  ,                        !- Outside Boundary Condition Object
+  SunExposed,              !- Sun Exposure
+  WindExposed,             !- Wind Exposure
+  ,                        !- View Factor to Ground
+  4,                       !- Number of Vertices
+  0, 0, 3.8,              !- Vertex 1
+  0, 140, 3.8,            !- Vertex 2
+  100, 140, 3.8,          !- Vertex 3
+  100, 0, 3.8;            !- Vertex 4
+
+!- Walls (glass, minimal area for a large greenhouse - but needed for closure)
+BuildingSurface:Detailed,
+  Wall_N,                  !- Name
+  Wall,                    !- Surface Type
+  Glass_Roof,              !- Construction Name
+  Greenhouse,              !- Zone Name
+  ,                        !- Space Name
+  Outdoors,                !- Outside Boundary Condition
+  ,                        !- Outside Boundary Condition Object
+  SunExposed,              !- Sun Exposure
+  WindExposed,             !- Wind Exposure
+  ,                        !- View Factor to Ground
+  4,                       !- Number of Vertices
+  0, 140, 3.8,            !- Vertex 1
+  0, 140, 0,              !- Vertex 2
+  100, 140, 0,            !- Vertex 3
+  100, 140, 3.8;          !- Vertex 4
+
+BuildingSurface:Detailed,
+  Wall_S,                  !- Name
+  Wall,                    !- Surface Type
+  Glass_Roof,              !- Construction Name
+  Greenhouse,              !- Zone Name
+  ,                        !- Space Name
+  Outdoors,                !- Outside Boundary Condition
+  ,                        !- Outside Boundary Condition Object
+  SunExposed,              !- Sun Exposure
+  WindExposed,             !- Wind Exposure
+  ,                        !- View Factor to Ground
+  4,                       !- Number of Vertices
+  100, 0, 3.8,            !- Vertex 1
+  100, 0, 0,              !- Vertex 2
+  0, 0, 0,                !- Vertex 3
+  0, 0, 3.8;              !- Vertex 4
+
+BuildingSurface:Detailed,
+  Wall_E,                  !- Name
+  Wall,                    !- Surface Type
+  Glass_Roof,              !- Construction Name
+  Greenhouse,              !- Zone Name
+  ,                        !- Space Name
+  Outdoors,                !- Outside Boundary Condition
+  ,                        !- Outside Boundary Condition Object
+  SunExposed,              !- Sun Exposure
+  WindExposed,             !- Wind Exposure
+  ,                        !- View Factor to Ground
+  4,                       !- Number of Vertices
+  100, 140, 3.8,          !- Vertex 1
+  100, 140, 0,            !- Vertex 2
+  100, 0, 0,              !- Vertex 3
+  100, 0, 3.8;            !- Vertex 4
+
+BuildingSurface:Detailed,
+  Wall_W,                  !- Name
+  Wall,                    !- Surface Type
+  Glass_Roof,              !- Construction Name
+  Greenhouse,              !- Zone Name
+  ,                        !- Space Name
+  Outdoors,                !- Outside Boundary Condition
+  ,                        !- Outside Boundary Condition Object
+  SunExposed,              !- Sun Exposure
+  WindExposed,             !- Wind Exposure
+  ,                        !- View Factor to Ground
+  4,                       !- Number of Vertices
+  0, 0, 3.8,              !- Vertex 1
+  0, 0, 0,                !- Vertex 2
+  0, 140, 0,              !- Vertex 3
+  0, 140, 3.8;            !- Vertex 4
+
+!---------------------------------------------------------------------------
+!- NO INFILTRATION (sealed greenhouse, no ventilation)
+!---------------------------------------------------------------------------
+
+ZoneInfiltration:DesignFlowRate,
+  Infiltration,            !- Name
+  Greenhouse,              !- Zone or ZoneList or Space or SpaceList Name
+  AlwaysOn,                !- Schedule Name
+  AirChanges/Hour,         !- Design Flow Rate Calculation Method
+  ,                        !- Design Flow Rate (m3/s)
+  ,                        !- Flow per Zone Floor Area (m3/s-m2)
+  ,                        !- Flow per Exterior Surface Area (m3/s-m2)
+  0.0;                     !- Air Changes per Hour - ZERO = sealed
+
+!---------------------------------------------------------------------------
+!- NO HVAC (no heating, no cooling)
+!---------------------------------------------------------------------------
+
+!---------------------------------------------------------------------------
+!- OUTPUT
+!---------------------------------------------------------------------------
+
+Output:Variable,*,Zone Mean Air Temperature,Timestep;
+Output:Variable,*,Zone Mean Radiant Temperature,Timestep;
+Output:Variable,*,Site Outdoor Air Drybulb Temperature,Timestep;
+Output:Variable,*,Zone Windows Total Transmitted Solar Radiation Rate,Timestep;
+Output:Variable,*,Surface Inside Face Temperature,Timestep;
+Output:Variable,*,Surface Outside Face Temperature,Timestep;
+Output:Variable,*,Surface Inside Face Conduction Heat Transfer Energy,Timestep;
+
+OutputControl:Table:Style,
+  HTML;                    !- Column Separator
+
+Output:Table:SummaryReports,
+  AllSummary;              !- Report 1 Name
+
+Output:Meter,Electricity:Facility,Timestep;
+
+!---------------------------------------------------------------------------
+!- SCHEDULES
+!---------------------------------------------------------------------------
+
+ScheduleTypeLimits,
+  Any Number;              !- Name
+
+Schedule:Compact,
+  AlwaysOn,                !- Name
+  Any Number,              !- Schedule Type Limits Name
+  Through: 12/31,          !- Field 1
+  For: AllDays,            !- Field 2
+  Until: 24:00,            !- Field 3
+  1;                       !- Field 4

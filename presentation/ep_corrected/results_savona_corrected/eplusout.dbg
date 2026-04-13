@@ -1,0 +1,10 @@
+Reversing Surface Name=ROOF_SOUTH
+side=    1 abs coord vertex=    2.8870000000000    0.0000000000000    4.1650000000000
+side=    2 abs coord vertex=    2.8870000000000    5.0000000000000    4.1650000000000
+side=    3 abs coord vertex=    0.0000000000000    5.0000000000000    2.0000000000000
+side=    4 abs coord vertex=    0.0000000000000    0.0000000000000    2.0000000000000
+Reversing Surface Name=ROOF_NORTH
+side=    1 abs coord vertex=    5.0000000000000    0.0000000000000    2.0000000000000
+side=    2 abs coord vertex=    5.0000000000000    5.0000000000000    2.0000000000000
+side=    3 abs coord vertex=    2.8870000000000    5.0000000000000    4.1650000000000
+side=    4 abs coord vertex=    2.8870000000000    0.0000000000000    4.1650000000000

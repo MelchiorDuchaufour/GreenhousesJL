@@ -1,0 +1,19 @@
+/* GreenhousesJL custom theme — green accent like VPL */
+:root {
+    --documenter-is-dark-theme: false;
+}
+.docs-sidebar .docs-logo > img {
+    max-height: 5rem;
+}
+article h1, article h2, article h3 {
+    color: #228B22;
+}
+a {
+    color: #2E8B57;
+}
+.admonition.is-info {
+    border-left-color: #228B22;
+}
+.admonition.is-info > .admonition-header {
+    background-color: #228B22;
+}
