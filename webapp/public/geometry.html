@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GreenhousesJL, live geometry</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<style>
+  :root{
+    --accent:#2E7D32; --accent-dim:#558B58;
+    --bg:#f4f2ec; --panel:#ffffff; --ink:#222; --ink-dim:#666; --line:#e0ddd3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink)}
+  .app{display:grid;grid-template-columns:22% 1fr;grid-template-rows:1fr;height:100vh;min-width:1200px}
+  main{display:grid;grid-template-rows:1fr 340px;overflow:hidden}
+  #charts{background:#fff;border-top:1px solid var(--line);padding:8px;display:none;overflow:auto}
+  #charts.show{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  #charts .chart-box{height:150px}
+  aside{background:var(--panel);padding:18px 20px;overflow:auto;border-right:1px solid var(--line)}
+  aside h1{font-size:1.1rem;color:var(--accent);margin-bottom:2px}
+  aside .sub{font-size:0.75rem;color:var(--ink-dim);margin-bottom:18px}
+  fieldset{border:none;margin-bottom:18px;padding:0}
+  legend{font-size:0.8rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;border-bottom:1px solid var(--line);padding-bottom:4px;width:100%}
+  .row{display:flex;justify-content:space-between;align-items:center;margin:6px 0;gap:10px}
+  .row label{font-size:0.82rem;color:var(--ink-dim);flex:0 0 140px}
+  .row input[type=range]{flex:1}
+  .row .val{font-size:0.78rem;font-weight:700;color:var(--accent);flex:0 0 58px;text-align:right;font-variant-numeric:tabular-nums}
+  .row .num{flex:0 0 58px;padding:3px 6px;font-size:0.78rem;border:1px solid var(--line);border-radius:4px;text-align:right;font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700}
+  .row .num::-webkit-inner-spin-button,.row .num::-webkit-outer-spin-button{opacity:1}
+  .row select, .row input[type=number]{flex:1;padding:4px 8px;font-size:0.85rem;border:1px solid var(--line);border-radius:4px;background:#fff}
+  .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+  .checks label{font-size:0.82rem;display:flex;align-items:center;gap:6px;color:var(--ink)}
+  .btn{width:100%;padding:10px;border:none;background:var(--accent);color:#fff;font-weight:700;border-radius:6px;cursor:pointer;font-size:0.9rem;margin-top:6px}
+  .btn:hover{background:#1a6b1a}
+  .btn:disabled{background:#999;cursor:wait}
+  .status{font-size:0.75rem;color:var(--ink-dim);margin-top:6px;min-height:1.2em}
+  main{position:relative}
+  #canvas-wrap{position:absolute;inset:0}
+  #canvas-wrap canvas{display:block;width:100%;height:100%}
+  .hud{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.85);padding:8px 12px;border-radius:6px;font-size:0.78rem;color:var(--ink-dim)}
+  .hud strong{color:var(--accent)}
+  details{margin-top:6px;font-size:0.8rem}
+  details summary{cursor:pointer;color:var(--ink-dim);margin-bottom:4px}
+  pre.results{background:#1e1e1e;color:#e8e8e8;padding:10px;border-radius:6px;font-family:'Fira Code',monospace;font-size:0.72rem;line-height:1.4;white-space:pre-wrap;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside>
+    <h1>GreenhousesJL</h1>
+    <div class="sub">Live geometry + simulation</div>
+
+    <fieldset>
+      <legend>Footprint</legend>
+      <div class="row"><label>Length L [m]</label><input type="range" id="L" min="5" max="200" step="1" value="30"><input type="number" class="num" id="L-num" min="5" max="200" step="1" value="30"></div>
+      <div class="row"><label>Width W [m]</label><input type="range" id="W" min="5" max="200" step="1" value="20"><input type="number" class="num" id="W-num" min="5" max="200" step="1" value="20"></div>
+      <div class="row"><label>Gutter height [m]</label><input type="range" id="hG" min="2" max="8" step="0.1" value="3.5"><input type="number" class="num" id="hG-num" min="2" max="8" step="0.1" value="3.5"></div>
+      <div class="row"><label>South slope [°]</label><input type="range" id="slope" min="0" max="60" step="1" value="22"><input type="number" class="num" id="slope-num" min="0" max="60" step="1" value="22"></div>
+      <div class="row"><label>Ridge offset [%]</label><input type="range" id="ridge" min="-45" max="45" step="1" value="0"><input type="number" class="num" id="ridge-num" min="-45" max="45" step="1" value="0"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Wall insulation</legend>
+      <div class="checks">
+        <label><input type="checkbox" id="insN"> North</label>
+        <label><input type="checkbox" id="insS"> South</label>
+        <label><input type="checkbox" id="insE"> East</label>
+        <label><input type="checkbox" id="insW"> West</label>
+      </div>
+      <div class="row" style="margin-top:8px"><label>Material</label>
+        <select id="insMat">
+          <option value="xps">XPS (U=0.4)</option>
+          <option value="rockwool">Rock wool (U=0.35)</option>
+          <option value="polyurethane">Polyurethane (U=0.22)</option>
+          <option value="pcm">PCM panel (latent)</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>PV arrays</legend>
+      <div id="panel-list" style="margin-bottom:8px"></div>
+      <button class="btn" id="add-panel" type="button" style="background:#1565C0; margin-top:0">+ add panel</button>
+
+      <div id="panel-edit" style="margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); display:none">
+        <div class="row"><label>Selected</label><span id="panel-name" style="font-weight:700; color:var(--accent)"></span></div>
+        <div class="row"><label>Mount</label>
+          <select id="pe-mount">
+            <option value="ground">Ground / elevated array</option>
+            <option value="roof_s">On roof, south slope</option>
+            <option value="roof_n">On roof, north slope</option>
+          </select>
+        </div>
+        <div class="row"><label>Type</label>
+          <select id="pe-type">
+            <option value="opaque">Opaque (τ=0)</option>
+            <option value="semi">Semi-transparent (τ=0.4)</option>
+            <option value="transparent">Transparent (τ=0.7)</option>
+          </select>
+        </div>
+        <div class="row"><label>Length [m]</label><input type="range" id="pe-len" min="1" max="60" step="0.5" value="10"><input type="number" class="num" id="pe-len-num" min="1" max="60" step="0.5" value="10"></div>
+        <div class="row"><label>Width [m]</label><input type="range" id="pe-wid" min="1" max="40" step="0.5" value="6"><input type="number" class="num" id="pe-wid-num" min="1" max="40" step="0.5" value="6"></div>
+        <div class="row" id="pe-row-h"><label>Height [m]</label><input type="range" id="pe-h" min="0" max="15" step="0.1" value="6"><input type="number" class="num" id="pe-h-num" min="0" max="15" step="0.1" value="6"></div>
+        <div class="row"><label>Tilt [°]</label><input type="range" id="pe-tilt" min="0" max="60" step="1" value="25"><input type="number" class="num" id="pe-tilt-num" min="0" max="60" step="1" value="25"></div>
+        <div class="row" id="pe-row-az"><label>Azimuth [°]</label><input type="range" id="pe-az" min="-180" max="180" step="5" value="0"><input type="number" class="num" id="pe-az-num" min="-180" max="180" step="5" value="0"></div>
+        <div class="row"><label>X [m]</label><input type="range" id="pe-x" min="-100" max="100" step="0.5" value="0"><input type="number" class="num" id="pe-x-num" min="-100" max="100" step="0.5" value="0"></div>
+        <div class="row" id="pe-row-z"><label>Z [m]</label><input type="range" id="pe-z" min="-100" max="100" step="0.5" value="0"><input type="number" class="num" id="pe-z-num" min="-100" max="100" step="0.5" value="0"></div>
+        <div class="row" id="pe-row-slopepos"><label>Position on slope</label><input type="range" id="pe-spos" min="0" max="1" step="0.05" value="0.5"><input type="number" class="num" id="pe-spos-num" min="0" max="1" step="0.05" value="0.5"></div>
+        <div class="row" id="pe-row-cov"><label>Strip density</label><input type="range" id="pe-cov" min="20" max="100" step="5" value="100"><input type="number" class="num" id="pe-cov-num" min="20" max="100" step="5" value="100"></div>
+        <button class="btn" id="del-panel" type="button" style="background:#c62828; margin-top:6px">delete selected</button>
+      </div>
+      <div class="status">Click a panel in 3D to select. Shift-drag (ground panels) to move on XZ. Roof panels: tilt is clamped to ≥ roof slope.</div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Crop layout</legend>
+      <div class="row"><label>Crop</label>
+        <select id="crop">
+          <option value="none">None</option>
+          <option value="tomato" selected>Tomato</option>
+          <option value="lettuce">Lettuce</option>
+          <option value="cucumber">Cucumber</option>
+        </select>
+      </div>
+      <div class="row"><label>Layout</label>
+        <select id="layout">
+          <option value="none">None</option>
+          <option value="rows" selected>Rows (soil-grown)</option>
+          <option value="benches">Benches (hydroponic)</option>
+        </select>
+      </div>
+      <div class="row"><label>Count</label><input type="range" id="nRows" min="1" max="12" step="1" value="4"><input type="number" class="num" id="nRows-num" min="1" max="12" step="1" value="4"></div>
+      <div class="row"><label>Row/bench width [m]</label><input type="range" id="rowW" min="0.4" max="2.5" step="0.1" value="0.8"><input type="number" class="num" id="rowW-num" min="0.4" max="2.5" step="0.1" value="0.8"></div>
+      <div class="row"><label>Plant height [m]</label><input type="range" id="plantH" min="0.2" max="3" step="0.1" value="0.8"><input type="number" class="num" id="plantH-num" min="0.2" max="3" step="0.1" value="0.8"></div>
+      <div class="row"><label>Bench height [m]</label><input type="range" id="benchH" min="0" max="1.5" step="0.1" value="0.8"><input type="number" class="num" id="benchH-num" min="0" max="1.5" step="0.1" value="0.8"></div>
+      <div class="row"><label>LAI</label><input type="range" id="LAI" min="0" max="5" step="0.1" value="2.5"><input type="number" class="num" id="LAI-num" min="0" max="5" step="0.1" value="2.5"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Heating &amp; control</legend>
+      <div class="row"><label>System</label>
+        <select id="heating">
+          <option value="direct" selected>Direct</option>
+          <option value="boiler">Gas boiler</option>
+          <option value="condensing">Condensing boiler</option>
+          <option value="heatpump">Air-source HP</option>
+          <option value="gshp">Ground-source HP</option>
+          <option value="chp">Gas CHP</option>
+        </select>
+      </div>
+      <div class="row"><label>Pipes</label>
+        <select id="pipes">
+          <option value="none">None</option>
+          <option value="high" selected>High (growing)</option>
+          <option value="low">Low (rail)</option>
+          <option value="under_bench">Under bench</option>
+          <option value="floor">Floor heating</option>
+        </select>
+      </div>
+      <div class="row"><label>Controller</label>
+        <select id="controller">
+          <option value="ideal" selected>Ideal PI</option>
+          <option value="standard">Standard</option>
+          <option value="savings">Aggressive saving</option>
+          <option value="tight">Tight control</option>
+        </select>
+      </div>
+      <div class="row"><label>Cover / screen</label>
+        <select id="cover">
+          <option value="none" selected>None</option>
+          <option value="thin">Thin blanket</option>
+          <option value="chinese">Chinese cover</option>
+          <option value="insulated">Insulated mat</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Weather</legend>
+      <div class="row"><label>Preset</label>
+        <select id="weather">
+          <option value="brussels">Brussels</option>
+          <option value="lyon">Lyon</option>
+          <option value="chambery">Chambéry</option>
+          <option value="almeria">Almería</option>
+        </select>
+      </div>
+      <div class="row"><label>Upload EPW</label><input type="file" id="epw" accept=".epw" style="font-size:0.75rem"></div>
+      <div class="row"><label>Days</label><input type="number" id="days" min="1" max="30" value="7"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Run</legend>
+      <div class="row"><label>Setpoint [°C]</label><input type="range" id="Tsp" min="5" max="25" step="0.5" value="18"><input type="number" class="num" id="Tsp-num" min="5" max="25" step="0.5" value="18"></div>
+      <button class="btn" id="run">Simulate</button>
+      <div class="status" id="status">Adjust geometry, then click Simulate.</div>
+      <pre class="results" id="results" style="display:none"></pre>
+    </fieldset>
+  </aside>
+
+  <main>
+    <div style="position:relative">
+      <div id="canvas-wrap"></div>
+      <div class="hud" id="hud">
+        <div><strong>Floor</strong> <span id="hud-floor">600</span> m²</div>
+        <div><strong>Roof rise</strong> <span id="hud-rise">4.0</span> m</div>
+        <div><strong>Insulated walls</strong> <span id="hud-ins">,</span></div>
+        <div><strong>PV area</strong> <span id="hud-pv">0</span> m²</div>
+        <div><strong>Canopy footprint</strong> <span id="hud-canopy">0</span> m²</div>
+      </div>
+      <div style="position:absolute; bottom:12px; left:12px; right:12px; background:rgba(255,247,221,.92); border-left:3px solid #c46a1e; padding:8px 12px; border-radius:6px; font-size:0.74rem; color:#5a4422; line-height:1.4;">
+        <strong style="color:#c46a1e;">Visual only:</strong> insulation mats, thermal screens, PCM and night covers are drawn here for clarity but the physics treats them as <em>lumped 1D layers</em> on the wall / cover / floor energy balance. No spatial discretisation, no view-factor change for the screen position.
+      </div>
+    </div>
+    <div id="charts">
+      <div class="chart-box" id="chart-T"></div>
+      <div class="chart-box" id="chart-RH"></div>
+      <div class="chart-box" id="chart-CO2"></div>
+      <div class="chart-box" id="chart-Q"></div>
+    </div>
+  </main>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// ---------- THREE.js scene ----------
+const wrap = document.getElementById('canvas-wrap');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf4f2ec);
+
+const camera = new THREE.PerspectiveCamera(50, wrap.clientWidth/wrap.clientHeight, 0.1, 2000);
+camera.position.set(55, 35, 55);
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+wrap.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 4, 0);
+controls.update();
+
+// Lights + grid + sun indicator
+scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+const sun = new THREE.DirectionalLight(0xffffff, 0.9);
+sun.position.set(60, 80, 30);
+scene.add(sun);
+const grid = new THREE.GridHelper(400, 40, 0xbbb7ac, 0xdedace);
+grid.position.y = -0.01;
+scene.add(grid);
+
+// Material palette
+const MAT = {
+  glass:        new THREE.MeshStandardMaterial({color:0x8ec7ea, transparent:true, opacity:0.35, roughness:0.15, metalness:0.1, side:THREE.DoubleSide}),
+  floor:        new THREE.MeshStandardMaterial({color:0x8a6f50, roughness:0.95}),
+  frame:        new THREE.MeshStandardMaterial({color:0x6e6e6e, roughness:0.6, metalness:0.4}),
+  insulXps:     new THREE.MeshStandardMaterial({color:0xe8e1c8, roughness:0.9, side:THREE.DoubleSide}),
+  insulRock:    new THREE.MeshStandardMaterial({color:0xc1b59a, roughness:0.9, side:THREE.DoubleSide}),
+  insulPur:     new THREE.MeshStandardMaterial({color:0xf2c472, roughness:0.9, side:THREE.DoubleSide}),
+  insulPcm:     new THREE.MeshStandardMaterial({color:0xc8a2ff, roughness:0.7, side:THREE.DoubleSide}),
+  pvOpaque:     new THREE.MeshStandardMaterial({color:0x1c2233, roughness:0.45, metalness:0.6, side:THREE.DoubleSide}),
+  pvSemi:       new THREE.MeshStandardMaterial({color:0x2b4c74, roughness:0.4, transparent:true, opacity:0.65, side:THREE.DoubleSide}),
+  pvTransp:     new THREE.MeshStandardMaterial({color:0x6fa6d3, roughness:0.35, transparent:true, opacity:0.4,  side:THREE.DoubleSide}),
+};
+
+const insulationMatFor = (k) => ({xps:MAT.insulXps, rockwool:MAT.insulRock, polyurethane:MAT.insulPur, pcm:MAT.insulPcm}[k]);
+const pvMatFor         = (k) => ({opaque:MAT.pvOpaque, semi:MAT.pvSemi, transparent:MAT.pvTransp}[k]);
+
+// Scene root that gets rebuilt on every update
+let root = new THREE.Group();
+scene.add(root);
+
+function rebuild(p) {
+  scene.remove(root);
+  root = new THREE.Group();
+
+  const {L, W, hG, slopeDeg, ridgeOffPct, insN, insS, insE, insW, insMat} = p;
+
+  // Ridge offset (positive = ridge shifted toward +z = north, negative = toward -z = south)
+  const ridgeZ = (ridgeOffPct/100) * (W/2);
+  const halfS  = W/2 + ridgeZ;   // horizontal extent on the south side (gutter to ridge)
+  const halfN  = W/2 - ridgeZ;   // horizontal extent on the north side
+  const slopeSouthRad = slopeDeg * Math.PI/180;
+  const rise   = halfS * Math.tan(slopeSouthRad);
+  const ridgeY = hG + rise;
+  const slopeNorthRad = halfN > 0.01 ? Math.atan2(rise, halfN) : Math.PI/2;
+  const slopeSouthDeg = slopeDeg;
+  const slopeNorthDeg = slopeNorthRad * 180/Math.PI;
+  const insulMat = insulationMatFor(insMat);
+
+  // Floor
+  const floor = new THREE.Mesh(new THREE.BoxGeometry(L, 0.15, W), MAT.floor);
+  floor.position.set(0, -0.075, 0);
+  root.add(floor);
+
+  // Walls (each 1-cm-thick box). Swap material if insulated.
+  const wallThickness = 0.1;
+  const mkWall = (w, h, material) => new THREE.Mesh(new THREE.BoxGeometry(w, h, wallThickness), material);
+  // North (along +z), South (along -z), East (+x), West (-x)
+  const wN = mkWall(L, hG, insN ? insulMat : MAT.glass);
+  wN.position.set(0, hG/2,  W/2);
+  const wS = mkWall(L, hG, insS ? insulMat : MAT.glass);
+  wS.position.set(0, hG/2, -W/2);
+  const wE = mkWall(W, hG, insE ? insulMat : MAT.glass);
+  wE.rotation.y = Math.PI/2;
+  wE.position.set( L/2, hG/2, 0);
+  const wW = mkWall(W, hG, insW ? insulMat : MAT.glass);
+  wW.rotation.y = Math.PI/2;
+  wW.position.set(-L/2, hG/2, 0);
+  root.add(wN, wS, wE, wW);
+
+  // Gables: build a triangle shape with off-centered apex (ridge offset).
+  // Shape coords: x = horizontal across W, y = vertical above gutter line.
+  // West uses Ry(-π/2) which maps shape-x → world +z, so apex at shape-x = +ridgeZ
+  // lands at world z = +ridgeZ (correct). East uses Ry(+π/2) which maps shape-x →
+  // world -z, so we mirror the apex (-ridgeZ) to compensate.
+  const makeGable = (apexX) => {
+    const s = new THREE.Shape();
+    s.moveTo(-W/2, 0); s.lineTo(W/2, 0); s.lineTo(apexX, rise); s.lineTo(-W/2, 0);
+    return new THREE.ShapeGeometry(s);
+  };
+  const gE = new THREE.Mesh(makeGable(-ridgeZ), (insE ? insulMat : MAT.glass));
+  gE.position.set(L/2, hG, 0); gE.rotation.y = Math.PI/2;
+  const gW = new THREE.Mesh(makeGable(ridgeZ), (insW ? insulMat : MAT.glass));
+  gW.position.set(-L/2, hG, 0); gW.rotation.y = -Math.PI/2;
+  root.add(gE, gW);
+
+  // Roof: two slopes with possibly different angles
+  const slopeLenS = Math.sqrt(halfS*halfS + rise*rise);
+  const slopeLenN = Math.sqrt(halfN*halfN + rise*rise);
+  const roofGeoS = new THREE.PlaneGeometry(L, slopeLenS);
+  const roofS = new THREE.Mesh(roofGeoS, MAT.glass.clone());
+  roofS.rotation.x = Math.atan2(halfS, rise);   // angle from vertical, around X
+  roofS.position.set(0, (hG + ridgeY)/2, (-W/2 + ridgeZ)/2);
+  const roofGeoN = new THREE.PlaneGeometry(L, slopeLenN);
+  const roofN = new THREE.Mesh(roofGeoN, MAT.glass.clone());
+  roofN.rotation.x = -Math.atan2(halfN, rise);
+  roofN.position.set(0, (hG + ridgeY)/2, (W/2 + ridgeZ)/2);
+  root.add(roofS, roofN);
+
+  // Ridge bar
+  const ridge = new THREE.Mesh(new THREE.BoxGeometry(L, 0.1, 0.1), MAT.frame);
+  ridge.position.set(0, ridgeY, ridgeZ);
+  root.add(ridge);
+
+  // Frame edges (4 gutter lines)
+  const edgeGeo = (p1, p2) => {
+    const g = new THREE.BufferGeometry().setFromPoints([p1, p2]);
+    return new THREE.Line(g, new THREE.LineBasicMaterial({color:0x444444}));
+  };
+  const yG = hG;
+  const pts = [
+    [new THREE.Vector3(-L/2, yG, -W/2), new THREE.Vector3( L/2, yG, -W/2)],
+    [new THREE.Vector3(-L/2, yG,  W/2), new THREE.Vector3( L/2, yG,  W/2)],
+    [new THREE.Vector3(-L/2, yG, -W/2), new THREE.Vector3(-L/2, yG,  W/2)],
+    [new THREE.Vector3( L/2, yG, -W/2), new THREE.Vector3( L/2, yG,  W/2)],
+  ];
+  pts.forEach(([a,b]) => root.add(edgeGeo(a,b)));
+
+  // ---------- Crop layout (rows / benches) ----------
+  const matBench = new THREE.MeshStandardMaterial({color:0x8a6432, roughness:0.8});
+  const matLeaf  = new THREE.MeshStandardMaterial({color:0x2d8a3e, roughness:0.7, transparent:true, opacity:0.45});
+  const matLet   = new THREE.MeshStandardMaterial({color:0x6cbf3f, roughness:0.7, transparent:true, opacity:0.55});
+  const matCuc   = new THREE.MeshStandardMaterial({color:0x4ca85f, roughness:0.7, transparent:true, opacity:0.45});
+  const cropMatFor = (k) => ({tomato:matLeaf, lettuce:matLet, cucumber:matCuc}[k] || matLeaf);
+  let canopyArea = 0;
+  if (p.layout !== 'none' && p.crop !== 'none') {
+    const n = p.nRows;
+    const rowW = p.rowW;
+    const plantH = p.plantH;
+    const benchH = p.layout === 'benches' ? p.benchH : 0;
+    const margin = p.layout === 'benches' ? 0.3 : 0.5;
+    const spacing = L / (n + 1);
+    const length = W - 2*margin;
+    const cropMat = cropMatFor(p.crop);
+    for (let i = 0; i < n; i++) {
+      const xc = (i + 1) * spacing - L/2;
+      if (p.layout === 'benches') {
+        const bench = new THREE.Mesh(new THREE.BoxGeometry(rowW, benchH, length), matBench);
+        bench.position.set(xc, benchH/2, 0);
+        root.add(bench);
+      }
+      const crop = new THREE.Mesh(new THREE.BoxGeometry(rowW, plantH, length), cropMat);
+      crop.position.set(xc, benchH + plantH/2, 0);
+      root.add(crop);
+      canopyArea += rowW * length;
+    }
+  }
+  document.getElementById('hud-canopy').textContent = canopyArea.toFixed(0);
+
+  // ---------- Thermal screen / night cover (visual only) ----------
+  // The model treats screens / covers / PCM as lumped 1D layers, no spatial
+  // discretisation, no view-factor changes. The 3D rendering here is purely
+  // illustrative.
+  if (p.cover && p.cover !== 'none') {
+    const screenColour = {
+      thin:        0xfff7c2,  // pale beige
+      chinese:     0xb6864c,  // straw / quilted brown
+      insulated:   0xf0f0e8,  // white insulating mat
+    }[p.cover] || 0xfff7c2;
+    const screenMat = new THREE.MeshStandardMaterial({color:screenColour, roughness:0.85, transparent:true, opacity:0.85, side:THREE.DoubleSide});
+    // Sits 30 cm under the gutter line, spans the floor footprint.
+    const screen = new THREE.Mesh(new THREE.BoxGeometry(L*0.95, 0.04, W*0.95), screenMat);
+    screen.position.set(0, hG - 0.3, 0);
+    root.add(screen);
+  }
+
+  // ---------- Multi-panel PV arrays (ground or roof-mounted) ----------
+  let pvArea = 0;
+  pickablePanels = [];
+
+  for (const pdat of panels) {
+    // For roof panels, `tiltDeg` is interpreted as ADDITIONAL tilt above the roof.
+    // Min = 0 (panel lies flush on roof), max = ~60.
+    if (pdat.mount === 'roof_s' || pdat.mount === 'roof_n') {
+      if (pdat.tiltDeg < 0) pdat.tiltDeg = 0;
+      if (pdat.spos === undefined) pdat.spos = 0.5;
+    }
+
+    const grp = new THREE.Group();
+    grp.userData.panelId = pdat.id;
+    const mat = pvMatFor(pdat.type);
+    const arrL = pdat.len, arrW = pdat.wid;
+    const stripW = 1.5;
+    const cov = (pdat.covPct ?? 100) / 100;
+    const pitch = stripW / Math.max(cov, 0.05);
+
+    if (!pdat.mount || pdat.mount === 'ground') {
+      // -------- Ground / elevated array --------
+      grp.position.set(pdat.x, 0, pdat.z);
+      grp.rotation.y = pdat.azDeg * Math.PI/180;
+      const arrayH = pdat.height;
+      const tilt = pdat.tiltDeg * Math.PI/180;
+      const nStrips = Math.max(1, Math.floor(arrW / pitch));
+      const totalW  = nStrips * pitch - (pitch - stripW);
+      for (let i = 0; i < nStrips; i++) {
+        const z = -totalW/2 + stripW/2 + i * pitch;
+        const g = new THREE.PlaneGeometry(arrL, stripW);
+        const m = new THREE.Mesh(g, mat);
+        m.rotation.x = -Math.PI/2 + tilt;
+        m.position.set(0, arrayH, z);
+        grp.add(m);
+        pvArea += arrL * stripW;
+      }
+      if (arrayH > 0.1) {
+        const pillarMat = MAT.frame;
+        for (const [sx, sz] of [[-arrL/2,-arrW/2],[arrL/2,-arrW/2],[-arrL/2,arrW/2],[arrL/2,arrW/2]]) {
+          const pg = new THREE.BoxGeometry(0.2, arrayH, 0.2);
+          const pm = new THREE.Mesh(pg, pillarMat);
+          pm.position.set(sx, arrayH/2, sz);
+          grp.add(pm);
+        }
+        for (const sz of [-arrW/2, arrW/2]) {
+          const beam = new THREE.Mesh(new THREE.BoxGeometry(arrL, 0.15, 0.15), pillarMat);
+          beam.position.set(0, arrayH, sz);
+          grp.add(beam);
+        }
+      }
+      // Footprint shadow on ground = drag/select target
+      const shadow = new THREE.Mesh(
+        new THREE.PlaneGeometry(arrL, arrW),
+        new THREE.MeshBasicMaterial({color:0x222222, transparent:true, opacity:0.18, side:THREE.DoubleSide})
+      );
+      shadow.rotation.x = -Math.PI/2;
+      shadow.position.y = 0.02;
+      shadow.userData.panelId = pdat.id;
+      grp.add(shadow);
+      if (pdat.id === selectedPanelId) {
+        const ring = new THREE.Mesh(
+          new THREE.BoxGeometry(arrL+0.6, 0.05, arrW+0.6),
+          new THREE.MeshBasicMaterial({color:0xffd54f, transparent:true, opacity:0.45}));
+        ring.position.set(0, 0.03, 0);
+        grp.add(ring);
+      }
+      root.add(grp);
+      pickablePanels.push({group:grp, shadow:shadow, id:pdat.id});
+    } else {
+      // -------- Roof-mounted (south or north slope) --------
+      const onSouth = (pdat.mount === 'roof_s');
+      const sign = onSouth ? -1 : +1;          // -1 toward south (-z), +1 toward north
+      const slopeRad = onSouth ? slopeSouthRad : slopeNorthRad;
+      const slopeLen = onSouth ? slopeLenS : slopeLenN;
+      const gutterZ = sign * (W/2);                  // outer edge of slope
+      const innerZ = ridgeZ;                          // ridge z position
+
+      // Clamp panel dims: length along ridge ≤ greenhouse length,
+      // width along slope ≤ slope pan length.
+      const panW = Math.min(arrW, slopeLen);
+      const panL = Math.min(arrL, L);
+
+      // s in [0,1] = bottom-edge position along slope (0 = gutter, 1 = ridge).
+      // Clamp so top edge stays on the slope.
+      const sMax = Math.max(0, 1 - panW/slopeLen);
+      const s = Math.min(sMax, Math.max(0, pdat.spos ?? 0));
+      const yAnchor = hG + s * rise;
+      const zAnchor = gutterZ + s * (innerZ - gutterZ);
+      grp.position.set(pdat.x, yAnchor, zAnchor);
+
+      // Total panel tilt from horizontal = roof slope + extra tilt slider.
+      // extraTilt always rotates the panel UP from the roof (hinged at bottom edge).
+      const extraTilt = Math.max(0, pdat.tiltDeg) * Math.PI/180;
+      const panelTilt = slopeRad + extraTilt;
+
+      const panelGeo = new THREE.PlaneGeometry(panL, panW);
+      const panelMesh = new THREE.Mesh(panelGeo, mat);
+      // Rotation: flush on roof at extraTilt=0 with outward normal matching roof normal.
+      panelMesh.rotation.x = -Math.PI/2 + sign * panelTilt;
+      // Bottom edge sits at anchor; center is offset (panW/2) up-slope.
+      // Then lift 1 cm along the panel normal to avoid z-fighting with the roof.
+      const liftN = 0.01;
+      panelMesh.position.x = 0;
+      panelMesh.position.y = (panW/2) * Math.sin(panelTilt) + liftN * Math.cos(panelTilt);
+      panelMesh.position.z = -sign * (panW/2) * Math.cos(panelTilt) + sign * liftN * Math.sin(panelTilt);
+      grp.add(panelMesh);
+      pvArea += panL * panW;
+
+      // Visible target on the panel itself for raycast click/select
+      const sel = new THREE.Mesh(
+        new THREE.PlaneGeometry(panL, panW),
+        new THREE.MeshBasicMaterial({color:0xffd54f, transparent:true, opacity: pdat.id === selectedPanelId ? 0.35 : 0.0001, side:THREE.DoubleSide})
+      );
+      sel.rotation.copy(panelMesh.rotation);
+      sel.position.copy(panelMesh.position);
+      sel.position.y += 0.02;
+      sel.userData.panelId = pdat.id;
+      grp.add(sel);
+
+      root.add(grp);
+      pickablePanels.push({group:grp, shadow:sel, id:pdat.id});
+    }
+  }
+
+  // North arrow
+  const arrow = new THREE.ArrowHelper(new THREE.Vector3(0,0,1), new THREE.Vector3(-L/2-3, 0.2, -W/2-3), 4, 0xc62828, 0.8, 0.4);
+  root.add(arrow);
+  const northLbl = makeTextSprite('N', '#c62828');
+  northLbl.position.set(-L/2-3, 0.5, -W/2+1.5);
+  root.add(northLbl);
+
+  scene.add(root);
+
+  // HUD
+  document.getElementById('hud-floor').textContent = (L*W).toFixed(0);
+  document.getElementById('hud-rise').textContent = rise.toFixed(2);
+  const insList = ['N','S','E','W'].filter((_,i)=>[insN,insS,insE,insW][i]).join(', ') || 'none';
+  document.getElementById('hud-ins').textContent = insList;
+  document.getElementById('hud-pv').textContent = pvArea.toFixed(0);
+}
+
+function makeTextSprite(text, color) {
+  const c = document.createElement('canvas'); c.width=64; c.height=64;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = color; ctx.font='bold 44px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(text, 32, 32);
+  const tex = new THREE.CanvasTexture(c);
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({map:tex, transparent:true}));
+  s.scale.set(2, 2, 1);
+  return s;
+}
+
+// ---------- Controls wiring ----------
+function readParams() {
+  const v = (id) => document.getElementById(id).value;
+  const c = (id) => document.getElementById(id).checked;
+  return {
+    L: +v('L'), W: +v('W'), hG: +v('hG'), slopeDeg: +v('slope'), ridgeOffPct: +v('ridge'),
+    insN:c('insN'), insS:c('insS'), insE:c('insE'), insW:c('insW'),
+    insMat: v('insMat'),
+    crop: v('crop'), layout: v('layout'),
+    nRows: +v('nRows'), rowW: +v('rowW'),
+    plantH: +v('plantH'), benchH: +v('benchH'), LAI: +v('LAI'),
+    heating: v('heating'), pipes: v('pipes'),
+    controller: v('controller'), cover: v('cover'),
+    weather: v('weather'), days: +v('days'),
+    Tsp: +v('Tsp'),
+  };
+}
+
+const PAIRS = ['L','W','hG','slope','ridge','Tsp','nRows','rowW','plantH','benchH','LAI'];
+
+// Sync slider ↔ number input both ways
+function syncPair(id, fromSlider) {
+  const slider = document.getElementById(id);
+  const num = document.getElementById(id+'-num');
+  if (!slider || !num) return;
+  if (fromSlider) num.value = slider.value; else slider.value = num.value;
+}
+
+function update() {
+  rebuild(readParams());
+}
+
+// Bind all inputs
+document.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('input', (e) => {
+    const id = el.id;
+    // Find pair mate
+    for (const base of PAIRS) {
+      if (id === base) { syncPair(base, true); break; }
+      if (id === base + '-num') { syncPair(base, false); break; }
+    }
+    update();
+  });
+  el.addEventListener('change', update);
+});
+
+// Simulate button, calls existing /api/simulate on app.jl backend
+document.getElementById('run').addEventListener('click', async () => {
+  const btn = document.getElementById('run');
+  const status = document.getElementById('status');
+  const results = document.getElementById('results');
+  const p = readParams();
+  btn.disabled = true; status.textContent = 'Running…';
+  try {
+    const body = {
+      weather: p.weather,
+      area: p.L * p.W,
+      height: p.hG,
+      setpoint: p.Tsp,
+      days: p.days,
+      // For now the simulate endpoint only takes a single PV array. Aggregate:
+      // total panel footprint as fraction of floor; first panel's type drives the optical mix.
+      pv_type: panels.length === 0 ? 'none' : panels[0].type,
+      pv_coverage: Math.min(1, panels.reduce((s,pp) => s + pp.len * pp.wid, 0) / (p.L * p.W)),
+    };
+    const r = await fetch('/api/simulate', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)
+    });
+    const j = await r.json();
+    if (j.error) { status.textContent = 'Error: ' + j.error; return; }
+    status.textContent = `OK, ${j.sim_time_ms} ms`;
+    results.style.display = 'block';
+    results.textContent = [
+      `T_air mean : ${(j.T_air.reduce((a,b)=>a+b,0)/j.T_air.length).toFixed(1)} °C`,
+      `E_heat     : ${j.E_heat_kWh} kWh`,
+      `E_fuel     : ${j.E_fuel_kWh} kWh`,
+      `E_pv       : ${j.E_pv_kWh} kWh`,
+      `CO2 net    : ${j.CO2_net_kg} kg`,
+      `Productivity: T=${j.prod_T_pct}%  light=${j.prod_light_pct}%  total=${j.prod_total_pct}%`,
+    ].join('\n');
+  } catch (e) {
+    status.textContent = 'Fetch error, backend not running? ' + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+// ---------- Panel state ----------
+let nextPanelId = 1;
+const panels = [];          // populated by addPanel()
+let selectedPanelId = null;
+let pickablePanels = [];    // refilled in rebuild()
+
+function addPanel(opts={}) {
+  const p = readParams();
+  const pdat = Object.assign({
+    id: nextPanelId++,
+    mount: 'ground',     // 'ground' | 'roof_s' | 'roof_n'
+    type: 'opaque',
+    len: Math.min(p.L * 0.6, 12),
+    wid: Math.min(p.W * 0.5, 6),
+    height: p.hG + 1.5,
+    tiltDeg: 25,
+    azDeg: 0,
+    x: 0,
+    z: 0,
+    spos: 0.5,           // position along slope (0..1), only used for roof mounts
+    covPct: 100,
+  }, opts);
+  panels.push(pdat);
+  selectedPanelId = pdat.id;
+  syncPanelEditUI();
+  refreshPanelList();
+  update();
+}
+function deletePanel(id) {
+  const i = panels.findIndex(p => p.id === id);
+  if (i < 0) return;
+  panels.splice(i, 1);
+  if (selectedPanelId === id) selectedPanelId = panels.length ? panels[0].id : null;
+  syncPanelEditUI(); refreshPanelList(); update();
+}
+function selectPanel(id) {
+  selectedPanelId = id;
+  syncPanelEditUI(); refreshPanelList(); update();
+}
+function getSelected() { return panels.find(p => p.id === selectedPanelId); }
+
+function refreshPanelList() {
+  const list = document.getElementById('panel-list');
+  list.innerHTML = '';
+  if (!panels.length) { list.innerHTML = '<div style="font-size:0.78rem;color:var(--ink-dim)">No PV array yet.</div>'; return; }
+  for (const p of panels) {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:4px 6px;border-radius:4px;margin-bottom:3px;cursor:pointer;font-size:0.82rem;'
+      + (p.id === selectedPanelId ? 'background:#e8f5e8;color:var(--accent);font-weight:700' : 'background:#f6f4ee;color:var(--ink)');
+    row.innerHTML = `<span>PV #${p.id} <span style="color:var(--ink-dim);font-weight:normal">(${p.type}, ${p.len.toFixed(0)}×${p.wid.toFixed(0)} m)</span></span>
+                     <button data-id="${p.id}" class="del-btn" style="background:none;border:none;color:#c62828;cursor:pointer;font-size:0.95rem">×</button>`;
+    row.addEventListener('click', (e) => {
+      if (e.target.classList.contains('del-btn')) return;
+      selectPanel(p.id);
+    });
+    list.appendChild(row);
+  }
+  list.querySelectorAll('.del-btn').forEach(b => b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    deletePanel(+b.dataset.id);
+  }));
+}
+
+const PANEL_FIELDS = [
+  ['mount','pe-mount'], ['type','pe-type'], ['len','pe-len'], ['wid','pe-wid'],
+  ['height','pe-h'], ['tiltDeg','pe-tilt'], ['azDeg','pe-az'],
+  ['x','pe-x'], ['z','pe-z'], ['spos','pe-spos'], ['covPct','pe-cov'],
+];
+
+function syncPanelEditUI() {
+  const box = document.getElementById('panel-edit');
+  const sel = getSelected();
+  if (!sel) { box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  document.getElementById('panel-name').textContent = `PV #${sel.id}`;
+  // Tilt is always ≥ 0. For roof panels it is interpreted as "extra tilt above the roof slope".
+  const tiltEl = document.getElementById('pe-tilt');
+  const tiltNum = document.getElementById('pe-tilt-num');
+  const isRoof = (sel.mount === 'roof_s' || sel.mount === 'roof_n');
+  tiltEl.min = 0; tiltNum.min = 0;
+  if (sel.tiltDeg < 0) sel.tiltDeg = 0;
+  // Update tilt label so user knows the meaning depends on mount
+  const tiltLabel = tiltEl.parentElement.querySelector('label');
+  if (tiltLabel) tiltLabel.textContent = isRoof ? 'Tilt above roof [°]' : 'Tilt [°]';
+  // Show/hide rows depending on mount
+  document.getElementById('pe-row-h').style.display       = isRoof ? 'none' : 'flex';
+  document.getElementById('pe-row-az').style.display      = isRoof ? 'none' : 'flex';
+  document.getElementById('pe-row-z').style.display       = isRoof ? 'none' : 'flex';
+  document.getElementById('pe-row-cov').style.display     = isRoof ? 'none' : 'flex';
+  document.getElementById('pe-row-slopepos').style.display = isRoof ? 'flex' : 'none';
+  // X-range adjustment for roof: along greenhouse length L
+  const L = +document.getElementById('L').value;
+  const xEl = document.getElementById('pe-x'); const xNum = document.getElementById('pe-x-num');
+  if (isRoof) { xEl.min = -L/2; xEl.max = L/2; xNum.min = -L/2; xNum.max = L/2; }
+  else        { xEl.min = -100; xEl.max = 100; xNum.min = -100; xNum.max = 100; }
+
+  for (const [key, baseId] of PANEL_FIELDS) {
+    const el = document.getElementById(baseId);
+    const num = document.getElementById(baseId + '-num');
+    if (!el) continue;
+    if (el.tagName === 'SELECT') {
+      el.value = sel[key];
+    } else {
+      el.value = sel[key];
+      if (num) num.value = sel[key];
+    }
+  }
+}
+
+// Wire panel-edit inputs back to the selected-panel state
+for (const [key, baseId] of PANEL_FIELDS) {
+  for (const id of [baseId, baseId + '-num']) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    el.addEventListener('input', () => {
+      const sel = getSelected(); if (!sel) return;
+      const raw = el.tagName === 'SELECT' ? el.value : +el.value;
+      sel[key] = raw;
+      // Cross-sync slider <-> number
+      const mate = id.endsWith('-num') ? document.getElementById(baseId) : document.getElementById(baseId + '-num');
+      if (mate && el.tagName !== 'SELECT') mate.value = el.value;
+      // Mount changes need to reshape the editor (show/hide rows, clamp tilt)
+      if (key === 'mount') syncPanelEditUI();
+      refreshPanelList();
+      update();
+    });
+  }
+}
+document.getElementById('add-panel').addEventListener('click', () => addPanel());
+document.getElementById('del-panel').addEventListener('click', () => {
+  if (selectedPanelId !== null) deletePanel(selectedPanelId);
+});
+
+// ---------- Click-to-select + Shift-drag-to-move on the XZ plane ----------
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+const dragPlane = new THREE.Plane(new THREE.Vector3(0,1,0), 0); // y=0 plane
+let dragging = null;     // panel object being dragged
+let dragOffset = new THREE.Vector3();
+
+function pointerNDC(e) {
+  const r = renderer.domElement.getBoundingClientRect();
+  pointer.x =  ((e.clientX - r.left) / r.width)  * 2 - 1;
+  pointer.y = -((e.clientY - r.top)  / r.height) * 2 + 1;
+}
+function pickPanelAt(e) {
+  pointerNDC(e);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(pickablePanels.map(p => p.shadow), false);
+  return hits.length ? hits[0] : null;
+}
+
+renderer.domElement.addEventListener('pointerdown', (e) => {
+  const hit = pickPanelAt(e);
+  if (!hit) return;
+  const id = hit.object.userData.panelId;
+  selectPanel(id);
+  if (e.shiftKey) {
+    dragging = panels.find(p => p.id === id);
+    controls.enabled = false;
+    // Compute offset between hit point and panel origin in world coords
+    dragOffset.subVectors(new THREE.Vector3(dragging.x, 0, dragging.z), hit.point);
+  }
+});
+renderer.domElement.addEventListener('pointermove', (e) => {
+  if (!dragging) return;
+  pointerNDC(e);
+  raycaster.setFromCamera(pointer, camera);
+  const target = new THREE.Vector3();
+  if (raycaster.ray.intersectPlane(dragPlane, target)) {
+    dragging.x = target.x + dragOffset.x;
+    dragging.z = target.z + dragOffset.z;
+    syncPanelEditUI();
+    refreshPanelList();
+    update();
+  }
+});
+window.addEventListener('pointerup', () => { dragging = null; controls.enabled = true; });
+
+// Seed with one default panel on load
+addPanel();
+
+// Render loop
+function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  renderer.render(scene, camera);
+}
+window.addEventListener('resize', () => {
+  renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+  camera.aspect = wrap.clientWidth/wrap.clientHeight;
+  camera.updateProjectionMatrix();
+});
+update();
+loop();
+</script>
+</body>
+</html>
