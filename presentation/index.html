@@ -4878,9 +4878,7 @@ S
           <li>Replacing Vanthoor's constant by the <strong>FSPM-averaged <em>K̄</em> = 0.47</strong> in Beer-Lambert collapses to the right <em>mean</em> (50 W/m²) but the <strong>spatial profile is still flat</strong>.</li>
           <li>The averaged <em>K̄</em> is what gets shipped to GreenhousesJL; the per-leaflet PAR field is what is shipped as the calibration target for a future per-leaflet FvCB coupling.</li>
         </ul>
-        <p class="callout">
-          &rarr; A single calibrated <em>K</em> recovers the mean, but only the per-leaflet PAR field can tell a planophile cultivar from a Merlice with the same LAI.
-        </p>
+        
       </div>
     </div>
   </section>
@@ -5072,8 +5070,7 @@ S
     <p>
       SAM 3 (Meta, 2024) is used in <em>semantic</em> mode via Ultralytics'
       <code>SAM3SemanticPredictor</code>. Three text prompts are submitted at
-      once and a two-pass selection picks the mask that best covers the
-      YOLO-detected plant centre, then a morphological closing repairs masks
+      once and a two-pass selection picks the mask that is the best fit, afterwards a morphological closing repairs masks
       split by visible irrigation pipes.
     </p>
 
@@ -5089,10 +5086,8 @@ S
     </div>
 
     <p class="kicker">
-      Blue contours faithfully delineate leaf areas even under high density and
-      partial occlusion by irrigation pipes. Overlap resolution assigns shared
-      pixels to the closest centroid, not perfect for fully entangled
-      neighbours, which is the open-loop bottleneck before mass calibration.
+      Blue contours delineate leaf areas even under high density and
+      partial occlusion by irrigation pipes. O
     </p>
 
     <p class="footnote">
