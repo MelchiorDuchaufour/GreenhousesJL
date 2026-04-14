@@ -764,7 +764,7 @@
               font-style="italic" font-size="17" fill="#c46a1e"
               text-anchor="end">Heating pipes</text>
         <text x="190" y="510" font-family="Inter" font-size="11" fill="#5e6c83"
-              text-anchor="end"><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a> / Balemans 89</text>
+              text-anchor="end"><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a> / <a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans</a> 89</text>
 
         <!-- FLOOR -->
         <line x1="780" y1="510" x2="725" y2="510"
@@ -962,7 +962,7 @@
             <p class="gh-detail">
               <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a>: greenhouse glass roof (Wageningen).
               Walls: <a class="ref-link" href="#ref-Walton1983" onclick="goToSlide('refs'); location.hash='#ref-Walton1983'; return false;">Walton</a> h = 5.7 + 3.8u.
-              Interior: Balemans h = 1.7|ΔT|<sup>0.33</sup> + 1.
+              Interior: <a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans</a> h = 1.7|ΔT|<sup>0.33</sup> + 1.
             </p>
             <span class="gh-quant">τ at normal: 85 %. At θ=75° (winter): ~50 %</span>
           </div>
@@ -2158,7 +2158,7 @@
   <section class="slide" data-slide="16">
     <header>
       <span class="num">11c</span>
-      <h2>Transpiration: <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> model</h2>
+      <h2>Transpiration: Stanghellini model</h2>
     </header>
 
     <div class="balance-eq">
@@ -2300,7 +2300,7 @@
       <div class="term-panel">
         <div class="term-card" data-fragment="0">
           <span class="term-tag">Canopy vapor side</span>
-          <h3 class="term-label"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>, three resistances</h3>
+          <h3 class="term-label">Stanghellini, three resistances</h3>
           <p><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini 1987</a> is the <a class="ref-link" href="#ref-Monteith2013" onclick="goToSlide('refs'); location.hash='#ref-Monteith2013'; return false;">Penman-Monteith</a> equation rewritten for a greenhouse canopy. Three quantities decide how much vapor leaves the leaves: the available radiative energy, the aerodynamic resistance r<sub>a</sub>, and the stomatal resistance r<sub>s</sub>.</p>
           <p>It is the same formula that drives the &lambda;E term on slide 10, divided by &lambda;<sub>vap</sub> to land in kg s<sup>&minus;1</sup>.</p>
         </div>
@@ -2318,7 +2318,7 @@
           <div class="term-label">&Delta; + &gamma;&middot;(1 + r<sub>s</sub>/r<sub>a</sub>)</div>
           <div class="term-unit">&middot; aerodynamic and stomatal control</div>
           <p class="term-formula">r<sub>a</sub> from canopy aerodynamics, r<sub>s</sub> from <a class="ref-link" href="#ref-VialetChabrand2013" onclick="goToSlide('refs'); location.hash='#ref-VialetChabrand2013'; return false;">Vialet-Chabrand</a> / <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn</a></p>
-          <p>r<sub>a</sub> is the boundary-layer resistance around the leaf (small in well-ventilated greenhouses, ~100 s/m). r<sub>s</sub> is the stomatal resistance, dynamic in PlantBiophysics, fixed in the Modelica baseline. &gamma; is the psychrometric constant.</p>
+          <p>r<sub>a</sub> is the boundary-layer resistance around the leaf (small in well-ventilated greenhouses, ~100 s/m). r<sub>s</sub> is the stomatal resistance, dynamic in <a class="ref-link" href="https://vezy.github.io/PlantBiophysics.jl/stable/" target="_blank" rel="noopener">PlantBiophysics</a>, fixed in the Modelica baseline. &gamma; is the psychrometric constant.</p>
         </div>
 
         <div class="term-card bad" data-fragment="3">
@@ -2569,7 +2569,7 @@
             <div class="impact-card after">
               <div class="imp-label">After · 4-cardinal walls + radiosity</div>
               <div class="imp-value" style="font-size:1.8rem;">+0.5 °C</div>
-              <p class="imp-sub">bare envelope bias vs EP (winter). <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> + <a class="ref-link" href="#ref-Walton1983" onclick="goToSlide('refs'); location.hash='#ref-Walton1983'; return false;">Walton</a> + Balemans + N-surface radiosity.</p>
+              <p class="imp-sub">bare envelope bias vs EP (winter). <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> + <a class="ref-link" href="#ref-Walton1983" onclick="goToSlide('refs'); location.hash='#ref-Walton1983'; return false;">Walton</a> + <a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans</a> + N-surface radiosity.</p>
             </div>
           </div>
           <div class="impact-arrow">→</div>
@@ -3047,11 +3047,11 @@
       <h2>Heating and cooling equipment</h2>
     </header>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; padding:0.5rem 2rem;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; padding:1rem 2rem;">
 
       <!-- LEFT: heating equipment with inline equations -->
-      <div style="display:flex; flex-direction:column; gap:0.75rem;">
-        <h3 style="margin:0; color:#c46a1e; font-size:1.35rem;">Heating</h3>
+      <div style="display:flex; flex-direction:column; gap:1.1rem;">
+        <h3 style="margin:0; color:#c46a1e; font-size:1.6rem;">Heating</h3>
 
         <div style="background:rgba(196,106,30,.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
           <div style="display:flex; justify-content:space-between; align-items:baseline;">
@@ -3087,12 +3087,12 @@
       </div>
 
       <!-- RIGHT: storage + dispatch with equations -->
-      <div style="display:flex; flex-direction:column; gap:0.75rem;">
-        <h3 style="margin:0; color:#1565C0; font-size:1.35rem;">Storage &amp; dispatch</h3>
+      <div style="display:flex; flex-direction:column; gap:1.1rem;">
+        <h3 style="margin:0; color:#1565C0; font-size:1.6rem;">Storage &amp; dispatch</h3>
 
         <div style="background:rgba(21,101,192,.05); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
-          <div style="font-weight:700; color:#1565C0; font-size:0.9rem;">HeatStorageWaterHeater</div>
-          <div style="font-size:0.78rem; color:#555; margin-top:0.1rem;">N-cell stratified tank</div>
+          <div style="font-weight:700; color:#1565C0; font-size:1.1rem;">HeatStorageWaterHeater</div>
+          <div style="font-size:0.95rem; color:#555; margin-top:0.15rem;">N-cell stratified tank</div>
           <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; color:#555; line-height:1.45; margin-top:0.15rem;">
             &rho;c<sub>p</sub>V<sub>i</sub> dT<sub>i</sub>/dt = &dot;m c<sub>p</sub>(T<sub>i&minus;1</sub>&minus;T<sub>i</sub>) + UA<sub>i</sub>(T<sub>amb</sub>&minus;T<sub>i</sub>) + Q<sub>HX,i</sub>
           </div>
@@ -3112,8 +3112,11 @@
           <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Evaporative cooling: &Delta;T<sub>bulb</sub> = &epsilon;<sub>pad</sub>(T<sub>dry</sub>&minus;T<sub>wet</sub>). Coupled to VP<sub>air</sub> mass balance.</p>
         </div>
 
-        <div style="font-size:0.72rem; color:var(--ink-dim); line-height:1.35; margin-top:auto; padding:0.3rem 0.5rem;">
-          De Soto et al. (2006); Staffell et al. (2012); Hugo &amp; Lemort (ConsoClim); Duffie &amp; Beckman (stratified tank).
+        <div style="font-size:0.95rem; color:var(--ink-dim); line-height:1.45; margin-top:auto; padding:0.5rem 0.5rem;">
+          <a class="ref-link" href="#ref-DeSoto2006" onclick="goToSlide('refs'); location.hash='#ref-DeSoto2006'; return false;">De Soto et al. (2006)</a>;
+          <a class="ref-link" href="#ref-Staffell2012" onclick="goToSlide('refs'); location.hash='#ref-Staffell2012'; return false;">Staffell et al. (2012)</a>;
+          <a class="ref-link" href="#ref-HugoLemort" onclick="goToSlide('refs'); location.hash='#ref-HugoLemort'; return false;">Hugo &amp; Lemort (ConsoClim)</a>;
+          <a class="ref-link" href="#ref-DuffieBeckman2013" onclick="goToSlide('refs'); location.hash='#ref-DuffieBeckman2013'; return false;">Duffie &amp; Beckman</a> (stratified tank).
         </div>
       </div>
     </div>
@@ -3665,7 +3668,7 @@
         </p>
 
         <p class="callout">
-          → EP fenestration targets urban glazing. Greenhouse modelling needs greenhouse-calibrated convection (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> + Balemans).
+          → EP fenestration targets urban glazing. Greenhouse modelling needs greenhouse-calibrated convection (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> + <a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans</a>).
         </p>
       </div>
 
@@ -3947,7 +3950,7 @@
   <section class="slide" data-slide="33b">
     <header>
       <span class="num">21</span>
-      <h2>VPL case: 100 days</h2>
+      <h2><a class="ref-link" href="https://virtualplantlab.com/stable/" target="_blank" rel="noopener">VPL</a> case: 100 days</h2>
     </header>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; padding:0 2rem; align-items:start;">
@@ -5619,6 +5622,13 @@
         <ol class="refs-list">
           <li id="ref-YanoCossu2019">Yano A., Cossu M. (2019). Sustainable GH with PV technologies. <em>Renew. Sustain. Energy Rev.</em> 109, 116–137.</li>
           <li id="ref-Cossu2014">Cossu M. <em>et al.</em> (2014). Solar radiation in a PV-roof greenhouse. <em>Appl. Energy</em> 133, 89–100.</li>
+        </ol>
+
+        <h3>HVAC component models</h3>
+        <ol class="refs-list">
+          <li id="ref-DeSoto2006">De Soto W., Klein S. A., Beckman W. A. (2006). Improvement and validation of a PV array performance model. <em>Solar Energy</em> 80(1), 78–88.</li>
+          <li id="ref-Staffell2012">Staffell I., Brett D., Brandon N., Hawkes A. (2012). A review of domestic heat pumps. <em>Energy Environ. Sci.</em> 5(11), 9291–9306.</li>
+          <li id="ref-HugoLemort">Hugo M., Lemort V. (2003). ConsoClim: semi-empirical HP characterisation (bi-quadratic CAPFT/EIRFT). ULg.</li>
         </ol>
       </div>
     </div>
