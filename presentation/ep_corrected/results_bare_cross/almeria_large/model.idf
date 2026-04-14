@@ -1,0 +1,204 @@
+!- Cross-benchmark: Almeria bare, large_14000_m (14000 m2)
+!- December 1-7 week, no heating, no ventilation, sealed envelope
+!- Glazing: WindowMaterial:Glazing (tau_solar=0.85, 4mm, SHGC ~0.87)
+
+Version, 25.1;
+
+SimulationControl, No, No, No, No, Yes, No, 1;
+
+Building, GH_almeria_large_14000_m, 0.0, Suburbs, 0.04, 0.004, FullExterior, 50, 10;
+
+Timestep, 60;
+
+RunPeriod,
+  Run1, 12, 1, , 12, 7, , Sunday, No, No, No, Yes, Yes;
+
+SizingPeriod:DesignDay,
+  WinterDD, 12, 1, WinterDesignDay, 0.0, 0, DefaultMultipliers, ,
+  Wetbulb, -2.0, , , , , 101325, 3.0, 0,
+  No, No, No, ASHRAEClearSky, , , , , 1.0;
+
+Site:Location,
+  Almeria, 36.85, -2.36, 1, 21.0;
+
+Site:GroundTemperature:BuildingSurface,
+  19.0, 19.0, 19.0, 19.0, 19.0, 19.0, 19.0, 19.0, 19.0, 19.0, 19.0, 19.0;
+
+!- Glass: WindowMaterial:Glazing (transparent, tau_solar=0.85, 4 mm)
+WindowMaterial:Glazing,
+  GH_Glass_4mm, SpectralAverage, , 0.004,
+  0.85, 0.075, 0.075,
+  0.85, 0.075, 0.075,
+  0.0, 0.84, 0.84,
+  1.0, 1.0, No;
+
+Construction,
+  Glass_Roof, GH_Glass_4mm;
+
+!- Frame (opaque structural host surface, thin + light to avoid thermal mass)
+Material,
+  Frame_Metal, Smooth, 0.003, 45.0, 7800, 500, 0.9, 0.6, 0.6;
+
+Construction,
+  Frame_Construction, Frame_Metal;
+
+!- Floor materials (opaque, concrete + layered soil for ground contact)
+Material,
+  JL_Concrete_20mm, MediumRough, 0.020, 1.7, 2299, 870, 0.89, 0.93, 0.93;
+Material,
+  JL_Soil_40mm,  Rough, 0.040, 0.85, 1500, 1153, 0.9, 0.5, 0.5;
+Material,
+  JL_Soil_80mm,  Rough, 0.080, 0.85, 1500, 1153, 0.9, 0.5, 0.5;
+Material,
+  JL_Soil_160mm, Rough, 0.160, 0.85, 1500, 1153, 0.9, 0.5, 0.5;
+Material,
+  JL_Soil_320mm, Rough, 0.320, 0.85, 1500, 1153, 0.9, 0.5, 0.5;
+Material,
+  JL_Soil_640mm, Rough, 0.640, 0.85, 1500, 1153, 0.9, 0.5, 0.5;
+
+Construction,
+  Ground_Floor, JL_Concrete_20mm, JL_Soil_40mm, JL_Soil_80mm, JL_Soil_160mm, JL_Soil_320mm, JL_Soil_640mm;
+
+GlobalGeometryRules,
+  UpperLeftCorner, Counterclockwise, Relative;
+
+Zone,
+  Greenhouse, 0, 0, 0, 0, 1, 1, 3.8, 53200.00;
+
+BuildingSurface:Detailed,
+  Floor, Floor, Ground_Floor, Greenhouse, , Ground, , NoSun, NoWind, 0, 4,
+  0,0,0, 0,140.0,0, 100.0,140.0,0, 100.0,0,0;
+
+!- Roof: frame host surface + glass fenestration
+BuildingSurface:Detailed,
+  Roof_Frame, Roof, Frame_Construction, Greenhouse, , Outdoors, , SunExposed, WindExposed, , 4,
+  100.0,0,3.8, 100.0,140.0,3.8, 0,140.0,3.8, 0,0,3.8;
+
+FenestrationSurface:Detailed,
+  Roof_Glass, Window, Glass_Roof, Roof_Frame, , , , 1, 4,
+  99.95,0.05,3.8, 99.95,139.95,3.8, 0.05,139.95,3.8, 0.05,0.05,3.8;
+
+!- Walls: frame host + glass fenestration (N, S, E, W)
+BuildingSurface:Detailed,
+  Wall_N_Frame, Wall, Frame_Construction, Greenhouse, ,
+  Outdoors, , SunExposed, WindExposed, , 4,
+  0,140.0,3.8, 0,140.0,0, 100.0,140.0,0, 100.0,140.0,3.8;
+
+FenestrationSurface:Detailed,
+  Wall_N_Glass, Window, Glass_Roof, Wall_N_Frame, , , , 1, 4,
+  0.05,140.0,3.75, 0.05,140.0,0.05, 99.95,140.0,0.05, 99.95,140.0,3.75;
+
+BuildingSurface:Detailed,
+  Wall_S_Frame, Wall, Frame_Construction, Greenhouse, ,
+  Outdoors, , SunExposed, WindExposed, , 4,
+  100.0,0,3.8, 100.0,0,0, 0,0,0, 0,0,3.8;
+
+FenestrationSurface:Detailed,
+  Wall_S_Glass, Window, Glass_Roof, Wall_S_Frame, , , , 1, 4,
+  99.95,0,3.75, 99.95,0,0.05, 0.05,0,0.05, 0.05,0,3.75;
+
+BuildingSurface:Detailed,
+  Wall_E_Frame, Wall, Frame_Construction, Greenhouse, ,
+  Outdoors, , SunExposed, WindExposed, , 4,
+  100.0,140.0,3.8, 100.0,140.0,0, 100.0,0,0, 100.0,0,3.8;
+
+FenestrationSurface:Detailed,
+  Wall_E_Glass, Window, Glass_Roof, Wall_E_Frame, , , , 1, 4,
+  100.0,139.95,3.75, 100.0,139.95,0.05, 100.0,0.05,0.05, 100.0,0.05,3.75;
+
+BuildingSurface:Detailed,
+  Wall_W_Frame, Wall, Frame_Construction, Greenhouse, ,
+  Outdoors, , SunExposed, WindExposed, , 4,
+  0,0,3.8, 0,0,0, 0,140.0,0, 0,140.0,3.8;
+
+FenestrationSurface:Detailed,
+  Wall_W_Glass, Window, Glass_Roof, Wall_W_Frame, , , , 1, 4,
+  0,0.05,3.75, 0,0.05,0.05, 0,139.95,0.05, 0,139.95,3.75;
+
+!- Sealed envelope: zero infiltration, no heating
+ZoneInfiltration:DesignFlowRate,
+  Infiltration, Greenhouse, AlwaysOn, AirChanges/Hour, , , , 0.0;
+
+ScheduleTypeLimits, Any Number;
+Schedule:Compact, AlwaysOn, Any Number,
+  Through: 12/31, For: AllDays, Until: 24:00, 1;
+
+Output:Variable,*,Zone Mean Air Temperature,Timestep;
+Output:Variable,*,Site Outdoor Air Drybulb Temperature,Timestep;
+
+OutputControl:Table:Style, HTML;
+Output:Table:SummaryReports, AllSummary;
+
+!- Convection coefficients via EMS: Bot (exterior) + Balemans (interior)
+EnergyManagementSystem:Sensor,
+  T_air_sensor, Greenhouse, Zone Mean Air Temperature;
+EnergyManagementSystem:Sensor,
+  T_out_sensor, *, Site Outdoor Air Drybulb Temperature;
+EnergyManagementSystem:Sensor,
+  Wind_sensor, *, Site Wind Speed;
+EnergyManagementSystem:Sensor,
+  T_roof_in, Roof_Glass, Surface Inside Face Temperature;
+EnergyManagementSystem:Sensor,
+  T_wallN_in, Wall_N_Glass, Surface Inside Face Temperature;
+EnergyManagementSystem:Sensor,
+  T_wallS_in, Wall_S_Glass, Surface Inside Face Temperature;
+EnergyManagementSystem:Sensor,
+  T_wallE_in, Wall_E_Glass, Surface Inside Face Temperature;
+EnergyManagementSystem:Sensor,
+  T_wallW_in, Wall_W_Glass, Surface Inside Face Temperature;
+
+EnergyManagementSystem:Actuator,
+  h_in_roof, Roof_Glass, Surface, Interior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_out_roof, Roof_Glass, Surface, Exterior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_in_wallN, Wall_N_Glass, Surface, Interior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_out_wallN, Wall_N_Glass, Surface, Exterior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_in_wallS, Wall_S_Glass, Surface, Interior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_out_wallS, Wall_S_Glass, Surface, Exterior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_in_wallE, Wall_E_Glass, Surface, Interior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_out_wallE, Wall_E_Glass, Surface, Exterior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_in_wallW, Wall_W_Glass, Surface, Interior Surface Convection Heat Transfer Coefficient;
+EnergyManagementSystem:Actuator,
+  h_out_wallW, Wall_W_Glass, Surface, Exterior Surface Convection Heat Transfer Coefficient;
+
+EnergyManagementSystem:ProgramCallingManager,
+  Conv_Override_Manager, BeginTimestepBeforePredictor, Conv_Override_Program;
+
+EnergyManagementSystem:Program,
+  Conv_Override_Program,
+  SET u = Wind_sensor,
+  IF u < 4,
+    SET h_bot = 2.8 + 1.2 * u,
+  ELSE,
+    SET h_bot = 2.5 * u ^ 0.8,
+  ENDIF,
+  IF h_bot < 2.8,
+    SET h_bot = 2.8,
+  ENDIF,
+  SET h_out_roof = h_bot,
+  SET h_out_wallN = h_bot,
+  SET h_out_wallS = h_bot,
+  SET h_out_wallE = h_bot,
+  SET h_out_wallW = h_bot,
+  SET dT_roof = @Abs (T_air_sensor - T_roof_in),
+  IF dT_roof < 0.01, SET dT_roof = 0.01, ENDIF,
+  SET h_in_roof = 1.7 * dT_roof ^ 0.33 + 1.0,
+  SET dT_wN = @Abs (T_air_sensor - T_wallN_in),
+  IF dT_wN < 0.01, SET dT_wN = 0.01, ENDIF,
+  SET h_in_wallN = 1.7 * dT_wN ^ 0.33 + 1.0,
+  SET dT_wS = @Abs (T_air_sensor - T_wallS_in),
+  IF dT_wS < 0.01, SET dT_wS = 0.01, ENDIF,
+  SET h_in_wallS = 1.7 * dT_wS ^ 0.33 + 1.0,
+  SET dT_wE = @Abs (T_air_sensor - T_wallE_in),
+  IF dT_wE < 0.01, SET dT_wE = 0.01, ENDIF,
+  SET h_in_wallE = 1.7 * dT_wE ^ 0.33 + 1.0,
+  SET dT_wW = @Abs (T_air_sensor - T_wallW_in),
+  IF dT_wW < 0.01, SET dT_wW = 0.01, ENDIF,
+  SET h_in_wallW = 1.7 * dT_wW ^ 0.33 + 1.0;
