@@ -248,6 +248,210 @@
     </p>
   </section>
 
+  <!-- ============================================================
+       SLIDE 08, PV PANEL ENERGY BALANCE (energy-balance style)
+       ============================================================ -->
+  <section class="slide" data-slide="8">
+    <header>
+      <span class="num">08</span>
+      <h2>PV panel energy balance</h2>
+    </header>
+
+    <div class="balance-eq">
+      <span class="lhs">C<sub>pv</sub> &middot; dT<sub>pv</sub>/dt =</span>
+      <span class="term warm" data-fragment="1">+ Q<sub>sol,pv</sub></span>
+      <span class="op">&minus;</span>
+      <span class="term cool" data-fragment="2">Q<sub>cnv,top</sub></span>
+      <span class="op">&minus;</span>
+      <span class="term cool" data-fragment="3">Q<sub>cnv,gap</sub></span>
+      <span class="op">&minus;</span>
+      <span class="term cool" data-fragment="4">Q<sub>rad,sky</sub></span>
+      <span class="op">&minus;</span>
+      <span class="term bad" data-fragment="5">Q<sub>rad,cov</sub></span>
+      <span class="op">&minus;</span>
+      <span class="term cool" data-fragment="6">P<sub>elec</sub></span>
+    </div>
+
+    <div class="balance-body">
+      <div class="balance-svg-wrap">
+        <svg class="gh-zoom" viewBox="0 0 600 540" aria-hidden="true">
+          <defs>
+            <marker id="arr-warm-pv" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#c46a1e"/>
+            </marker>
+            <marker id="arr-cool-pv" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#2876b8"/>
+            </marker>
+            <marker id="arr-bad-pv" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#b03a55"/>
+            </marker>
+          </defs>
+
+          <!-- Sun + I_glob label (top-left corner) -->
+          <g style="opacity:1; filter:none">
+            <circle class="p-sun" cx="50" cy="60" r="16"/>
+            <g stroke="#d6b048" stroke-width="2" stroke-linecap="round">
+              <line x1="50" y1="38"  x2="50" y2="28"/>
+              <line x1="50" y1="82"  x2="50" y2="92"/>
+              <line x1="28" y1="60"  x2="18" y2="60"/>
+              <line x1="72" y1="60"  x2="82" y2="60"/>
+              <line x1="33" y1="43"  x2="26" y2="36"/>
+              <line x1="67" y1="77"  x2="74" y2="84"/>
+              <line x1="33" y1="77"  x2="26" y2="84"/>
+              <line x1="67" y1="43"  x2="74" y2="36"/>
+            </g>
+          </g>
+
+          <!-- T_sky label (centered top) -->
+          <text x="300" y="30" class="p-sky-lbl" text-anchor="middle">T_sky</text>
+
+          <!-- Glass cover below (tilted roof pan) -->
+          <polygon points="110,300 490,300 490,320 110,320" fill="rgba(40,118,184,.12)" stroke="#5d7e9a" stroke-width="2"/>
+          <text x="300" y="338" text-anchor="middle"
+                font-family="Iowan Old Style, Palatino, serif" font-style="italic"
+                font-size="18" fill="#5d7e9a">T_cov  (glass)</text>
+
+          <!-- Air gap shading -->
+          <rect x="160" y="220" width="280" height="78" fill="#eaf0f5" opacity=".55"/>
+          <text x="300" y="270" text-anchor="middle"
+                font-family="Iowan Old Style, Palatino, serif" font-style="italic"
+                font-size="15" fill="#8aa1b4" opacity=".9">air gap</text>
+
+          <!-- PV panel, slightly tilted -->
+          <rect class="part p-cover" data-only="1"
+                x="140" y="192" width="320" height="30" rx="3"
+                fill="rgba(40,60,80,.65)" stroke="#1f2a3a" stroke-width="2.5"/>
+          <text x="300" y="214" text-anchor="middle"
+                font-family="Iowan Old Style, Palatino, serif" font-style="italic"
+                font-size="22" fill="#f5f5f5">T_pv</text>
+
+          <!-- Wind + T_out label, bottom-right -->
+          <g stroke="#5e6c83" stroke-width="1.8" fill="none" stroke-linecap="round"
+             style="opacity:1; filter:none">
+            <path d="M500,460 Q525,452 550,460 T590,460"/>
+            <path d="M500,478 Q525,470 550,478 T590,478"/>
+            <text x="545" y="505" class="p-sky-lbl" text-anchor="middle"
+                  stroke="none" fill="#5e6c83">T_out, u</text>
+          </g>
+
+          <!-- ============ FLUX ARROWS ============ -->
+
+          <!-- 1. Q_sol,pv : sun → panel -->
+          <line class="flux warm" data-fragment="1"
+                x1="68" y1="74" x2="220" y2="190"
+                stroke="#c46a1e" stroke-width="3" marker-end="url(#arr-warm-pv)"/>
+          <text class="flux-lbl warm" data-fragment="1"
+                x="160" y="115" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="17" fill="#c46a1e"
+                text-anchor="middle">Q_sol,pv</text>
+
+          <!-- 2. Q_cnv,top : panel → outside -->
+          <line class="flux cool" data-fragment="2"
+                x1="400" y1="190" x2="520" y2="70"
+                stroke="#2876b8" stroke-width="3" marker-end="url(#arr-cool-pv)"/>
+          <text class="flux-lbl cool" data-fragment="2"
+                x="428" y="100" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="17" fill="#2876b8"
+                text-anchor="middle">Q_cnv,top</text>
+
+          <!-- 3. Q_cnv,gap : panel → glass (downward, through gap) -->
+          <line class="flux cool" data-fragment="3"
+                x1="260" y1="222" x2="260" y2="298"
+                stroke="#2876b8" stroke-width="3" marker-end="url(#arr-cool-pv)"/>
+          <text class="flux-lbl cool" data-fragment="3"
+                x="248" y="264" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="17" fill="#2876b8"
+                text-anchor="end">Q_cnv,gap</text>
+
+          <!-- 4. Q_rad,sky : panel → sky (straight up) -->
+          <line class="flux cool" data-fragment="4"
+                x1="320" y1="190" x2="320" y2="60"
+                stroke="#2876b8" stroke-width="3" marker-end="url(#arr-cool-pv)"/>
+          <text class="flux-lbl cool" data-fragment="4"
+                x="332" y="110" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="17" fill="#2876b8"
+                text-anchor="start">Q_rad,sky</text>
+
+          <!-- 5. Q_rad,cov : panel → glass IR (downward, offset from cnv) -->
+          <line class="flux bad" data-fragment="5"
+                x1="380" y1="222" x2="380" y2="298"
+                stroke="#b03a55" stroke-width="3" marker-end="url(#arr-bad-pv)"/>
+          <text class="flux-lbl bad" data-fragment="5"
+                x="392" y="264" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="17" fill="#b03a55"
+                text-anchor="start">Q_rad,cov</text>
+
+          <!-- 6. P_elec : extracted electrical power (out of the panel to the right) -->
+          <line class="flux cool" data-fragment="6"
+                x1="462" y1="207" x2="560" y2="207"
+                stroke="#2876b8" stroke-width="3" stroke-dasharray="6 4"
+                marker-end="url(#arr-cool-pv)"/>
+          <text class="flux-lbl cool" data-fragment="6"
+                x="510" y="198" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="17" fill="#2876b8"
+                text-anchor="middle">P_elec</text>
+        </svg>
+      </div>
+
+      <div class="term-panel">
+        <div class="term-card" data-fragment="0">
+          <span class="term-tag">PV panel energy balance</span>
+          <h3 class="term-label">Tilted panel above the cover</h3>
+          <p>Panel temperature drives electrical efficiency (&eta;(T)), longwave exchange with sky and glass, and convective coupling through the air gap.</p>
+          <p>All six terms wired to the interior radiosity enclosure (slide 10b, main deck) and to the cover energy balance.</p>
+        </div>
+
+        <div class="term-card warm" data-fragment="1">
+          <span class="term-tag">Term 1 of 6</span>
+          <div class="term-label">Q<sub>sol,pv</sub></div>
+          <div class="term-unit">W &middot; solar absorbed by panel</div>
+          <p class="term-formula">Q<sub>sol,pv</sub> = &alpha;<sub>pv</sub>(&theta;) &middot; I<sub>glob</sub> &middot; A<sub>pv</sub></p>
+          <p>Fresnel angular absorption. Opaque: &alpha;&asymp;0.90. Semi-transparent: &alpha;&asymp;0.55 with &tau;=0.4 passing through.</p>
+        </div>
+
+        <div class="term-card cool" data-fragment="2">
+          <span class="term-tag">Term 2 of 6</span>
+          <div class="term-label">Q<sub>cnv,top</sub></div>
+          <div class="term-unit">W &middot; panel &rarr; outside convection</div>
+          <p class="term-formula">Q<sub>cnv,top</sub> = h<sub>w</sub>(u,&phi;) &middot; (T<sub>pv</sub> &minus; T<sub>out</sub>) &middot; A</p>
+          <p>Sharples &amp; Charlesworth (1998) wind-directional h<sub>w</sub> on tilted PV. Typical 10&minus;25 W/m²K.</p>
+        </div>
+
+        <div class="term-card cool" data-fragment="3">
+          <span class="term-tag">Term 3 of 6 <span class="new-tag">updated</span></span>
+          <div class="term-label">Q<sub>cnv,gap</sub></div>
+          <div class="term-unit">W &middot; panel &rarr; glass through air cavity</div>
+          <p class="term-formula">Q<sub>cnv,gap</sub> = h<sub>Hollands</sub>(&phi;,&Delta;T) &middot; (T<sub>pv</sub> &minus; T<sub>cov</sub>) &middot; A</p>
+          <p>Hollands et al. (1976) correlation for inclined enclosed cavities. Feeds back into the cover balance (slide 10 term 2).</p>
+        </div>
+
+        <div class="term-card cool" data-fragment="4">
+          <span class="term-tag">Term 4 of 6</span>
+          <div class="term-label">Q<sub>rad,sky</sub></div>
+          <div class="term-unit">W &middot; panel &rarr; sky IR</div>
+          <p class="term-formula">Q<sub>rad,sky</sub> = &epsilon;<sub>pv</sub>&middot;F<sub>sky</sub>(&phi;)&middot;&sigma;&middot;A&middot;(T<sub>pv</sub><sup>4</sup> &minus; T<sub>sky</sub><sup>4</sup>)</p>
+          <p>&epsilon;<sub>pv</sub>=0.90 (Faiman 2008). F<sub>sky</sub>=(1+cos&phi;)/2 for tilt &phi;. Dominant night loss, drives T<sub>pv</sub> below T<sub>out</sub>.</p>
+        </div>
+
+        <div class="term-card bad" data-fragment="5">
+          <span class="term-tag">Term 5 of 6</span>
+          <div class="term-label">Q<sub>rad,cov</sub></div>
+          <div class="term-unit">W &middot; panel &rarr; cover IR</div>
+          <p class="term-formula">Q<sub>rad,cov</sub> = &epsilon;<sub>pv,cov</sub>&middot;(1&minus;F<sub>sky</sub>)&middot;&sigma;&middot;A&middot;(T<sub>pv</sub><sup>4</sup> &minus; T<sub>cov</sub><sup>4</sup>)</p>
+          <p>Two-surface grey-body (&epsilon;<sub>pv,cov</sub>&asymp;0.82). Shows up as an incoming term on the cover balance (slide 10 term 3, Q<sub>rad,int</sub>) through the enclosure.</p>
+        </div>
+
+        <div class="term-card cool" data-fragment="6">
+          <span class="term-tag">Term 6 of 6</span>
+          <div class="term-label">P<sub>elec</sub></div>
+          <div class="term-unit">W &middot; extracted electrical power</div>
+          <p class="term-formula">P<sub>elec</sub> = &eta;<sub>ref</sub> &middot; [1 &minus; &beta;&middot;(T<sub>pv</sub> &minus; 25&deg;C)] &middot; I<sub>glob</sub> &middot; A</p>
+          <p>&eta;<sub>ref</sub>&asymp;0.20, &beta;&asymp;0.004 /K (crystalline Si). Energy extracted as electricity reduces the panel heat budget, lowers T<sub>pv</sub>, and feeds the grid on the webapp HUD.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   </main>
 
   <div class="footer-strip">
@@ -258,14 +462,14 @@
     </div>
     <div class="footer-meta">
       <span class="footer-author">M.&nbsp;Duchaufour &middot; extras</span>
-      <span class="footer-page" id="footer-page">01 / 07</span>
+      <span class="footer-page" id="footer-page">01 / 08</span>
     </div>
   </div>
 </div>
 
 <nav class="nav">
   <button id="prev" aria-label="Previous">&lsaquo;</button>
-  <span id="counter">1 / 7</span>
+  <span id="counter">1 / 8</span>
   <button id="next" aria-label="Next">&rsaquo;</button>
 </nav>
 
