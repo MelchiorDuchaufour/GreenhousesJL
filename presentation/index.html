@@ -208,19 +208,19 @@ S
 
       <!-- Colored cards matching diagram nodes -->
       <div style="flex:1; display:flex; flex-direction:column; gap:1rem; margin-top:0.5rem; justify-content:center;">
-        <div style="border-left:6px solid #2d8a5a; background:rgba(45,138,90.06); border-radius:0 8px 8px 0; padding:1.1rem 1.3rem;">
+        <div style="border-left:6px solid #2d8a5a; background:rgba(45,138,90,.06); border-radius:0 8px 8px 0; padding:1.1rem 1.3rem;">
           <div style="font-family:'Iowan Old Style',Palatino,serif; font-weight:600; color:#2d8a5a; font-size:1.25rem;">Envelope</div>
           <div style="font-family:Inter,sans-serif; color:#3a4050; font-size:1.05rem; margin-top:0.25rem; line-height:1.5;">Cover, floor, screen, walls. Thermal mass, N-surface radiosity, Fresnel solar transmission.</div>
         </div>
-        <div style="border-left:6px solid #2876b8; background:rgba(40,118,184.06); border-radius:0 8px 8px 0; padding:1.1rem 1.3rem;">
+        <div style="border-left:6px solid #2876b8; background:rgba(40,118,184,.06); border-radius:0 8px 8px 0; padding:1.1rem 1.3rem;">
           <div style="font-family:'Iowan Old Style',Palatino,serif; font-weight:600; color:#2876b8; font-size:1.25rem;">Climate</div>
           <div style="font-family:Inter,sans-serif; color:#3a4050; font-size:1.05rem; margin-top:0.25rem; line-height:1.5;">Ventilation (Boulard), screens, infiltration. Air and vapour exchange with outside.</div>
         </div>
-        <div style="border-left:6px solid #c46a1e; background:rgba(196,106,30.06); border-radius:0 8px 8px 0; padding:1.1rem 1.3rem;">
+        <div style="border-left:6px solid #c46a1e; background:rgba(196,106,30,.06); border-radius:0 8px 8px 0; padding:1.1rem 1.3rem;">
           <div style="font-family:'Iowan Old Style',Palatino,serif; font-weight:600; color:#c46a1e; font-size:1.25rem;">HVAC</div>
           <div style="font-family:Inter,sans-serif; color:#3a4050; font-size:1.05rem; margin-top:0.25rem; line-height:1.5;">CHP, heat pump, boiler, storage. Pipe thermal inertia. PI control with setpoints.</div>
         </div>
-        <div style="border-left:6px solid #2d8a5a; background:rgba(45,138,90.06); border-radius:0 8px 8px 0; padding:1.1rem 1.3rem;">
+        <div style="border-left:6px solid #2d8a5a; background:rgba(45,138,90,.06); border-radius:0 8px 8px 0; padding:1.1rem 1.3rem;">
           <div style="font-family:'Iowan Old Style',Palatino,serif; font-weight:600; color:#2d8a5a; font-size:1.25rem;">Crop</div>
           <div style="font-family:Inter,sans-serif; color:#3a4050; font-size:1.05rem; margin-top:0.25rem; line-height:1.5;">Photosynthesis, transpiration. CO₂ absorption, latent heat. 6 species catalogue.</div>
         </div>
@@ -248,7 +248,7 @@ S
       <!-- ─────────── LAYER 1 : INTERFACES (typed connectors) ─────────── -->
       <g>
         <rect x="60"  y="50"  width="1580" height="100" rx="10"
-              fill="rgba(91,107,128.10)" stroke="#5b6b80" stroke-width="2"/>
+              fill="rgba(91,107,128,.10)" stroke="#5b6b80" stroke-width="2"/>
         <text x="100" y="80" font-family="Iowan Old Style, Palatino, serif"
               font-style="italic" font-size="22" fill="#5b6b80">Interfaces</text>
         <text x="100" y="100" font-family="Inter" font-size="13" fill="#5e6c83">typed connectors that carry physical quantities</text>
@@ -283,7 +283,7 @@ S
       <!-- ─────────── LAYER 2 : FLOWS (atomic transfer equations) ─────────── -->
       <g>
         <rect x="60" y="180" width="1580" height="120" rx="10"
-              fill="rgba(40,118,184.07)" stroke="#2876b8" stroke-width="2"/>
+              fill="rgba(40,118,184,.07)" stroke="#2876b8" stroke-width="2"/>
         <text x="100" y="210" font-family="Iowan Old Style, Palatino, serif"
               font-style="italic" font-size="22" fill="#2876b8">Flows</text>
         <text x="100" y="230" font-family="Inter" font-size="13" fill="#5e6c83">elementary transfer equations</text>
@@ -329,14 +329,14 @@ S
       <!-- ─────────── LAYER 3 : COMPONENTS (physical objects) ─────────── -->
       <g>
         <rect x="60" y="330" width="1580" height="170" rx="10"
-              fill="rgba(45,138,90.07)" stroke="#2d8a5a" stroke-width="2"/>
+              fill="rgba(45,138,90,.07)" stroke="#2d8a5a" stroke-width="2"/>
         <text x="100" y="360" font-family="Iowan Old Style, Palatino, serif"
               font-style="italic" font-size="22" fill="#2d8a5a">Components</text>
         <text x="100" y="380" font-family="Inter" font-size="13" fill="#5e6c83">one component = one physical object with explicit ports</text>
 
         <!-- Greenhouse subpackage -->
         <g transform="translate(110, 400)">
-          <rect width="600" height="90" rx="8" fill="rgba(45,138,90.18)" stroke="#2d8a5a" stroke-width="1.5"/>
+          <rect width="600" height="90" rx="8" fill="rgba(45,138,90,.18)" stroke="#2d8a5a" stroke-width="1.5"/>
           <text x="20" y="22" font-family="Iowan Old Style, Palatino, serif"
                 font-style="italic" font-size="15" fill="#2d8a5a">Components.Greenhouse</text>
           <g transform="translate(15, 35)">
@@ -368,7 +368,7 @@ S
 
         <!-- HVAC subpackage (centered) -->
         <g transform="translate(730, 400)">
-          <rect width="340" height="90" rx="8" fill="rgba(196,106,30.15)" stroke="#c46a1e" stroke-width="1.5"/>
+          <rect width="340" height="90" rx="8" fill="rgba(196,106,30,.15)" stroke="#c46a1e" stroke-width="1.5"/>
           <text x="20" y="22" font-family="Iowan Old Style, Palatino, serif"
                 font-style="italic" font-size="15" fill="#c46a1e">Components.HVAC</text>
           <g transform="translate(15, 35)">
@@ -387,7 +387,7 @@ S
 
         <!-- CropYield subpackage (centered, 4 species) -->
         <g transform="translate(1090, 400)">
-          <rect width="520" height="90" rx="8" fill="rgba(124,74,176.13)" stroke="#7c4ab0" stroke-width="1.5"/>
+          <rect width="520" height="90" rx="8" fill="rgba(124,74,176,.13)" stroke="#7c4ab0" stroke-width="1.5"/>
           <text x="20" y="22" font-family="Iowan Old Style, Palatino, serif"
                 font-style="italic" font-size="15" fill="#7c4ab0">Components.CropYield</text>
           <g transform="translate(15, 35)">
@@ -416,7 +416,7 @@ S
       <!-- ─────────── LAYER 4 : CONTROL SYSTEMS ─────────── -->
       <g>
         <rect x="60" y="530" width="1580" height="80" rx="10"
-              fill="rgba(196,106,30.08)" stroke="#c46a1e" stroke-width="2"/>
+              fill="rgba(196,106,30,.08)" stroke="#c46a1e" stroke-width="2"/>
         <text x="100" y="558" font-family="Iowan Old Style, Palatino, serif"
               font-style="italic" font-size="22" fill="#c46a1e">ControlSystems</text>
         <text x="100" y="580" font-family="Inter" font-size="13" fill="#5e6c83">PI loops, dispatch, actuator wrappers</text>
@@ -451,7 +451,7 @@ S
       <!-- ─────────── LAYER 5 : EXAMPLES ─────────── -->
       <g>
         <rect x="60" y="640" width="1580" height="80" rx="10"
-              fill="rgba(176,58,85.08)" stroke="#b03a55" stroke-width="2"/>
+              fill="rgba(176,58,85,.08)" stroke="#b03a55" stroke-width="2"/>
         <text x="100" y="668" font-family="Iowan Old Style, Palatino, serif"
               font-style="italic" font-size="22" fill="#b03a55">Examples</text>
         <text x="100" y="690" font-family="Inter" font-size="13" fill="#5e6c83">end-to-end runnable simulations</text>
@@ -671,19 +671,19 @@ S
 
         <!-- ─────────── COVER (rectangle, blue tint) ─────────── -->
         <rect x="200" y="180" width="520" height="22" rx="3"
-              fill="rgba(40,118,184.12)" stroke="#2876b8" stroke-width="2.5"/>
+              fill="rgba(40,118,184,.12)" stroke="#2876b8" stroke-width="2.5"/>
 
         <!-- ─────────── WALLS ─────────── -->
         <rect x="200" y="202" width="14" height="298"
-              fill="rgba(40,118,184.06)" stroke="#5d7e9a" stroke-width="2"/>
+              fill="rgba(40,118,184,.06)" stroke="#5d7e9a" stroke-width="2"/>
         <rect x="706" y="202" width="14" height="298"
-              fill="rgba(40,118,184.06)" stroke="#5d7e9a" stroke-width="2"/>
+              fill="rgba(40,118,184,.06)" stroke="#5d7e9a" stroke-width="2"/>
 
         <!-- ─────────── AIR_TOP and AIR zones (split by screen) ─────────── -->
         <rect x="214" y="202" width="492" height="100"
-              fill="rgba(184,200,219.18)" stroke="none"/>
+              fill="rgba(184,200,219,.18)" stroke="none"/>
         <rect x="214" y="316" width="492" height="184"
-              fill="rgba(40,118,184.06)" stroke="none"/>
+              fill="rgba(40,118,184,.06)" stroke="none"/>
 
         <!-- ─────────── THERMAL SCREEN ─────────── -->
         <line x1="220" y1="306" x2="700" y2="306"
@@ -692,15 +692,15 @@ S
         <!-- ─────────── CANOPY (ellipses + stems) ─────────── -->
         <line x1="320" y1="500" x2="320" y2="400" stroke="#4a8260" stroke-width="2"/>
         <ellipse cx="320" cy="400" rx="40" ry="58"
-                 fill="rgba(45,138,90.32)" stroke="#2d8a5a" stroke-width="2"/>
+                 fill="rgba(45,138,90,.32)" stroke="#2d8a5a" stroke-width="2"/>
 
         <line x1="460" y1="500" x2="460" y2="380" stroke="#4a8260" stroke-width="2"/>
         <ellipse cx="460" cy="380" rx="44" ry="68"
-                 fill="rgba(45,138,90.32)" stroke="#2d8a5a" stroke-width="2"/>
+                 fill="rgba(45,138,90,.32)" stroke="#2d8a5a" stroke-width="2"/>
 
         <line x1="600" y1="500" x2="600" y2="400" stroke="#4a8260" stroke-width="2"/>
         <ellipse cx="600" cy="400" rx="40" ry="58"
-                 fill="rgba(45,138,90.32)" stroke="#2d8a5a" stroke-width="2"/>
+                 fill="rgba(45,138,90,.32)" stroke="#2d8a5a" stroke-width="2"/>
 
         <!-- ─────────── HEATING PIPES (red dots at floor level) ─────────── -->
         <circle cx="245" cy="496" r="7" fill="#c46a1e" stroke="#6b3815" stroke-width="1"/>
@@ -933,7 +933,7 @@ S
           <!-- ─────────── INSIDE AIR (faint background to show the volume) ─────────── -->
           <rect class="part p-air" data-only="-1"
                 x="192" y="164" width="376" height="256"
-                fill="rgba(40,118,184.04)" stroke="none"/>
+                fill="rgba(40,118,184,.04)" stroke="none"/>
 
           <!-- ─────────── CANOPY - step 4 (centred between the inner walls 192..568) ─────────── -->
           <g class="part" data-only="4">
@@ -1061,7 +1061,7 @@ S
             <h3>Stomatal closure at night</h3>
             <p class="gh-eq" style="color:var(--bad)">
               r<sub>s</sub> =
-              <span class="new" style="background:rgba(176,58,85.18); border-color:var(--bad); color:var(--bad)">
+              <span class="new" style="background:rgba(176,58,85,.18); border-color:var(--bad); color:var(--bad)">
                 5000 s/m if PAR &lt; 5
               </span>
             </p>
@@ -1362,7 +1362,7 @@ S
       <!-- LEFT: architecture + unit cube -->
       <div style="display:flex; flex-direction:column; gap:0.8rem;">
         <h3 style="margin:0; color:#c46a1e; font-size:1.2rem;">Architecture</h3>
-        <div style="background:rgba(196,106,30.04); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.9rem 1.2rem; font-size:1.05rem; line-height:2.0;">
+        <div style="background:rgba(196,106,30,.04); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.9rem 1.2rem; font-size:1.05rem; line-height:2.0;">
           <div><span style="color:#c46a1e; font-weight:700; font-family:var(--mono); font-size:0.95rem;">Surface</span> &ensp;Polygon with 3D vertices, &epsilon;, &alpha;<sub>solar</sub>, &tau;<sub>solar</sub>, capacity</div>
           <div><span style="color:#c46a1e; font-weight:700; font-family:var(--mono); font-size:0.95rem;">View factors</span> &ensp;Monte Carlo double-area integration (N=100k)</div>
           <div><span style="color:#c46a1e; font-weight:700; font-family:var(--mono); font-size:0.95rem;">Radiosity</span> &ensp;N-surface grey-body enclosure (I&minus;&rho;F)&middot;J = &epsilon;&middot;&sigma;&middot;T&sup4;</div>
@@ -1372,13 +1372,13 @@ S
         <h3 style="margin:0.4rem 0 0; color:#2E7D32; font-size:1.2rem;">Validation: unit cube</h3>
         <div style="display:flex; gap:1.5rem; align-items:center;">
           <svg viewBox="0 0 260 175" style="width:330px; flex-shrink:0;">
-            <polygon points="20,130 110,130 110,45 20,45" fill="rgba(196,106,30.08)" stroke="#c46a1e" stroke-width="2.5"/>
-            <polygon points="110,130 165,98 165,13 110,45" fill="rgba(40,118,184.06)" stroke="#2876b8" stroke-width="2"/>
-            <polygon points="20,45 75,13 165,13 110,45" fill="rgba(40,118,184.06)" stroke="#2876b8" stroke-width="2" stroke-dasharray="5 3"/>
+            <polygon points="20,130 110,130 110,45 20,45" fill="rgba(196,106,30,.08)" stroke="#c46a1e" stroke-width="2.5"/>
+            <polygon points="110,130 165,98 165,13 110,45" fill="rgba(40,118,184,.06)" stroke="#2876b8" stroke-width="2"/>
+            <polygon points="20,45 75,13 165,13 110,45" fill="rgba(40,118,184,.06)" stroke="#2876b8" stroke-width="2" stroke-dasharray="5 3"/>
             <line x1="20" y1="130" x2="75" y2="98" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
             <line x1="75" y1="98" x2="165" y2="98" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
             <line x1="75" y1="98" x2="75" y2="13" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
-            <rect x="30" y="65" width="70" height="52" fill="rgba(196,106,30.15)" rx="4"/>
+            <rect x="30" y="65" width="70" height="52" fill="rgba(196,106,30,.15)" rx="4"/>
             <text x="65" y="89" text-anchor="middle" font-size="17" fill="#c46a1e" font-weight="700">320 K</text>
             <text x="65" y="108" text-anchor="middle" font-size="12" fill="#666">&epsilon; = 0.9</text>
             <text x="178" y="50" font-size="14" fill="#2876b8" font-weight="600">300 K &times;5</text>
@@ -1407,7 +1407,7 @@ S
         <h3 style="margin:0; color:#1565C0; font-size:1.2rem;">Validation: Savona 5&times;5 m (exact vertices)</h3>
         <svg viewBox="0 0 320 160" style="width:100%; max-width:540px; display:block; margin:0 auto;">
           <!-- interior -->
-          <polygon points="30,125 270,125 270,68 30,68" fill="rgba(196,106,30.04)" stroke="#ccc" stroke-width="1"/>
+          <polygon points="30,125 270,125 270,68 30,68" fill="rgba(196,106,30,.04)" stroke="#ccc" stroke-width="1"/>
           <!-- floor -->
           <rect x="30" y="125" width="240" height="6" fill="#8a6f50"/>
           <!-- asymmetric roof -->
@@ -1436,7 +1436,7 @@ S
           </tbody>
         </table>
 
-        <div style="background:rgba(46,125,50.06); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.8rem 1.1rem; margin-top:auto;">
+        <div style="background:rgba(46,125,50,.06); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.8rem 1.1rem; margin-top:auto;">
           <p style="font-size:1rem; margin:0; line-height:1.6;"><strong style="color:#2E7D32;">MC view factors match EP ScriptF to 3%.</strong> The old Hottel formula gave F(floor&rarr;cover)=0.245 &rarr; 40% too low. The MC engine uses exact 3D vertex geometry with auto-flipped normals.</p>
         </div>
 
@@ -1494,7 +1494,7 @@ S
           <!-- Cover (passive, label ABOVE the cover) -->
           <text x="180" y="118" font-family="Iowan Old Style, Palatino, serif"
                 font-style="italic" font-size="14" fill="#5e6c83">cover</text>
-          <rect x="120" y="124" width="360" height="14" fill="rgba(40,118,184.12)" stroke="#5d7e9a" stroke-width="2"/>
+          <rect x="120" y="124" width="360" height="14" fill="rgba(40,118,184,.12)" stroke="#5d7e9a" stroke-width="2"/>
 
           <!-- Walls -->
           <rect class="part p-wall" data-only="5" x="120" y="138" width="14" height="280"/>
@@ -1503,7 +1503,7 @@ S
           <!-- Air node, big and central -->
           <rect class="part p-air" data-only="0"
                 x="134" y="138" width="332" height="280"
-                fill="rgba(40,118,184.06)" stroke="#5d7e9a" stroke-width="1" stroke-dasharray="4 3"/>
+                fill="rgba(40,118,184,.06)" stroke="#5d7e9a" stroke-width="1" stroke-dasharray="4 3"/>
           <text x="300" y="278" text-anchor="middle"
                 font-family="Iowan Old Style, Palatino, serif" font-style="italic"
                 font-size="36" fill="#1f2a3a">T_air</text>
@@ -1515,8 +1515,8 @@ S
                 font-size="14" fill="#5e6c83">floor</text>
 
           <!-- Canopy hint -->
-          <ellipse cx="220" cy="354" rx="22" ry="34" fill="rgba(45,138,90.18)" stroke="#4a8260" stroke-width="1"/>
-          <ellipse cx="380" cy="354" rx="22" ry="34" fill="rgba(45,138,90.18)" stroke="#4a8260" stroke-width="1"/>
+          <ellipse cx="220" cy="354" rx="22" ry="34" fill="rgba(45,138,90,.18)" stroke="#4a8260" stroke-width="1"/>
+          <ellipse cx="380" cy="354" rx="22" ry="34" fill="rgba(45,138,90,.18)" stroke="#4a8260" stroke-width="1"/>
 
           <!-- Heating pipe hint -->
           <circle cx="180" cy="412" r="5" fill="#c46a1e"/>
@@ -1718,7 +1718,7 @@ S
           <text x="200" y="113" text-anchor="middle"
                 font-family="Iowan Old Style, Palatino, serif" font-style="italic"
                 font-size="17" fill="#5e6c83">cover</text>
-          <rect x="120" y="120" width="360" height="14" fill="rgba(40,118,184.12)" stroke="#5d7e9a" stroke-width="2"/>
+          <rect x="120" y="120" width="360" height="14" fill="rgba(40,118,184,.12)" stroke="#5d7e9a" stroke-width="2"/>
 
           <!-- Walls (passive) -->
           <rect x="120" y="134" width="14" height="280" fill="#88a094" opacity=".25"/>
@@ -1730,7 +1730,7 @@ S
           <!-- BIG canopy node, central -->
           <ellipse class="part p-canopy" data-only="0"
                    cx="300" cy="320" rx="135" ry="70"
-                   fill="rgba(45,138,90.40)" stroke="#2d8a5a" stroke-width="2.5"/>
+                   fill="rgba(45,138,90,.40)" stroke="#2d8a5a" stroke-width="2.5"/>
           <text x="300" y="318" text-anchor="middle"
                 font-family="Iowan Old Style, Palatino, serif" font-style="italic"
                 font-size="38" fill="#1a4a2e">T_can</text>
@@ -1855,16 +1855,16 @@ S
           </defs>
 
           <!-- Cover -->
-          <rect x="80" y="40" width="320" height="16" rx="3" fill="rgba(40,118,184.15)" stroke="#2876b8" stroke-width="2"/>
+          <rect x="80" y="40" width="320" height="16" rx="3" fill="rgba(40,118,184,.15)" stroke="#2876b8" stroke-width="2"/>
           <text x="225" y="38" font-size="14" fill="#2876b8" font-family="var(--serif)" font-style="italic">cover</text>
 
           <!-- Air zone -->
-          <rect x="80" y="56" width="320" height="200" fill="rgba(40,118,184.03)" stroke="#5d7e9a" stroke-width="1" stroke-dasharray="4 3"/>
+          <rect x="80" y="56" width="320" height="200" fill="rgba(40,118,184,.03)" stroke="#5d7e9a" stroke-width="1" stroke-dasharray="4 3"/>
           <text x="240" y="155" text-anchor="middle" font-size="20" fill="var(--ink)" font-family="var(--serif)" font-style="italic">VP_air</text>
 
           <!-- Canopy -->
-          <ellipse cx="160" cy="210" rx="30" ry="40" fill="rgba(45,138,90.15)" stroke="#4a8260" stroke-width="1.5"/>
-          <ellipse cx="320" cy="210" rx="30" ry="40" fill="rgba(45,138,90.15)" stroke="#4a8260" stroke-width="1.5"/>
+          <ellipse cx="160" cy="210" rx="30" ry="40" fill="rgba(45,138,90,.15)" stroke="#4a8260" stroke-width="1.5"/>
+          <ellipse cx="320" cy="210" rx="30" ry="40" fill="rgba(45,138,90,.15)" stroke="#4a8260" stroke-width="1.5"/>
           <text x="240" y="240" text-anchor="middle" font-size="13" fill="#4a8260">canopy</text>
 
           <!-- Floor -->
@@ -1897,28 +1897,28 @@ S
 
       <div>
         <div style="display:flex; flex-direction:column; gap:0.8rem; margin-top:0.5rem;">
-          <div style="border-left:5px solid #c46a1e; background:rgba(196,106,30.06); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+          <div style="border-left:5px solid #c46a1e; background:rgba(196,106,30,.06); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
             <div style="font-family:var(--serif); font-weight:600; color:#c46a1e; font-size:1.05rem;">Canopy transpiration</div>
             <div style="font-family:var(--serif); font-style:italic; font-size:0.88rem; color:#c46a1e; margin-top:0.2rem;">
               E = (Δ·R<sub>n</sub> + ρ·c<sub>p</sub>·VPD/r<sub>a</sub>) / λ(Δ+γ(1+r<sub>s</sub>/r<sub>a</sub>))
             </div>
             <div style="font-size:0.85rem; color:var(--ink); margin-top:0.15rem;">Stanghellini formulation + night stomatal closure (r<sub>s</sub> = 5000 s/m if PAR &lt; 5).</div>
           </div>
-          <div style="border-left:5px solid #2876b8; background:rgba(40,118,184.06); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+          <div style="border-left:5px solid #2876b8; background:rgba(40,118,184,.06); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
             <div style="font-family:var(--serif); font-weight:600; color:#2876b8; font-size:1.05rem;">Cover condensation</div>
             <div style="font-family:var(--serif); font-style:italic; font-size:0.88rem; color:#2876b8; margin-top:0.2rem;">
               MV<sub>AirCov</sub> = VEC · (VP<sub>air</sub> − VP<sub>sat</sub>(T<sub>cov</sub>))
             </div>
             <div style="font-size:0.85rem; color:var(--ink); margin-top:0.15rem;">Vapor → liquid on cold glass. Releases λ·MV (10–25 W/m²) to cover energy balance.</div>
           </div>
-          <div style="border-left:5px solid #5d7e9a; background:rgba(93,126,154.06); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+          <div style="border-left:5px solid #5d7e9a; background:rgba(93,126,154,.06); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
             <div style="font-family:var(--serif); font-weight:600; color:#5d7e9a; font-size:1.05rem;">Air vapor balance</div>
             <div style="font-family:var(--serif); font-style:italic; font-size:0.88rem; color:#5d7e9a; margin-top:0.2rem;">
               V·dVP<sub>air</sub>/dt = MV<sub>CanAir</sub> + MV<sub>Evap</sub> − MV<sub>AirCov</sub> − MV<sub>AirOut</sub>
             </div>
             <div style="font-size:0.85rem; color:var(--ink); margin-top:0.15rem;">Transpiration + floor/substrate evap. (sources) − condensation − ventilation (sinks).</div>
           </div>
-          <div style="border-left:5px solid var(--ink-dim); background:rgba(0,0,0.03); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+          <div style="border-left:5px solid var(--ink-dim); background:rgba(0,0,0,.03); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
             <div style="font-family:var(--serif); font-weight:600; color:var(--ink-dim); font-size:1.05rem;">Energy coupling</div>
             <div style="font-family:var(--serif); font-style:italic; font-size:0.88rem; color:var(--ink-dim); margin-top:0.2rem;">
               VEC = 6.4×10⁻⁹ · HEC &ensp;|&ensp; λE cools canopy, λ·MV heats cover
@@ -2085,7 +2085,7 @@ S
           <!-- Cover label ABOVE the cover -->
           <text x="180" y="116" font-family="Iowan Old Style, Palatino, serif"
                 font-style="italic" font-size="18" fill="#5e6c83">cover</text>
-          <rect x="120" y="124" width="360" height="14" fill="rgba(40,118,184.12)" stroke="#5d7e9a" stroke-width="2"/>
+          <rect x="120" y="124" width="360" height="14" fill="rgba(40,118,184,.12)" stroke="#5d7e9a" stroke-width="2"/>
 
           <!-- Screen (dashed, between cover and air) -->
           <line x1="134" y1="178" x2="466" y2="178" stroke="#7a8898" stroke-width="2" stroke-dasharray="6 4"/>
@@ -2099,7 +2099,7 @@ S
           <!-- Air node, big and central -->
           <rect class="part p-air"
                 x="134" y="184" width="332" height="234"
-                fill="rgba(40,118,184.06)" stroke="#5d7e9a" stroke-width="1" stroke-dasharray="4 3"/>
+                fill="rgba(40,118,184,.06)" stroke="#5d7e9a" stroke-width="1" stroke-dasharray="4 3"/>
           <text x="300" y="294" text-anchor="middle"
                 font-family="Iowan Old Style, Palatino, serif" font-style="italic"
                 font-size="32" fill="#1f2a3a">C_v,air</text>
@@ -2111,8 +2111,8 @@ S
                 font-size="14" fill="#5e6c83">floor</text>
 
           <!-- Canopy hint -->
-          <ellipse cx="220" cy="354" rx="22" ry="34" fill="rgba(45,138,90.18)" stroke="#4a8260" stroke-width="1"/>
-          <ellipse cx="380" cy="354" rx="22" ry="34" fill="rgba(45,138,90.18)" stroke="#4a8260" stroke-width="1"/>
+          <ellipse cx="220" cy="354" rx="22" ry="34" fill="rgba(45,138,90,.18)" stroke="#4a8260" stroke-width="1"/>
+          <ellipse cx="380" cy="354" rx="22" ry="34" fill="rgba(45,138,90,.18)" stroke="#4a8260" stroke-width="1"/>
 
           <!-- Wind icon + T_out, BOTTOM-RIGHT -->
           <g stroke="#5e6c83" stroke-width="1.8" fill="none" stroke-linecap="round"
@@ -2265,7 +2265,7 @@ S
                   stroke="#2d8a5a" stroke-width="4" stroke-linecap="round"/>
             <!-- leaf blade -->
             <ellipse cx="300" cy="315" rx="110" ry="42"
-                     fill="rgba(45,138,90.55)" stroke="#2d8a5a" stroke-width="2"/>
+                     fill="rgba(45,138,90,.55)" stroke="#2d8a5a" stroke-width="2"/>
             <!-- midrib -->
             <line x1="190" y1="315" x2="410" y2="315"
                   stroke="#2d8a5a" stroke-width="2" opacity=".7"/>
@@ -2417,7 +2417,7 @@ S
 
     <!-- Top: equation box spanning full width -->
     <div style="display:flex; gap:1.2rem; padding:0 2rem; margin-bottom:0.5rem; align-items:stretch;">
-      <div style="flex:1; background:rgba(196,106,30.06); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.45rem 0.8rem;">
+      <div style="flex:1; background:rgba(196,106,30,.06); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.45rem 0.8rem;">
         <div style="font-size:0.82rem; font-weight:700; color:#c46a1e; margin-bottom:0.15rem;">Baille (1994) two-term model</div>
         <div style="font-family:var(--serif); font-style:italic; font-size:0.82rem; color:#c46a1e; line-height:1.5;">
           &lambda;E<sub>floor</sub> = &alpha;<sub>floor</sub> &middot; R<sub>SunFlr</sub> &middot; (1 &minus; f<sub>sub</sub>)
@@ -2436,7 +2436,7 @@ S
 
         <!-- ── System 1: bare floor ── -->
         <svg viewBox="0 0 500 72" style="width:100%; display:block;">
-          <rect x="0" y="0" width="500" height="72" rx="6" fill="rgba(215,204,200.12)" stroke="#D7CCC8" stroke-width="1"/>
+          <rect x="0" y="0" width="500" height="72" rx="6" fill="rgba(215,204,200,.12)" stroke="#D7CCC8" stroke-width="1"/>
           <!-- label -->
           <text x="12" y="20" font-size="13" fill="#c46a1e" font-weight="700">1</text>
           <text x="28" y="20" font-size="12" fill="#c46a1e" font-weight="600">Bare floor</text>
@@ -2457,7 +2457,7 @@ S
 
         <!-- ── System 2: drip on rockwool/coco slabs ── -->
         <svg viewBox="0 0 500 88" style="width:100%; display:block;" data-fragment="1">
-          <rect x="0" y="0" width="500" height="88" rx="6" fill="rgba(176,190,197.08)" stroke="#B0BEC5" stroke-width="1"/>
+          <rect x="0" y="0" width="500" height="88" rx="6" fill="rgba(176,190,197,.08)" stroke="#B0BEC5" stroke-width="1"/>
           <!-- label -->
           <text x="12" y="18" font-size="13" fill="#c46a1e" font-weight="700">2</text>
           <text x="28" y="18" font-size="12" fill="#c46a1e" font-weight="600">Drip on rockwool / coco</text>
@@ -2490,7 +2490,7 @@ S
 
         <!-- ── System 3: NFT gutters / ebb-flow bench ── -->
         <svg viewBox="0 0 500 90" style="width:100%; display:block;" data-fragment="2">
-          <rect x="0" y="0" width="500" height="90" rx="6" fill="rgba(227,242,253.15)" stroke="#90CAF9" stroke-width="1"/>
+          <rect x="0" y="0" width="500" height="90" rx="6" fill="rgba(227,242,253,.15)" stroke="#90CAF9" stroke-width="1"/>
           <!-- label -->
           <text x="12" y="18" font-size="13" fill="#c46a1e" font-weight="700">3</text>
           <text x="28" y="18" font-size="12" fill="#c46a1e" font-weight="600">NFT gutter / ebb-flow bench</text>
@@ -2857,7 +2857,7 @@ S
       <div style="display:flex; flex-direction:column; gap:0.8rem;">
 
         <!-- Main equation box -->
-        <div style="background:rgba(40,118,184.05); border:2px solid #2876b8; border-radius:10px; padding:0.8rem 1rem; text-align:center;">
+        <div style="background:rgba(40,118,184,.05); border:2px solid #2876b8; border-radius:10px; padding:0.8rem 1rem; text-align:center;">
           <div style="font-family:var(--serif); font-style:italic; font-size:1.15rem; color:#2876b8; line-height:1.6;">
             G = <sup>S</sup>&frasl;<sub>2</sub> &middot; A<sub>1</sub> &middot;
             &radic;<span style="text-decoration:overline;">&thinsp;2g &middot; <sup>&Delta;T</sup>&frasl;<sub>T</sub> &middot; <sup>H</sup>&frasl;<sub>4</sub> + C<sub>w</sub> &middot; V&sup2;&thinsp;</span>
@@ -2876,7 +2876,7 @@ S
             </marker>
           </defs>
           <!-- walls -->
-          <rect x="100" y="85" width="300" height="155" fill="rgba(196,106,30.03)" stroke="#999" stroke-width="1.5"/>
+          <rect x="100" y="85" width="300" height="155" fill="rgba(196,106,30,.03)" stroke="#999" stroke-width="1.5"/>
           <!-- floor -->
           <rect x="100" y="240" width="300" height="7" fill="#8a6f50" rx="2"/>
           <!-- roof left -->
@@ -2947,29 +2947,29 @@ S
       <div style="display:flex; flex-direction:column; gap:0.7rem;">
         <h3 style="margin:0; color:#2876b8; font-size:1.15rem;">Two driving forces</h3>
 
-        <div style="background:rgba(196,106,30.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(196,106,30,.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#c46a1e; font-size:0.95rem; margin-bottom:0.2rem;">Stack effect (buoyancy)</div>
           <p style="font-size:0.92rem; margin:0; line-height:1.5;">Warm air rises out through roof vents. Driven by &Delta;T = T<sub>in</sub> &minus; T<sub>out</sub>. Dominates at V&nbsp;&lt;&nbsp;1.5&nbsp;m/s.</p>
         </div>
 
-        <div style="background:rgba(40,118,184.05); border-left:4px solid #2876b8; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(40,118,184,.05); border-left:4px solid #2876b8; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#2876b8; font-size:0.95rem; margin-bottom:0.2rem;">Wind effect (turbulent)</div>
           <p style="font-size:0.92rem; margin:0; line-height:1.5;">Pressure fluctuations create two-way exchange through each vent. C<sub>w</sub> covers both steady and turbulent wind pressure. Dominates at V&nbsp;&gt;&nbsp;2&nbsp;m/s.</p>
         </div>
 
         <h3 style="margin:0.3rem 0 0; color:#2E7D32; font-size:1.15rem;">Vent opening control</h3>
 
-        <div style="background:rgba(46,125,50.05); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(46,125,50,.05); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#2E7D32; font-size:0.95rem; margin-bottom:0.2rem;">Temperature proportional</div>
           <p style="font-size:0.92rem; margin:0; line-height:1.5;">U = K<sub>p</sub> &middot; max(T<sub>air</sub> &minus; T<sub>on</sub>,&thinsp;0). Linear ramp from closed to fully open.</p>
         </div>
 
-        <div style="background:rgba(46,125,50.05); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(46,125,50,.05); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#2E7D32; font-size:0.95rem; margin-bottom:0.2rem;">+ Humidity override (K&ouml;rner &amp; Challa 2003)</div>
           <p style="font-size:0.92rem; margin:0; line-height:1.5;">U = max(U<sub>T</sub>,&thinsp;U<sub>RH</sub>). Opens vents when RH&nbsp;&gt;&nbsp;85% even if T is below setpoint. Drying the air avoids fungal disease (<em>Botrytis</em>) and cover dripping. Costs +5-15% heating.</p>
         </div>
 
-        <div style="background:rgba(0,0,0.03); border-radius:8px; padding:0.6rem 1rem; margin-top:auto;">
+        <div style="background:rgba(0,0,0,.03); border-radius:8px; padding:0.6rem 1rem; margin-top:auto;">
           <div style="font-size:0.88rem; color:var(--ink-dim); line-height:1.5;">
             <strong>Heat loss:</strong> Q<sub>vent</sub> = &rho;c<sub>p</sub> &middot; f &middot; A &middot; &Delta;T &ensp;[W]&ensp;|&ensp;
             <strong>Vapor:</strong> MV<sub>vent</sub> = A&middot;M<sub>H2O</sub>&middot;f/R &middot; (VP<sub>in</sub>/T<sub>in</sub> &minus; VP<sub>out</sub>/T<sub>out</sub>) &ensp;[kg/s]
@@ -3005,11 +3005,11 @@ S
             </marker>
           </defs>
           <!-- cover (top) -->
-          <rect x="40" y="15" width="400" height="12" fill="rgba(21,101,192.15)" stroke="#1565C0" stroke-width="1.5" rx="3"/>
+          <rect x="40" y="15" width="400" height="12" fill="rgba(21,101,192,.15)" stroke="#1565C0" stroke-width="1.5" rx="3"/>
           <text x="240" y="10" text-anchor="middle" font-size="12" fill="#1565C0" font-weight="600">cover (glass/PE)</text>
 
           <!-- screen (middle, dashed pattern to show porosity) -->
-          <rect x="60" y="95" width="360" height="8" fill="rgba(123,31,162.25)" stroke="#7B1FA2" stroke-width="2" rx="2"/>
+          <rect x="60" y="95" width="360" height="8" fill="rgba(123,31,162,.25)" stroke="#7B1FA2" stroke-width="2" rx="2"/>
           <!-- porosity gaps -->
           <rect x="130" y="95" width="12" height="8" fill="white" opacity="0.8"/>
           <rect x="240" y="95" width="12" height="8" fill="white" opacity="0.8"/>
@@ -3043,7 +3043,7 @@ S
         </svg>
 
         <!-- Equation -->
-        <div style="background:rgba(123,31,162.05); border:2px solid #7B1FA2; border-radius:10px; padding:0.6rem 1rem; text-align:center;">
+        <div style="background:rgba(123,31,162,.05); border:2px solid #7B1FA2; border-radius:10px; padding:0.6rem 1rem; text-align:center;">
           <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#7B1FA2; line-height:1.5;">
             HEC = &rho;<sub>air</sub> &middot; c<sub>p</sub> &middot; f(K, &Delta;T)
           </div>
@@ -3091,7 +3091,7 @@ S
 
         <h3 style="margin:0.3rem 0 0; color:#c46a1e; font-size:1.15rem;">Phase-change materials</h3>
 
-        <div style="background:rgba(196,106,30.04); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(196,106,30,.04); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#c46a1e; font-size:0.95rem;">PCMStorage</div>
           <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">Paraffin or salt-hydrate layer with melting hysteresis. Stores latent heat during the day, releases it at night. Plugged into the wall or floor thermal mass node.</p>
           <p style="font-size:0.82rem; margin:0.35rem 0 0; line-height:1.4; color:#666;">More common materials (XPS, rock wool, polyurethane, double/triple glazing) are already in the library, <a href="javascript:void(0)" onclick="goToSlide('55')" style="color:#c46a1e; text-decoration:underline; cursor:pointer;">see <code>insulate()</code> example on the tutorial slide</a>.</p>
@@ -3099,7 +3099,7 @@ S
 
         <h3 style="margin:0.3rem 0 0; color:#1565C0; font-size:1.15rem;">Convection coefficients</h3>
 
-        <div style="background:rgba(21,101,192.04); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(21,101,192,.04); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <p style="font-size:0.88rem; margin:0; line-height:1.5;">Interior convection: Balemans (1989) free convection for greenhouse enclosures. Exterior: Bot (1983) forced convection on glass roofs. Both calibrated on greenhouses only.</p>
           <p style="font-size:0.85rem; margin:0.3rem 0 0; line-height:1.4; color:#666;">No specific h<sub>conv</sub> for insulation panels (rock wool, XPS). Current model uses the same greenhouse glass correlations. Extending to insulated envelopes requires dedicated correlations (ISO 6946 or measured data).</p>
         </div>
@@ -3122,7 +3122,7 @@ S
       <div style="display:flex; flex-direction:column; gap:0.75rem;">
         <h3 style="margin:0; color:#c46a1e; font-size:1.35rem;">Heating</h3>
 
-        <div style="background:rgba(196,106,30.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
+        <div style="background:rgba(196,106,30,.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
           <div style="display:flex; justify-content:space-between; align-items:baseline;">
             <div style="font-weight:700; color:#c46a1e; font-size:1.1rem;">CHP</div>
             <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; color:#555;">Q<sub>th</sub>=&eta;<sub>th</sub>(PLR)&middot;P<sub>fuel</sub> &middot; P<sub>el</sub>=&eta;<sub>el</sub>(PLR)&middot;P<sub>fuel</sub></div>
@@ -3130,7 +3130,7 @@ S
           <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Polynomial &eta;(PLR), first-order start-up &tau;=180&nbsp;s. Electricity sold or self-consumed.</p>
         </div>
 
-        <div style="background:rgba(196,106,30.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
+        <div style="background:rgba(196,106,30,.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
           <div style="display:flex; justify-content:space-between; align-items:baseline;">
             <div style="font-weight:700; color:#c46a1e; font-size:1.1rem;">Boiler</div>
             <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; color:#555;">Q<sub>th</sub>=&eta;(PLR)&middot;P<sub>fuel</sub></div>
@@ -3138,7 +3138,7 @@ S
           <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Gas / biomass. Standing + cycling losses cost 5&ndash;15% seasonal &eta; (ASHRAE 2020).</p>
         </div>
 
-        <div style="background:rgba(196,106,30.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
+        <div style="background:rgba(196,106,30,.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
           <div style="display:flex; justify-content:space-between; align-items:baseline;">
             <div style="font-weight:700; color:#c46a1e; font-size:1.1rem;">HeatPump (simple)</div>
             <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; color:#555;">COP=&eta;<sub>II</sub>&middot;T<sub>cond</sub>/(T<sub>cond</sub>&minus;T<sub>eva</sub>)</div>
@@ -3146,7 +3146,7 @@ S
           <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Second-law &eta;<sub>II</sub>&asymp;0.4&ndash;0.5. Captures lift degradation with 2 parameters.</p>
         </div>
 
-        <div style="background:rgba(196,106,30.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
+        <div style="background:rgba(196,106,30,.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
           <div style="font-weight:700; color:#c46a1e; font-size:1.1rem;">HeatPump_ConsoClim</div>
           <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; color:#555; line-height:1.5;">
             Q<sub>cap</sub>=Q<sub>nom</sub>&middot;CAPFT(T<sub>eva</sub>,T<sub>cond</sub>) &middot; P<sub>el</sub>=P<sub>nom</sub>&middot;EIRFT&middot;EIRFPLR(PLR)
@@ -3159,7 +3159,7 @@ S
       <div style="display:flex; flex-direction:column; gap:0.75rem;">
         <h3 style="margin:0; color:#1565C0; font-size:1.35rem;">Storage &amp; dispatch</h3>
 
-        <div style="background:rgba(21,101,192.05); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
+        <div style="background:rgba(21,101,192,.05); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
           <div style="font-weight:700; color:#1565C0; font-size:0.9rem;">HeatStorageWaterHeater</div>
           <div style="font-size:0.78rem; color:#555; margin-top:0.1rem;">N-cell stratified tank</div>
           <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; color:#555; line-height:1.45; margin-top:0.15rem;">
@@ -3168,7 +3168,7 @@ S
           <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Buoyancy mixing when layer becomes unstable. Internal / external HX as source terms.</p>
         </div>
 
-        <div style="background:rgba(46,125,50.05); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
+        <div style="background:rgba(46,125,50,.05); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
           <div style="font-weight:700; color:#2E7D32; font-size:1.1rem;">Merit-order dispatch</div>
           <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; color:#555; margin-top:0.15rem;">
             rank units by c<sub>k</sub> = P<sub>fuel</sub>/&eta;<sub>th</sub> or P<sub>el</sub>/COP
@@ -3176,7 +3176,7 @@ S
           <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Dispatches in ascending cost until Q<sub>dem</sub> is met; excess stored. All units may run in parallel. Screen deploys when I<sub>glob,out</sub>&nbsp;&lt;&nbsp;threshold.</p>
         </div>
 
-        <div style="background:rgba(123,31,162.05); border-left:4px solid #7B1FA2; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
+        <div style="background:rgba(123,31,162,.05); border-left:4px solid #7B1FA2; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
           <div style="font-weight:700; color:#7B1FA2; font-size:1.1rem;">Cooling (pad &amp; fan / fog)</div>
           <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Evaporative cooling: &Delta;T<sub>bulb</sub> = &epsilon;<sub>pad</sub>(T<sub>dry</sub>&minus;T<sub>wet</sub>). Coupled to VP<sub>air</sub> mass balance.</p>
         </div>
@@ -3221,7 +3221,7 @@ S
           <text x="445" y="76" font-size="11" fill="#2E7D32">T<tspan font-size="8" dy="2">set</tspan></text>
 
           <!-- dead band (shaded) -->
-          <rect x="50" y="65" width="390" height="30" fill="rgba(46,125,50.08)" rx="2"/>
+          <rect x="50" y="65" width="390" height="30" fill="rgba(46,125,50,.08)" rx="2"/>
           <text x="445" y="88" font-size="9" fill="#2E7D32">&plusmn;1&deg;C</text>
 
           <!-- Exact tracking (tight oscillation) -->
@@ -3241,18 +3241,18 @@ S
           <text x="375" y="130" text-anchor="middle" font-size="9" fill="#2E7D32">day</text>
         </svg>
 
-        <div style="background:rgba(196,106,30.04); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.6rem 1rem;">
+        <div style="background:rgba(196,106,30,.04); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.6rem 1rem;">
           <div style="font-weight:700; color:#c46a1e; font-size:0.95rem;">Exact tracking</div>
           <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">K<sub>p</sub>=100, T<sub>i</sub>=300 s. Holds T<sub>air</sub> at setpoint &plusmn;0.01&nbsp;&deg;C. Maximum energy cost. Useful as reference baseline.</p>
         </div>
 
-        <div style="background:rgba(21,101,192.04); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.6rem 1rem;">
+        <div style="background:rgba(21,101,192,.04); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.6rem 1rem;">
           <div style="font-weight:700; color:#1565C0; font-size:0.95rem;">Balanced</div>
           <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">Setpoint 20&nbsp;&deg;C, dead band &plusmn;1&nbsp;&deg;C. Saves ~31% energy, only 10% growth penalty (Seginer 1991, Yin 1995).</p>
         </div>
 
         <!-- PI law + gains table to fill the bottom -->
-        <div style="background:rgba(0,0,0.03); border-radius:8px; padding:0.6rem 0.9rem;">
+        <div style="background:rgba(0,0,0,.03); border-radius:8px; padding:0.6rem 0.9rem;">
           <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; text-align:center; color:#333;">
             Q<sub>heat</sub>(t) = K<sub>p</sub> e(t) + (K<sub>p</sub>/T<sub>i</sub>) &int; e(&tau;) d&tau;,&emsp;e = T<sub>set</sub> &minus; T<sub>air</sub>
           </div>
@@ -3275,7 +3275,7 @@ S
       <div style="display:flex; flex-direction:column; gap:0.8rem;">
         <h3 style="margin:0; color:#2E7D32; font-size:1.15rem;">Energy saving strategies</h3>
 
-        <div style="background:rgba(46,125,50.04); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(46,125,50,.04); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#2E7D32; font-size:0.95rem;">Dynamic day/night setpoints</div>
           <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">Adapted per crop and growth phase (Heuvelink 1996, van Henten 1994).</p>
           <div style="font-size:0.85rem; margin-top:0.3rem; color:#333;">
@@ -3286,17 +3286,17 @@ S
           </div>
         </div>
 
-        <div style="background:rgba(46,125,50.04); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(46,125,50,.04); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#2E7D32; font-size:0.95rem;">Screen deployment</div>
           <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">Thermal screen retracted when I<sub>glob</sub> &gt; threshold, deployed at night. Reduces radiative losses by 40-60%.</p>
         </div>
 
-        <div style="background:rgba(46,125,50.04); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
+        <div style="background:rgba(46,125,50,.04); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#2E7D32; font-size:0.95rem;">Temperature integration</div>
           <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">24h average matters more than instantaneous T for crop growth. Allow T to drift within a band and compensate later &rarr; exploit free solar gains.</p>
         </div>
 
-        <div style="background:rgba(0,0,0.03); border-radius:8px; padding:0.6rem 1rem; margin-top:auto;">
+        <div style="background:rgba(0,0,0,.03); border-radius:8px; padding:0.6rem 1rem; margin-top:auto;">
           <p style="font-size:0.88rem; margin:0; line-height:1.4; color:var(--ink-dim);">All strategies are composable: PI loop + screen + day/night + ventilation RH override. Simulated over a full year to compare kWh/m&sup2;.</p>
         </div>
       </div>
@@ -3333,25 +3333,25 @@ S
         <h3 style="margin:0.3rem 0 0; color:#6A1B9A; font-size:1.1rem;">Three injection strategies</h3>
 
         <!-- On/off -->
-        <div style="background:rgba(106,27,154.04); border-left:4px solid #AB47BC; border-radius:0 8px 8px 0; padding:0.5rem 0.8rem;">
+        <div style="background:rgba(106,27,154,.04); border-left:4px solid #AB47BC; border-radius:0 8px 8px 0; padding:0.5rem 0.8rem;">
           <div style="font-weight:700; color:#AB47BC; font-size:0.92rem;">On/off (setpoint)</div>
           <p style="font-size:0.82rem; margin:0.1rem 0 0; line-height:1.35;">CO<sub>2</sub> &lt; target AND vents &lt;30% &rarr; inject at max rate. Simple, cheap, wastes CO<sub>2</sub> when PAR is low.</p>
         </div>
 
         <!-- Proportional -->
-        <div style="background:rgba(106,27,154.04); border-left:4px solid #7E57C2; border-radius:0 8px 8px 0; padding:0.5rem 0.8rem;">
+        <div style="background:rgba(106,27,154,.04); border-left:4px solid #7E57C2; border-radius:0 8px 8px 0; padding:0.5rem 0.8rem;">
           <div style="font-weight:700; color:#7E57C2; font-size:0.92rem;">Proportional</div>
           <p style="font-size:0.82rem; margin:0.1rem 0 0; line-height:1.35;">Rate &prop; deficit from target. Smoother, less overshoot. Still a fixed target regardless of light or crop state.</p>
         </div>
 
         <!-- Economic optimal -->
-        <div style="background:rgba(106,27,154.04); border-left:4px solid #6A1B9A; border-radius:0 8px 8px 0; padding:0.5rem 0.8rem;">
+        <div style="background:rgba(106,27,154,.04); border-left:4px solid #6A1B9A; border-radius:0 8px 8px 0; padding:0.5rem 0.8rem;">
           <div style="font-weight:700; color:#6A1B9A; font-size:0.92rem;">Economic optimal (Pontryagin)</div>
           <p style="font-size:0.82rem; margin:0.1rem 0 0; line-height:1.35;">Inject when marginal photosynthetic return &gt; marginal cost. Couples PAR, CO<sub>2</sub> response curve, and ventilation losses via instantaneous Hamiltonian maximization.</p>
         </div>
 
         <!-- Implementation status (moved from right for balance) -->
-        <div style="background:rgba(106,27,154.04); border-radius:8px; padding:0.5rem 0.8rem; margin-top:auto;">
+        <div style="background:rgba(106,27,154,.04); border-radius:8px; padding:0.5rem 0.8rem; margin-top:auto;">
           <div style="font-weight:700; color:#6A1B9A; font-size:0.88rem; margin-bottom:0.2rem;">Implementation</div>
           <table style="font-size:0.78rem; border-collapse:collapse; width:100%; line-height:1.3;">
             <tr style="border-bottom:1px solid #E1BEE7;">
@@ -3429,7 +3429,7 @@ S
           <text x="215" y="148" text-anchor="middle" font-size="9" fill="#9E9E9E">no enrichment</text>
         </svg>
 
-        <div style="background:rgba(106,27,154.04); border-radius:8px; padding:0.55rem 0.9rem;">
+        <div style="background:rgba(106,27,154,.04); border-radius:8px; padding:0.55rem 0.9rem;">
           <p style="font-size:0.8rem; color:#555; margin:0; line-height:1.4;">Weight parameters w<sub>crop</sub>, w<sub>co2</sub>, w<sub>vent</sub> are placeholders. Calibrate against crop data or economic inputs (crop price, CO<sub>2</sub> cost/kg).</p>
         </div>
 
@@ -3487,7 +3487,7 @@ S
 
           <!-- Tomato card (active, in the slot) -->
           <g transform="translate(210, 120)">
-            <rect width="200" height="110" rx="10" fill="rgba(45,138,90.15)" stroke="var(--green)" stroke-width="2"/>
+            <rect width="200" height="110" rx="10" fill="rgba(45,138,90,.15)" stroke="var(--green)" stroke-width="2"/>
             <text x="100" y="32" text-anchor="middle" font-family="Iowan Old Style, Palatino, serif"
                   font-size="22" font-weight="500" fill="var(--green)">TomatoVanthoor</text>
             <text x="100" y="56" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-dim)">50-stage fruit, T<tspan baseline-shift="sub" font-size="11">sum</tspan> = 1035 &deg;C&middot;d</text>
@@ -3497,7 +3497,7 @@ S
 
           <!-- Swap arrow + Lettuce card (waiting to be plugged in) -->
           <g transform="translate(210, 260)">
-            <rect width="200" height="110" rx="10" fill="rgba(40,118,184.10)" stroke="var(--blue)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect width="200" height="110" rx="10" fill="rgba(40,118,184,.10)" stroke="var(--blue)" stroke-width="2" stroke-dasharray="4 3"/>
             <text x="100" y="32" text-anchor="middle" font-family="Iowan Old Style, Palatino, serif"
                   font-size="22" font-weight="500" fill="var(--blue)">LettuceCropModel</text>
             <text x="100" y="56" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-dim)">vegetative, T<tspan baseline-shift="sub" font-size="11">opt</tspan> &le; 22 &deg;C</text>
@@ -4111,7 +4111,7 @@ S
 
           <!-- Box 1: Weather -->
           <g>
-            <rect x="40" y="10" width="400" height="80" rx="12" fill="rgba(40,118,184.10)" stroke="var(--blue)" stroke-width="2.5"/>
+            <rect x="40" y="10" width="400" height="80" rx="12" fill="rgba(40,118,184,.10)" stroke="var(--blue)" stroke-width="2.5"/>
             <text x="240" y="42" text-anchor="middle" font-family="Inter" font-size="22" font-weight="600" fill="var(--ink)">Weather (T, PAR, RH, DOY)</text>
             <text x="240" y="68" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">CSV / EPW interpolated in memory</text>
           </g>
@@ -4120,7 +4120,7 @@ S
 
           <!-- Box 2: VPL FSPM -->
           <g>
-            <rect x="40" y="135" width="400" height="100" rx="12" fill="rgba(196,106,30.12)" stroke="var(--warm)" stroke-width="2.5"/>
+            <rect x="40" y="135" width="400" height="100" rx="12" fill="rgba(196,106,30,.12)" stroke="var(--warm)" stroke-width="2.5"/>
             <text x="240" y="170" text-anchor="middle" font-family="Iowan Old Style, Palatino, serif" font-style="italic" font-size="24" fill="var(--ink)">VPL FSPM growth</text>
             <text x="240" y="196" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">graph rewriting + Monte Carlo ray-tracing</text>
             <text x="240" y="218" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">PV mask in scene geometry</text>
@@ -4130,7 +4130,7 @@ S
 
           <!-- Box 3: PAR per leaf -->
           <g>
-            <rect x="40" y="280" width="400" height="80" rx="12" fill="rgba(200,161,58.15)" stroke="#c8a13a" stroke-width="2.5"/>
+            <rect x="40" y="280" width="400" height="80" rx="12" fill="rgba(200,161,58,.15)" stroke="#c8a13a" stroke-width="2.5"/>
             <text x="240" y="312" text-anchor="middle" font-family="Inter" font-size="22" font-weight="600" fill="var(--ink)">PAR per leaf (&micro;mol m&minus;&sup2; s&minus;&sup1;)</text>
             <text x="240" y="340" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">organ-level shading fields</text>
           </g>
@@ -4139,7 +4139,7 @@ S
 
           <!-- Box 4: PlantBiophysics -->
           <g>
-            <rect x="40" y="405" width="400" height="110" rx="12" fill="rgba(45,138,90.15)" stroke="var(--green)" stroke-width="2.5"/>
+            <rect x="40" y="405" width="400" height="110" rx="12" fill="rgba(45,138,90,.15)" stroke="var(--green)" stroke-width="2.5"/>
             <text x="240" y="440" text-anchor="middle" font-family="Iowan Old Style, Palatino, serif" font-style="italic" font-size="24" fill="var(--ink)">PlantBiophysics</text>
             <text x="240" y="470" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">FvCB + Medlyn + Stanghellini</text>
             <text x="240" y="496" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">A_n, T_r, T_leaf, energy balance</text>
@@ -4971,7 +4971,7 @@ S
     </header>
 
     <div style="display:grid; grid-template-columns:0.95fr 3fr; gap:1rem; align-items:stretch;">
-      <div class="pipeline-step" style="background:rgba(46,125,50.05); border:1.5px solid #2E7D32; border-radius:10px; padding:0.7rem 0.9rem;">
+      <div class="pipeline-step" style="background:rgba(46,125,50,.05); border:1.5px solid #2E7D32; border-radius:10px; padding:0.7rem 0.9rem;">
         <div class="ps-num">M1</div>
         <h4>Detection &amp; Cropping</h4>
         <p><strong>YOLO 26x</strong> via Ultralytics Deploy. Re-projection of API boxes, NMS, padded crops, <code>*_detections.json</code>.</p>
@@ -5491,9 +5491,9 @@ S
     </table>
 
     <div class="impact-legend">
-      <span><i style="background:rgba(176,58,85.22)"></i>Cucumber +95&nbsp;W/m²</span>
-      <span><i style="background:rgba(40,118,184.18)"></i>Planophile tomatoes: under-estimated</span>
-      <span><i style="background:rgba(196,106,30.18)"></i>Merlice mature: over-estimated</span>
+      <span><i style="background:rgba(176,58,85,.22)"></i>Cucumber +95&nbsp;W/m²</span>
+      <span><i style="background:rgba(40,118,184,.18)"></i>Planophile tomatoes: under-estimated</span>
+      <span><i style="background:rgba(196,106,30,.18)"></i>Merlice mature: over-estimated</span>
     </div>
 
     <p class="kicker center" style="margin-top:18px">
