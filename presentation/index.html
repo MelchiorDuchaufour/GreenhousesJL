@@ -321,7 +321,7 @@ S
         <g transform="translate(1380, 200)">
           <rect width="220" height="80" rx="6" fill="#2876b8"/>
           <text x="110" y="34" class="arch-title" fill="white">VentilationRates</text>
-          <text x="110" y="52" class="arch-tag">Boulard &amp; Baille 1995</text>
+          <text x="110" y="52" class="arch-tag"><a class="ref-link" href="#ref-BoulardBaille1995" onclick="goToSlide('refs'); location.hash='#ref-BoulardBaille1995'; return false;">Boulard &amp; Baille 1995</a></text>
           <text x="110" y="68" class="arch-tag">natural &amp; forced</text>
         </g>
       </g>
@@ -398,12 +398,12 @@ S
           <g transform="translate(120, 35)">
             <rect width="100" height="42" rx="4" fill="#7c4ab0"/>
             <text x="50" y="22" class="arch-title" fill="white" font-size="12">Lettuce</text>
-            <text x="50" y="36" class="arch-tag" font-size="9">van Henten 1994</text>
+            <text x="50" y="36" class="arch-tag" font-size="9"><a class="ref-link" href="#ref-vanHenten1994" onclick="goToSlide('refs'); location.hash='#ref-vanHenten1994'; return false;">van Henten 1994</a></text>
           </g>
           <g transform="translate(225, 35)">
             <rect width="100" height="42" rx="4" fill="#7c4ab0"/>
             <text x="50" y="22" class="arch-title" fill="white" font-size="12">Cucumber</text>
-            <text x="50" y="36" class="arch-tag" font-size="9">Marcelis 1994</text>
+            <text x="50" y="36" class="arch-tag" font-size="9"><a class="ref-link" href="#ref-Marcelis1994" onclick="goToSlide('refs'); location.hash='#ref-Marcelis1994'; return false;">Marcelis 1994</a></text>
           </g>
           <g transform="translate(330, 35)">
             <rect width="105" height="42" rx="4" fill="#7c4ab0"/>
@@ -764,7 +764,7 @@ S
               font-style="italic" font-size="17" fill="#c46a1e"
               text-anchor="end">Heating pipes</text>
         <text x="190" y="510" font-family="Inter" font-size="11" fill="#5e6c83"
-              text-anchor="end">Bot 1983 / Balemans 89</text>
+              text-anchor="end"><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a> / Balemans 89</text>
 
         <!-- FLOOR -->
         <line x1="780" y1="510" x2="725" y2="510"
@@ -943,7 +943,7 @@ S
               Each wall can be independently insulated:
               <code>insulate(walls, :N; U=0.4, thermal_mass=50000)</code>
             </p>
-            <span class="gh-quant">Savona bare: +0.5 °C winter bias vs EP (Bot vs ISO 15099 on glass)</span>
+            <span class="gh-quant">Savona bare: +0.5 °C winter bias vs EP (Bot vs <a class="ref-link" href="#ref-ISO15099" onclick="goToSlide('refs'); location.hash='#ref-ISO15099'; return false;">ISO 15099</a> on glass)</span>
           </div>
 
           <!-- step 2 - cover -->
@@ -960,7 +960,7 @@ S
               <span class="new cool">Fresnel(n=1.526)</span>
             </p>
             <p class="gh-detail">
-              Bot 1983: greenhouse glass roof (Wageningen).
+              <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a>: greenhouse glass roof (Wageningen).
               Walls: Walton h = 5.7 + 3.8u.
               Interior: Balemans h = 1.7|ΔT|<sup>0.33</sup> + 1.
             </p>
@@ -1235,7 +1235,7 @@ S
           <div class="term-label">Q<sub>cnv,air</sub></div>
           <div class="term-unit">W &middot; air &rarr; cover convection</div>
           <p class="term-formula">Q<sub>cnv,air</sub> = h<sub>int</sub> &middot; (T<sub>air</sub> &minus; T<sub>cov</sub>) &middot; A</p>
-          <p>Free convection inside the greenhouse (Balemans 1989). h<sub>int</sub> &asymp; 1.7 &middot; |&Delta;T|<sup>0.33</sup> on the inclined cover.</p>
+          <p>Free convection inside the greenhouse (<a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans 1989)</a>. h<sub>int</sub> &asymp; 1.7 &middot; |&Delta;T|<sup>0.33</sup> on the inclined cover.</p>
         </div>
 
         <div class="term-card warm" data-fragment="3">
@@ -1251,7 +1251,7 @@ S
           <div class="term-label">Q<sub>cnv,out</sub></div>
           <div class="term-unit">W &middot; cover &rarr; outside convection</div>
           <p class="term-formula">Q<sub>cnv,out</sub> = [(1&minus;c)&middot;h<sub>Bot</sub> + c&middot;h<sub>PV</sub>] &middot; (T<sub>cov</sub> &minus; T<sub>out</sub>) &middot; A</p>
-          <p>Bot (1983) on bare glass, +30% roughness on PV-covered area. Tilted PV: wind-directional h (Sharples 1998) + cavity gap (Hollands 1976). See PV convection slide.</p>
+          <p><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> on bare glass, +30% roughness on PV-covered area. Tilted PV: wind-directional h (Sharples 1998) + cavity gap (<a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands 1976)</a>. See PV convection slide.</p>
         </div>
 
         <div class="term-card cool" data-fragment="5">
@@ -1260,7 +1260,7 @@ S
           <div class="term-unit">W &middot; cover &rarr; sky IR</div>
           <p class="term-formula">Q<sub>rad,sky</sub> = &epsilon;<sub>eff</sub>&middot;F<sub>sky</sub>&middot;&sigma;&middot;A&middot;(T<sub>cov</sub><sup>4</sup> &minus; T<sub>sky</sub><sup>4</sup>)</p>
           <p>Dominant night loss (~30 W/m²). With PV: &epsilon;<sub>eff</sub> = (1&minus;c)&middot;0.84 + c&middot;0.90. Tilted PV changes F<sub>sky</sub>.</p>
-          <p style="font-size:0.75rem; color:#999; margin:0.4rem 0 0; line-height:1.3;">F<sub>sky</sub> = (1+cos&phi;)/2 (Duffie &amp; Beckman 2013). &epsilon;<sub>glass</sub> = 0.84 (Vanthoor 2011). &epsilon;<sub>PV</sub> = 0.90 (Faiman 2008).</p>
+          <p style="font-size:0.75rem; color:#999; margin:0.4rem 0 0; line-height:1.3;">F<sub>sky</sub> = (1+cos&phi;)/2 (<a class="ref-link" href="#ref-DuffieBeckman2013" onclick="goToSlide('refs'); location.hash='#ref-DuffieBeckman2013'; return false;">Duffie &amp; Beckman 2013)</a>. &epsilon;<sub>glass</sub> = 0.84 (<a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011)</a>. &epsilon;<sub>PV</sub> = 0.90 (<a class="ref-link" href="#ref-Faiman2008" onclick="goToSlide('refs'); location.hash='#ref-Faiman2008'; return false;">Faiman 2008)</a>.</p>
         </div>
 
         <div class="term-card bad" data-fragment="6">
@@ -1536,7 +1536,7 @@ S
           <div class="term-label">Q<sub>cnv,flr</sub></div>
           <div class="term-unit">W &middot; floor &rarr; air convection</div>
           <p class="term-formula">Q<sub>cnv,flr</sub> = h<sub>flr</sub> &middot; (T<sub>flr</sub> &minus; T<sub>air</sub>) &middot; A</p>
-          <p>Bidirectional Balemans 1989: h<sub>up</sub> = 1.7&middot;|&Delta;T|<sup>0.33</sup> when the floor is hotter than the air, h<sub>down</sub> = 1.3&middot;|&Delta;T|<sup>0.25</sup> when it is colder.</p>
+          <p>Bidirectional <a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans 1989</a>: h<sub>up</sub> = 1.7&middot;|&Delta;T|<sup>0.33</sup> when the floor is hotter than the air, h<sub>down</sub> = 1.3&middot;|&Delta;T|<sup>0.25</sup> when it is colder.</p>
         </div>
 
         <div class="term-card warm" data-fragment="2">
@@ -1585,7 +1585,7 @@ S
           <div class="term-label">Q<sub>vent</sub></div>
           <div class="term-unit">W &middot; air &rarr; outside via vents</div>
           <p class="term-formula">Q<sub>vent</sub> = &rho;c<sub>p</sub> &middot; f<sub>vent</sub>(U, &Delta;T, u) &middot; (T<sub>air</sub> &minus; T<sub>out</sub>) &middot; A</p>
-          <p>Boulard &amp; Baille 1995 natural ventilation model: combined buoyancy and wind effects, gated by a T+RH controller (K&ouml;rner &amp; Challa 2003).</p>
+          <p><a class="ref-link" href="#ref-BoulardBaille1995" onclick="goToSlide('refs'); location.hash='#ref-BoulardBaille1995'; return false;">Boulard &amp; Baille 1995</a> natural ventilation model: combined buoyancy and wind effects, gated by a T+RH controller (<a class="ref-link" href="#ref-KornerChalla2003" onclick="goToSlide('refs'); location.hash='#ref-KornerChalla2003'; return false;">K&ouml;rner &amp; Challa 2003)</a>.</p>
         </div>
       </div>
     </div>
@@ -1958,8 +1958,8 @@ S
           <div class="term-label">MV<sub>AirCov</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; air &rarr; cover</div>
           <p class="term-formula">MV<sub>AirCov</sub> = VEC<sub>AirCov</sub> &middot; max(0, P<sub>v,air</sub> &minus; P<sub>v,cov</sub>)</p>
-          <p class="term-formula">VEC<sub>AirCov</sub> = 6.4 &times; 10<sup>&minus;9</sup> &middot; HEC<sub>AirCov</sub> (Bot 1983)</p>
-          <p>Saturation-pressure-driven diffusion. Bot (1983) ties the vapor exchange coefficient to the convective heat exchange coefficient via a constant Lewis-number ratio. Forced to zero when the cover is above the dewpoint (no evaporation back).</p>
+          <p class="term-formula">VEC<sub>AirCov</sub> = 6.4 &times; 10<sup>&minus;9</sup> &middot; HEC<sub>AirCov</sub> (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983)</a></p>
+          <p>Saturation-pressure-driven diffusion. <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> ties the vapor exchange coefficient to the convective heat exchange coefficient via a constant Lewis-number ratio. Forced to zero when the cover is above the dewpoint (no evaporation back).</p>
         </div>
 
         <div class="term-card warm" data-fragment="2">
@@ -2121,7 +2121,7 @@ S
           <div class="term-label">MV<sub>AirOut</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; air &rarr; outside via vents</div>
           <p class="term-formula">MV<sub>AirOut</sub> = f<sub>vent</sub>(U, &Delta;T, u) &middot; (C<sub>v,air</sub> &minus; C<sub>v,out</sub>)</p>
-          <p>Same Boulard &amp; Baille 1995 ventilation rate as the energy balance (slide 9), now applied to the vapor concentration difference. In daytime ventilation can carry away half the canopy transpiration before it reaches the cover.</p>
+          <p>Same <a class="ref-link" href="#ref-BoulardBaille1995" onclick="goToSlide('refs'); location.hash='#ref-BoulardBaille1995'; return false;">Boulard &amp; Baille 1995</a> ventilation rate as the energy balance (slide 9), now applied to the vapor concentration difference. In daytime ventilation can carry away half the canopy transpiration before it reaches the cover.</p>
         </div>
 
         <div class="term-card cool" data-fragment="3">
@@ -2145,7 +2145,7 @@ S
           <div class="term-label">MV<sub>AirScr</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; air &rarr; screen</div>
           <p class="term-formula">MV<sub>AirScr</sub> = SC &middot; 6.4 &times; 10<sup>&minus;9</sup> &middot; HEC<sub>AirScr</sub> &middot; (P<sub>v,air</sub> &minus; P<sub>v,scr</sub>)<sup>+</sup></p>
-          <p>Same Bot 1983 form as the cover term, applied to the screen surface, weighted by the screen closure SC. Active when the screen sits below the air dewpoint, mostly under deployed energy screens.</p>
+          <p>Same <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a> form as the cover term, applied to the screen surface, weighted by the screen closure SC. Active when the screen sits below the air dewpoint, mostly under deployed energy screens.</p>
         </div>
       </div>
     </div>
@@ -2301,7 +2301,7 @@ S
         <div class="term-card" data-fragment="0">
           <span class="term-tag">Canopy vapor side</span>
           <h3 class="term-label">Stanghellini, three resistances</h3>
-          <p>Stanghellini 1987 is the Penman-Monteith equation rewritten for a greenhouse canopy. Three quantities decide how much vapor leaves the leaves: the available radiative energy, the aerodynamic resistance r<sub>a</sub>, and the stomatal resistance r<sub>s</sub>.</p>
+          <p><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini 1987</a> is the Penman-Monteith equation rewritten for a greenhouse canopy. Three quantities decide how much vapor leaves the leaves: the available radiative energy, the aerodynamic resistance r<sub>a</sub>, and the stomatal resistance r<sub>s</sub>.</p>
           <p>It is the same formula that drives the &lambda;E term on slide 10, divided by &lambda;<sub>vap</sub> to land in kg s<sup>&minus;1</sup>.</p>
         </div>
 
@@ -2334,7 +2334,7 @@ S
   </section>
 
   <!-- ============================================================
-       SLIDE 11d - FLOOR / SUBSTRATE EVAPORATION (Baille 1994)
+       SLIDE 11d - FLOOR / SUBSTRATE EVAPORATION (<a class="ref-link" href="#ref-Baille1994" onclick="goToSlide('refs'); location.hash='#ref-Baille1994'; return false;">Baille 1994)</a>
        ============================================================ -->
   <section class="slide" data-slide="16b">
     <header>
@@ -2345,7 +2345,7 @@ S
     <!-- Top: equation box spanning full width -->
     <div style="display:flex; gap:1.2rem; padding:0 2rem; margin-bottom:1rem; align-items:stretch;">
       <div style="flex:1; background:rgba(196,106,30,.06); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.8rem 1.2rem;">
-        <div style="font-size:1rem; font-weight:700; color:#c46a1e; margin-bottom:0.3rem;">Baille (1994) two-term model</div>
+        <div style="font-size:1rem; font-weight:700; color:#c46a1e; margin-bottom:0.3rem;"><a class="ref-link" href="#ref-Baille1994" onclick="goToSlide('refs'); location.hash='#ref-Baille1994'; return false;">Baille (1994)</a> two-term model</div>
         <div style="font-family:var(--serif); font-style:italic; font-size:1.05rem; color:#c46a1e; line-height:1.6;">
           &lambda;E<sub>floor</sub> = &alpha;<sub>floor</sub> &middot; R<sub>SunFlr</sub> &middot; (1 &minus; f<sub>sub</sub>)
           &ensp;&ensp;|&ensp;&ensp;
@@ -2510,10 +2510,10 @@ S
         </div>
 
         <p style="font-size:0.82rem; color:#aaa; margin-top:0.9rem; line-height:1.4;">
-          Baille et al. (1994) <em>Sci. Hort.</em> &bull;
-          Jolliet (1994) HORTITRANS &bull;
-          Katsoulas et al. (2002) &bull;
-          Seginer (1994)
+          <a class="ref-link" href="#ref-Baille1994" onclick="goToSlide('refs'); location.hash='#ref-Baille1994'; return false;">Baille et al. (1994)</a> <em>Sci. Hort.</em> &bull;
+          <a class="ref-link" href="#ref-Jolliet1994" onclick="goToSlide('refs'); location.hash='#ref-Jolliet1994'; return false;">Jolliet (1994)</a> HORTITRANS &bull;
+          <a class="ref-link" href="#ref-Katsoulas2002" onclick="goToSlide('refs'); location.hash='#ref-Katsoulas2002'; return false;">Katsoulas et al. (2002)</a> &bull;
+          <a class="ref-link" href="#ref-Seginer1994" onclick="goToSlide('refs'); location.hash='#ref-Seginer1994'; return false;">Seginer (1994)</a>
         </p>
       </div>
     </div>
@@ -2643,7 +2643,7 @@ S
           <!-- ═══ h_top BOX ═══ -->
           <rect x="135" y="36" width="310" height="52" rx="8" fill="#fbfaf5" stroke="#c46a1e" stroke-width="1.5"/>
           <text x="290" y="56" text-anchor="middle" font-size="13" fill="#c46a1e" font-weight="700">h<tspan font-size="10" dy="3">top</tspan><tspan dy="-3">: wind + natural convection</tspan></text>
-          <text x="290" y="76" text-anchor="middle" font-size="12" fill="#c46a1e" font-weight="600">Sharples (1998) + Bot (1983)</text>
+          <text x="290" y="76" text-anchor="middle" font-size="12" fill="#c46a1e" font-weight="600">Sharples (1998) + <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a></text>
 
           <!-- ═══ Arrows from h_top down to panels ═══ -->
           <line x1="200" y1="90" x2="200" y2="135" stroke="#c46a1e" stroke-width="1.5" marker-end="url(#ah-orange)"/>
@@ -2684,7 +2684,7 @@ S
           <!-- Gap label box, right side -->
           <rect x="440" y="195" width="135" height="56" rx="7" fill="#fbfaf5" stroke="#7B1FA2" stroke-width="1.3"/>
           <text x="508" y="213" text-anchor="middle" font-size="12" fill="#7B1FA2" font-weight="700">air gap</text>
-          <text x="508" y="228" text-anchor="middle" font-size="11" fill="#7B1FA2" font-weight="600">Hollands (1976)</text>
+          <text x="508" y="228" text-anchor="middle" font-size="11" fill="#7B1FA2" font-weight="600"><a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands (1976)</a></text>
           <text x="508" y="244" text-anchor="middle" font-size="11" fill="#7B1FA2" font-weight="600">cavity convection</text>
 
           <!-- h_bottom box, left side -->
@@ -2712,8 +2712,8 @@ S
 
         <div class="info-card" style="margin-top:0.4rem; font-size:0.85rem;">
           <div class="info-row"><span class="label" style="min-width:65px;">Top</span> Exposed to wind + sky. h<sub>top</sub> from Sharples (1998): wind direction dependent.</div>
-          <div class="info-row"><span class="label" style="min-width:65px;">Gap</span> Cavity between PV and glass. Hollands (1976): Nu–Ra for inclined sealed gaps.</div>
-          <div class="info-row"><span class="label" style="min-width:65px;">Glass</span> Interior face keeps its usual Balemans (1989) h and &epsilon;<sub>glass</sub>: the PV sits on the <em>outside</em>, so the indoor LW exchange with floor/walls/canopy is the same as without PV.</div>
+          <div class="info-row"><span class="label" style="min-width:65px;">Gap</span> Cavity between PV and glass. <a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands (1976)</a>: Nu–Ra for inclined sealed gaps.</div>
+          <div class="info-row"><span class="label" style="min-width:65px;">Glass</span> Interior face keeps its usual <a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans (1989)</a> h and &epsilon;<sub>glass</sub>: the PV sits on the <em>outside</em>, so the indoor LW exchange with floor/walls/canopy is the same as without PV.</div>
         </div>
       </div>
 
@@ -2721,7 +2721,7 @@ S
         <h3 class="sub-h">Equations</h3>
 
         <div style="background:var(--card-bg); border:1px solid var(--ink-line); border-radius:8px; padding:0.8rem 1rem; margin-bottom:0.6rem;">
-          <div style="font-family:var(--serif); font-weight:600; color:#2876b8; font-size:1.0rem;">Top face: Sharples &amp; Charlesworth (1998)</div>
+          <div style="font-family:var(--serif); font-weight:600; color:#2876b8; font-size:1.0rem;">Top face: <a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples &amp; Charlesworth (1998)</a></div>
           <p style="font-family:var(--serif); font-style:italic; font-size:0.9rem; margin:0.3rem 0; color:var(--ink);">
             h<sub>top</sub> = 1.3 &middot; &radic;(h<sub>forced</sub>&sup2; + h<sub>nat</sub>&sup2;)<br/>
             h<sub>forced</sub> = h<sub>Bot</sub>(u) &middot; |cos(&theta;<sub>wind</sub>)|<sup>0.6</sup> / cos(&phi;<sub>panel</sub>)
@@ -2732,7 +2732,7 @@ S
         </div>
 
         <div style="background:var(--card-bg); border:1px solid var(--ink-line); border-radius:8px; padding:0.8rem 1rem; margin-bottom:0.6rem;">
-          <div style="font-family:var(--serif); font-weight:600; color:#c46a1e; font-size:1.0rem;">Gap cavity: Hollands et al. (1976)</div>
+          <div style="font-family:var(--serif); font-weight:600; color:#c46a1e; font-size:1.0rem;">Gap cavity: <a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands et al. (1976)</a></div>
           <p style="font-family:var(--serif); font-style:italic; font-size:0.9rem; margin:0.3rem 0; color:var(--ink);">
             Nu = 1 + 1.44&middot;max(0, Ra&middot;cos&phi; &minus; 1708) + (Ra&middot;sin 1.8&phi;)<sup>1/3</sup> &minus; 1<br/>
             h<sub>cavity</sub> = Nu &middot; k<sub>air</sub> / H<sub>gap</sub>
@@ -2755,7 +2755,7 @@ S
         </div>
 
         <div style="background:var(--card-bg); border:1px solid var(--ink-line); border-radius:8px; padding:0.8rem 1rem;">
-          <div style="font-family:var(--serif); font-weight:600; color:var(--ink-dim); font-size:1.0rem;">Cell temperature: Faiman (2008)</div>
+          <div style="font-family:var(--serif); font-weight:600; color:var(--ink-dim); font-size:1.0rem;">Cell temperature: <a class="ref-link" href="#ref-Faiman2008" onclick="goToSlide('refs'); location.hash='#ref-Faiman2008'; return false;">Faiman (2008)</a></div>
           <p style="font-family:var(--serif); font-style:italic; font-size:0.9rem; margin:0.3rem 0; color:var(--ink);">
             T<sub>cell</sub> = T<sub>out</sub> + I<sub>glob</sub> / (U<sub>0</sub> + U<sub>1</sub>&middot;u)<br/>
             &eta;(T) = &eta;<sub>STC</sub>&middot;[1 + &beta;&middot;(T<sub>cell</sub> &minus; 25)]
@@ -2770,12 +2770,12 @@ S
 
 
   <!-- ============================================================
-       SLIDE, NATURAL VENTILATION (Boulard & Baille 1995)
+       SLIDE, NATURAL VENTILATION (<a class="ref-link" href="#ref-BoulardBaille1995" onclick="goToSlide('refs'); location.hash='#ref-BoulardBaille1995'; return false;">Boulard & Baille 1995)</a>
        ============================================================ -->
   <section class="slide" data-slide="20">
     <header>
       <span class="num">14</span>
-      <h2>Natural ventilation: Boulard &amp; Baille 1995</h2>
+      <h2>Natural ventilation: <a class="ref-link" href="#ref-BoulardBaille1995" onclick="goToSlide('refs'); location.hash='#ref-BoulardBaille1995'; return false;">Boulard &amp; Baille 1995</a></h2>
     </header>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; padding:0 2.5rem;">
@@ -2861,11 +2861,11 @@ S
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding:0.35rem 0.5rem;">A<sub>1</sub> (C<sub>d</sub>)</td><td style="font-size:0.85rem;">[&ndash;]</td><td style="text-align:center;">0.75</td><td style="text-align:center;">0.60</td><td style="padding:0.35rem; font-size:0.85rem;">Bot 1983, Tab. 3</td></tr>
+            <tr><td style="padding:0.35rem 0.5rem;">A<sub>1</sub> (C<sub>d</sub>)</td><td style="font-size:0.85rem;">[&ndash;]</td><td style="text-align:center;">0.75</td><td style="text-align:center;">0.60</td><td style="padding:0.35rem; font-size:0.85rem;"><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a>, Tab. 3</td></tr>
             <tr style="background:#f5f5f5;"><td style="padding:0.35rem 0.5rem;">C<sub>w</sub></td><td style="font-size:0.85rem;">[&ndash;]</td><td style="text-align:center;">0.09</td><td style="text-align:center;">0.12</td><td style="padding:0.35rem; font-size:0.85rem;">Tab. 1-2, R&sup2;=0.92</td></tr>
             <tr><td style="padding:0.35rem 0.5rem;">&eta;<sub>roof</sub></td><td style="font-size:0.85rem;">[&ndash;]</td><td style="text-align:center;">0.10</td><td style="text-align:center;">0.20</td><td style="padding:0.35rem; font-size:0.85rem;">A<sub>roof</sub>/A<sub>floor</sub></td></tr>
             <tr style="background:#f5f5f5;"><td style="padding:0.35rem 0.5rem;">h<sub>vent</sub></td><td style="font-size:0.85rem;">[m]</td><td style="text-align:center;">0.68</td><td style="text-align:center;">1.20</td><td style="padding:0.35rem; font-size:0.85rem;">vertical opening</td></tr>
-            <tr><td style="padding:0.35rem 0.5rem;">c<sub>leak</sub></td><td style="font-size:0.85rem;">[m&sup3;/(m&sup2;&middot;s)/(m/s)]</td><td style="text-align:center;">1.5e-4</td><td style="text-align:center;">3e-4</td><td style="padding:0.35rem; font-size:0.85rem;">De Jong 1990</td></tr>
+            <tr><td style="padding:0.35rem 0.5rem;">c<sub>leak</sub></td><td style="font-size:0.85rem;">[m&sup3;/(m&sup2;&middot;s)/(m/s)]</td><td style="text-align:center;">1.5e-4</td><td style="text-align:center;">3e-4</td><td style="padding:0.35rem; font-size:0.85rem;"><a class="ref-link" href="#ref-DeJong1990" onclick="goToSlide('refs'); location.hash='#ref-DeJong1990'; return false;">De Jong 1990</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -2892,7 +2892,7 @@ S
         </div>
 
         <div style="background:rgba(46,125,50,.05); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
-          <div style="font-weight:700; color:#2E7D32; font-size:0.95rem; margin-bottom:0.2rem;">+ Humidity override (K&ouml;rner &amp; Challa 2003)</div>
+          <div style="font-weight:700; color:#2E7D32; font-size:0.95rem; margin-bottom:0.2rem;">+ Humidity override (<a class="ref-link" href="#ref-KornerChalla2003" onclick="goToSlide('refs'); location.hash='#ref-KornerChalla2003'; return false;">K&ouml;rner &amp; Challa 2003)</a></div>
           <p style="font-size:0.92rem; margin:0; line-height:1.5;">U = max(U<sub>T</sub>,&thinsp;U<sub>RH</sub>). Opens vents when RH&nbsp;&gt;&nbsp;85% even if T is below setpoint. Drying the air avoids fungal disease (<em>Botrytis</em>) and cover dripping. Costs +5-15% heating.</p>
         </div>
 
@@ -2907,7 +2907,7 @@ S
   </section>
 
   <!-- ============================================================
-       SLIDE, THERMAL SCREEN & INSULATION (Balemans 1989)
+       SLIDE, THERMAL SCREEN & INSULATION (<a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans 1989)</a>
        ============================================================ -->
   <section class="slide" data-slide="20b">
     <header>
@@ -2961,7 +2961,7 @@ S
           <path d="M240,130 L240,108" fill="none" stroke="#2876b8" stroke-width="2" marker-end="url(#ar-scr-down)" stroke-dasharray="4 3"/>
           <path d="M250,90 L250,65" fill="none" stroke="#2876b8" stroke-width="2" marker-end="url(#ar-scr-down)" stroke-dasharray="4 3"/>
           <text x="300" y="77" font-size="11" fill="#2876b8">f = K&middot;&Delta;T<tspan font-size="8" dy="2">0.66</tspan></text>
-          <text x="300" y="91" font-size="9" fill="#2876b8">Balemans 1989</text>
+          <text x="300" y="91" font-size="9" fill="#2876b8"><a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans 1989</a></text>
 
           <!-- SC legend, parked in the left margin so it does not overlap the screen bar -->
           <g font-family="Inter, system-ui, sans-serif">
@@ -3031,7 +3031,7 @@ S
         <h3 style="margin:0.3rem 0 0; color:#1565C0; font-size:1.15rem;">Convection coefficients</h3>
 
         <div style="background:rgba(21,101,192,.04); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
-          <p style="font-size:0.88rem; margin:0; line-height:1.5;">Interior convection: Balemans (1989) free convection for greenhouse enclosures. Exterior: Bot (1983) forced convection on glass roofs. Both calibrated on greenhouses only.</p>
+          <p style="font-size:0.88rem; margin:0; line-height:1.5;">Interior convection: <a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans (1989)</a> free convection for greenhouse enclosures. Exterior: <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> forced convection on glass roofs. Both calibrated on greenhouses only.</p>
           <p style="font-size:0.85rem; margin:0.3rem 0 0; line-height:1.4; color:#666;">No specific h<sub>conv</sub> for insulation panels (rock wool, XPS). Current model uses the same greenhouse glass correlations. Extending to insulated envelopes requires dedicated correlations (ISO 6946 or measured data).</p>
         </div>
       </div>
@@ -3066,7 +3066,7 @@ S
             <div style="font-weight:700; color:#c46a1e; font-size:1.1rem;">Boiler</div>
             <div style="font-family:var(--serif); font-style:italic; font-size:0.92rem; color:#555;">Q<sub>th</sub>=&eta;(PLR)&middot;P<sub>fuel</sub></div>
           </div>
-          <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Gas / biomass. Standing + cycling losses cost 5&ndash;15% seasonal &eta; (ASHRAE 2020).</p>
+          <p style="font-size:1rem; margin:0.25rem 0 0; line-height:1.45;">Gas / biomass. Standing + cycling losses cost 5&ndash;15% seasonal &eta; (<a class="ref-link" href="#ref-ASHRAE2020" onclick="goToSlide('refs'); location.hash='#ref-ASHRAE2020'; return false;">ASHRAE 2020)</a>.</p>
         </div>
 
         <div style="background:rgba(196,106,30,.05); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.75rem 1.1rem;">
@@ -3179,7 +3179,7 @@ S
 
         <div style="background:rgba(21,101,192,.04); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.6rem 1rem;">
           <div style="font-weight:700; color:#1565C0; font-size:0.95rem;">Balanced</div>
-          <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">Setpoint 20&nbsp;&deg;C, dead band &plusmn;1&nbsp;&deg;C. Saves ~31% energy, only 10% growth penalty (Seginer 1991, Yin 1995).</p>
+          <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">Setpoint 20&nbsp;&deg;C, dead band &plusmn;1&nbsp;&deg;C. Saves ~31% energy, only 10% growth penalty (<a class="ref-link" href="#ref-Seginer1991" onclick="goToSlide('refs'); location.hash='#ref-Seginer1991'; return false;">Seginer 1991</a>, <a class="ref-link" href="#ref-Yin1995" onclick="goToSlide('refs'); location.hash='#ref-Yin1995'; return false;">Yin 1995)</a>.</p>
         </div>
 
         <!-- PI law + gains table to fill the bottom -->
@@ -3208,7 +3208,7 @@ S
 
         <div style="background:rgba(46,125,50,.04); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
           <div style="font-weight:700; color:#2E7D32; font-size:0.95rem;">Dynamic day/night setpoints</div>
-          <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">Adapted per crop and growth phase (Heuvelink 1996, van Henten 1994).</p>
+          <p style="font-size:0.88rem; margin:0.15rem 0 0; line-height:1.4;">Adapted per crop and growth phase (<a class="ref-link" href="#ref-Heuvelink1996" onclick="goToSlide('refs'); location.hash='#ref-Heuvelink1996'; return false;">Heuvelink 1996</a>, <a class="ref-link" href="#ref-vanHenten1994" onclick="goToSlide('refs'); location.hash='#ref-vanHenten1994'; return false;">van Henten 1994)</a>.</p>
           <div style="font-size:0.85rem; margin-top:0.3rem; color:#333;">
             <table style="font-size:0.85rem; border-collapse:collapse; width:100%;">
               <tr style="border-bottom:1px solid #ccc;"><td style="padding:0.2rem 0.3rem;">Tomato vegetative</td><td style="text-align:center; padding:0.2rem;">24 / 17&nbsp;&deg;C</td></tr>
@@ -3373,7 +3373,7 @@ S
         </div>
 
         <div style="font-size:0.72rem; color:#888; line-height:1.3; margin-top:auto;">
-          van Henten (1994); Tap (2000); Seginer, Gary &amp; Tchamitchian (1994); van Straten et al. (2011)
+          <a class="ref-link" href="#ref-vanHenten1994" onclick="goToSlide('refs'); location.hash='#ref-vanHenten1994'; return false;">van Henten (1994)</a>; <a class="ref-link" href="#ref-Tap2000" onclick="goToSlide('refs'); location.hash='#ref-Tap2000'; return false;">Tap (2000)</a>; <a class="ref-link" href="#ref-GaryTchamitchian1994" onclick="goToSlide('refs'); location.hash='#ref-GaryTchamitchian1994'; return false;">Seginer, Gary &amp; Tchamitchian (1994)</a>; <a class="ref-link" href="#ref-vanStraten2011" onclick="goToSlide('refs'); location.hash='#ref-vanStraten2011'; return false;">van Straten et al. (2011)</a>
         </div>
       </div>
     </div>
@@ -3422,7 +3422,7 @@ S
             <text x="100" y="32" text-anchor="middle" font-family="Iowan Old Style, Palatino, serif"
                   font-size="22" font-weight="500" fill="var(--green)">TomatoVanthoor</text>
             <text x="100" y="56" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-dim)">50-stage fruit, T<tspan baseline-shift="sub" font-size="11">sum</tspan> = 1035 &deg;C&middot;d</text>
-            <text x="100" y="78" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-dim)">Vanthoor 2011</text>
+            <text x="100" y="78" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-dim)"><a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a></text>
             <text x="100" y="100" text-anchor="middle" font-size="26" fill="var(--green)" opacity="0.3">&#x1F345;</text>
           </g>
 
@@ -3432,7 +3432,7 @@ S
             <text x="100" y="32" text-anchor="middle" font-family="Iowan Old Style, Palatino, serif"
                   font-size="22" font-weight="500" fill="var(--blue)">LettuceCropModel</text>
             <text x="100" y="56" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-dim)">vegetative, T<tspan baseline-shift="sub" font-size="11">opt</tspan> &le; 22 &deg;C</text>
-            <text x="100" y="78" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-dim)">van Henten 1994 / Seginer 1991</text>
+            <text x="100" y="78" text-anchor="middle" font-family="Inter" font-size="13" fill="var(--ink-dim)"><a class="ref-link" href="#ref-vanHenten1994" onclick="goToSlide('refs'); location.hash='#ref-vanHenten1994'; return false;">van Henten 1994</a> / <a class="ref-link" href="#ref-Seginer1991" onclick="goToSlide('refs'); location.hash='#ref-Seginer1991'; return false;">Seginer 1991</a></text>
             <text x="100" y="100" text-anchor="middle" font-size="26" fill="var(--blue)" opacity="0.3">&#x1F96C;</text>
           </g>
 
@@ -3478,17 +3478,17 @@ S
           <tbody>
             <tr>
               <td>Tomato</td>
-              <td>Vanthoor 2011</td>
+              <td><a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a></td>
               <td>50-stage fruit, T<sub>sum</sub> = 1035 &deg;C&middot;d</td>
             </tr>
             <tr>
               <td>Lettuce</td>
-              <td>van Henten 1994 / Seginer 1991</td>
+              <td><a class="ref-link" href="#ref-vanHenten1994" onclick="goToSlide('refs'); location.hash='#ref-vanHenten1994'; return false;">van Henten 1994</a> / <a class="ref-link" href="#ref-Seginer1991" onclick="goToSlide('refs'); location.hash='#ref-Seginer1991'; return false;">Seginer 1991</a></td>
               <td>vegetative, T<sub>opt</sub> &le; 22 &deg;C</td>
             </tr>
             <tr>
               <td>Cucumber</td>
-              <td>Marcelis 1994</td>
+              <td><a class="ref-link" href="#ref-Marcelis1994" onclick="goToSlide('refs'); location.hash='#ref-Marcelis1994'; return false;">Marcelis 1994</a></td>
               <td>30-stage fruit, faster growth coef.</td>
             </tr>
             <tr>
@@ -3532,7 +3532,7 @@ S
         </p>
         <ul class="bullets">
           <li>CTF solver, no shared code with Modelica.</li>
-          <li>TARP / ISO 15099 convection, ScriptF radiation.</li>
+          <li>TARP / <a class="ref-link" href="#ref-ISO15099" onclick="goToSlide('refs'); location.hash='#ref-ISO15099'; return false;">ISO 15099</a> convection, ScriptF radiation.</li>
           <li>Same EPW to both tools removes one degree of freedom.</li>
         </ul>
 
@@ -3636,7 +3636,7 @@ S
 
 
   <!-- ============================================================
-       SLIDE 18 - ISO 15099 NOT OVERRIDABLE (conclusion)
+       SLIDE 18 - <a class="ref-link" href="#ref-ISO15099" onclick="goToSlide('refs'); location.hash='#ref-ISO15099'; return false;">ISO 15099</a> NOT OVERRIDABLE (conclusion)
        ============================================================ -->
   <section class="slide" data-slide="24">
     <header>
@@ -3651,17 +3651,17 @@ S
         </p>
 
         <p>
-          EnergyPlus uses ISO 15099 for exterior convection on fenestration. Hard-coded in the window solver, not overridable via EMS (despite the docs). Tested on Lyon Savona summer:
+          EnergyPlus uses <a class="ref-link" href="#ref-ISO15099" onclick="goToSlide('refs'); location.hash='#ref-ISO15099'; return false;">ISO 15099</a> for exterior convection on fenestration. Hard-coded in the window solver, not overridable via EMS (despite the docs). Tested on Lyon Savona summer:
         </p>
 
         <table class="metrics">
           <tr><th>Coefficient</th><th>EMS prescribed</th><th>EP reported</th></tr>
-          <tr><td>h<sub>ext</sub> (Bot 1983)</td><td>7.0 W/(m²K)</td><td class="warn">52.6 W/(m²K)</td></tr>
-          <tr><td>h<sub>int</sub> (Balemans 1989)</td><td>3.1 W/(m²K)</td><td class="good">3.1 W/(m²K) ✓</td></tr>
+          <tr><td>h<sub>ext</sub> (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983)</a></td><td>7.0 W/(m²K)</td><td class="warn">52.6 W/(m²K)</td></tr>
+          <tr><td>h<sub>int</sub> (<a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans 1989)</a></td><td>3.1 W/(m²K)</td><td class="good">3.1 W/(m²K) ✓</td></tr>
         </table>
 
         <p>
-          7× ratio on the dominant surface. Explains the seasonal scaling: +0.5 °C winter to +4.3 °C summer. Martin &amp; Monfet (2024) confirm EP convection is ill-suited for CEA.
+          7× ratio on the dominant surface. Explains the seasonal scaling: +0.5 °C winter to +4.3 °C summer. <a class="ref-link" href="#ref-MartinMonfet2024" onclick="goToSlide('refs'); location.hash='#ref-MartinMonfet2024'; return false;">Martin &amp; Monfet (2024)</a> confirm EP convection is ill-suited for CEA.
         </p>
 
         <p class="callout">
@@ -3700,7 +3700,7 @@ S
         <h3 class="sub-h tight">Stomatal lag under flicker</h3>
         <ul class="bullets">
           <li>GreenhousesJL uses <strong>steady-state Stanghellini</strong>, r<sub>s</sub> reacts instantly.</li>
-          <li>Real stomata have <strong>5&ndash;30 min time constants</strong> (Vialet-Chabrand 2013).</li>
+          <li>Real stomata have <strong>5&ndash;30 min time constants</strong> (<a class="ref-link" href="#ref-VialetChabrand2013" onclick="goToSlide('refs'); location.hash='#ref-VialetChabrand2013'; return false;">Vialet-Chabrand 2013)</a>.</li>
           <li>Under PV shadow flicker, opening lags the light &rarr; gas exchange desynchronised, ET mis-estimated.</li>
         </ul>
 
@@ -3991,7 +3991,7 @@ S
     </div>
 
     <p style="margin:1.2rem 2rem 0; font-size:0.72rem; color:#999; line-height:1.35;">
-      <sup>1</sup>&nbsp;Biomass reduction order of magnitude consistent with Cossu et al. (2014), <em>Applied Energy</em> 133, 89–100; Yano &amp; Cossu (2019), <em>Renewable &amp; Sustainable Energy Reviews</em> 109, 116–137.
+      <sup>1</sup>&nbsp;Biomass reduction order of magnitude consistent with <a class="ref-link" href="#ref-Cossu2014" onclick="goToSlide('refs'); location.hash='#ref-Cossu2014'; return false;">Cossu et al. (2014)</a>, <em>Applied Energy</em> 133, 89–100; <a class="ref-link" href="#ref-YanoCossu2019" onclick="goToSlide('refs'); location.hash='#ref-YanoCossu2019'; return false;">Yano &amp; Cossu (2019)</a>, <em>Renewable &amp; Sustainable Energy Reviews</em> 109, 116–137.
     </p>
   </section>
 
@@ -4008,7 +4008,7 @@ S
     <div class="two-col">
       <div>
         <p class="lede">
-          PlantBiophysics.jl uses Monteith (2013). Open-field energy balance. In a greenhouse it over-estimates T<sub>r</sub>.
+          PlantBiophysics.jl uses <a class="ref-link" href="#ref-Monteith2013" onclick="goToSlide('refs'); location.hash='#ref-Monteith2013'; return false;">Monteith (2013)</a>. Open-field energy balance. In a greenhouse it over-estimates T<sub>r</sub>.
         </p>
         <ul class="bullets">
           <li>Ignores cover/screen/PV reduction of R<sub>n</sub>.</li>
@@ -4016,7 +4016,7 @@ S
           <li>Ignores canopy↔structure LW exchange.</li>
         </ul>
 
-        <p class="lede">Stanghellini (1987): built for greenhouses.</p>
+        <p class="lede"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini (1987)</a>: built for greenhouses.</p>
         <p class="formula">
           T<sub>r</sub> =
           ((R<sub>n</sub> − G)·Δ + ρ<sub>a</sub>·c<sub>p</sub>·δe / r<sub>a</sub>)
@@ -4024,7 +4024,7 @@ S
         </p>
 
         <ul class="bullets">
-          <li>r<sub>s</sub>: Medlyn (2011), reused from PlantBiophysics.jl.</li>
+          <li>r<sub>s</sub>: <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn (2011)</a>, reused from PlantBiophysics.jl.</li>
           <li>R<sub>n</sub>: includes cover/screen LW.</li>
           <li>r<sub>a</sub>: still-air aerodynamics.</li>
         </ul>
@@ -4096,7 +4096,7 @@ S
           Modelica library hardcodes <strong>K_PAR = 0.7</strong>, <strong>K_NIR = 0.27</strong>. Measurements say otherwise.
         </p>
         <ul class="keys">
-          <li><strong>Wiechers 2014, Merlice</strong>: K decays from 0.71 at LAI 0.9 to 0.45 at LAI 3.3 (ceptometer).</li>
+          <li><strong><a class="ref-link" href="#ref-Wiechers2014" onclick="goToSlide('refs'); location.hash='#ref-Wiechers2014'; return false;">Wiechers 2014</a>, Merlice</strong>: K decays from 0.71 at LAI 0.9 to 0.45 at LAI 3.3 (ceptometer).</li>
           <li>Vanthoor K=0.7 is a flat line through this.</li>
         </ul>
         <p class="callout" style="margin-top:0.8rem;">
@@ -4135,9 +4135,9 @@ S
 
         <ul class="keys">
           <li>Monotone exponential, bounded K<sub>&infin;</sub> &isin; [0.20, 0.55], K<sub>0</sub> &isin; [0.40, 1.50].</li>
-          <li>Other tomato cultivars: Higashide (2020) constants (0.99 / 0.85 / 0.72).</li>
+          <li>Other tomato cultivars: <a class="ref-link" href="#ref-Higashide2020" onclick="goToSlide('refs'); location.hash='#ref-Higashide2020'; return false;">Higashide (2020)</a> constants (0.99 / 0.85 / 0.72).</li>
           <li>Cucumber: Li &amp; Pao, 0.255.</li>
-          <li>Sarlikioti 2011 reports a single mature-canopy K (LAI&nbsp;3.1), no LAI sweep in the paper, and it lands on the Wiechers curve.</li>
+          <li><a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti 2011</a> reports a single mature-canopy K (LAI&nbsp;3.1), no LAI sweep in the paper, and it lands on the Wiechers curve.</li>
         </ul>
       </div>
 
@@ -4151,25 +4151,25 @@ S
 
 
   <!-- ============================================================
-       SLIDE 34 - FSPM tomato architecture (Sarlikioti 2011 build)
+       SLIDE 34 - FSPM tomato architecture (<a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti 2011</a> build)
        ============================================================ -->
   <section class="slide" data-slide="38">
     <header>
       <span class="num">25</span>
-      <h2>FSPM tomato: Sarlikioti 2011 + Merlice cultivar</h2>
+      <h2>FSPM tomato: <a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti 2011</a> + Merlice cultivar</h2>
     </header>
 
     <div class="bleed">
       <div class="bleed-text">
         <p class="lede">
           The FSPM lives in <code>src/tomato_fspm.jl</code>, calibrated on
-          de&nbsp;Visser 2014 vtc parameters and Sarlikioti 2011 measurements
+          de&nbsp;Visser 2014 vtc parameters and <a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti 2011</a> measurements
           on cv. Komeett.
         </p>
         <ul class="keys">
           <li><strong>Sympodial architecture</strong>: 8 vegetative phytomers, then a repeated 3V + 1G pattern with a truss on every G phytomer.</li>
           <li><strong>Phyllochron</strong> 37.9 °C&middot;d, leaf area max 628 cm² at rank 8&ndash;12 (bell curve).</li>
-          <li><strong>Leaflet shape</strong> ovate, L/W &asymp; 2 (Sarlikioti 2020 Fig 4B).</li>
+          <li><strong>Leaflet shape</strong> ovate, L/W &asymp; 2 (<a class="ref-link" href="#ref-Sarlikioti2020" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2020'; return false;">Sarlikioti 2020</a> Fig 4B).</li>
           <li><strong>Leaflet angles</strong> (105&deg;, 101&deg;, 93&deg;) along the rachis, age-dependent leaf elevation.</li>
           <li><strong>Optical</strong> &rho;<sub>adaxial</sub> = 0.233, &tau;<sub>adaxial</sub> = 0.038 (broadband PAR).</li>
           <li><strong>Density</strong> 4.1 stems/m² (rows 0.4 m, paths 0.8 m).</li>
@@ -4183,7 +4183,7 @@ S
 
 
   <!-- ============================================================
-       SLIDE 35 - FSPM parametric structure (Najla 2009 inspired)
+       SLIDE 35 - FSPM parametric structure (<a class="ref-link" href="#ref-Najla2009" onclick="goToSlide('refs'); location.hash='#ref-Najla2009'; return false;">Najla 2009</a> inspired)
        ============================================================ -->
   <section class="slide" data-slide="39">
     <header>
@@ -4410,8 +4410,8 @@ S
           <tr><td>phyllochron</td><td>°C&middot;d / phytomer</td><td>37.9</td></tr>
         </table>
         <p style="font-size:13px; color:var(--ink-dim); margin:14px 0 0; font-style:italic">
-          Schematic and parameter set inspired by Najla et al. 2009
-          (<em>Botany</em> 87, Fig. 1) and Sarlikioti et al. 2011
+          Schematic and parameter set inspired by <a class="ref-link" href="#ref-Najla2009" onclick="goToSlide('refs'); location.hash='#ref-Najla2009'; return false;">Najla et al. 2009</a>
+          (<em>Botany</em> 87, Fig. 1) and <a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti et al. 2011</a>
           (<em>Annals of Botany</em> 107, cv. Komeett); cultivar values
           read from de&nbsp;Visser 2014 vtc Merlice.
         </p>
@@ -4456,7 +4456,7 @@ S
                 transform="rotate(-90 35 270)">Leaflet angle, &deg;</text>
           <text x="390" y="540" class="ax-title" text-anchor="middle">Leaflet position along the petiole (1 = closest to stem)</text>
 
-          <!-- bars (data from Sarlikioti 2011 Fig 4A: 13 leaflets, terminal at 13) -->
+          <!-- bars (data from <a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti 2011</a> Fig 4A: 13 leaflets, terminal at 13) -->
           <!-- bar width 38, gap 8 between bars -->
           <!-- positions in pairs: 1-2, 3-4..., 11-12, then terminal 13 -->
           <!-- y values normalized: angle*10 px from y=490 -->
@@ -4526,7 +4526,7 @@ S
           </g>
 
           <!-- Source -->
-          <text x="700" y="34" class="ax-num" text-anchor="end" font-style="italic">Sarlikioti et al. 2011, cv. Komeett, n = 10 leaves</text>
+          <text x="700" y="34" class="ax-num" text-anchor="end" font-style="italic"><a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti et al. 2011</a>, cv. Komeett, n = 10 leaves</text>
         </svg>
       </div>
 
@@ -4637,7 +4637,7 @@ S
       </div>
 
       <div class="fspm-params">
-        <h3>Validation protocol (Sarlikioti 2011)</h3>
+        <h3>Validation protocol (<a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti 2011)</a></h3>
         <ul style="font-size:18px; color:var(--ink); line-height:1.55; padding-left:20px; margin:10px 0">
           <li>Multiple cultivars grown side-by-side at the same density</li>
           <li><strong>3 horizontal positions</strong>: row centre, between rows, path centre</li>
@@ -5297,7 +5297,7 @@ S
           &rho;<sub>eff</sub> = f&middot;&rho;<sub>leaflet</sub>
         </p>
         <ul class="keys">
-          <li>Family: Pinty 2004, Stenberg 1996, Nilson 1971.</li>
+          <li>Family: <a class="ref-link" href="#ref-Pinty2004" onclick="goToSlide('refs'); location.hash='#ref-Pinty2004'; return false;">Pinty 2004</a>, <a class="ref-link" href="#ref-Stenberg1996" onclick="goToSlide('refs'); location.hash='#ref-Stenberg1996'; return false;">Stenberg 1996</a>, <a class="ref-link" href="#ref-Nilson1971" onclick="goToSlide('refs'); location.hash='#ref-Nilson1971'; return false;">Nilson 1971</a>.</li>
           <li>Wiechers Merlice 4 stages: |&Delta;K| drops 0.225 &rarr; <strong>0.07</strong>.</li>
           <li>Planophile cultivars: still under-estimated (Momotaro sim 0.32 vs measured 0.99).</li>
         </ul>
@@ -5420,7 +5420,7 @@ S
     <div class="two-col">
       <div>
         <p class="lede">
-          The Farquhar, von Caemmerer &amp; Berry (1980) model computes net CO&sub2;
+          The <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">Farquhar, von Caemmerer &amp; Berry (1980)</a> model computes net CO&sub2;
           assimilation A<sub>n</sub> as the minimum of two limiting rates.
         </p>
 
@@ -5444,7 +5444,7 @@ S
         <ul class="bullets">
           <li><strong>V<sub>cmax</sub></strong>: maximum carboxylation rate, temperature-dependent (Arrhenius)</li>
           <li><strong>J</strong>: electron transport rate, depends on absorbed PAR via a hyperbolic response</li>
-          <li><strong>C<sub>i</sub></strong>: intercellular CO&sub2;, linked to stomatal conductance g<sub>s</sub> (Medlyn 2011)</li>
+          <li><strong>C<sub>i</sub></strong>: intercellular CO&sub2;, linked to stomatal conductance g<sub>s</sub> (<a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn 2011)</a></li>
           <li><strong>R<sub>d</sub></strong>: dark respiration (~1&ndash;2 &micro;mol/m&sup2;/s at 25 &deg;C)</li>
         </ul>
       </div>
@@ -5457,7 +5457,7 @@ S
           <tr><td>T<sub>can</sub></td><td>Canopy energy balance</td><td>V<sub>cmax</sub>, J<sub>max</sub>, &Gamma;*</td></tr>
           <tr><td>CO&sub2;</td><td>Air CO&sub2; balance</td><td>C<sub>i</sub> via g<sub>s</sub></td></tr>
           <tr><td>A<sub>n</sub></td><td>FvCB output</td><td>CO&sub2; sink, dry matter growth</td></tr>
-          <tr><td>g<sub>s</sub></td><td>Medlyn (2011) / Vialet-Chabrand</td><td>&lambda;E (Stanghellini)</td></tr>
+          <tr><td>g<sub>s</sub></td><td><a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn (2011)</a> / Vialet-Chabrand</td><td>&lambda;E (Stanghellini)</td></tr>
         </table>
 
         <p style="margin-top:18px">
@@ -5475,9 +5475,145 @@ S
         </p>
 
         <p class="footnote">
-          Farquhar, von Caemmerer &amp; Berry (1980), <em>Planta</em> 149, 78&ndash;90.
-          Medlyn et al. (2011), <em>Global Change Biology</em> 17, 2134&ndash;2144.
+          <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">Farquhar, von Caemmerer &amp; Berry (1980)</a>, <em>Planta</em> 149, 78&ndash;90.
+          <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn et al. (2011)</a>, <em>Global Change Biology</em> 17, 2134&ndash;2144.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE R - REFERENCES
+       ============================================================ -->
+  <section class="slide" data-slide="refs">
+    <header>
+      <span class="num">R</span>
+      <h2>References</h2>
+    </header>
+
+    <div class="refs-grid">
+      <div class="refs-col">
+        <h3>Greenhouse convection</h3>
+        <ol class="refs-list">
+          <li id="ref-Bot1983">Bot G. P. A. (1983). <em>Greenhouse climate: from physical processes to a dynamic model.</em> PhD, Wageningen University.</li>
+          <li id="ref-Balemans1989">Balemans L. (1989). <em>Assessment of criteria for energetic effectiveness of greenhouse screens.</em> PhD, Ghent.</li>
+          <li id="ref-Stanghellini1987">Stanghellini C. (1987). <em>Transpiration of greenhouse crops: an aid to climate management.</em> PhD, Wageningen.</li>
+          <li id="ref-deZwart1996">de Zwart H. F. (1996). <em>Analysing energy-saving options in greenhouse cultivation using a simulation model</em> (KASPRO). PhD, Wageningen.</li>
+        </ol>
+
+        <h3>Greenhouse models</h3>
+        <ol class="refs-list">
+          <li id="ref-Vanthoor2011a">Vanthoor B. H. E. <em>et&nbsp;al.</em> (2011a). A methodology for model-based greenhouse design: Part 1. <em>Biosyst. Eng.</em> 110(4), 363–377.</li>
+          <li id="ref-Vanthoor2011b">Vanthoor B. H. E. <em>et&nbsp;al.</em> (2011b). Part 2: tomato yield model. <em>Biosyst. Eng.</em> 110(4), 378–395.</li>
+          <li id="ref-Katzin2020">Katzin D., van Mourik S., de Zwart F., van Henten E. J. (2020). GreenLight — an open source model. <em>Biosyst. Eng.</em> 194, 61–81.</li>
+          <li id="ref-Katzin2022">Katzin D., van Henten E. J., van Mourik S. (2022). Process-based greenhouse climate models: genealogy, status, future directions. <em>Agric. Syst.</em> 198, 103388.</li>
+          <li id="ref-AltesBuch2019">Altes-Buch Q., Quoilin S., Lemort V. (2019). <em>Greenhouses</em>: a Modelica library. Proc. 13th Modelica Conf.</li>
+        </ol>
+
+        <h3>Solar transmittance</h3>
+        <ol class="refs-list">
+          <li id="ref-DeJong1990">De Jong T. (1990). <em>Natural ventilation of large multi-span greenhouses.</em> PhD, Wageningen.</li>
+          <li id="ref-Erbs1982">Erbs D. G., Klein S. A., Duffie J. A. (1982). Diffuse radiation fraction. <em>Solar Energy</em> 28(4), 293–302.</li>
+        </ol>
+
+        <h3>Ground temperature</h3>
+        <ol class="refs-list">
+          <li id="ref-Kusuda1965">Kusuda T., Achenbach P. R. (1965). Earth temperature and thermal diffusivity. <em>ASHRAE Trans.</em> 71(1), 61–75.</li>
+          <li id="ref-Fossa2023">Fossa M. (2023). Ground temperature profiles and heat transfer models for shallow geothermal applications. <em>Renewable Energy</em>.</li>
+        </ol>
+      </div>
+
+      <div class="refs-col">
+        <h3>EnergyPlus &amp; cross-validation</h3>
+        <ol class="refs-list">
+          <li id="ref-MartinMonfet2024">Martin G. L., Monfet D. (2024a). EnergyPlus inside surface convective HT coefficients for CEA. <em>Energy &amp; Buildings</em> 319, 114568.</li>
+          <li id="ref-MartinMonfet2024b">Martin G. L., Monfet D. (2024b). CEA-HD air distribution optimization (CFD). <em>Eng. Appl. Comput. Fluid Mech.</em> 18(1), 2297027.</li>
+          <li id="ref-OuazzaniChahidi2021">Ouazzani Chahidi L., Fossa M., Priarone A., Mechaqrane A. (2021). Mediterranean greenhouse dynamic energy analysis. <em>Therm. Sci. Eng. Prog.</em> 26, 101093.</li>
+          <li id="ref-ISO15099">ISO 15099:2003. <em>Thermal performance of windows, doors and shading devices — detailed calculations.</em></li>
+        </ol>
+
+        <h3>Radiosity &amp; view factors</h3>
+        <ol class="refs-list">
+          <li id="ref-Hottel1967">Hottel H. C., Sarofim A. F. (1967). <em>Radiative Transfer.</em> McGraw-Hill.</li>
+          <li id="ref-Hollands1976">Hollands K. G. T., Unny T. E., Raithby G. D., Konicek L. (1976). Free convective HT across inclined air layers. <em>J. Heat Transfer</em> 98(2), 189–193.</li>
+        </ol>
+
+        <h3>PV panels</h3>
+        <ol class="refs-list">
+          <li id="ref-Faiman2008">Faiman D. (2008). Outdoor operating temperature of PV modules. <em>Prog. Photovolt.</em> 16(4), 307–315.</li>
+          <li id="ref-Sharples1998">Sharples S., Charlesworth P. S. (1998). Wind-induced convective HT on a roof-mounted flat plate. <em>Solar Energy</em> 62(2), 69–77.</li>
+          <li id="ref-Palyvos2008">Palyvos J. A. (2008). Survey of wind convection coefficient correlations. <em>Appl. Therm. Eng.</em> 28(8–9), 801–808.</li>
+        </ol>
+
+        <h3>Ventilation</h3>
+        <ol class="refs-list">
+          <li id="ref-BoulardBaille1995">Boulard T., Baille A. (1995). Air exchange rate with continuous roof vents. <em>J. Agric. Eng. Res.</em> 61(1), 37–48.</li>
+          <li id="ref-KornerChalla2003">Körner O., Challa H. (2003). Process-based humidity control regime. <em>Comput. Electron. Agric.</em> 39(3), 173–192.</li>
+        </ol>
+      </div>
+
+      <div class="refs-col">
+        <h3>Crop models &amp; control</h3>
+        <ol class="refs-list">
+          <li id="ref-Marcelis1994">Marcelis L. F. M. (1994). <em>Fruit growth and dry matter partitioning in cucumber.</em> PhD, Wageningen.</li>
+          <li id="ref-vanHenten1994">van Henten E. J. (1994). Validation of a dynamic lettuce growth model. <em>Agric. Syst.</em> 45, 55–72.</li>
+          <li id="ref-Heuvelink1996">Heuvelink E. (1996). <em>Tomato growth and yield: quantitative analysis and synthesis.</em> PhD, Wageningen.</li>
+          <li id="ref-Tap2000">Tap F. (2000). <em>Economics-based optimal control of greenhouse tomato crop production.</em> PhD, Wageningen.</li>
+          <li id="ref-GaryTchamitchian1994">Seginer I., Gary C., Tchamitchian M. (1994). Optimal T regimes with carbohydrate pool. <em>Sci. Hortic.</em> 60, 55–80.</li>
+          <li id="ref-Seginer1991">Seginer I. (1991). Optimal T trajectories for a tomato model <span style="color:#aaa">[verify]</span>.</li>
+          <li id="ref-Yin1995">Yin X., Kropff M. J. (1995). Temperature on leaf appearance in rice. <em>Ann. Bot.</em> 77, 215–221 <span style="color:#aaa">[verify]</span>.</li>
+          <li id="ref-vanStraten2011">van Straten G. <em>et al.</em> (2011). <em>Optimal Control of Greenhouse Cultivation.</em> CRC Press.</li>
+          <li id="ref-DuffieBeckman2013">Duffie J. A., Beckman W. A. (2013). <em>Solar Engineering of Thermal Processes</em>, 4th ed., Wiley.</li>
+        </ol>
+
+        <h3>Building convection (EnergyPlus)</h3>
+        <ol class="refs-list">
+          <li id="ref-Walton1983">Walton G. N. (1983). <em>TARP Reference Manual.</em> NBSIR 83-2655.</li>
+          <li id="ref-BeausoleilMorrison2000">Beausoleil-Morrison I. (2000). <em>Adaptive coupling of heat and air flow.</em> PhD, Strathclyde.</li>
+          <li id="ref-ASHRAE2020">ASHRAE (2020). <em>Handbook — HVAC Systems and Equipment.</em></li>
+        </ol>
+
+        <h3>Evaporation &amp; irrigation</h3>
+        <ol class="refs-list">
+          <li id="ref-Baille1994">Baille M., Baille A., Laury J. C. (1994). Simplified ET vs climate &amp; LAI. <em>Sci. Hortic.</em> 59(3–4), 217–232.</li>
+          <li id="ref-Jolliet1994">Jolliet O. (1994). HORTITRANS: humidity &amp; transpiration. <em>J. Agric. Eng. Res.</em> 57, 23–37.</li>
+          <li id="ref-Katsoulas2002">Katsoulas N., Baille A., Kittas C. (2002). LAI &amp; canopy energy partitioning. <em>Biosyst. Eng.</em> 83(3), 349–359.</li>
+          <li id="ref-Seginer1994">Seginer I. (1994). Transpirational cooling with partial ground cover. <em>Agric. For. Meteorol.</em> 71, 265–281.</li>
+          <li id="ref-BailleA2001">Baille A., Kittas C., Katsoulas N. (2001). Whitening &amp; energy partitioning. <em>Agric. For. Meteorol.</em> 107(4), 293–306.</li>
+        </ol>
+      </div>
+
+      <div class="refs-col">
+        <h3>Photosynthesis &amp; stomata</h3>
+        <ol class="refs-list">
+          <li id="ref-Farquhar1980">Farquhar G. D., von Caemmerer S., Berry J. A. (1980). Biochemical model of C3 photosynthesis. <em>Planta</em> 149, 78–90.</li>
+          <li id="ref-Medlyn2011">Medlyn B. E. <em>et al.</em> (2011). Optimal vs empirical stomatal conductance. <em>Glob. Change Biol.</em> 17, 2134–2144.</li>
+          <li id="ref-Monteith2013">Monteith J. L., Unsworth M. H. (2013). <em>Principles of Environmental Physics</em>, 4th ed., Academic Press.</li>
+          <li id="ref-VialetChabrand2013">Vialet-Chabrand S., Dreyer E., Brendel O. (2013). Dynamic diurnal stomatal model. <em>Plant Cell Environ.</em> 36, 1529–1546.</li>
+        </ol>
+
+        <h3>FSPM &amp; canopy architecture</h3>
+        <ol class="refs-list">
+          <li id="ref-Sarlikioti2011">Sarlikioti V., de Visser P. H. B., Marcelis L. F. M. (2011). Tomato architecture ideotype via FSPM. <em>Ann. Bot.</em> 108, 1065–1073.</li>
+          <li id="ref-Sarlikioti2020">Sarlikioti V. (2020). Leaflet geometry follow-up <span style="color:#aaa">[verify]</span>.</li>
+          <li id="ref-Najla2009">Najla S. <em>et al.</em> (2009). Tomato architecture under salinity &amp; 3D simulator. <em>Botany</em> 87(10), 893–904.</li>
+          <li id="ref-Wiechers2014">Wiechers D. (2014). <em>Modelling light interception in tomato FSPM.</em> PhD, Leibniz Univ. Hannover.</li>
+          <li id="ref-deVisser2014">de Visser P. H. B. (2014). Tomato FSPM vtc parameter set <span style="color:#aaa">[verify]</span>.</li>
+          <li id="ref-Higashide2020">Higashide T. (2020). Cultivar-specific K (Momotaro/OldDutch/Ringyoku) <span style="color:#aaa">[verify]</span>.</li>
+        </ol>
+
+        <h3>Canopy radiation transfer</h3>
+        <ol class="refs-list">
+          <li id="ref-Nilson1971">Nilson T. (1971). Gap frequency in plant stands. <em>Agric. Meteorol.</em> 8, 25–38.</li>
+          <li id="ref-Stenberg1996">Stenberg P. (1996). Photon recollision probability in canopies. <em>Remote Sens. Environ.</em></li>
+          <li id="ref-Pinty2004">Pinty B. <em>et al.</em> (2004). RAMI phase-2 radiation transfer intercomparison. <em>JGR</em> 109, D06210.</li>
+        </ol>
+
+        <h3>Agrivoltaics &amp; greenhouse PV</h3>
+        <ol class="refs-list">
+          <li id="ref-YanoCossu2019">Yano A., Cossu M. (2019). Sustainable GH with PV technologies. <em>Renew. Sustain. Energy Rev.</em> 109, 116–137.</li>
+          <li id="ref-Cossu2014">Cossu M. <em>et al.</em> (2014). Solar radiation in a PV-roof greenhouse. <em>Appl. Energy</em> 133, 89–100.</li>
+        </ol>
       </div>
     </div>
   </section>

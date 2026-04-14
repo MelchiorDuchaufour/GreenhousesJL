@@ -2794,3 +2794,53 @@ kbd {
   min-width: 38px;
   text-align: center;
 }
+
+/* ===================================================================
+   References slide + clickable ref-link style
+   =================================================================== */
+.refs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+  padding: 0 1.5rem;
+  height: calc(100% - 90px);
+  overflow: hidden;
+}
+.refs-col {
+  font-size: 0.72rem;
+  line-height: 1.38;
+  color: var(--ink);
+}
+.refs-col h3 {
+  font-size: 0.88rem;
+  color: var(--green, #2d8a5a);
+  margin: 0.5rem 0 0.25rem;
+  border-bottom: 1px solid rgba(45,138,90,.35);
+  padding-bottom: 0.12rem;
+}
+.refs-col h3:first-child { margin-top: 0; }
+.refs-list {
+  margin: 0 0 0.3rem 1.1rem;
+  padding: 0;
+}
+.refs-list li {
+  margin-bottom: 0.35rem;
+  padding-left: 0.1rem;
+}
+.refs-list li:target {
+  background: rgba(255,213,79,.35);
+  border-radius: 3px;
+  padding: 0.1rem 0.25rem;
+}
+
+/* Inline clickable citation */
+.ref-link {
+  color: #2876b8;
+  text-decoration: none;
+  border-bottom: 1px dotted #2876b8;
+  cursor: pointer;
+}
+.ref-link:hover {
+  color: #1f4d82;
+  border-bottom-style: solid;
+}
