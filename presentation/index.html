@@ -123,7 +123,7 @@ S
         <p class="axis-sub">VPL &middot; PlantBiophysics &middot; Vanthoor</p>
         <ul>
           <li>3D FSPM (VPL) for agrivoltaic shading</li>
-          <li>FvCB + Medlyn + Stanghellini per leaf</li>
+          <li>FvCB + Medlyn + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> per leaf</li>
           <li>Two-level architecture: detailed &rarr; simplified</li>
           <li>Vanthoor <em>K</em> calibration via ray-traced PAR</li>
         </ul>
@@ -304,7 +304,7 @@ S
           <rect width="180" height="80" rx="6" fill="#2876b8"/>
           <text x="90" y="34" class="arch-title" fill="white">VapourMass</text>
           <text x="90" y="52" class="arch-tag">MV_CanopyTranspiration</text>
-          <text x="90" y="68" class="arch-tag">Stanghellini, Penman-M</text>
+          <text x="90" y="68" class="arch-tag"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>, Penman-M</text>
         </g>
         <g transform="translate(960, 200)">
           <rect width="180" height="80" rx="6" fill="#2876b8"/>
@@ -567,7 +567,7 @@ S
       <!-- CANOPY / CROP -->
       <div class="diff-row">
         <div class="feature">Canopy energy balance</div>
-        <div class="badge mo-yes">Stanghellini</div>
+        <div class="badge mo-yes"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></div>
         <div class="badge jl-yes">+ night r<sub>s</sub> fix</div>
       </div>
       <div class="diff-row">
@@ -993,7 +993,7 @@ S
               </span>
             </p>
             <p class="gh-detail">
-              Night λE: <strong>90 → 2 W/m²</strong>. Stomata were left open at night (Stanghellini bug). Basil Q<sub>heat</sub>: 0 → 108 W/m².
+              Night λE: <strong>90 → 2 W/m²</strong>. Stomata were left open at night (<a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> bug). Basil Q<sub>heat</sub>: 0 → 108 W/m².
             </p>
             <span class="gh-quant">Night transpiration: 90 → 2 W/m². Heating restored: 0 → 108 W/m²</span>
           </div>
@@ -1251,7 +1251,7 @@ S
           <div class="term-label">Q<sub>cnv,out</sub></div>
           <div class="term-unit">W &middot; cover &rarr; outside convection</div>
           <p class="term-formula">Q<sub>cnv,out</sub> = [(1&minus;c)&middot;h<sub>Bot</sub> + c&middot;h<sub>PV</sub>] &middot; (T<sub>cov</sub> &minus; T<sub>out</sub>) &middot; A</p>
-          <p><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> on bare glass, +30% roughness on PV-covered area. Tilted PV: wind-directional h (Sharples 1998) + cavity gap (<a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands 1976)</a>. See PV convection slide.</p>
+          <p><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> on bare glass, +30% roughness on PV-covered area. Tilted PV: wind-directional h (<a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples 1998)</a> + cavity gap (<a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands 1976)</a>. See PV convection slide.</p>
         </div>
 
         <div class="term-card cool" data-fragment="5">
@@ -1260,7 +1260,7 @@ S
           <div class="term-unit">W &middot; cover &rarr; sky IR</div>
           <p class="term-formula">Q<sub>rad,sky</sub> = &epsilon;<sub>eff</sub>&middot;F<sub>sky</sub>&middot;&sigma;&middot;A&middot;(T<sub>cov</sub><sup>4</sup> &minus; T<sub>sky</sub><sup>4</sup>)</p>
           <p>Dominant night loss (~30 W/m²). With PV: &epsilon;<sub>eff</sub> = (1&minus;c)&middot;0.84 + c&middot;0.90. Tilted PV changes F<sub>sky</sub>.</p>
-          <p style="font-size:0.75rem; color:#999; margin:0.4rem 0 0; line-height:1.3;">F<sub>sky</sub> = (1+cos&phi;)/2 (<a class="ref-link" href="#ref-DuffieBeckman2013" onclick="goToSlide('refs'); location.hash='#ref-DuffieBeckman2013'; return false;">Duffie &amp; Beckman 2013)</a>. &epsilon;<sub>glass</sub> = 0.84 (<a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011)</a>. &epsilon;<sub>PV</sub> = 0.90 (<a class="ref-link" href="#ref-Faiman2008" onclick="goToSlide('refs'); location.hash='#ref-Faiman2008'; return false;">Faiman 2008)</a>.</p>
+          <p style="font-size:0.9rem; color:#777; margin:0.5rem 0 0; line-height:1.4;">F<sub>sky</sub> = (1+cos&phi;)/2 (<a class="ref-link" href="#ref-DuffieBeckman2013" onclick="goToSlide('refs'); location.hash='#ref-DuffieBeckman2013'; return false;">Duffie &amp; Beckman 2013</a>). &epsilon;<sub>glass</sub> = 0.84 (<a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a>). &epsilon;<sub>PV</sub> = 0.90 (<a class="ref-link" href="#ref-Faiman2008" onclick="goToSlide('refs'); location.hash='#ref-Faiman2008'; return false;">Faiman 2008</a>).</p>
         </div>
 
         <div class="term-card bad" data-fragment="6">
@@ -1738,7 +1738,7 @@ S
         <div class="term-card cool" data-fragment="3">
           <span class="term-tag">Term 3 of 4 <span class="new-tag">fixed</span></span>
           <div class="term-label">&lambda;E</div>
-          <div class="term-unit">W &middot; latent / Stanghellini</div>
+          <div class="term-unit">W &middot; latent / <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></div>
           <p class="term-formula">&lambda;E = LAI &middot; (&Delta;&middot;R<sub>n</sub> + &rho;c<sub>p</sub>&middot;VPD/r<sub>a</sub>) / (&Delta; + &gamma;(1 + r<sub>s</sub>/r<sub>a</sub>))&nbsp;&nbsp;[W/m²]</p>
           <p>r<sub>s</sub> = 5000&nbsp;s/m below 5&nbsp;&micro;mol PAR (closed stomata at night), r<sub>s</sub> = r<sub>s0</sub>(1 + 200/(PAR+50)) during the day.</p>
           <span class="term-quant">Basil &lambda;E night: 90 W/m² &rarr; 2 W/m²</span>
@@ -1829,7 +1829,7 @@ S
             <div style="font-family:var(--serif); font-style:italic; font-size:0.88rem; color:#c46a1e; margin-top:0.2rem;">
               E = (Δ·R<sub>n</sub> + ρ·c<sub>p</sub>·VPD/r<sub>a</sub>) / λ(Δ+γ(1+r<sub>s</sub>/r<sub>a</sub>))
             </div>
-            <div style="font-size:0.85rem; color:var(--ink); margin-top:0.15rem;">Stanghellini formulation + night stomatal closure (r<sub>s</sub> = 5000 s/m if PAR &lt; 5).</div>
+            <div style="font-size:0.85rem; color:var(--ink); margin-top:0.15rem;"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> formulation + night stomatal closure (r<sub>s</sub> = 5000 s/m if PAR &lt; 5).</div>
           </div>
           <div style="border-left:5px solid #2876b8; background:rgba(40,118,184,.06); border-radius:0 8px 8px 0; padding:0.7rem 1rem;">
             <div style="font-family:var(--serif); font-weight:600; color:#2876b8; font-size:1.05rem;">Cover condensation</div>
@@ -2112,8 +2112,8 @@ S
           <span class="term-tag">Term 1 of 5</span>
           <div class="term-label">MV<sub>CanAir</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; canopy &rarr; air</div>
-          <p class="term-formula">MV<sub>CanAir</sub> = (&lambda;E)<sub>Stanghellini</sub> / &lambda;<sub>vap</sub></p>
-          <p>The Stanghellini latent flux from slide 10, converted from W to kg/s by dividing by &lambda;<sub>vap</sub> &asymp; 2.45 MJ/kg. Closes the loop between the canopy energy balance (latent cooling of the leaves) and the air vapor balance (vapor source).</p>
+          <p class="term-formula">MV<sub>CanAir</sub> = (&lambda;E)<sub><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></sub> / &lambda;<sub>vap</sub></p>
+          <p>The <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> latent flux from slide 10, converted from W to kg/s by dividing by &lambda;<sub>vap</sub> &asymp; 2.45 MJ/kg. Closes the loop between the canopy energy balance (latent cooling of the leaves) and the air vapor balance (vapor source).</p>
         </div>
 
         <div class="term-card cool" data-fragment="2">
@@ -2129,7 +2129,7 @@ S
           <div class="term-label">MV<sub>AirTop</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; air &rarr; air_top</div>
           <p class="term-formula">MV<sub>AirTop</sub> = f<sub>scr</sub>(SC, &Delta;T) &middot; (C<sub>v,air</sub> &middot; SC) &middot; A</p>
-          <p>When the thermal screen is deployed, the air below it and the air above it become two separate vapor compartments. f<sub>scr</sub> follows the De Zwart 1996 leakage law and depends on the screen aperture SC.</p>
+          <p>When the thermal screen is deployed, the air below it and the air above it become two separate vapor compartments. f<sub>scr</sub> follows the <a class="ref-link" href="#ref-deZwart1996" onclick="goToSlide('refs'); location.hash='#ref-deZwart1996'; return false;">De Zwart 1996</a> leakage law and depends on the screen aperture SC.</p>
         </div>
 
         <div class="term-card cool" data-fragment="4">
@@ -2158,7 +2158,7 @@ S
   <section class="slide" data-slide="16">
     <header>
       <span class="num">11c</span>
-      <h2>Transpiration: Stanghellini model</h2>
+      <h2>Transpiration: <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> model</h2>
     </header>
 
     <div class="balance-eq">
@@ -2300,8 +2300,8 @@ S
       <div class="term-panel">
         <div class="term-card" data-fragment="0">
           <span class="term-tag">Canopy vapor side</span>
-          <h3 class="term-label">Stanghellini, three resistances</h3>
-          <p><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini 1987</a> is the Penman-Monteith equation rewritten for a greenhouse canopy. Three quantities decide how much vapor leaves the leaves: the available radiative energy, the aerodynamic resistance r<sub>a</sub>, and the stomatal resistance r<sub>s</sub>.</p>
+          <h3 class="term-label"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>, three resistances</h3>
+          <p><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini 1987</a> is the <a class="ref-link" href="#ref-Monteith2013" onclick="goToSlide('refs'); location.hash='#ref-Monteith2013'; return false;">Penman-Monteith</a> equation rewritten for a greenhouse canopy. Three quantities decide how much vapor leaves the leaves: the available radiative energy, the aerodynamic resistance r<sub>a</sub>, and the stomatal resistance r<sub>s</sub>.</p>
           <p>It is the same formula that drives the &lambda;E term on slide 10, divided by &lambda;<sub>vap</sub> to land in kg s<sup>&minus;1</sup>.</p>
         </div>
 
@@ -2580,7 +2580,7 @@ S
       <div class="impact-section">
         <h3 style="margin:0 0 0.2rem;">Impact 3, stomatal closure at night</h3>
         <p class="lede" style="margin:0 0 0.4rem; font-size:0.92rem;">
-          Stanghellini's r<sub>s</sub> kept stomata open at night (130–250 s/m). Bug surfaced on LAI = 4 canopy: phantom transpiration dominated air balance.
+          <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>'s r<sub>s</sub> kept stomata open at night (130–250 s/m). Bug surfaced on LAI = 4 canopy: phantom transpiration dominated air balance.
         </p>
         <div class="impact-grid-wrap">
           <div class="impact-grid">
@@ -2592,7 +2592,7 @@ S
             <div class="impact-card after">
               <div class="imp-label">After · r<sub>s</sub> = 5000 s/m below 5 µmol PAR</div>
               <div class="imp-value" style="font-size:1.8rem;">2 W/m²</div>
-              <p class="imp-sub">Stanghellini range (5–20 W/m²). Q<sub>heat</sub> back to <strong>108 W/m²</strong>.</p>
+              <p class="imp-sub"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> range (5–20 W/m²). Q<sub>heat</sub> back to <strong>108 W/m²</strong>.</p>
             </div>
           </div>
           <div class="impact-arrow">−45×</div>
@@ -2643,7 +2643,7 @@ S
           <!-- ═══ h_top BOX ═══ -->
           <rect x="135" y="36" width="310" height="52" rx="8" fill="#fbfaf5" stroke="#c46a1e" stroke-width="1.5"/>
           <text x="290" y="56" text-anchor="middle" font-size="13" fill="#c46a1e" font-weight="700">h<tspan font-size="10" dy="3">top</tspan><tspan dy="-3">: wind + natural convection</tspan></text>
-          <text x="290" y="76" text-anchor="middle" font-size="12" fill="#c46a1e" font-weight="600">Sharples (1998) + <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a></text>
+          <text x="290" y="76" text-anchor="middle" font-size="12" fill="#c46a1e" font-weight="600"><a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples (1998)</a> + <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a></text>
 
           <!-- ═══ Arrows from h_top down to panels ═══ -->
           <line x1="200" y1="90" x2="200" y2="135" stroke="#c46a1e" stroke-width="1.5" marker-end="url(#ah-orange)"/>
@@ -2711,7 +2711,7 @@ S
         </svg>
 
         <div class="info-card" style="margin-top:0.4rem; font-size:0.85rem;">
-          <div class="info-row"><span class="label" style="min-width:65px;">Top</span> Exposed to wind + sky. h<sub>top</sub> from Sharples (1998): wind direction dependent.</div>
+          <div class="info-row"><span class="label" style="min-width:65px;">Top</span> Exposed to wind + sky. h<sub>top</sub> from <a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples (1998)</a>: wind direction dependent.</div>
           <div class="info-row"><span class="label" style="min-width:65px;">Gap</span> Cavity between PV and glass. <a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands (1976)</a>: Nu–Ra for inclined sealed gaps.</div>
           <div class="info-row"><span class="label" style="min-width:65px;">Glass</span> Interior face keeps its usual <a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans (1989)</a> h and &epsilon;<sub>glass</sub>: the PV sits on the <em>outside</em>, so the indoor LW exchange with floor/walls/canopy is the same as without PV.</div>
         </div>
@@ -3694,12 +3694,12 @@ S
         <ul class="bullets">
           <li>Dense PV layouts can drop <strong>direct PAR by 40 %</strong>.</li>
           <li>Heterogeneous shading changes which leaves dominate transpiration.</li>
-          <li>Penman-Monteith (open-field) <strong>over-estimates</strong> ET in a covered greenhouse.</li>
+          <li><a class="ref-link" href="#ref-Monteith2013" onclick="goToSlide('refs'); location.hash='#ref-Monteith2013'; return false;">Penman-Monteith</a> (open-field) <strong>over-estimates</strong> ET in a covered greenhouse.</li>
         </ul>
 
         <h3 class="sub-h tight">Stomatal lag under flicker</h3>
         <ul class="bullets">
-          <li>GreenhousesJL uses <strong>steady-state Stanghellini</strong>, r<sub>s</sub> reacts instantly.</li>
+          <li>GreenhousesJL uses <strong>steady-state <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></strong>, r<sub>s</sub> reacts instantly.</li>
           <li>Real stomata have <strong>5&ndash;30 min time constants</strong> (<a class="ref-link" href="#ref-VialetChabrand2013" onclick="goToSlide('refs'); location.hash='#ref-VialetChabrand2013'; return false;">Vialet-Chabrand 2013)</a>.</li>
           <li>Under PV shadow flicker, opening lags the light &rarr; gas exchange desynchronised, ET mis-estimated.</li>
         </ul>
@@ -3902,7 +3902,7 @@ S
         <ul>
           <li>3D FSPM with phytomers, leaflets, fruits</li>
           <li>Monte Carlo ray-tracing on the actual scene geometry</li>
-          <li><strong>FvCB + Medlyn + Stanghellini</strong> per leaf</li>
+          <li><strong>FvCB + Medlyn + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></strong> per leaf</li>
           <li>Heavy: minutes per simulated season</li>
           <li>Role: produce <strong>reference data</strong> for any new
               agrivoltaic configuration, then calibrate L2.</li>
@@ -4002,7 +4002,7 @@ S
   <section class="slide" data-slide="32">
     <header>
       <span class="num">22</span>
-      <h2>Penman-Monteith vs Stanghellini</h2>
+      <h2><a class="ref-link" href="#ref-Monteith2013" onclick="goToSlide('refs'); location.hash='#ref-Monteith2013'; return false;">Penman-Monteith</a> vs <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></h2>
     </header>
 
     <div class="two-col">
@@ -4072,7 +4072,7 @@ S
           <g>
             <rect x="40" y="405" width="400" height="110" rx="12" fill="rgba(45,138,90,.15)" stroke="var(--green)" stroke-width="2.5"/>
             <text x="240" y="440" text-anchor="middle" font-family="Iowan Old Style, Palatino, serif" font-style="italic" font-size="24" fill="var(--ink)">PlantBiophysics</text>
-            <text x="240" y="470" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">FvCB + Medlyn + Stanghellini</text>
+            <text x="240" y="470" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">FvCB + Medlyn + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></text>
             <text x="240" y="496" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">A_n, T_r, T_leaf, energy balance</text>
           </g>
         </svg>
@@ -4831,7 +4831,7 @@ S
         <ul class="bullets">
           <li>VPL already powers the agrivoltaic case (slide 22).</li>
           <li>Graph-rewriting grammar + Monte-Carlo ray-tracer, maintained and tested.</li>
-          <li>Plugs directly into PlantBiophysics.jl for per-leaf FvCB + Medlyn + Stanghellini.</li>
+          <li>Plugs directly into PlantBiophysics.jl for per-leaf FvCB + Medlyn + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>.</li>
         </ul>
 
         <h3 class="sub-h tight">What is being ported</h3>
@@ -5457,7 +5457,7 @@ S
           <tr><td>T<sub>can</sub></td><td>Canopy energy balance</td><td>V<sub>cmax</sub>, J<sub>max</sub>, &Gamma;*</td></tr>
           <tr><td>CO&sub2;</td><td>Air CO&sub2; balance</td><td>C<sub>i</sub> via g<sub>s</sub></td></tr>
           <tr><td>A<sub>n</sub></td><td>FvCB output</td><td>CO&sub2; sink, dry matter growth</td></tr>
-          <tr><td>g<sub>s</sub></td><td><a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn (2011)</a> / Vialet-Chabrand</td><td>&lambda;E (Stanghellini)</td></tr>
+          <tr><td>g<sub>s</sub></td><td><a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn (2011)</a> / Vialet-Chabrand</td><td>&lambda;E (<a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>)</td></tr>
         </table>
 
         <p style="margin-top:18px">
