@@ -102,7 +102,7 @@
       <span class="num">02</span>
       <h2>Summary</h2>
     </header>
-S
+
     <div class="axes">
       <article class="axis-card" style="--c:#2876b8">
         <span class="axis-num">I</span>
@@ -123,7 +123,7 @@ S
         <p class="axis-sub">VPL &middot; PlantBiophysics &middot; Vanthoor</p>
         <ul>
           <li>3D FSPM (VPL) for agrivoltaic shading</li>
-          <li>FvCB + Medlyn + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> per leaf</li>
+          <li><a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> + <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn</a> + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> per leaf</li>
           <li>Two-level architecture: detailed &rarr; simplified</li>
           <li>Vanthoor <em>K</em> calibration via ray-traced PAR</li>
         </ul>
@@ -534,7 +534,7 @@ S
       <div class="diff-row">
         <div class="feature">View factors</div>
         <div class="badge mo-mid">constant 0.5 / 1</div>
-        <div class="badge jl-yes">Hottel + MC geometry</div>
+        <div class="badge jl-yes">Monte-Carlo on 3D geometry</div>
       </div>
       <div class="diff-row">
         <div class="feature">Solar angular τ</div>
@@ -550,13 +550,13 @@ S
       <div class="diff-row">
         <div class="feature">Wall solar gain (4 cardinal)</div>
         <div class="badge mo-no">N/A</div>
-        <div class="badge jl-yes">Liu-Jordan + Erbs</div>
+        <div class="badge jl-yes"><a class="ref-link" href="#ref-LiuJordan1960" onclick="goToSlide('refs'); location.hash='#ref-LiuJordan1960'; return false;">Liu-Jordan</a> + Erbs</div>
       </div>
 
       <div class="diff-row">
         <div class="feature">Exterior convection</div>
-        <div class="badge mo-mid">Bot forced only</div>
-        <div class="badge jl-yes">Bot roof + Walton walls</div>
+        <div class="badge mo-mid"><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> forced only</div>
+        <div class="badge jl-yes"><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> roof + <a class="ref-link" href="#ref-Walton1983" onclick="goToSlide('refs'); location.hash='#ref-Walton1983'; return false;">Walton</a> walls</div>
       </div>
       <div class="diff-row">
         <div class="feature">PV panels</div>
@@ -594,14 +594,14 @@ S
       </div>
       <div class="diff-row">
         <div class="feature">Ventilation control</div>
-        <div class="badge mo-yes">Boulard 95</div>
-        <div class="badge jl-yes">+ T+RH 2003</div>
+        <div class="badge mo-yes"><a class="ref-link" href="#ref-BoulardBaille1995" onclick="goToSlide('refs'); location.hash='#ref-BoulardBaille1995'; return false;">Boulard 95</a></div>
+        <div class="badge jl-yes">+ <a class="ref-link" href="#ref-KornerChalla2003" onclick="goToSlide('refs'); location.hash='#ref-KornerChalla2003'; return false;">T+RH 2003</a></div>
       </div>
 
       <div class="diff-row">
         <div class="feature">Solver</div>
         <div class="badge mo-mid">DASSL 250 ms</div>
-        <div class="badge jl-yes">Tsit5 10–35 ms</div>
+        <div class="badge jl-yes"><a class="ref-link" href="#ref-Tsitouras2011" onclick="goToSlide('refs'); location.hash='#ref-Tsitouras2011'; return false;">Tsit5</a> 10–35 ms</div>
       </div>
       <div class="diff-row">
         <div class="feature">EP cross-validation</div>
@@ -943,15 +943,15 @@ S
               Each wall can be independently insulated:
               <code>insulate(walls, :N; U=0.4, thermal_mass=50000)</code>
             </p>
-            <span class="gh-quant">Savona bare: +0.5 °C winter bias vs EP (Bot vs <a class="ref-link" href="#ref-ISO15099" onclick="goToSlide('refs'); location.hash='#ref-ISO15099'; return false;">ISO 15099</a> on glass)</span>
+            <span class="gh-quant">Savona bare: +0.5 °C winter bias vs EP (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> vs <a class="ref-link" href="#ref-ISO15099" onclick="goToSlide('refs'); location.hash='#ref-ISO15099'; return false;">ISO 15099</a> on glass)</span>
           </div>
 
           <!-- step 2 - cover -->
           <div class="gh-step-card cool" data-fragment="2">
             <span class="step-tag">Step 2 of 6 · cover</span>
-            <h3>Cover: Bot + Fresnel τ(θ) + radiosity</h3>
+            <h3>Cover: <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> + Fresnel τ(θ) + radiosity</h3>
             <p class="gh-eq" style="color:var(--blue)">
-              h<sub>Bot</sub> =
+              h<sub><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a></sub> =
               <span class="new cool">(2.8 + 1.2u) / cos(φ)</span>
               &ensp; u &lt; 4 m/s
             </p>
@@ -961,7 +961,7 @@ S
             </p>
             <p class="gh-detail">
               <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a>: greenhouse glass roof (Wageningen).
-              Walls: Walton h = 5.7 + 3.8u.
+              Walls: <a class="ref-link" href="#ref-Walton1983" onclick="goToSlide('refs'); location.hash='#ref-Walton1983'; return false;">Walton</a> h = 5.7 + 3.8u.
               Interior: Balemans h = 1.7|ΔT|<sup>0.33</sup> + 1.
             </p>
             <span class="gh-quant">τ at normal: 85 %. At θ=75° (winter): ~50 %</span>
@@ -1021,7 +1021,7 @@ S
             <span class="step-tag">Step 6 of 6 · solver</span>
             <h3>50 to 100× speedup</h3>
             <p class="gh-eq">
-              <span class="new">Tsit5</span>
+              <span class="new"><a class="ref-link" href="#ref-Tsitouras2011" onclick="goToSlide('refs'); location.hash='#ref-Tsitouras2011'; return false;">Tsit5</a></span>
               (5<sup>th</sup>-order adaptive RK) +
               <span class="new">JIT compilation</span> +
               <span class="new">in-memory weather interpolation</span>
@@ -1250,7 +1250,7 @@ S
           <span class="term-tag">Term 4 of 7 <span class="new-tag">updated</span></span>
           <div class="term-label">Q<sub>cnv,out</sub></div>
           <div class="term-unit">W &middot; cover &rarr; outside convection</div>
-          <p class="term-formula">Q<sub>cnv,out</sub> = [(1&minus;c)&middot;h<sub>Bot</sub> + c&middot;h<sub>PV</sub>] &middot; (T<sub>cov</sub> &minus; T<sub>out</sub>) &middot; A</p>
+          <p class="term-formula">Q<sub>cnv,out</sub> = [(1&minus;c)&middot;h<sub><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a></sub> + c&middot;h<sub>PV</sub>] &middot; (T<sub>cov</sub> &minus; T<sub>out</sub>) &middot; A</p>
           <p><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> on bare glass, +30% roughness on PV-covered area. Tilted PV: wind-directional h (<a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples 1998)</a> + cavity gap (<a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands 1976)</a>. See PV convection slide.</p>
         </div>
 
@@ -1364,7 +1364,7 @@ S
         </table>
 
         <div style="background:rgba(46,125,50,.06); border-left:4px solid #2E7D32; border-radius:0 8px 8px 0; padding:0.8rem 1.1rem; margin-top:auto;">
-          <p style="font-size:1rem; margin:0; line-height:1.6;"><strong style="color:#2E7D32;">MC view factors match EP ScriptF to 3%.</strong> The old Hottel formula gave F(floor&rarr;cover)=0.245 &rarr; 40% too low. The MC engine uses exact 3D vertex geometry with auto-flipped normals.</p>
+          <p style="font-size:1rem; margin:0; line-height:1.6;"><strong style="color:#2E7D32;">MC view factors match EP ScriptF to 3%.</strong> The simplified pairwise view factor inherited from <a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a> / the Modelica library gave F(floor&rarr;cover) = 0.245 &rarr; 40% too low. The MC engine uses exact 3D vertex geometry with auto-flipped normals.</p>
         </div>
 
         <p style="font-size:0.85rem; color:#aaa; margin:0; text-align:right;">
@@ -2317,7 +2317,7 @@ S
           <span class="term-tag">Term 2 of 3 &middot; resistances</span>
           <div class="term-label">&Delta; + &gamma;&middot;(1 + r<sub>s</sub>/r<sub>a</sub>)</div>
           <div class="term-unit">&middot; aerodynamic and stomatal control</div>
-          <p class="term-formula">r<sub>a</sub> from canopy aerodynamics, r<sub>s</sub> from Vialet-Chabrand / Medlyn</p>
+          <p class="term-formula">r<sub>a</sub> from canopy aerodynamics, r<sub>s</sub> from <a class="ref-link" href="#ref-VialetChabrand2013" onclick="goToSlide('refs'); location.hash='#ref-VialetChabrand2013'; return false;">Vialet-Chabrand</a> / <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn</a></p>
           <p>r<sub>a</sub> is the boundary-layer resistance around the leaf (small in well-ventilated greenhouses, ~100 s/m). r<sub>s</sub> is the stomatal resistance, dynamic in PlantBiophysics, fixed in the Modelica baseline. &gamma; is the psychrometric constant.</p>
         </div>
 
@@ -2569,7 +2569,7 @@ S
             <div class="impact-card after">
               <div class="imp-label">After · 4-cardinal walls + radiosity</div>
               <div class="imp-value" style="font-size:1.8rem;">+0.5 °C</div>
-              <p class="imp-sub">bare envelope bias vs EP (winter). Bot + Walton + Balemans + N-surface radiosity.</p>
+              <p class="imp-sub">bare envelope bias vs EP (winter). <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> + <a class="ref-link" href="#ref-Walton1983" onclick="goToSlide('refs'); location.hash='#ref-Walton1983'; return false;">Walton</a> + Balemans + N-surface radiosity.</p>
             </div>
           </div>
           <div class="impact-arrow">→</div>
@@ -2724,7 +2724,7 @@ S
           <div style="font-family:var(--serif); font-weight:600; color:#2876b8; font-size:1.0rem;">Top face: <a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples &amp; Charlesworth (1998)</a></div>
           <p style="font-family:var(--serif); font-style:italic; font-size:0.9rem; margin:0.3rem 0; color:var(--ink);">
             h<sub>top</sub> = 1.3 &middot; &radic;(h<sub>forced</sub>&sup2; + h<sub>nat</sub>&sup2;)<br/>
-            h<sub>forced</sub> = h<sub>Bot</sub>(u) &middot; |cos(&theta;<sub>wind</sub>)|<sup>0.6</sup> / cos(&phi;<sub>panel</sub>)
+            h<sub>forced</sub> = h<sub><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a></sub>(u) &middot; |cos(&theta;<sub>wind</sub>)|<sup>0.6</sup> / cos(&phi;<sub>panel</sub>)
           </p>
           <p style="font-size:0.82rem; color:var(--ink-dim); margin:0;">
             Windward: full forced. Leeward: natural dominates. 1.3 = PV roughness factor.
@@ -2746,7 +2746,7 @@ S
           <div style="font-family:var(--serif); font-weight:600; color:#2d8a5a; font-size:1.0rem;">Effective cover properties with PV</div>
           <p style="font-family:var(--serif); font-style:italic; font-size:0.9rem; margin:0.3rem 0; color:var(--ink);">
             &epsilon;<sub>ext</sub> = (1&minus;c)&middot;0.84 + c&middot;0.90<br/>
-            h<sub>ext</sub> = (1&minus;c)&middot;h<sub>Bot</sub> + c&middot;h<sub>top</sub>
+            h<sub>ext</sub> = (1&minus;c)&middot;h<sub><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a></sub> + c&middot;h<sub>top</sub>
           </p>
           <p style="font-size:0.82rem; color:var(--ink-dim); margin:0;">
             PV coverage c = 0&ndash;1. Exterior &epsilon; blended. Interior &epsilon; = 0.84 (glass underneath, unchanged).
@@ -3568,7 +3568,7 @@ S
         <g class="bench-engine omc">
           <rect x="30" y="140" width="180" height="86" rx="8"/>
           <text x="120" y="170">OMC + Julia</text>
-          <text x="120" y="190" class="sub">DASSL &middot; Tsit5</text>
+          <text x="120" y="190" class="sub">DASSL &middot; <a class="ref-link" href="#ref-Tsitouras2011" onclick="goToSlide('refs'); location.hash='#ref-Tsitouras2011'; return false;">Tsit5</a></text>
           <text x="120" y="208" class="sub">GreenhousesJL</text>
         </g>
 
@@ -3665,7 +3665,7 @@ S
         </p>
 
         <p class="callout">
-          → EP fenestration targets urban glazing. Greenhouse modelling needs greenhouse-calibrated convection (Bot + Balemans).
+          → EP fenestration targets urban glazing. Greenhouse modelling needs greenhouse-calibrated convection (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a> + Balemans).
         </p>
       </div>
 
@@ -3902,7 +3902,7 @@ S
         <ul>
           <li>3D FSPM with phytomers, leaflets, fruits</li>
           <li>Monte Carlo ray-tracing on the actual scene geometry</li>
-          <li><strong>FvCB + Medlyn + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></strong> per leaf</li>
+          <li><strong><a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> + <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn</a> + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></strong> per leaf</li>
           <li>Heavy: minutes per simulated season</li>
           <li>Role: produce <strong>reference data</strong> for any new
               agrivoltaic configuration, then calibrate L2.</li>
@@ -4028,7 +4028,7 @@ S
           <li>R<sub>n</sub>: includes cover/screen LW.</li>
           <li>r<sub>a</sub>: still-air aerodynamics.</li>
         </ul>
-        <p class="callout">→ Drop-in: swap the energy balance, keep Medlyn r<sub>s</sub>.</p>
+        <p class="callout">→ Drop-in: swap the energy balance, keep <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn</a> r<sub>s</sub>.</p>
       </div>
 
       <div>
@@ -4072,7 +4072,7 @@ S
           <g>
             <rect x="40" y="405" width="400" height="110" rx="12" fill="rgba(45,138,90,.15)" stroke="var(--green)" stroke-width="2.5"/>
             <text x="240" y="440" text-anchor="middle" font-family="Iowan Old Style, Palatino, serif" font-style="italic" font-size="24" fill="var(--ink)">PlantBiophysics</text>
-            <text x="240" y="470" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">FvCB + Medlyn + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></text>
+            <text x="240" y="470" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)"><a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> + <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn</a> + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></text>
             <text x="240" y="496" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">A_n, T_r, T_leaf, energy balance</text>
           </g>
         </svg>
@@ -4804,7 +4804,7 @@ S
           <li>The PAR field at floor level is <strong>strongly heterogeneous</strong>: high under the path, dark under the rows.</li>
           <li>Vanthoor's <em>K</em> = 0.7 is a <strong>uniform attenuation</strong> that overestimates interception by ≈ 14 pp on this geometry.</li>
           <li>Replacing Vanthoor's constant by the <strong>FSPM-averaged <em>K̄</em> = 0.47</strong> in Beer-Lambert collapses to the right <em>mean</em> (50 W/m²) but the <strong>spatial profile is still flat</strong>.</li>
-          <li>The averaged <em>K̄</em> is what gets shipped to GreenhousesJL; the per-leaflet PAR field is what is shipped as the calibration target for a future per-leaflet FvCB coupling.</li>
+          <li>The averaged <em>K̄</em> is what gets shipped to GreenhousesJL; the per-leaflet PAR field is what is shipped as the calibration target for a future per-leaflet <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> coupling.</li>
         </ul>
         
       </div>
@@ -4831,7 +4831,7 @@ S
         <ul class="bullets">
           <li>VPL already powers the agrivoltaic case (slide 22).</li>
           <li>Graph-rewriting grammar + Monte-Carlo ray-tracer, maintained and tested.</li>
-          <li>Plugs directly into PlantBiophysics.jl for per-leaf FvCB + Medlyn + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>.</li>
+          <li>Plugs directly into PlantBiophysics.jl for per-leaf <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> + <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn</a> + <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>.</li>
         </ul>
 
         <h3 class="sub-h tight">What is being ported</h3>
@@ -5414,7 +5414,7 @@ S
   <section class="slide" data-slide="59">
     <header>
       <span class="num">40</span>
-      <h2>Supplementary: Farquhar photosynthesis model (FvCB)</h2>
+      <h2>Supplementary: Farquhar photosynthesis model (<a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a>)</h2>
     </header>
 
     <div class="two-col">
@@ -5456,19 +5456,19 @@ S
           <tr><td>PAR</td><td>Solar model (Beer-Lambert)</td><td>J (electron transport)</td></tr>
           <tr><td>T<sub>can</sub></td><td>Canopy energy balance</td><td>V<sub>cmax</sub>, J<sub>max</sub>, &Gamma;*</td></tr>
           <tr><td>CO&sub2;</td><td>Air CO&sub2; balance</td><td>C<sub>i</sub> via g<sub>s</sub></td></tr>
-          <tr><td>A<sub>n</sub></td><td>FvCB output</td><td>CO&sub2; sink, dry matter growth</td></tr>
-          <tr><td>g<sub>s</sub></td><td><a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn (2011)</a> / Vialet-Chabrand</td><td>&lambda;E (<a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>)</td></tr>
+          <tr><td>A<sub>n</sub></td><td><a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> output</td><td>CO&sub2; sink, dry matter growth</td></tr>
+          <tr><td>g<sub>s</sub></td><td><a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn (2011)</a> / <a class="ref-link" href="#ref-VialetChabrand2013" onclick="goToSlide('refs'); location.hash='#ref-VialetChabrand2013'; return false;">Vialet-Chabrand</a></td><td>&lambda;E (<a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>)</td></tr>
         </table>
 
         <p style="margin-top:18px">
           In GreenhousesJL, the Vanthoor crop model uses a simplified
-          photosynthesis function, not the full FvCB. The Level 1 pipeline
-          (VPL + PlantBiophysics.jl) runs the full FvCB per leaf, producing
+          photosynthesis function, not the full <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a>. The Level 1 pipeline
+          (VPL + PlantBiophysics.jl) runs the full <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> per leaf, producing
           the reference data that calibrates Level 2.
         </p>
 
         <p class="callout">
-          &rarr; FvCB is non-linear in PAR: the mean PAR gives a different
+          &rarr; <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> is non-linear in PAR: the mean PAR gives a different
           A<sub>n</sub> than the mean of A<sub>n</sub>(PAR per leaf). This is
           why per-leaflet PAR from the FSPM matters for accurate canopy
           photosynthesis.
@@ -5514,6 +5514,12 @@ S
         <ol class="refs-list">
           <li id="ref-DeJong1990">De Jong T. (1990). <em>Natural ventilation of large multi-span greenhouses.</em> PhD, Wageningen.</li>
           <li id="ref-Erbs1982">Erbs D. G., Klein S. A., Duffie J. A. (1982). Diffuse radiation fraction. <em>Solar Energy</em> 28(4), 293–302.</li>
+          <li id="ref-LiuJordan1960">Liu B. Y. H., Jordan R. C. (1960). Direct / diffuse / total solar radiation. <em>Solar Energy</em> 4(3), 1–19.</li>
+        </ol>
+
+        <h3>Numerical integration</h3>
+        <ol class="refs-list">
+          <li id="ref-Tsitouras2011">Tsitouras Ch. (2011). Runge–Kutta 5(4) pair (Tsit5). <em>Comput. Math. Appl.</em> 62(2), 770–775.</li>
         </ol>
 
         <h3>Ground temperature</h3>
