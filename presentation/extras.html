@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GreenhousesJL, extras: sun model, insulation, PV</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="stage">
+  <main id="deck">
+
+  <!-- ============================================================
+       SLIDE 01, TITLE
+       ============================================================ -->
+  <section class="slide active" data-slide="1">
+    <div class="title-wrap" style="max-width:1100px; margin:0 auto; padding:6rem 2rem 0;">
+      <p class="eyebrow">GreenhousesJL, extras deck &middot; working draft</p>
+      <h1>Sun model, insulation, PV</h1>
+      <p class="subtitle">
+        Justifications for the Julia shortwave model, then 3D renders of the native Julia envelope with insulation layers and PV panel variants.
+      </p>
+      <p class="byline">M. Duchaufour &middot; April 2026</p>
+
+      <ul class="title-tags">
+        <li>PAR / NIR split</li>
+        <li>Multi-bounce cover-floor</li>
+        <li>Fresnel &tau;(&theta;)</li>
+        <li>Native Julia 3D</li>
+        <li>Insulation &amp; PV</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 02, SUN MODEL OVERVIEW
+       ============================================================ -->
+  <section class="slide" data-slide="2">
+    <header>
+      <span class="num">02</span>
+      <h2>Sun model: three levers</h2>
+    </header>
+
+    <div class="two-col">
+      <div>
+        <p class="lede">
+          Bare-greenhouse validation showed the cover / floor shortwave path drives nearly all the day-time energy balance. Three levers were added on top of the Modelica baseline.
+        </p>
+
+        <h3 class="sub-h tight">1. PAR / NIR spectral split</h3>
+        <ul class="bullets">
+          <li>Broadband single-pass (Modelica default) overestimates NIR absorption by leaves (canopy PAR &gt; NIR absorptivity).</li>
+          <li>Julia tracks PAR and NIR separately, each with its own (&tau;, &rho;, &alpha;) pair on cover, floor, canopy.</li>
+        </ul>
+
+        <h3 class="sub-h tight">2. Fresnel &tau;(&theta;)</h3>
+        <ul class="bullets">
+          <li>Constant &tau; over-transmits at high incidence, problematic at winter latitudes (sun elevation &lt; 25&deg;).</li>
+          <li>Fresnel correction with n=1.526, diffuse factor 0.88. Low-sun transmission drops to ~50 % at &theta;=75&deg;.</li>
+        </ul>
+
+        <h3 class="sub-h tight">3. Multi-bounce cover, floor</h3>
+        <ul class="bullets">
+          <li>Single-pass cover ignores the fraction of diffuse light that bounces back up and gets reabsorbed.</li>
+          <li>Julia iterates the cover, floor exchange to steady state, adds ~3, 5 % on realistic &rho;_flr.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="sub-h">Shortwave partition at the cover</h3>
+        <div style="background:var(--card-bg-2); border-left:3px solid var(--green); padding:14px 18px; border-radius:6px; font-family:var(--serif); font-style:italic; font-size:18px; line-height:1.6;">
+          I<sub>eff</sub> = I<sub>glob</sub>&middot;((1, c<sub>PV</sub>) + c<sub>PV</sub>&middot;&tau;<sub>PV</sub>)<br><br>
+          R<sub>Cov</sub> = (&alpha;<sub>cov,PAR</sub>&middot;&eta;<sub>PAR</sub> + &alpha;<sub>cov,NIR</sub>&middot;&eta;<sub>NIR</sub>)&middot;I<sub>eff</sub><br><br>
+          R<sub>t,PAR</sub> = I<sub>eff</sub>&middot;&eta;<sub>PAR</sub>&middot;&tau;<sub>cov,PAR</sub>&middot;(1, &eta;<sub>glob,air</sub>)<br>
+          R<sub>NIR</sub>   = I<sub>eff</sub>&middot;&eta;<sub>NIR</sub>&middot;&tau;<sub>cov,NIR</sub>&middot;(1, &eta;<sub>glob,air</sub>)<br><br>
+          R<sub>Flr</sub> = R<sub>t,PAR</sub>&middot;exp(, K<sub>1</sub>&middot;LAI)&middot;(1, &rho;<sub>Flr,PAR</sub>) + R<sub>NIR</sub>&middot;&alpha;<sub>Flr,NIR</sub><br>
+          R<sub>Air</sub> = &eta;<sub>glob,air</sub>&middot;I<sub>eff</sub>
+        </div>
+
+        <p class="callout" style="margin-top:14px;">
+          &rarr; toggle <code>set_solar_model!(:standard)</code> vs <code>set_solar_model!(:ep_broadband)</code> to switch between the two treatments at runtime.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 03, SUN MODEL COMPARISON
+       ============================================================ -->
+  <section class="slide" data-slide="3">
+    <header>
+      <span class="num">03</span>
+      <h2>Sun model: standard vs broadband</h2>
+    </header>
+
+    <div class="split">
+      <div>
+        <p class="lede">
+          Same bare-greenhouse setup as the cross-weather benchmark, 7-day December, 14 000 m² Venlo, closed envelope. Only the solar kernel changes.
+        </p>
+
+        <ul class="bullets">
+          <li><strong>standard</strong>: PAR/NIR, Fresnel &tau;(&theta;), multi-bounce.</li>
+          <li><strong>ep_broadband</strong>: single-band, constant &tau;, no bounce.</li>
+        </ul>
+
+        <p>
+          Daytime peaks diverge by 1, 3 &deg;C, night tracks match within 0.2 &deg;C. Bias grows with solar, biggest in Almer&iacute;a.
+        </p>
+
+        <p class="callout">
+          &rarr; PAR/NIR split + Fresnel carry most of the improvement. Multi-bounce alone is second-order.
+        </p>
+      </div>
+
+      <div class="fig-frame">
+        <img src="assets/extras/solar_model_comparison.png" alt="Solar model comparison, 4 climates" />
+        <p class="fig-cap">T<sub>air</sub> Julia standard vs ep_broadband, 4 climates, 7-day December.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 04, INSULATION, BASELINE + NIGHT COVER + NORTH WALL
+       ============================================================ -->
+  <section class="slide" data-slide="4">
+    <header>
+      <span class="num">04</span>
+      <h2>Insulation: native Julia renders</h2>
+    </header>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; padding:0 2rem;">
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_mat_baseline.png" alt="Baseline" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.9rem; color:var(--ink-dim); margin-top:0.3rem;">Baseline (glass cover, bare floor)</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_mat_night_cover.png" alt="Night cover" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.9rem; color:var(--ink-dim); margin-top:0.3rem;">Night cover / thermal screen deployed</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_mat_north_wall.png" alt="North wall insulated" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.9rem; color:var(--ink-dim); margin-top:0.3rem;">North wall insulated (<code>insulate(w, :N)</code>)</figcaption>
+      </figure>
+    </div>
+
+    <p class="kicker center" style="margin-top:1rem;">
+      Rendered from the Julia envelope model itself (no VPL). Each material ID maps to a colour in the 3D generator.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 05, INSULATION, PCM + SCREEN
+       ============================================================ -->
+  <section class="slide" data-slide="5">
+    <header>
+      <span class="num">05</span>
+      <h2>Insulation: PCM floor / wall + screen</h2>
+    </header>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; padding:0 2rem;">
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_mat_pcm_floor.png" alt="PCM floor" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.9rem; color:var(--ink-dim); margin-top:0.3rem;">PCM floor layer (paraffin, T<sub>m</sub>=23 &deg;C)</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_mat_pcm_wall.png" alt="PCM wall" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.9rem; color:var(--ink-dim); margin-top:0.3rem;">PCM wall layer (salt-hydrate, T<sub>m</sub>=18 &deg;C)</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_mat_screen.png" alt="Screen" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.9rem; color:var(--ink-dim); margin-top:0.3rem;">Thermal screen (energy + blackout presets)</figcaption>
+      </figure>
+    </div>
+
+    <div class="split" style="margin-top:1.2rem;">
+      <div class="fig-frame">
+        <img src="assets/extras/insulation_Qheat_comparison.png" alt="Insulation Qheat comparison" />
+        <p class="fig-cap">Daily Q<sub>heat</sub>, bare / screen / PCM wall / PCM floor.</p>
+      </div>
+      <div class="fig-frame">
+        <img src="assets/extras/insulation_energy_savings.png" alt="Insulation energy savings" />
+        <p class="fig-cap">Seasonal heating energy saved vs baseline, %.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 06, PV VARIANTS (OPAQUE / SEMI / TRANSPARENT)
+       ============================================================ -->
+  <section class="slide" data-slide="6">
+    <header>
+      <span class="num">06</span>
+      <h2>PV panels: opacity variants</h2>
+    </header>
+
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); grid-template-rows:1fr 1fr; gap:0.9rem; padding:0 1.5rem;">
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_opaque_30.png" alt="Opaque 30%" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.85rem; color:var(--ink-dim);">Opaque, 30 % coverage</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_opaque_50.png" alt="Opaque 50%" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.85rem; color:var(--ink-dim);">Opaque, 50 %</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_opaque_80.png" alt="Opaque 80%" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.85rem; color:var(--ink-dim);">Opaque, 80 %</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_semitransp_50.png" alt="Semitransparent 50%" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.85rem; color:var(--ink-dim);">Semi-transparent, 50 % (&tau;=0.4)</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_transparent_80.png" alt="Transparent 80%" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.85rem; color:var(--ink-dim);">Transparent, 80 % (&tau;=0.7)</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="assets/extras/3d_opaque_100pct_roof.png" alt="Opaque full roof" style="width:100%; border-radius:6px; display:block;" />
+        <figcaption style="text-align:center; font-size:0.85rem; color:var(--ink-dim);">Opaque, full-roof coverage</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 07, PV RESULTS
+       ============================================================ -->
+  <section class="slide" data-slide="7">
+    <header>
+      <span class="num">07</span>
+      <h2>PV panels: impact on T<sub>air</sub> and energy</h2>
+    </header>
+
+    <div class="split">
+      <div class="fig-frame">
+        <img src="assets/extras/comparison_Tair.png" alt="PV Tair comparison" />
+        <p class="fig-cap">T<sub>air</sub>, baseline vs 5 PV variants, 7-day run.</p>
+      </div>
+      <div class="fig-frame">
+        <img src="assets/extras/comparison_net_energy.png" alt="Net energy comparison" />
+        <p class="fig-cap">Net energy (electricity, heating penalty), kWh/m²/yr.</p>
+      </div>
+    </div>
+
+    <p class="kicker center" style="margin-top:1rem;">
+      Opacity vs coverage is a trade-off between electricity yield and crop PAR. Semi-transparent panels at 50 % coverage give the cleanest compromise on this dataset.
+    </p>
+  </section>
+
+  </main>
+
+  <div class="footer-strip">
+    <div class="footer-logos">
+      <img src="assets/usmb.png"        alt="USMB"  />
+      <img src="assets/UNIGE.png"       alt="UniGe" />
+      <img src="assets/ermess_green.png" alt="ERMESS GREEN" class="footer-ermess" />
+    </div>
+    <div class="footer-meta">
+      <span class="footer-author">M.&nbsp;Duchaufour &middot; extras</span>
+      <span class="footer-page" id="footer-page">01 / 07</span>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <button id="prev" aria-label="Previous">&lsaquo;</button>
+  <span id="counter">1 / 7</span>
+  <button id="next" aria-label="Next">&rsaquo;</button>
+</nav>
+
+<script src="deck.js"></script>
+</body>
+</html>
