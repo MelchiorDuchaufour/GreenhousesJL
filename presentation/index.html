@@ -499,7 +499,7 @@ S
   <section class="slide" data-slide="5">
     <header>
       <span class="num">05</span>
-      <h2>Why rewrite in Julia</h2>
+      <h2>Julia rewrite</h2>
     </header>
 
     <div class="diff-grid-header">
@@ -785,84 +785,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 07 - FLOWS
-       ============================================================ -->
-  <section class="slide" data-slide="8">
-    <header>
-      <span class="num">07</span>
-      <h2>Heat and mass flow paths</h2>
-    </header>
-
-    <div class="grid-3">
-      <article class="flow-card" style="--c:#2876b8">
-        <h3>Long-wave radiation</h3>
-        <p class="formula sm">(I−ρF)·J = ε·σ·T⁴ → q<sub>net</sub></p>
-        <ul>
-          <li>N-surface radiosity enclosure (floor, cover, walls)</li>
-          <li>MC view factors from 3D vertices or Hottel analytical</li>
-          <li>Dominates losses at night (~30 W/m²)</li>
-        </ul>
-      </article>
-
-      <article class="flow-card" style="--c:#c46a1e">
-        <h3>Convection</h3>
-        <p class="formula sm">h<sub>ext</sub> = Bot(u,ϕ) / Walton(u)</p>
-        <ul>
-          <li>Bot 1983 exterior on roof (greenhouse-calibrated)</li>
-          <li>Walton 1981 exterior on walls (h = 5.7 + 3.8u)</li>
-          <li>Balemans 1989 interior (h = 1.7|ΔT|<sup>0.33</sup> + 1)</li>
-        </ul>
-      </article>
-
-      <article class="flow-card" style="--c:#2d8a5a">
-        <h3>Condensation / evaporation</h3>
-        <p class="formula sm">VEC = 6.4·10⁻⁹·HEC</p>
-        <ul>
-          <li>Couples sensible and latent on every wet surface</li>
-          <li>Drives water removal &amp; energy recovery</li>
-          <li>Stanghellini cover model</li>
-        </ul>
-      </article>
-
-      <article class="flow-card" style="--c:#7c4ab0">
-        <h3>Crop transpiration</h3>
-        <p class="formula sm">E = (Δ·R<sub>n</sub> + ρ·c<sub>p</sub>·VPD/r<sub>a</sub>)/(λ(Δ+γ(1+r<sub>s</sub>/r<sub>a</sub>)))</p>
-        <ul>
-          <li>Stanghellini formulation</li>
-          <li>r<sub>s</sub> from PAR, CO₂, VPD (Medlyn)</li>
-          <li>Optional dynamic stomata (Vialet-Chabrand)</li>
-        </ul>
-      </article>
-
-      <article class="flow-card" style="--c:#b03a55">
-        <h3>Ventilation</h3>
-        <p class="formula sm">Φ = f(A<sub>p</sub>, ΔT, u<sub>wind</sub>)</p>
-        <ul>
-          <li>Boulard &amp; Baille 1995 natural model</li>
-          <li>Korner &amp; Challa 2003 T+RH control</li>
-          <li>Carries sensible, latent and CO₂</li>
-        </ul>
-      </article>
-
-      <article class="flow-card" style="--c:#2d8a5a">
-        <h3>CO₂ exchange</h3>
-        <p class="formula sm">A<sub>n</sub> = f(PAR, T<sub>can</sub>, CO₂)</p>
-        <ul>
-          <li>Net assimilation by canopy (Farquhar)</li>
-          <li>Mass balance with vent + injection setpoint</li>
-          <li>Compensation point clamp at 50 ppm</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       SLIDE 08 - WHAT I ADDED ON TOP OF MODELICA  (dynamic gh-zoom)
+       SLIDE 07 - WHAT I ADDED ON TOP OF MODELICA  (dynamic gh-zoom)
        ============================================================ -->
   <section class="slide" data-slide="9">
     <header>
-      <span class="num">08</span>
+      <span class="num">07</span>
       <h2>Changes from Modelica</h2>
     </header>
 
@@ -1112,11 +1039,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 09 - COVER ENERGY BALANCE
+       SLIDE 08 - COVER ENERGY BALANCE
        ============================================================ -->
   <section class="slide" data-slide="10">
     <header>
-      <span class="num">09</span>
+      <span class="num">08</span>
       <h2>Cover energy balance</h2>
     </header>
 
@@ -1349,11 +1276,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 09b - GEOMETRY ENGINE VALIDATION (linked from slide 9)
+       SLIDE 08b - GEOMETRY ENGINE VALIDATION (linked from slide 8)
        ============================================================ -->
   <section class="slide" data-slide="10b">
     <header>
-      <span class="num">09b</span>
+      <span class="num">08b</span>
       <h2>View factor computation</h2>
     </header>
 
@@ -1448,11 +1375,11 @@ S
   </section>
 
   <!-- ============================================================
-       SLIDE 10 - AIR ENERGY BALANCE
+       SLIDE 09 - AIR ENERGY BALANCE
        ============================================================ -->
   <section class="slide" data-slide="11">
     <header>
-      <span class="num">10</span>
+      <span class="num">09</span>
       <h2>Air energy balance</h2>
     </header>
 
@@ -1666,11 +1593,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 11 - CANOPY ENERGY BALANCE
+       SLIDE 10 - CANOPY ENERGY BALANCE
        ============================================================ -->
   <section class="slide" data-slide="12">
     <header>
-      <span class="num">11</span>
+      <span class="num">10</span>
       <h2>Canopy energy balance</h2>
     </header>
 
@@ -1831,11 +1758,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 11b - WATER BALANCE OVERVIEW
+       SLIDE 10b - WATER BALANCE OVERVIEW
        ============================================================ -->
   <section class="slide" data-slide="13">
     <header>
-      <span class="num">12</span>
+      <span class="num">11</span>
       <h2>Water vapor balance overview</h2>
     </header>
 
@@ -1932,11 +1859,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 12 - COVER VAPOR BALANCE (condensation)
+       SLIDE 11 - COVER VAPOR BALANCE (condensation)
        ============================================================ -->
   <section class="slide" data-slide="14">
     <header>
-      <span class="num">12a</span>
+      <span class="num">11a</span>
       <h2>Cover condensation model</h2>
     </header>
 
@@ -2023,7 +1950,7 @@ S
           <span class="term-tag">Cover vapor side</span>
           <h3 class="term-label">Vapor deposits on the glass</h3>
           <p>Whenever the cover sits below the dewpoint of the indoor air, vapor diffuses to the glass and condenses. The cover is the dominant vapor sink at night.</p>
-          <p>Two effects: a vapor flux out of the air (slide 13) and a latent-heat source on the cover energy balance (slide 9).</p>
+          <p>Two effects: a vapor flux out of the air (slide 12) and a latent-heat source on the cover energy balance (slide 8).</p>
         </div>
 
         <div class="term-card cool" data-fragment="1">
@@ -2040,8 +1967,8 @@ S
           <div class="term-label">+ &lambda; &middot; MV<sub>AirCov</sub></div>
           <div class="term-unit">W &middot; latent heat released on the cover</div>
           <p class="term-formula">Q<sub>lat,cov</sub> = &lambda;<sub>vap</sub> &middot; MV<sub>AirCov</sub></p>
-          <p>Each kilogram of vapor that turns to liquid on the glass releases &lambda;<sub>vap</sub> &asymp; 2.45 MJ of latent heat directly into the cover energy balance (slide 9). Typical magnitude: 10 to 25 W/m² on a winter night, the same order as the radiative loss to the sky.</p>
-          <span class="term-quant">Couples slide 9 (cover energy) and slide 13 (air vapor)</span>
+          <p>Each kilogram of vapor that turns to liquid on the glass releases &lambda;<sub>vap</sub> &asymp; 2.45 MJ of latent heat directly into the cover energy balance (slide 8). Typical magnitude: 10 to 25 W/m² on a winter night, the same order as the radiative loss to the sky.</p>
+          <span class="term-quant">Couples slide 8 (cover energy) and slide 12 (air vapor)</span>
         </div>
       </div>
     </div>
@@ -2049,11 +1976,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 13 - AIR VAPOR BALANCE
+       SLIDE 12 - AIR VAPOR BALANCE
        ============================================================ -->
   <section class="slide" data-slide="15">
     <header>
-      <span class="num">12b</span>
+      <span class="num">11b</span>
       <h2>Air vapor balance</h2>
     </header>
 
@@ -2186,7 +2113,7 @@ S
           <div class="term-label">MV<sub>CanAir</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; canopy &rarr; air</div>
           <p class="term-formula">MV<sub>CanAir</sub> = (&lambda;E)<sub>Stanghellini</sub> / &lambda;<sub>vap</sub></p>
-          <p>The Stanghellini latent flux from slide 11, converted from W to kg/s by dividing by &lambda;<sub>vap</sub> &asymp; 2.45 MJ/kg. Closes the loop between the canopy energy balance (latent cooling of the leaves) and the air vapor balance (vapor source).</p>
+          <p>The Stanghellini latent flux from slide 10, converted from W to kg/s by dividing by &lambda;<sub>vap</sub> &asymp; 2.45 MJ/kg. Closes the loop between the canopy energy balance (latent cooling of the leaves) and the air vapor balance (vapor source).</p>
         </div>
 
         <div class="term-card cool" data-fragment="2">
@@ -2194,7 +2121,7 @@ S
           <div class="term-label">MV<sub>AirOut</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; air &rarr; outside via vents</div>
           <p class="term-formula">MV<sub>AirOut</sub> = f<sub>vent</sub>(U, &Delta;T, u) &middot; (C<sub>v,air</sub> &minus; C<sub>v,out</sub>)</p>
-          <p>Same Boulard &amp; Baille 1995 ventilation rate as the energy balance (slide 10), now applied to the vapor concentration difference. In daytime ventilation can carry away half the canopy transpiration before it reaches the cover.</p>
+          <p>Same Boulard &amp; Baille 1995 ventilation rate as the energy balance (slide 9), now applied to the vapor concentration difference. In daytime ventilation can carry away half the canopy transpiration before it reaches the cover.</p>
         </div>
 
         <div class="term-card cool" data-fragment="3">
@@ -2210,7 +2137,7 @@ S
           <div class="term-label">MV<sub>AirCov</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; air &rarr; cover</div>
           <p class="term-formula">MV<sub>AirCov</sub> = 6.4 &times; 10<sup>&minus;9</sup> &middot; HEC<sub>AirCov</sub> &middot; max(0, P<sub>v,air</sub> &minus; P<sub>v,cov</sub>)</p>
-          <p>Cover condensation, detailed on slide 12. The dominant vapor sink at night, around 10 to 25 W/m² of latent heat released on the cover.</p>
+          <p>Cover condensation, detailed on slide 11. The dominant vapor sink at night, around 10 to 25 W/m² of latent heat released on the cover.</p>
         </div>
 
         <div class="term-card cool" data-fragment="5">
@@ -2226,11 +2153,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 14 - CANOPY VAPOR BALANCE (transpiration deep dive)
+       SLIDE 13 - CANOPY VAPOR BALANCE (transpiration deep dive)
        ============================================================ -->
   <section class="slide" data-slide="16">
     <header>
-      <span class="num">12c</span>
+      <span class="num">11c</span>
       <h2>Transpiration: Stanghellini model</h2>
     </header>
 
@@ -2375,7 +2302,7 @@ S
           <span class="term-tag">Canopy vapor side</span>
           <h3 class="term-label">Stanghellini, three resistances</h3>
           <p>Stanghellini 1987 is the Penman-Monteith equation rewritten for a greenhouse canopy. Three quantities decide how much vapor leaves the leaves: the available radiative energy, the aerodynamic resistance r<sub>a</sub>, and the stomatal resistance r<sub>s</sub>.</p>
-          <p>It is the same formula that drives the &lambda;E term on slide 11, divided by &lambda;<sub>vap</sub> to land in kg s<sup>&minus;1</sup>.</p>
+          <p>It is the same formula that drives the &lambda;E term on slide 10, divided by &lambda;<sub>vap</sub> to land in kg s<sup>&minus;1</sup>.</p>
         </div>
 
         <div class="term-card warm" data-fragment="1">
@@ -2400,42 +2327,42 @@ S
           <div class="term-unit">kg s&minus;1 m&minus;2 &middot; vapor leaving the canopy</div>
           <p class="term-formula">MV<sub>CanAir</sub> = &lambda;E / &lambda;<sub>vap</sub></p>
           <p>Night-time r<sub>s</sub> fix: when PAR &lt; 5 &micro;mol m<sup>&minus;2</sup> s<sup>&minus;1</sup>, r<sub>s</sub> is forced to 5000 s/m, which drastically increases the stomatal resistance and brings &lambda;E from 90 W/m² down to 2 W/m² on the LAI = 4 canopy.</p>
-          <span class="term-quant">Closes the loop with slide 13, term 1</span>
+          <span class="term-quant">Closes the loop with slide 12, term 1</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       SLIDE 12d - FLOOR / SUBSTRATE EVAPORATION (Baille 1994)
+       SLIDE 11d - FLOOR / SUBSTRATE EVAPORATION (Baille 1994)
        ============================================================ -->
   <section class="slide" data-slide="16b">
     <header>
-      <span class="num">12d</span>
+      <span class="num">11d</span>
       <h2>Floor and substrate evaporation</h2>
     </header>
 
     <!-- Top: equation box spanning full width -->
-    <div style="display:flex; gap:1.2rem; padding:0 2rem; margin-bottom:0.5rem; align-items:stretch;">
-      <div style="flex:1; background:rgba(196,106,30,.06); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.45rem 0.8rem;">
-        <div style="font-size:0.82rem; font-weight:700; color:#c46a1e; margin-bottom:0.15rem;">Baille (1994) two-term model</div>
-        <div style="font-family:var(--serif); font-style:italic; font-size:0.82rem; color:#c46a1e; line-height:1.5;">
+    <div style="display:flex; gap:1.2rem; padding:0 2rem; margin-bottom:1rem; align-items:stretch;">
+      <div style="flex:1; background:rgba(196,106,30,.06); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.8rem 1.2rem;">
+        <div style="font-size:1rem; font-weight:700; color:#c46a1e; margin-bottom:0.3rem;">Baille (1994) two-term model</div>
+        <div style="font-family:var(--serif); font-style:italic; font-size:1.05rem; color:#c46a1e; line-height:1.6;">
           &lambda;E<sub>floor</sub> = &alpha;<sub>floor</sub> &middot; R<sub>SunFlr</sub> &middot; (1 &minus; f<sub>sub</sub>)
           &ensp;&ensp;|&ensp;&ensp;
           &lambda;E<sub>sub</sub> = f<sub>wet</sub> (A &middot; R<sub>SunFlr</sub> &middot; f<sub>sub</sub> + B &middot; VPD &middot; f<sub>sub</sub>)
         </div>
-        <div style="font-size:0.7rem; color:var(--ink-dim); margin-top:0.1rem;">MV<sub>evap</sub> = (&lambda;E<sub>floor</sub>+&lambda;E<sub>sub</sub>)/&lambda; added to dVP<sub>air</sub> &middot; &lambda;E subtracted from dT<sub>flr</sub></div>
+        <div style="font-size:0.85rem; color:var(--ink-dim); margin-top:0.25rem;">MV<sub>evap</sub> = (&lambda;E<sub>floor</sub>+&lambda;E<sub>sub</sub>)/&lambda; added to dVP<sub>air</sub> &middot; &lambda;E subtracted from dT<sub>flr</sub></div>
       </div>
     </div>
 
     <!-- Main content: 3 SVG schematics (left) + table & results (right) -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; padding:0 2rem; align-items:stretch;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; padding:0 2rem; align-items:stretch;">
 
       <!-- LEFT: three irrigation system cross-sections, compact -->
-      <div style="display:flex; flex-direction:column; gap:0.35rem;">
+      <div style="display:flex; flex-direction:column; gap:0.7rem;">
 
         <!-- ── System 1: bare floor ── -->
-        <svg viewBox="0 0 500 72" style="width:100%; display:block;">
+        <svg viewBox="0 0 500 72" style="width:100%; height:140px; display:block;" preserveAspectRatio="xMidYMid meet">
           <rect x="0" y="0" width="500" height="72" rx="6" fill="rgba(215,204,200,.12)" stroke="#D7CCC8" stroke-width="1"/>
           <!-- label -->
           <text x="12" y="20" font-size="13" fill="#c46a1e" font-weight="700">1</text>
@@ -2456,7 +2383,7 @@ S
         </svg>
 
         <!-- ── System 2: drip on rockwool/coco slabs ── -->
-        <svg viewBox="0 0 500 88" style="width:100%; display:block;" data-fragment="1">
+        <svg viewBox="0 0 500 88" style="width:100%; height:170px; display:block;" preserveAspectRatio="xMidYMid meet" data-fragment="1">
           <rect x="0" y="0" width="500" height="88" rx="6" fill="rgba(176,190,197,.08)" stroke="#B0BEC5" stroke-width="1"/>
           <!-- label -->
           <text x="12" y="18" font-size="13" fill="#c46a1e" font-weight="700">2</text>
@@ -2489,7 +2416,7 @@ S
         </svg>
 
         <!-- ── System 3: NFT gutters / ebb-flow bench ── -->
-        <svg viewBox="0 0 500 90" style="width:100%; display:block;" data-fragment="2">
+        <svg viewBox="0 0 500 90" style="width:100%; height:175px; display:block;" preserveAspectRatio="xMidYMid meet" data-fragment="2">
           <rect x="0" y="0" width="500" height="90" rx="6" fill="rgba(227,242,253,.15)" stroke="#90CAF9" stroke-width="1"/>
           <!-- label -->
           <text x="12" y="18" font-size="13" fill="#c46a1e" font-weight="700">3</text>
@@ -2529,8 +2456,8 @@ S
 
         <!-- Presets table -->
         <div>
-          <h3 style="margin:0 0 0.4rem; font-size:1.05rem; color:#1565C0;">Presets</h3>
-          <table style="font-size:0.9rem; border-collapse:collapse; width:100%;" data-fragment="3">
+          <h3 style="margin:0 0 0.6rem; font-size:1.3rem; color:#1565C0;">Presets</h3>
+          <table style="font-size:1.1rem; border-collapse:collapse; width:100%;" data-fragment="3">
             <thead>
               <tr style="border-bottom:2px solid #1565C0; color:#1565C0;">
                 <th style="text-align:left; padding:0.3rem 0.4rem;">Preset</th>
@@ -2552,9 +2479,9 @@ S
         </div>
 
         <!-- July results -->
-        <div style="background:#E3F2FD; border-radius:8px; padding:0.7rem 0.8rem; border-left:4px solid #1565C0; margin-top:0.6rem;" data-fragment="4">
-          <div style="font-size:0.95rem; font-weight:700; color:#1565C0; margin-bottom:0.3rem;">July, Savona 5&times;5 m, tomato LAI=2.5</div>
-          <table style="font-size:0.9rem; border-collapse:collapse; width:100%;">
+        <div style="background:#E3F2FD; border-radius:8px; padding:1rem 1.2rem; border-left:4px solid #1565C0; margin-top:1rem;" data-fragment="4">
+          <div style="font-size:1.15rem; font-weight:700; color:#1565C0; margin-bottom:0.5rem;">July, Savona 5&times;5 m, tomato LAI=2.5</div>
+          <table style="font-size:1.05rem; border-collapse:collapse; width:100%;">
             <tr style="border-bottom:1px solid #90CAF9;">
               <td></td>
               <td style="text-align:center; color:#c62828; font-weight:bold; padding:0.2rem 0.2rem;">No evap.</td>
@@ -2582,7 +2509,7 @@ S
           </table>
         </div>
 
-        <p style="font-size:0.68rem; color:#aaa; margin-top:0.5rem; line-height:1.35;">
+        <p style="font-size:0.82rem; color:#aaa; margin-top:0.9rem; line-height:1.4;">
           Baille et al. (1994) <em>Sci. Hort.</em> &bull;
           Jolliet (1994) HORTITRANS &bull;
           Katsoulas et al. (2002) &bull;
@@ -2593,11 +2520,11 @@ S
   </section>
 
   <!-- ============================================================
-       SLIDE 13 - THREE IMPACTS (soil + walls + stomatal)
+       SLIDE 12 - THREE IMPACTS (soil + walls + stomatal)
        ============================================================ -->
   <section class="slide" data-slide="17">
     <header>
-      <span class="num">13</span>
+      <span class="num">12</span>
       <h2>Fixes: soil sink, lateral walls, stomatal night closure</h2>
     </header>
 
@@ -2681,7 +2608,7 @@ S
        ============================================================ -->
   <section class="slide" data-slide="19">
     <header>
-      <span class="num">14</span>
+      <span class="num">13</span>
       <h2>PV panel convection model</h2>
     </header>
 
@@ -2847,7 +2774,7 @@ S
        ============================================================ -->
   <section class="slide" data-slide="20">
     <header>
-      <span class="num">15</span>
+      <span class="num">14</span>
       <h2>Natural ventilation: Boulard &amp; Baille 1995</h2>
     </header>
 
@@ -2984,7 +2911,7 @@ S
        ============================================================ -->
   <section class="slide" data-slide="20b">
     <header>
-      <span class="num">15b</span>
+      <span class="num">14b</span>
       <h2>Thermal screens &amp; insulation</h2>
     </header>
 
@@ -3116,7 +3043,7 @@ S
        ============================================================ -->
   <section class="slide" data-slide="20c">
     <header>
-      <span class="num">15c</span>
+      <span class="num">14c</span>
       <h2>Heating and cooling equipment</h2>
     </header>
 
@@ -3197,7 +3124,7 @@ S
        ============================================================ -->
   <section class="slide" data-slide="20d">
     <header>
-      <span class="num">15d</span>
+      <span class="num">14d</span>
       <h2>PI control and setpoint strategies</h2>
     </header>
 
@@ -3309,11 +3236,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 15e - CO2 CONTROL STRATEGIES
+       SLIDE 14e - CO2 CONTROL STRATEGIES
        ============================================================ -->
   <section class="slide" data-slide="20e">
     <header>
-      <span class="num">15e</span>
+      <span class="num">14e</span>
       <h2>CO<sub>2</sub> enrichment</h2>
     </header>
 
@@ -3454,11 +3381,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 18 - CROP SUBMODELS (plug-in interface)
+       SLIDE 17 - CROP SUBMODELS (plug-in interface)
        ============================================================ -->
   <section class="slide" data-slide="21">
     <header>
-      <span class="num">16</span>
+      <span class="num">15</span>
       <h2>Crop submodels: a plug-in interface</h2>
     </header>
 
@@ -3590,11 +3517,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 19 - WHY ENERGYPLUS BENCHMARK
+       SLIDE 18 - WHY ENERGYPLUS BENCHMARK
        ============================================================ -->
   <section class="slide" data-slide="22">
     <header>
-      <span class="num">17</span>
+      <span class="num">16</span>
       <h2>Why EnergyPlus</h2>
     </header>
 
@@ -3669,11 +3596,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 18 - BARE GREENHOUSE VALIDATION (new, condensed)
+       SLIDE 17 - BARE GREENHOUSE VALIDATION (new, condensed)
        ============================================================ -->
   <section class="slide" data-slide="23">
     <header>
-      <span class="num">18</span>
+      <span class="num">17</span>
       <h2>Bare greenhouse: Brussels December</h2>
     </header>
 
@@ -3709,11 +3636,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 19 - ISO 15099 NOT OVERRIDABLE (conclusion)
+       SLIDE 18 - ISO 15099 NOT OVERRIDABLE (conclusion)
        ============================================================ -->
   <section class="slide" data-slide="24">
     <header>
-      <span class="num">19</span>
+      <span class="num">18</span>
       <h2>EnergyPlus limitations</h2>
     </header>
 
@@ -3751,11 +3678,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 26 - GOING BEYOND STATIC CROP + FIRST VPL NUMBERS
+       SLIDE 25 - GOING BEYOND STATIC CROP + FIRST VPL NUMBERS
        ============================================================ -->
   <section class="slide" data-slide="29">
     <header>
-      <span class="num">20</span>
+      <span class="num">19</span>
       <h2>Agrivoltaic case: motivation</h2>
     </header>
 
@@ -3960,11 +3887,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 27 - TWO-LEVEL ARCHITECTURE (new)
+       SLIDE 26 - TWO-LEVEL ARCHITECTURE (new)
        ============================================================ -->
   <section class="slide" data-slide="30">
     <header>
-      <span class="num">21</span>
+      <span class="num">20</span>
       <h2>Two-level architecture: calibration and implementation</h2>
     </header>
 
@@ -4019,7 +3946,7 @@ S
        ============================================================ -->
   <section class="slide" data-slide="33b">
     <header>
-      <span class="num">22</span>
+      <span class="num">21</span>
       <h2>VPL case: 100 days</h2>
     </header>
 
@@ -4070,11 +3997,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 29 - PLANTBIOPHYSICS / STANGHELLINI (new)
+       SLIDE 28 - PLANTBIOPHYSICS / STANGHELLINI (new)
        ============================================================ -->
   <section class="slide" data-slide="32">
     <header>
-      <span class="num">23</span>
+      <span class="num">22</span>
       <h2>Penman-Monteith vs Stanghellini</h2>
     </header>
 
@@ -4155,11 +4082,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 31 - K is not a constant (problem statement)
+       SLIDE 30 - K is not a constant (problem statement)
        ============================================================ -->
   <section class="slide" data-slide="34">
     <header>
-      <span class="num">24</span>
+      <span class="num">23</span>
       <h2><em>K</em> is not a constant</h2>
     </header>
 
@@ -4185,11 +4112,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 33 - Step 2: pivot to published calibration
+       SLIDE 32 - Step 2: pivot to published calibration
        ============================================================ -->
   <section class="slide" data-slide="36">
     <header>
-      <span class="num">25</span>
+      <span class="num">24</span>
       <h2>Pivot: <em>K</em> from published data</h2>
     </header>
 
@@ -4224,11 +4151,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 35 - FSPM tomato architecture (Sarlikioti 2011 build)
+       SLIDE 34 - FSPM tomato architecture (Sarlikioti 2011 build)
        ============================================================ -->
   <section class="slide" data-slide="38">
     <header>
-      <span class="num">26</span>
+      <span class="num">25</span>
       <h2>FSPM tomato: Sarlikioti 2011 + Merlice cultivar</h2>
     </header>
 
@@ -4256,11 +4183,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 36 - FSPM parametric structure (Najla 2009 inspired)
+       SLIDE 35 - FSPM parametric structure (Najla 2009 inspired)
        ============================================================ -->
   <section class="slide" data-slide="39">
     <header>
-      <span class="num">27</span>
+      <span class="num">26</span>
       <h2>FSPM building block: one phytomer in detail</h2>
     </header>
 
@@ -4494,11 +4421,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 37 - Leaflet angle gradient (Sarlikioti Fig 4A)
+       SLIDE 36 - Leaflet angle gradient (Sarlikioti Fig 4A)
        ============================================================ -->
   <section class="slide" data-slide="40">
     <header>
-      <span class="num">28</span>
+      <span class="num">27</span>
       <h2>Leaflet angles along the petiole</h2>
     </header>
 
@@ -4633,11 +4560,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 38 - Ceptometer validation methodology
+       SLIDE 37 - Ceptometer validation methodology
        ============================================================ -->
   <section class="slide" data-slide="41">
     <header>
-      <span class="num">29</span>
+      <span class="num">28</span>
       <h2>Validation: ceptometers above and through the canopy</h2>
     </header>
 
@@ -4738,11 +4665,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 39 - Canopy PAR distribution (3D ray tracing)
+       SLIDE 38 - Canopy PAR distribution (3D ray tracing)
        ============================================================ -->
   <section class="slide" data-slide="42">
     <header>
-      <span class="num">30</span>
+      <span class="num">29</span>
       <h2>Per-leaf PAR: ray-tracing vs Beer-Lambert</h2>
     </header>
 
@@ -4835,8 +4762,8 @@ S
                 stroke="#c46a1e" stroke-width="3" stroke-dasharray="2 4"/>
 
           <!-- ============ LEGEND (top-right inside the plot) ============ -->
-          <g transform="translate(440, 100)">
-            <rect x="0" y="0" width="310" height="130" rx="8"
+          <g transform="translate(410, 100)">
+            <rect x="0" y="0" width="345" height="130" rx="8"
                   fill="#fff8eb" stroke="#5e6c83" stroke-width="1" opacity="0.96"/>
 
             <!-- Above canopy -->
@@ -4873,12 +4800,9 @@ S
       </div>
 
       <div class="bleed-text">
-        <p class="lede">
-          72 directional sources (Spitters cosine-weighted) over a BVH-accelerated Monte Carlo, 500 k rays per snapshot.
-        </p>
         <ul class="keys">
-          <li>The PAR field at floor level is <strong>strongly bimodal</strong>: high under the path, dark under the rows.</li>
-          <li>Vanthoor's <em>K</em> = 0.7 is a <strong>uniform attenuation</strong> that overshoots interception by ≈ 14 pp on this geometry.</li>
+          <li>The PAR field at floor level is <strong>strongly heterogeneous</strong>: high under the path, dark under the rows.</li>
+          <li>Vanthoor's <em>K</em> = 0.7 is a <strong>uniform attenuation</strong> that overestimates interception by ≈ 14 pp on this geometry.</li>
           <li>Replacing Vanthoor's constant by the <strong>FSPM-averaged <em>K̄</em> = 0.47</strong> in Beer-Lambert collapses to the right <em>mean</em> (50 W/m²) but the <strong>spatial profile is still flat</strong>.</li>
           <li>The averaged <em>K̄</em> is what gets shipped to GreenhousesJL; the per-leaflet PAR field is what is shipped as the calibration target for a future per-leaflet FvCB coupling.</li>
         </ul>
@@ -4889,11 +4813,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 32 - 3D model transfer to VPL (was 34b)
+       SLIDE 31 - 3D model transfer to VPL (was 34b)
        ============================================================ -->
   <section class="slide" data-slide="44b">
     <header>
-      <span class="num">31</span>
+      <span class="num">30</span>
       <h2>Porting the 3D tomato to VPL</h2>
     </header>
 
@@ -4905,7 +4829,7 @@ S
 
         <h3 class="sub-h tight">Why VPL</h3>
         <ul class="bullets">
-          <li>VPL already powers the agrivoltaic case (slide 23).</li>
+          <li>VPL already powers the agrivoltaic case (slide 22).</li>
           <li>Graph-rewriting grammar + Monte-Carlo ray-tracer, maintained and tested.</li>
           <li>Plugs directly into PlantBiophysics.jl for per-leaf FvCB + Medlyn + Stanghellini.</li>
         </ul>
@@ -4931,11 +4855,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 42 - CLOSING THE LOOP, LAI TRACKING (new)
+       SLIDE 41 - CLOSING THE LOOP, LAI TRACKING (new)
        ============================================================ -->
   <section class="slide" data-slide="45">
     <header>
-      <span class="num">32</span>
+      <span class="num">31</span>
       <h2>LAI from camera images</h2>
     </header>
 
@@ -4964,11 +4888,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 43 - PIPELINE OVERVIEW (new)
+       SLIDE 42 - PIPELINE OVERVIEW (new)
        ============================================================ -->
   <section class="slide" data-slide="46">
     <header>
-      <span class="num">33</span>
+      <span class="num">32</span>
       <h2>Vision pipeline</h2>
     </header>
 
@@ -5029,11 +4953,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 44 - YOLO TRAINING (new)
+       SLIDE 43 - YOLO TRAINING (new)
        ============================================================ -->
   <section class="slide" data-slide="47">
     <header>
-      <span class="num">34</span>
+      <span class="num">33</span>
       <h2>YOLO plant detection</h2>
     </header>
 
@@ -5063,11 +4987,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 45 - SAM3 SEGMENTATION (new)
+       SLIDE 44 - SAM3 SEGMENTATION (new)
        ============================================================ -->
   <section class="slide" data-slide="48">
     <header>
-      <span class="num">35</span>
+      <span class="num">34</span>
       <h2>SAM 3: leaf segmentation</h2>
     </header>
 
@@ -5103,11 +5027,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 46 - GROWTH TRACKING RESULTS (new)
+       SLIDE 45 - GROWTH TRACKING RESULTS (new)
        ============================================================ -->
   <section class="slide" data-slide="49">
     <header>
-      <span class="num">36</span>
+      <span class="num">35</span>
       <h2>Growth tracking: first measured curves</h2>
     </header>
 
@@ -5158,11 +5082,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 47 - ERMESS GREEN WEBAPP
+       SLIDE 46 - ERMESS GREEN WEBAPP
        ============================================================ -->
   <section class="slide" data-slide="50">
     <header>
-      <span class="num">37</span>
+      <span class="num">36</span>
       <h2>ERMESS GREEN webapp, the vision frontend</h2>
     </header>
 
@@ -5187,11 +5111,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 48 - GREENHOUSESJL DOC SITE (live iframe)
+       SLIDE 47 - GREENHOUSESJL DOC SITE (live iframe)
        ============================================================ -->
   <section class="slide" data-slide="51">
     <header>
-      <span class="num">38</span>
+      <span class="num">37</span>
       <h2>GreenhousesJL documentation site</h2>
     </header>
 
@@ -5225,11 +5149,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 50 - ROADMAP
+       SLIDE 49 - ROADMAP
        ============================================================ -->
   <section class="slide" data-slide="53">
     <header>
-      <span class="num">39</span>
+      <span class="num">38</span>
       <h2>Next steps</h2>
     </header>
 
@@ -5485,11 +5409,11 @@ S
 
 
   <!-- ============================================================
-       SLIDE 56 - SUPPLEMENTARY: Farquhar-von Caemmerer-Berry model
+       SLIDE 55 - SUPPLEMENTARY: Farquhar-von Caemmerer-Berry model
        ============================================================ -->
   <section class="slide" data-slide="59">
     <header>
-      <span class="num">41</span>
+      <span class="num">40</span>
       <h2>Supplementary: Farquhar photosynthesis model (FvCB)</h2>
     </header>
 

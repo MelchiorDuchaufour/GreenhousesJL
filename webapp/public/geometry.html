@@ -20,7 +20,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink)}
-  .app{display:grid;grid-template-columns:22% 1fr;grid-template-rows:1fr;height:100vh;min-width:1200px}
+  .app{display:grid;grid-template-columns:minmax(280px, 26%) 1fr;grid-template-rows:1fr;height:100vh;min-width:1200px}
   main{display:grid;grid-template-rows:1fr 340px;overflow:hidden}
   #charts{background:#fff;border-top:1px solid var(--line);padding:8px;display:none;overflow:auto}
   #charts.show{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -57,8 +57,13 @@
 <div class="app">
 
   <aside>
-    <h1>GreenhousesJL</h1>
-    <div class="sub">Live geometry + simulation</div>
+    <div class="brand" style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;">
+      <div>
+        <h1 style="margin:0;">GreenhousesJL</h1>
+        <div class="sub" style="margin-top:2px;">Live geometry + simulation</div>
+      </div>
+      <img src="ermess_green.png" alt="ERMESS GREEN" style="height:64px; width:auto; background:transparent; flex-shrink:0; margin-left:auto;"/>
+    </div>
 
     <fieldset>
       <legend>Footprint</legend>
