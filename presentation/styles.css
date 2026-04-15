@@ -2800,32 +2800,32 @@ kbd {
    =================================================================== */
 .refs-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.1rem;
-  padding: 0 1.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.8rem;
+  padding: 0 1rem;
   height: calc(100% - 90px);
   overflow: hidden;
 }
 .refs-col {
-  font-size: 0.72rem;
-  line-height: 1.38;
+  font-size: 0.63rem;
+  line-height: 1.3;
   color: var(--ink);
 }
 .refs-col h3 {
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: var(--green, #2d8a5a);
-  margin: 0.5rem 0 0.25rem;
+  margin: 0.4rem 0 0.2rem;
   border-bottom: 1px solid rgba(45,138,90,.35);
-  padding-bottom: 0.12rem;
+  padding-bottom: 0.1rem;
 }
 .refs-col h3:first-child { margin-top: 0; }
 .refs-list {
-  margin: 0 0 0.3rem 1.1rem;
+  margin: 0 0 0.25rem 0.9rem;
   padding: 0;
 }
 .refs-list li {
-  margin-bottom: 0.35rem;
-  padding-left: 0.1rem;
+  margin-bottom: 0.25rem;
+  padding-left: 0.05rem;
 }
 .refs-list li:target {
   background: rgba(255,213,79,.35);
