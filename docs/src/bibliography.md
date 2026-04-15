@@ -147,3 +147,13 @@ References used in the development, validation, and parameterisation of Greenhou
 - **U.S. Department of Energy** (2024). *EnergyPlus Engineering Reference — Climate, Sky and Solar Calculations.* [Online documentation](https://bigladdersoftware.com/epx/docs/25-1/engineering-reference/climate-calculations.html)
 
   > Reference for sub-hourly weather-data interpolation: EPW files are held in memory and linearly interpolated between bracketing hourly samples inside the ODE right-hand side.
+
+## Computer-vision dataset (WUR)
+
+- **Hemming, S. et al.** (2020). Remote Control of Greenhouse Vegetable Production with Artificial Intelligence — Greenhouse Climate, Irrigation, and Crop Production. *Sensors*, 20(22), 6430. [doi:10.3390/s20226430](https://doi.org/10.3390/s20226430)
+
+  > Second Autonomous Greenhouse Challenge (WUR, Bleiswijk). Provides the zenithal RGB + sensor dataset used for LAI ground-truth.
+
+- **Wageningen University & Research**. *Autonomous Greenhouse / Plant Growth Challenge.* [autonomousgreenhouses.com](https://www.autonomousgreenhouses.com/)
+
+  > Official challenge page with datasets (cherry tomato, lettuce, cucumber) and competition rules; the 4th edition (Plant Growth Challenge) is the source of the `cam_19` RGB stream.
