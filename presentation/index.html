@@ -1065,7 +1065,7 @@
               at &ge; 10 m depth
             </p>
             <p class="gh-detail">
-              Old: 3 &deg;C constant at 1.3 m. Now: 8 exponential layers to 10 m, annual mean from EPW (Kusuda 1965).
+              Old: 3 &deg;C constant at 1.3 m. Now: 8 exponential layers to 10 m, annual mean from EPW (<a class="ref-link" href="#ref-Kusuda1965" onclick="goToSlide('refs'); location.hash='#ref-Kusuda1965'; return false;">Kusuda 1965)</a>.
             </p>
             <span class="gh-quant">Brussels 10.7 °C, Lyon 11.9 °C, Almeria 19.0 °C</span>
           </div>
@@ -1111,8 +1111,8 @@
             <p class="gh-eq">
               <span class="new"><a class="ref-link" href="#ref-Tsitouras2011" onclick="goToSlide('refs'); location.hash='#ref-Tsitouras2011'; return false;">Tsit5</a></span>
               (5<sup>th</sup>-order adaptive RK) +
-              <span class="new">JIT compilation</span> +
-              <span class="new">in-memory weather interpolation</span>
+              <span class="new"><a class="ref-link" href="#ref-Bezanson2017" onclick="goToSlide('refs'); location.hash='#ref-Bezanson2017'; return false;">JIT compilation</a></span> +
+              <span class="new"><a class="ref-link" href="#ref-EnergyPlusWeather" onclick="goToSlide('refs'); location.hash='#ref-EnergyPlusWeather'; return false;">in-memory weather interpolation</a></span>
             </p>
             <p class="gh-detail">
               Same equations, written directly in Julia and compiled once on
@@ -2810,7 +2810,7 @@
       <div class="impact-section">
         <h3 style="margin:0 0 0.2rem;">Impact 1, the soil sink</h3>
         <p class="lede" style="margin:0 0 0.4rem; font-size:0.92rem;">
-          Modelica defaults T<sub>deep</sub> = 3 °C at 1.3 m. Now: 8 exponential layers to 10 m, T<sub>deep</sub> = annual mean (Kusuda 1965), auto-computed from EPW.
+          Modelica defaults T<sub>deep</sub> = 3 °C at 1.3 m. Now: 8 exponential layers to 10 m, T<sub>deep</sub> = annual mean (<a class="ref-link" href="#ref-Kusuda1965" onclick="goToSlide('refs'); location.hash='#ref-Kusuda1965'; return false;">Kusuda 1965)</a>, auto-computed from EPW.
         </p>
         <div class="impact-grid-wrap">
           <div class="impact-grid">
@@ -3597,7 +3597,7 @@
         </div>
 
         <!-- SVG: CO2 behavior comparison -->
-        <svg viewBox="0 0 440 170" style="width:100%; max-width:480px;">
+        <svg viewBox="0 0 440 170" style="width:100%; display:block;" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="sun-grad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#FFF9C4"/>
@@ -4297,9 +4297,13 @@
 
         <p class="lede"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini (1987)</a>: built for greenhouses.</p>
         <p class="formula">
-          T<sub>r</sub> =
-          ((R<sub>n</sub> − G)·Δ + ρ<sub>a</sub>·c<sub>p</sub>·δe / r<sub>a</sub>)
-          / (λ·(Δ + γ·(1 + r<sub>s</sub>/r<sub>a</sub>)))
+          <span class="term-hover" data-tip="T_r, mass flux of water vapor [kg·m⁻²·s⁻¹]">T<sub>r</sub></span> =
+          ((<span class="term-hover" data-tip="R_n, net radiation on the canopy [W·m⁻²]">R<sub>n</sub></span>
+          − <span class="term-hover" data-tip="G, soil / substrate heat flux [W·m⁻²]">G</span>)·<span class="term-hover" data-tip="Δ, slope of saturation vapor-pressure curve dE*/dT [Pa·K⁻¹]">Δ</span>
+          + <span class="term-hover" data-tip="ρ_a, moist-air density [kg·m⁻³]">ρ<sub>a</sub></span>·<span class="term-hover" data-tip="c_p, specific heat of moist air [J·kg⁻¹·K⁻¹]">c<sub>p</sub></span>·<span class="term-hover" data-tip="δe, vapor-pressure deficit of the air around the leaf [Pa]">δe</span>
+          / <span class="term-hover" data-tip="r_a, aerodynamic (boundary-layer) resistance [s·m⁻¹]">r<sub>a</sub></span>)
+          / (<span class="term-hover" data-tip="λ, latent heat of vaporization of water [J·kg⁻¹] (≈ 2.45·10⁶)">λ</span>·(<span class="term-hover" data-tip="Δ, slope of saturation vapor-pressure curve dE*/dT [Pa·K⁻¹]">Δ</span>
+          + <span class="term-hover" data-tip="γ, psychrometric constant [Pa·K⁻¹]">γ</span>·(1 + <span class="term-hover" data-tip="r_s, stomatal resistance [s·m⁻¹] (Medlyn 2011)">r<sub>s</sub></span>/<span class="term-hover" data-tip="r_a, aerodynamic (boundary-layer) resistance [s·m⁻¹]">r<sub>a</sub></span>)))
         </p>
 
         <ul class="bullets">
@@ -5804,9 +5808,11 @@
           <li id="ref-Fossa2023">Fossa M. (2023). Ground T profiles &amp; HT for shallow geothermal. <em>Renewable Energy</em>.</li>
         </ol>
 
-        <h3>Numerical integration</h3>
+        <h3>Numerical integration &amp; implementation</h3>
         <ol class="refs-list">
           <li id="ref-Tsitouras2011">Tsitouras Ch. (2011). Runge–Kutta 5(4) pair (Tsit5). <em>Comput. Math. Appl.</em> 62(2), 770–775.</li>
+          <li id="ref-Bezanson2017">Bezanson J., Edelman A., Karpinski S., Shah V. B. (2017). Julia: a fresh approach to numerical computing. <em>SIAM Review</em> 59(1), 65–98. <span style="color:#aaa">(JIT, LLVM, type specialisation)</span></li>
+          <li id="ref-EnergyPlusWeather">U.S. DOE (2024). <em>EnergyPlus Engineering Reference — Climate calculations / Weather data interpolation.</em> <span style="color:#aaa">(reference for sub-hourly EPW interpolation)</span></li>
         </ol>
 
         <h3>EnergyPlus &amp; cross-validation</h3>
