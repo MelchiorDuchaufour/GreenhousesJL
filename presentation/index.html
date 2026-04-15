@@ -1298,7 +1298,7 @@
 
         <h3 style="margin:0.4rem 0 0; color:#2E7D32; font-size:1.2rem;">Validation: unit cube</h3>
         <div style="display:flex; gap:1.5rem; align-items:center;">
-          <svg viewBox="0 0 260 175" style="width:330px; flex-shrink:0;">
+          <svg viewBox="0 0 260 175" style="width:420px; flex-shrink:0;">
             <polygon points="20,130 110,130 110,45 20,45" fill="rgba(196,106,30,.08)" stroke="#c46a1e" stroke-width="2.5"/>
             <polygon points="110,130 165,98 165,13 110,45" fill="rgba(40,118,184,.06)" stroke="#2876b8" stroke-width="2"/>
             <polygon points="20,45 75,13 165,13 110,45" fill="rgba(40,118,184,.06)" stroke="#2876b8" stroke-width="2" stroke-dasharray="5 3"/>
@@ -1373,6 +1373,194 @@
       </div>
     </div>
   </section>
+
+
+  <!-- ============================================================
+       SLIDE 08c - SHORTWAVE PARTITIONING (solar model)
+       ============================================================ -->
+  <section class="slide" data-slide="10c">
+    <header>
+      <span class="num">08c</span>
+      <h2>Shortwave partitioning</h2>
+    </header>
+
+    <div class="balance-eq">
+      <span class="lhs">I<sub>glob</sub>&middot;A =</span>
+      <span class="term warm" data-fragment="1">Q<sub>sol,cov</sub></span>
+      <span class="op">+</span>
+      <span class="term warm" data-fragment="2">Q<sub>sol,air</sub></span>
+      <span class="op">+</span>
+      <span class="term warm" data-fragment="3">Q<sub>sol,can</sub></span>
+      <span class="op">+</span>
+      <span class="term warm" data-fragment="4">Q<sub>sol,flr</sub></span>
+      <span class="op">+</span>
+      <span class="term cool" data-fragment="5">Q<sub>refl</sub></span>
+    </div>
+
+    <div class="balance-body">
+      <div class="balance-svg-wrap">
+        <svg class="gh-zoom" viewBox="0 0 600 540" aria-hidden="true">
+          <defs>
+            <marker id="arr-warm-sw" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#c46a1e"/>
+            </marker>
+            <marker id="arr-cool-sw" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#2876b8"/>
+            </marker>
+            <marker id="arr-sun" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#d6b048"/>
+            </marker>
+          </defs>
+
+          <!-- Sun -->
+          <g>
+            <circle class="p-sun" cx="70" cy="70" r="18"/>
+            <g stroke="#d6b048" stroke-width="2" stroke-linecap="round">
+              <line x1="70" y1="44"  x2="70" y2="32"/>
+              <line x1="70" y1="96"  x2="70" y2="108"/>
+              <line x1="44" y1="70"  x2="32" y2="70"/>
+              <line x1="96" y1="70"  x2="108" y2="70"/>
+              <line x1="50" y1="50"  x2="42" y2="42"/>
+              <line x1="90" y1="90"  x2="98" y2="98"/>
+              <line x1="50" y1="90"  x2="42" y2="98"/>
+              <line x1="90" y1="50"  x2="98" y2="42"/>
+            </g>
+            <text x="70" y="130" text-anchor="middle"
+                  font-family="Iowan Old Style, Palatino, serif" font-style="italic"
+                  font-size="16" fill="#a58432">I_glob</text>
+          </g>
+
+          <!-- Incoming beam (solid) + diffuse (dashed) onto cover -->
+          <line x1="92" y1="90" x2="240" y2="200"
+                stroke="#d6b048" stroke-width="3" marker-end="url(#arr-sun)"/>
+          <text x="95" y="168" text-anchor="start"
+                font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="15" fill="#a58432">I_beam &middot; cos &theta;</text>
+
+          <line x1="140" y1="60" x2="320" y2="200"
+                stroke="#d6b048" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr-sun)"/>
+          <text x="280" y="130" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="14" fill="#a58432">I_diffuse (isotropic)</text>
+
+          <!-- Cover (horizontal plane across the middle) -->
+          <rect class="part p-cover"
+                x="100" y="215" width="420" height="26" rx="4"/>
+          <text x="310" y="235" text-anchor="middle"
+                font-family="Iowan Old Style, Palatino, serif" font-style="italic"
+                font-size="20" fill="#1f2a3a">cover (&tau;<tspan baseline-shift="sub" font-size="14">beam</tspan>(&theta;), &tau;<tspan baseline-shift="sub" font-size="14">diff</tspan>=0.88&middot;&tau;<tspan baseline-shift="sub" font-size="14">0</tspan>)</text>
+
+          <!-- Greenhouse interior walls -->
+          <rect x="100" y="241" width="12" height="200" fill="#88a094" opacity=".25"/>
+          <rect x="508" y="241" width="12" height="200" fill="#88a094" opacity=".25"/>
+
+          <!-- Canopy -->
+          <ellipse cx="250" cy="360" rx="90" ry="28" fill="rgba(45,138,90,0.35)" stroke="#2d8a5a" stroke-width="2"/>
+          <text x="250" y="366" text-anchor="middle"
+                font-family="Iowan Old Style, Palatino, serif" font-style="italic"
+                font-size="16" fill="#1f5c35">canopy (LAI)</text>
+
+          <!-- Floor -->
+          <rect x="112" y="430" width="396" height="11" fill="#8a6f50" opacity=".7"/>
+          <text x="430" y="425" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="16" fill="#6d5640">floor</text>
+
+          <!-- ============ FLUX ARROWS ============ -->
+
+          <!-- 1. Q_sol,cov : absorbed in glass (small arrow into cover) -->
+          <line class="flux warm" data-fragment="1"
+                x1="430" y1="200" x2="430" y2="218"
+                stroke="#c46a1e" stroke-width="3" marker-end="url(#arr-warm-sw)"/>
+          <text class="flux-lbl warm" data-fragment="1"
+                x="445" y="210" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="15" fill="#c46a1e">Q_sol,cov</text>
+
+          <!-- 2. Q_sol,air : transmitted fraction heats air directly -->
+          <line class="flux warm" data-fragment="2"
+                x1="380" y1="242" x2="380" y2="320"
+                stroke="#c46a1e" stroke-width="3" stroke-dasharray="4 3" marker-end="url(#arr-warm-sw)"/>
+          <text class="flux-lbl warm" data-fragment="2"
+                x="392" y="290" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="15" fill="#c46a1e">Q_sol,air</text>
+
+          <!-- 3. Q_sol,can : PAR absorbed by canopy (Beer–Lambert) -->
+          <line class="flux warm" data-fragment="3"
+                x1="250" y1="242" x2="250" y2="335"
+                stroke="#c46a1e" stroke-width="3" marker-end="url(#arr-warm-sw)"/>
+          <text class="flux-lbl warm" data-fragment="3"
+                x="145" y="290" text-anchor="start"
+                font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="15" fill="#c46a1e">Q_sol,can (PAR)</text>
+
+          <!-- 4. Q_sol,flr : remainder through to floor -->
+          <line class="flux warm" data-fragment="4"
+                x1="250" y1="388" x2="250" y2="428"
+                stroke="#c46a1e" stroke-width="3" marker-end="url(#arr-warm-sw)"/>
+          <text class="flux-lbl warm" data-fragment="4"
+                x="262" y="415" font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="15" fill="#c46a1e">Q_sol,flr</text>
+
+          <!-- 5. Q_refl : cover reflection out to top-right, starting just right of the diffuse-arrow tip -->
+          <line class="flux cool" data-fragment="5"
+                x1="340" y1="210" x2="475" y2="75"
+                stroke="#2876b8" stroke-width="3" marker-end="url(#arr-cool-sw)"/>
+          <text class="flux-lbl cool" data-fragment="5"
+                x="485" y="95" text-anchor="start"
+                font-family="Iowan Old Style, Palatino, serif"
+                font-style="italic" font-size="15" fill="#2876b8">Q_refl</text>
+        </svg>
+      </div>
+
+      <div class="term-panel">
+        <div class="term-card" data-fragment="0">
+          <span class="term-tag">Shortwave partitioning</span>
+          <h3 class="term-label">Direct + diffuse, PAR + NIR</h3>
+          <p>I<sub>glob</sub> split into beam + diffuse via <a class="ref-link" href="#ref-Erbs1982" onclick="goToSlide('refs'); location.hash='#ref-Erbs1982'; return false;">Erbs (1982)</a>. Beam projected with solar position &theta; and transmitted with Fresnel &tau;(&theta;); diffuse isotropic (<a class="ref-link" href="#ref-LiuJordan1960" onclick="goToSlide('refs'); location.hash='#ref-LiuJordan1960'; return false;">Liu &amp; Jordan 1960</a>), hemisphere-averaged &tau;<sub>diff</sub> = 0.88&middot;&tau;<sub>0</sub>.</p>
+          <p>Each I<sub>eff</sub> photon then lands in one of the five buckets on the right — they sum to I<sub>glob</sub>&middot;A.</p>
+        </div>
+
+        <div class="term-card warm" data-fragment="1">
+          <span class="term-tag">Term 1 of 5</span>
+          <div class="term-label">Q<sub>sol,cov</sub></div>
+          <div class="term-unit">W &middot; absorbed in glass</div>
+          <p class="term-formula">Q<sub>sol,cov</sub> = (&alpha;<sub>cov,PAR</sub>&middot;&eta;<sub>PAR</sub> + &alpha;<sub>cov,NIR</sub>&middot;&eta;<sub>NIR</sub>) &middot; I<sub>eff</sub> &middot; A</p>
+          <p>I<sub>eff</sub> = ((1&minus;c) + c&middot;&tau;<sub>PV</sub>)&middot;I<sub>glob</sub> (PV shading). PAR/NIR split &eta;<sub>PAR</sub> = &eta;<sub>NIR</sub> = 0.5 (from <a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a> / Modelica). &alpha;<sub>cov</sub> = 1&minus;&tau;<sub>cov</sub>&minus;&rho;<sub>cov</sub>, with &tau;<sub>cov</sub> = &tau;<sub>0</sub>&middot;(w<sub>beam</sub>&middot;f<sub>&tau;</sub>(&theta;) + w<sub>diff</sub>&middot;0.88) — the beam/diffuse split lives in &tau;. Feeds slide 10 term 1 (<a href="javascript:void(0)" onclick="goToSlide('10')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see cover balance</a>).</p>
+        </div>
+
+        <div class="term-card warm" data-fragment="2">
+          <span class="term-tag">Term 2 of 5</span>
+          <div class="term-label">Q<sub>sol,air</sub></div>
+          <div class="term-unit">W &middot; direct air heating</div>
+          <p class="term-formula">Q<sub>sol,air</sub> = &eta;<sub>air</sub> &middot; I<sub>eff</sub> &middot; [&tau;<sub>cov,PAR</sub>&middot;&eta;<sub>PAR</sub> + (&alpha;<sub>can,NIR</sub> + &alpha;<sub>flr,NIR</sub>)&middot;&eta;<sub>NIR</sub>] &middot; A</p>
+          <p>&eta;<sub>air</sub> &asymp; 0.10 (<a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a>): fraction released to the air by construction obstacles (ribs, crop wires, PV rails). Applied to transmitted PAR and to NIR that is eventually absorbed by canopy + floor. Appears as Q<sub>sol</sub> in the air balance (<a href="javascript:void(0)" onclick="goToSlide('11')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see air balance</a>).</p>
+        </div>
+
+        <div class="term-card warm" data-fragment="3">
+          <span class="term-tag">Term 3 of 5 <span class="new-tag">updated</span></span>
+          <div class="term-label">Q<sub>sol,can</sub></div>
+          <div class="term-unit">W &middot; PAR absorbed by canopy</div>
+          <p class="term-formula">Q<sub>sol,can</sub> = R<sub>t,PAR</sub>&middot;(1&minus;&rho;<sub>can,PAR</sub>)&middot;(1&minus;e<sup>&minus;K<sub>1</sub>&middot;LAI</sup>) + R<sub>can,PAR,bounce</sub> + R<sub>NIR</sub>&middot;&alpha;<sub>can,NIR</sub></p>
+          <p>PAR absorbed (direct + reflected back from floor, second pass K<sub>2</sub>) + NIR absorbed via the multi-layer τ/ρ propagation (<code>multilayer_tau_rho</code>). R<sub>t,PAR</sub> = I<sub>eff</sub>&middot;&eta;<sub>PAR</sub>&middot;&tau;<sub>cov,PAR</sub>&middot;(1&minus;&eta;<sub>air</sub>). <em>K<sub>1</sub></em> is the per-cultivar calibration target for the ray-traced FSPM coupling. Drives R<sub>n,can</sub> (<a href="javascript:void(0)" onclick="goToSlide('12')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see canopy balance</a>).</p>
+        </div>
+
+        <div class="term-card warm" data-fragment="4">
+          <span class="term-tag">Term 4 of 5</span>
+          <div class="term-label">Q<sub>sol,flr</sub></div>
+          <div class="term-unit">W &middot; remainder absorbed by floor</div>
+          <p class="term-formula">Q<sub>sol,flr</sub> = R<sub>t,PAR</sub>&middot;e<sup>&minus;K<sub>1</sub>&middot;LAI</sup>&middot;(1&minus;&rho;<sub>flr,PAR</sub>) + R<sub>NIR</sub>&middot;&alpha;<sub>flr,NIR</sub></p>
+          <p>Below-canopy PAR after Beer–Lambert + NIR fraction that survives the cover+canopy+floor multi-bounce. &alpha;<sub>flr,NIR</sub> comes from <code>multilayer_tau_rho</code>, so reflected NIR re-enters the enclosure and closes via the interior radiosity (<a href="javascript:void(0)" onclick="goToSlide('10b')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see geometry engine</a>).</p>
+        </div>
+
+        <div class="term-card cool" data-fragment="5">
+          <span class="term-tag">Term 5 of 5</span>
+          <div class="term-label">Q<sub>refl</sub></div>
+          <div class="term-unit">W &middot; reflected back to sky</div>
+          <p class="term-formula">Q<sub>refl</sub> = &rho;<sub>cov</sub>(&theta;)&middot;I<sub>beam</sub> + &rho;<sub>cov,diff</sub>&middot;I<sub>diff</sub></p>
+          <p>Angular reflectance from the same Fresnel kernel (n = 1.526).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ============================================================
        SLIDE 09 - AIR ENERGY BALANCE
@@ -2113,7 +2301,7 @@
           <div class="term-label">MV<sub>CanAir</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; canopy &rarr; air</div>
           <p class="term-formula">MV<sub>CanAir</sub> = (&lambda;E)<sub><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></sub> / &lambda;<sub>vap</sub></p>
-          <p>The <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> latent flux from slide 10, converted from W to kg/s by dividing by &lambda;<sub>vap</sub> &asymp; 2.45 MJ/kg. Closes the loop between the canopy energy balance (latent cooling of the leaves) and the air vapor balance (vapor source).</p>
+          <p>The <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> latent flux from slide 10, converted from W to kg/s by dividing by &lambda;<sub>vap</sub> &asymp; 2.45 MJ/kg.</p>
         </div>
 
         <div class="term-card cool" data-fragment="2">
@@ -5256,7 +5444,7 @@
       <!-- ============ Row 8: Online simulation webapp (parallel) ============ -->
       <text x="290" y="415" text-anchor="end" font-size="15" fill="var(--ink)">Online simulation webapp</text>
       <rect x="412" y="399" width="848" height="26" rx="5" fill="#c46a1e" opacity="0.7"/>
-      <text x="836" y="417" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">dynamic replica with fake results (sliders: PV, setpoints, climate, &euro; / CO&sub2; / yield)</text>
+      <text x="836" y="417" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">dynamic replica with fake results (sliders: PV, setpoints, climate, &euro; / CO<sub>2</sub> / yield)</text>
 
       <!-- ============ LEGEND - bottom-right of the extended timeline ============ -->
       <g transform="translate(1700, 460)">
@@ -5423,11 +5611,11 @@
     <div class="two-col">
       <div>
         <p class="lede">
-          The <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">Farquhar, von Caemmerer &amp; Berry (1980)</a> model computes net CO&sub2;
+          The <a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">Farquhar, von Caemmerer &amp; Berry (1980)</a> model computes net CO<sub>2</sub>
           assimilation A<sub>n</sub> as the minimum of two limiting rates.
         </p>
 
-        <h3 class="sub-h">Rubisco-limited (low light or high CO&sub2;)</h3>
+        <h3 class="sub-h">Rubisco-limited (low light or high CO<sub>2</sub>)</h3>
         <p class="formula sm">
           A<sub>c</sub> = V<sub>cmax</sub> &middot; (C<sub>i</sub> &minus; &Gamma;*) /
           (C<sub>i</sub> + K<sub>c</sub>(1 + O/K<sub>o</sub>))
@@ -5447,7 +5635,7 @@
         <ul class="bullets">
           <li><strong>V<sub>cmax</sub></strong>: maximum carboxylation rate, temperature-dependent (Arrhenius)</li>
           <li><strong>J</strong>: electron transport rate, depends on absorbed PAR via a hyperbolic response</li>
-          <li><strong>C<sub>i</sub></strong>: intercellular CO&sub2;, linked to stomatal conductance g<sub>s</sub> (<a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn 2011)</a></li>
+          <li><strong>C<sub>i</sub></strong>: intercellular CO<sub>2</sub>, linked to stomatal conductance g<sub>s</sub> (<a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn 2011)</a></li>
           <li><strong>R<sub>d</sub></strong>: dark respiration (~1&ndash;2 &micro;mol/m&sup2;/s at 25 &deg;C)</li>
         </ul>
       </div>
@@ -5458,8 +5646,8 @@
           <tr><th>Variable</th><th>From</th><th>To</th></tr>
           <tr><td>PAR</td><td>Solar model (Beer-Lambert)</td><td>J (electron transport)</td></tr>
           <tr><td>T<sub>can</sub></td><td>Canopy energy balance</td><td>V<sub>cmax</sub>, J<sub>max</sub>, &Gamma;*</td></tr>
-          <tr><td>CO&sub2;</td><td>Air CO&sub2; balance</td><td>C<sub>i</sub> via g<sub>s</sub></td></tr>
-          <tr><td>A<sub>n</sub></td><td><a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> output</td><td>CO&sub2; sink, dry matter growth</td></tr>
+          <tr><td>CO<sub>2</sub></td><td>Air CO<sub>2</sub> balance</td><td>C<sub>i</sub> via g<sub>s</sub></td></tr>
+          <tr><td>A<sub>n</sub></td><td><a class="ref-link" href="#ref-Farquhar1980" onclick="goToSlide('refs'); location.hash='#ref-Farquhar1980'; return false;">FvCB</a> output</td><td>CO<sub>2</sub> sink, dry matter growth</td></tr>
           <tr><td>g<sub>s</sub></td><td><a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn (2011)</a> / <a class="ref-link" href="#ref-VialetChabrand2013" onclick="goToSlide('refs'); location.hash='#ref-VialetChabrand2013'; return false;">Vialet-Chabrand</a></td><td>&lambda;E (<a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a>)</td></tr>
         </table>
 
@@ -5498,26 +5686,34 @@
       <div class="refs-col">
         <h3>Greenhouse convection</h3>
         <ol class="refs-list">
-          <li id="ref-Bot1983">Bot G. P. A. (1983). <em>Greenhouse climate: from physical processes to a dynamic model.</em> PhD, Wageningen University.</li>
+          <li id="ref-Bot1983">Bot G. P. A. (1983). <em>Greenhouse climate: from physical processes to a dynamic model.</em> PhD, Wageningen.</li>
           <li id="ref-Balemans1989">Balemans L. (1989). <em>Assessment of criteria for energetic effectiveness of greenhouse screens.</em> PhD, Ghent.</li>
           <li id="ref-Stanghellini1987">Stanghellini C. (1987). <em>Transpiration of greenhouse crops: an aid to climate management.</em> PhD, Wageningen.</li>
-          <li id="ref-deZwart1996">de Zwart H. F. (1996). <em>Analysing energy-saving options in greenhouse cultivation using a simulation model</em> (KASPRO). PhD, Wageningen.</li>
+          <li id="ref-deZwart1996">de Zwart H. F. (1996). <em>Analysing energy-saving options in greenhouse cultivation</em> (KASPRO). PhD, Wageningen.</li>
         </ol>
 
         <h3>Greenhouse models</h3>
         <ol class="refs-list">
-          <li id="ref-Vanthoor2011a">Vanthoor B. H. E. <em>et&nbsp;al.</em> (2011a). A methodology for model-based greenhouse design: Part 1. <em>Biosyst. Eng.</em> 110(4), 363–377.</li>
+          <li id="ref-Vanthoor2011a">Vanthoor B. H. E. <em>et&nbsp;al.</em> (2011a). Model-based greenhouse design: Part 1. <em>Biosyst. Eng.</em> 110(4), 363–377.</li>
           <li id="ref-Vanthoor2011b">Vanthoor B. H. E. <em>et&nbsp;al.</em> (2011b). Part 2: tomato yield model. <em>Biosyst. Eng.</em> 110(4), 378–395.</li>
-          <li id="ref-Katzin2020">Katzin D., van Mourik S., de Zwart F., van Henten E. J. (2020). GreenLight — an open source model. <em>Biosyst. Eng.</em> 194, 61–81.</li>
-          <li id="ref-Katzin2022">Katzin D., van Henten E. J., van Mourik S. (2022). Process-based greenhouse climate models: genealogy, status, future directions. <em>Agric. Syst.</em> 198, 103388.</li>
-          <li id="ref-AltesBuch2019">Altes-Buch Q., Quoilin S., Lemort V. (2019). <em>Greenhouses</em>: a Modelica library. Proc. 13th Modelica Conf.</li>
+          <li id="ref-Katzin2020">Katzin D. <em>et al.</em> (2020). GreenLight — open source GH model. <em>Biosyst. Eng.</em> 194, 61–81.</li>
+          <li id="ref-Katzin2022">Katzin D., van Henten E. J., van Mourik S. (2022). Process-based GH climate models: status and directions. <em>Agric. Syst.</em> 198, 103388.</li>
+          <li id="ref-AltesBuch2019">Altes-Buch Q., Quoilin S., Lemort V. (2019). <em>Greenhouses</em> Modelica library. Proc. 13th Modelica Conf.</li>
         </ol>
 
         <h3>Solar transmittance</h3>
         <ol class="refs-list">
           <li id="ref-DeJong1990">De Jong T. (1990). <em>Natural ventilation of large multi-span greenhouses.</em> PhD, Wageningen.</li>
           <li id="ref-Erbs1982">Erbs D. G., Klein S. A., Duffie J. A. (1982). Diffuse radiation fraction. <em>Solar Energy</em> 28(4), 293–302.</li>
-          <li id="ref-LiuJordan1960">Liu B. Y. H., Jordan R. C. (1960). Direct / diffuse / total solar radiation. <em>Solar Energy</em> 4(3), 1–19.</li>
+          <li id="ref-LiuJordan1960">Liu B. Y. H., Jordan R. C. (1960). Direct/diffuse/total solar radiation. <em>Solar Energy</em> 4(3), 1–19.</li>
+        </ol>
+      </div>
+
+      <div class="refs-col">
+        <h3>Ground temperature</h3>
+        <ol class="refs-list">
+          <li id="ref-Kusuda1965">Kusuda T., Achenbach P. R. (1965). Earth T &amp; thermal diffusivity. <em>ASHRAE Trans.</em> 71(1), 61–75.</li>
+          <li id="ref-Fossa2023">Fossa M. (2023). Ground T profiles &amp; HT for shallow geothermal. <em>Renewable Energy</em>.</li>
         </ol>
 
         <h3>Numerical integration</h3>
@@ -5525,60 +5721,54 @@
           <li id="ref-Tsitouras2011">Tsitouras Ch. (2011). Runge–Kutta 5(4) pair (Tsit5). <em>Comput. Math. Appl.</em> 62(2), 770–775.</li>
         </ol>
 
-        <h3>Ground temperature</h3>
-        <ol class="refs-list">
-          <li id="ref-Kusuda1965">Kusuda T., Achenbach P. R. (1965). Earth temperature and thermal diffusivity. <em>ASHRAE Trans.</em> 71(1), 61–75.</li>
-          <li id="ref-Fossa2023">Fossa M. (2023). Ground temperature profiles and heat transfer models for shallow geothermal applications. <em>Renewable Energy</em>.</li>
-        </ol>
-      </div>
-
-      <div class="refs-col">
         <h3>EnergyPlus &amp; cross-validation</h3>
         <ol class="refs-list">
-          <li id="ref-MartinMonfet2024">Martin G. L., Monfet D. (2024a). EnergyPlus inside surface convective HT coefficients for CEA. <em>Energy &amp; Buildings</em> 319, 114568.</li>
-          <li id="ref-MartinMonfet2024b">Martin G. L., Monfet D. (2024b). CEA-HD air distribution optimization (CFD). <em>Eng. Appl. Comput. Fluid Mech.</em> 18(1), 2297027.</li>
-          <li id="ref-OuazzaniChahidi2021">Ouazzani Chahidi L., Fossa M., Priarone A., Mechaqrane A. (2021). Mediterranean greenhouse dynamic energy analysis. <em>Therm. Sci. Eng. Prog.</em> 26, 101093.</li>
-          <li id="ref-ISO15099">ISO 15099:2003. <em>Thermal performance of windows, doors and shading devices — detailed calculations.</em></li>
+          <li id="ref-MartinMonfet2024">Martin G. L., Monfet D. (2024a). EP inside-surface h<sub>conv</sub> for CEA. <em>Energy &amp; Buildings</em> 319, 114568.</li>
+          <li id="ref-MartinMonfet2024b">Martin G. L., Monfet D. (2024b). CEA-HD air distribution (CFD). <em>Eng. Appl. CFD</em> 18(1), 2297027.</li>
+          <li id="ref-OuazzaniChahidi2021">Ouazzani Chahidi L. <em>et al.</em> (2021). Mediterranean GH dynamic energy analysis. <em>Therm. Sci. Eng. Prog.</em> 26, 101093.</li>
+          <li id="ref-ISO15099">ISO 15099:2003. <em>Thermal performance of windows, doors &amp; shading devices.</em></li>
         </ol>
 
         <h3>Radiosity &amp; view factors</h3>
         <ol class="refs-list">
           <li id="ref-Hottel1967">Hottel H. C., Sarofim A. F. (1967). <em>Radiative Transfer.</em> McGraw-Hill.</li>
-          <li id="ref-Hollands1976">Hollands K. G. T., Unny T. E., Raithby G. D., Konicek L. (1976). Free convective HT across inclined air layers. <em>J. Heat Transfer</em> 98(2), 189–193.</li>
+          <li id="ref-Hollands1976">Hollands K. G. T. <em>et al.</em> (1976). Free convection across inclined air layers. <em>J. Heat Transfer</em> 98(2), 189–193.</li>
         </ol>
 
         <h3>PV panels</h3>
         <ol class="refs-list">
-          <li id="ref-Faiman2008">Faiman D. (2008). Outdoor operating temperature of PV modules. <em>Prog. Photovolt.</em> 16(4), 307–315.</li>
-          <li id="ref-Sharples1998">Sharples S., Charlesworth P. S. (1998). Wind-induced convective HT on a roof-mounted flat plate. <em>Solar Energy</em> 62(2), 69–77.</li>
-          <li id="ref-Palyvos2008">Palyvos J. A. (2008). Survey of wind convection coefficient correlations. <em>Appl. Therm. Eng.</em> 28(8–9), 801–808.</li>
-        </ol>
-
-        <h3>Ventilation</h3>
-        <ol class="refs-list">
-          <li id="ref-BoulardBaille1995">Boulard T., Baille A. (1995). Air exchange rate with continuous roof vents. <em>J. Agric. Eng. Res.</em> 61(1), 37–48.</li>
-          <li id="ref-KornerChalla2003">Körner O., Challa H. (2003). Process-based humidity control regime. <em>Comput. Electron. Agric.</em> 39(3), 173–192.</li>
+          <li id="ref-Faiman2008">Faiman D. (2008). Outdoor PV module T. <em>Prog. Photovolt.</em> 16(4), 307–315.</li>
+          <li id="ref-Sharples1998">Sharples S., Charlesworth P. S. (1998). Wind-induced h on roof-mounted flat plate. <em>Solar Energy</em> 62(2), 69–77.</li>
+          <li id="ref-Palyvos2008">Palyvos J. A. (2008). Survey of wind convection correlations. <em>Appl. Therm. Eng.</em> 28(8–9), 801–808.</li>
         </ol>
       </div>
 
       <div class="refs-col">
+        <h3>Ventilation</h3>
+        <ol class="refs-list">
+          <li id="ref-BoulardBaille1995">Boulard T., Baille A. (1995). Air exchange with continuous roof vents. <em>J. Agric. Eng. Res.</em> 61(1), 37–48.</li>
+          <li id="ref-KornerChalla2003">Körner O., Challa H. (2003). Process-based humidity control. <em>Comput. Electron. Agric.</em> 39(3), 173–192.</li>
+        </ol>
+
         <h3>Crop models &amp; control</h3>
         <ol class="refs-list">
-          <li id="ref-Marcelis1994">Marcelis L. F. M. (1994). <em>Fruit growth and dry matter partitioning in cucumber.</em> PhD, Wageningen.</li>
-          <li id="ref-vanHenten1994">van Henten E. J. (1994). Validation of a dynamic lettuce growth model. <em>Agric. Syst.</em> 45, 55–72.</li>
-          <li id="ref-Heuvelink1996">Heuvelink E. (1996). <em>Tomato growth and yield: quantitative analysis and synthesis.</em> PhD, Wageningen.</li>
-          <li id="ref-Tap2000">Tap F. (2000). <em>Economics-based optimal control of greenhouse tomato crop production.</em> PhD, Wageningen.</li>
-          <li id="ref-GaryTchamitchian1994">Seginer I., Gary C., Tchamitchian M. (1994). Optimal T regimes with carbohydrate pool. <em>Sci. Hortic.</em> 60, 55–80.</li>
-          <li id="ref-Seginer1991">Seginer I. (1991). Optimal T trajectories for a tomato model <span style="color:#aaa">[verify]</span>.</li>
-          <li id="ref-Yin1995">Yin X., Kropff M. J. (1995). Temperature on leaf appearance in rice. <em>Ann. Bot.</em> 77, 215–221 <span style="color:#aaa">[verify]</span>.</li>
+          <li id="ref-Marcelis1994">Marcelis L. F. M. (1994). <em>Fruit growth &amp; DM partitioning in cucumber.</em> PhD, Wageningen.</li>
+          <li id="ref-vanHenten1994">van Henten E. J. (1994). Dynamic lettuce growth model. <em>Agric. Syst.</em> 45, 55–72.</li>
+          <li id="ref-Heuvelink1996">Heuvelink E. (1996). <em>Tomato growth &amp; yield.</em> PhD, Wageningen.</li>
+          <li id="ref-Tap2000">Tap F. (2000). <em>Economics-based optimal control of GH tomato.</em> PhD, Wageningen.</li>
+          <li id="ref-GaryTchamitchian1994">Seginer I., Gary C., Tchamitchian M. (1994). Optimal T regimes. <em>Sci. Hortic.</em> 60, 55–80.</li>
+          <li id="ref-Seginer1991">Seginer I. (1991). Optimal T trajectories (tomato) <span style="color:#aaa">[verify]</span>.</li>
+          <li id="ref-Yin1995">Yin X., Kropff M. J. (1995). T on leaf appearance, rice. <em>Ann. Bot.</em> 77, 215–221 <span style="color:#aaa">[verify]</span>.</li>
           <li id="ref-vanStraten2011">van Straten G. <em>et al.</em> (2011). <em>Optimal Control of Greenhouse Cultivation.</em> CRC Press.</li>
           <li id="ref-DuffieBeckman2013">Duffie J. A., Beckman W. A. (2013). <em>Solar Engineering of Thermal Processes</em>, 4th ed., Wiley.</li>
         </ol>
+      </div>
 
+      <div class="refs-col">
         <h3>Building convection (EnergyPlus)</h3>
         <ol class="refs-list">
           <li id="ref-Walton1983">Walton G. N. (1983). <em>TARP Reference Manual.</em> NBSIR 83-2655.</li>
-          <li id="ref-BeausoleilMorrison2000">Beausoleil-Morrison I. (2000). <em>Adaptive coupling of heat and air flow.</em> PhD, Strathclyde.</li>
+          <li id="ref-BeausoleilMorrison2000">Beausoleil-Morrison I. (2000). <em>Adaptive coupling of heat &amp; air flow.</em> PhD, Strathclyde.</li>
           <li id="ref-ASHRAE2020">ASHRAE (2020). <em>Handbook — HVAC Systems and Equipment.</em></li>
         </ol>
 
@@ -5587,27 +5777,34 @@
           <li id="ref-Baille1994">Baille M., Baille A., Laury J. C. (1994). Simplified ET vs climate &amp; LAI. <em>Sci. Hortic.</em> 59(3–4), 217–232.</li>
           <li id="ref-Jolliet1994">Jolliet O. (1994). HORTITRANS: humidity &amp; transpiration. <em>J. Agric. Eng. Res.</em> 57, 23–37.</li>
           <li id="ref-Katsoulas2002">Katsoulas N., Baille A., Kittas C. (2002). LAI &amp; canopy energy partitioning. <em>Biosyst. Eng.</em> 83(3), 349–359.</li>
-          <li id="ref-Seginer1994">Seginer I. (1994). Transpirational cooling with partial ground cover. <em>Agric. For. Meteorol.</em> 71, 265–281.</li>
+          <li id="ref-Seginer1994">Seginer I. (1994). Transpirational cooling, partial ground cover. <em>Agric. For. Meteorol.</em> 71, 265–281.</li>
           <li id="ref-BailleA2001">Baille A., Kittas C., Katsoulas N. (2001). Whitening &amp; energy partitioning. <em>Agric. For. Meteorol.</em> 107(4), 293–306.</li>
+        </ol>
+
+        <h3>HVAC component models</h3>
+        <ol class="refs-list">
+          <li id="ref-DeSoto2006">De Soto W., Klein S. A., Beckman W. A. (2006). PV array performance model. <em>Solar Energy</em> 80(1), 78–88.</li>
+          <li id="ref-Staffell2012">Staffell I. <em>et al.</em> (2012). Review of domestic heat pumps. <em>Energy Environ. Sci.</em> 5(11), 9291–9306.</li>
+          <li id="ref-HugoLemort">Hugo M., Lemort V. (2003). ConsoClim HP characterisation (CAPFT/EIRFT). ULg.</li>
         </ol>
       </div>
 
       <div class="refs-col">
         <h3>Photosynthesis &amp; stomata</h3>
         <ol class="refs-list">
-          <li id="ref-Farquhar1980">Farquhar G. D., von Caemmerer S., Berry J. A. (1980). Biochemical model of C3 photosynthesis. <em>Planta</em> 149, 78–90.</li>
+          <li id="ref-Farquhar1980">Farquhar G. D., von Caemmerer S., Berry J. A. (1980). C3 photosynthesis model. <em>Planta</em> 149, 78–90.</li>
           <li id="ref-Medlyn2011">Medlyn B. E. <em>et al.</em> (2011). Optimal vs empirical stomatal conductance. <em>Glob. Change Biol.</em> 17, 2134–2144.</li>
           <li id="ref-Monteith2013">Monteith J. L., Unsworth M. H. (2013). <em>Principles of Environmental Physics</em>, 4th ed., Academic Press.</li>
-          <li id="ref-VialetChabrand2013">Vialet-Chabrand S., Dreyer E., Brendel O. (2013). Dynamic diurnal stomatal model. <em>Plant Cell Environ.</em> 36, 1529–1546.</li>
+          <li id="ref-VialetChabrand2013">Vialet-Chabrand S. <em>et al.</em> (2013). Dynamic diurnal stomatal model. <em>Plant Cell Environ.</em> 36, 1529–1546.</li>
         </ol>
 
         <h3>FSPM &amp; canopy architecture</h3>
         <ol class="refs-list">
-          <li id="ref-Sarlikioti2011">Sarlikioti V., de Visser P. H. B., Marcelis L. F. M. (2011). Tomato architecture ideotype via FSPM. <em>Ann. Bot.</em> 108, 1065–1073.</li>
+          <li id="ref-Sarlikioti2011">Sarlikioti V., de Visser P. H. B., Marcelis L. F. M. (2011). Tomato architecture ideotype (FSPM). <em>Ann. Bot.</em> 108, 1065–1073.</li>
           <li id="ref-Sarlikioti2020">Sarlikioti V. (2020). Leaflet geometry follow-up <span style="color:#aaa">[verify]</span>.</li>
-          <li id="ref-Najla2009">Najla S. <em>et al.</em> (2009). Tomato architecture under salinity &amp; 3D simulator. <em>Botany</em> 87(10), 893–904.</li>
-          <li id="ref-Wiechers2014">Wiechers D. (2014). <em>Modelling light interception in tomato FSPM.</em> PhD, Leibniz Univ. Hannover.</li>
-          <li id="ref-deVisser2014">de Visser P. H. B. (2014). Tomato FSPM vtc parameter set <span style="color:#aaa">[verify]</span>.</li>
+          <li id="ref-Najla2009">Najla S. <em>et al.</em> (2009). Tomato architecture under salinity. <em>Botany</em> 87(10), 893–904.</li>
+          <li id="ref-Wiechers2014">Wiechers D. (2014). <em>Light interception in tomato FSPM.</em> PhD, LUH.</li>
+          <li id="ref-deVisser2014">de Visser P. H. B. (2014). Tomato FSPM vtc parameters <span style="color:#aaa">[verify]</span>.</li>
           <li id="ref-Higashide2020">Higashide T. (2020). Cultivar-specific K (Momotaro/OldDutch/Ringyoku) <span style="color:#aaa">[verify]</span>.</li>
         </ol>
 
@@ -5615,20 +5812,13 @@
         <ol class="refs-list">
           <li id="ref-Nilson1971">Nilson T. (1971). Gap frequency in plant stands. <em>Agric. Meteorol.</em> 8, 25–38.</li>
           <li id="ref-Stenberg1996">Stenberg P. (1996). Photon recollision probability in canopies. <em>Remote Sens. Environ.</em></li>
-          <li id="ref-Pinty2004">Pinty B. <em>et al.</em> (2004). RAMI phase-2 radiation transfer intercomparison. <em>JGR</em> 109, D06210.</li>
+          <li id="ref-Pinty2004">Pinty B. <em>et al.</em> (2004). RAMI-2 radiation transfer intercomparison. <em>JGR</em> 109, D06210.</li>
         </ol>
 
         <h3>Agrivoltaics &amp; greenhouse PV</h3>
         <ol class="refs-list">
           <li id="ref-YanoCossu2019">Yano A., Cossu M. (2019). Sustainable GH with PV technologies. <em>Renew. Sustain. Energy Rev.</em> 109, 116–137.</li>
           <li id="ref-Cossu2014">Cossu M. <em>et al.</em> (2014). Solar radiation in a PV-roof greenhouse. <em>Appl. Energy</em> 133, 89–100.</li>
-        </ol>
-
-        <h3>HVAC component models</h3>
-        <ol class="refs-list">
-          <li id="ref-DeSoto2006">De Soto W., Klein S. A., Beckman W. A. (2006). Improvement and validation of a PV array performance model. <em>Solar Energy</em> 80(1), 78–88.</li>
-          <li id="ref-Staffell2012">Staffell I., Brett D., Brandon N., Hawkes A. (2012). A review of domestic heat pumps. <em>Energy Environ. Sci.</em> 5(11), 9291–9306.</li>
-          <li id="ref-HugoLemort">Hugo M., Lemort V. (2003). ConsoClim: semi-empirical HP characterisation (bi-quadratic CAPFT/EIRFT). ULg.</li>
         </ol>
       </div>
     </div>
