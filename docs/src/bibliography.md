@@ -154,6 +154,6 @@ References used in the development, validation, and parameterisation of Greenhou
 
   > Second Autonomous Greenhouse Challenge (WUR, Bleiswijk). Provides the zenithal RGB + sensor dataset used for LAI ground-truth.
 
-- **Wageningen University & Research**. *Autonomous Greenhouse / Plant Growth Challenge.* [autonomousgreenhouses.com](https://www.autonomousgreenhouses.com/)
+- **Wageningen University & Research**. *Autonomous Greenhouse / Plant Growth Challenge.* [wur.nl/autonomous-greenhouse-challenge](https://www.wur.nl/en/research/plant/autonomous-greenhouse-challenge)
 
   > Official challenge page with datasets (cherry tomato, lettuce, cucumber) and competition rules; the 4th edition (Plant Growth Challenge) is the source of the `cam_19` RGB stream.

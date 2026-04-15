@@ -177,6 +177,7 @@
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('15')"><span class="tn">11b</span> Air vapor balance</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('16')"><span class="tn">11c</span> Transpiration (Stanghellini)</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('16b')"><span class="tn">11d</span> Floor &amp; substrate evaporation</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('16c')"><span class="tn">11e</span> Why Stanghellini, not FAO-PM</a>
       </div>
 
       <div class="toc-col">
@@ -1136,20 +1137,20 @@
     </header>
 
     <div class="balance-eq">
-      <span class="lhs">C<sub>cov</sub> &middot; dT<sub>cov</sub>/dt =</span>
-      <span class="term warm" data-fragment="1">+ Q<sub>sol</sub></span>
+      <span class="lhs"><span class="term-hover" data-tip="C_cov: thermal capacity of the glass cover [J·m⁻²·K⁻¹]">C<sub>cov</sub></span> &middot; d<span class="term-hover" data-tip="T_cov: temperature of the cover [K]">T<sub>cov</sub></span>/dt =</span>
+      <span class="term warm" data-fragment="1">+ <span class="term-hover" data-tip="Q_sol: shortwave absorbed by the glass cover [W·m⁻²]">Q<sub>sol</sub></span></span>
       <span class="op">+</span>
-      <span class="term warm" data-fragment="2">Q<sub>cnv,air</sub></span>
+      <span class="term warm" data-fragment="2"><span class="term-hover" data-tip="Q_cnv,air: convection from indoor air to the cover [W·m⁻²]">Q<sub>cnv,air</sub></span></span>
       <span class="op">+</span>
-      <span class="term warm" data-fragment="3">Q<sub>rad,int</sub></span>
+      <span class="term warm" data-fragment="3"><span class="term-hover" data-tip="Q_rad,int: net LW exchange with interior surfaces (floor, walls, canopy) [W·m⁻²]">Q<sub>rad,int</sub></span></span>
       <span class="op">+</span>
-      <span class="term warm" data-fragment="3">Q<sub>pv</sub></span>
+      <span class="term warm" data-fragment="3"><span class="term-hover" data-tip="Q_pv: waste heat from the PV panel transferred to the cover [W·m⁻²]">Q<sub>pv</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="4">Q<sub>cnv,out</sub></span>
+      <span class="term cool" data-fragment="4"><span class="term-hover" data-tip="Q_cnv,out: convective loss from the cover to the outside wind [W·m⁻²]">Q<sub>cnv,out</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="5">Q<sub>rad,sky</sub></span>
+      <span class="term cool" data-fragment="5"><span class="term-hover" data-tip="Q_rad,sky: longwave radiative loss from cover to sky [W·m⁻²]">Q<sub>rad,sky</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term bad" data-fragment="6">Q<sub>rad,grd</sub></span>
+      <span class="term bad" data-fragment="6"><span class="term-hover" data-tip="Q_rad,grd: longwave radiative loss from cover to the ground [W·m⁻²]">Q<sub>rad,grd</sub></span></span>
     </div>
 
     <div class="balance-body">
@@ -1356,7 +1357,7 @@
           <div class="term-label">Q<sub>rad,grd</sub></div>
           <div class="term-unit">W &middot; cover &rarr; ground IR</div>
           <p class="term-formula">Q<sub>rad,grd</sub> = &epsilon;<sub>cov</sub>&middot;(1&minus;F<sub>sky</sub>)&middot;&sigma;&middot;A&middot;(T<sub>cov</sub><sup>4</sup> &minus; T<sub>out</sub><sup>4</sup>)</p>
-          <p>Cover radiates IR downward to the ground. The original library lumped this into the sky term, overcooling tilted surfaces.</p>
+          <p>Cover radiates IR downward to the ground. The original Modelica library (<a class="ref-link" href="#ref-AltesBuch2019" onclick="goToSlide('refs'); location.hash='#ref-AltesBuch2019'; return false;">Altes-Buch 2019</a>, inherited from <a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a>) put this term in Q<sub>rad,sky</sub>, implicitly assuming F<sub>sky</sub> = 1; tilted covers then radiate to a single cold sky and come out too cold.</p>
         </div>
       </div>
     </div>
@@ -1473,16 +1474,16 @@
     </header>
 
     <div class="balance-eq">
-      <span class="lhs">I<sub>glob</sub>&middot;A =</span>
-      <span class="term warm" data-fragment="1">Q<sub>sol,cov</sub></span>
+      <span class="lhs"><span class="term-hover" data-tip="I_glob: global horizontal solar irradiance above the greenhouse [W·m⁻²]">I<sub>glob</sub></span>&middot;<span class="term-hover" data-tip="A: cover (footprint) area [m²]">A</span> =</span>
+      <span class="term warm" data-fragment="1"><span class="term-hover" data-tip="Q_sol,cov: shortwave absorbed inside the glass cover [W]">Q<sub>sol,cov</sub></span></span>
       <span class="op">+</span>
-      <span class="term warm" data-fragment="2">Q<sub>sol,air</sub></span>
+      <span class="term warm" data-fragment="2"><span class="term-hover" data-tip="Q_sol,air: shortwave absorbed directly by the indoor air [W]">Q<sub>sol,air</sub></span></span>
       <span class="op">+</span>
-      <span class="term warm" data-fragment="3">Q<sub>sol,can</sub></span>
+      <span class="term warm" data-fragment="3"><span class="term-hover" data-tip="Q_sol,can: shortwave absorbed by the canopy (PAR + NIR) [W]">Q<sub>sol,can</sub></span></span>
       <span class="op">+</span>
-      <span class="term warm" data-fragment="4">Q<sub>sol,flr</sub></span>
+      <span class="term warm" data-fragment="4"><span class="term-hover" data-tip="Q_sol,flr: shortwave absorbed by the floor [W]">Q<sub>sol,flr</sub></span></span>
       <span class="op">+</span>
-      <span class="term cool" data-fragment="5">Q<sub>refl</sub></span>
+      <span class="term cool" data-fragment="5"><span class="term-hover" data-tip="Q_refl: shortwave reflected back out to the sky [W]">Q<sub>refl</sub></span></span>
     </div>
 
     <div class="balance-body">
@@ -1603,7 +1604,7 @@
           <span class="term-tag">Shortwave partitioning</span>
           <h3 class="term-label">Direct + diffuse, PAR + NIR</h3>
           <p>I<sub>glob</sub> split into beam + diffuse: measured channels from the EPW when present, otherwise via <a class="ref-link" href="#ref-Erbs1982" onclick="goToSlide('refs'); location.hash='#ref-Erbs1982'; return false;">Erbs (1982)</a>.</p>
-          <p>Beam projected with solar position and transmitted through the cover with <span class="rich-hover">Fresnel &tau;(&theta;)<span class="rich-hover-popup"><span class="rhp-title">Fresnel τ(θ) / τ(0) for n = 1.526</span><svg viewBox="0 0 340 180" style="width:380px; display:block;" font-family="Inter, system-ui, sans-serif"><line x1="50" y1="10" x2="50" y2="140" stroke="#999" stroke-width="1"/><line x1="50" y1="140" x2="310" y2="140" stroke="#999" stroke-width="1"/><text x="14" y="78" text-anchor="middle" font-size="11" fill="#555" font-weight="600" transform="rotate(-90,14,78)">τ(θ) / τ(0)</text><text x="46" y="18" text-anchor="end" font-size="11" fill="#666">1.0</text><text x="46" y="78" text-anchor="end" font-size="11" fill="#666">0.5</text><text x="46" y="143" text-anchor="end" font-size="11" fill="#666">0</text><text x="50" y="156" text-anchor="middle" font-size="11" fill="#666">0°</text><text x="115" y="156" text-anchor="middle" font-size="11" fill="#666">20°</text><text x="180" y="156" text-anchor="middle" font-size="11" fill="#666">40°</text><text x="245" y="156" text-anchor="middle" font-size="11" fill="#666">60°</text><text x="310" y="156" text-anchor="middle" font-size="11" fill="#666">80°</text><text x="180" y="174" text-anchor="middle" font-size="11" fill="#555" font-weight="600">Incidence angle θ</text><line x1="50" y1="15" x2="310" y2="15" stroke="#aaa" stroke-width="1.2" stroke-dasharray="5,3"/><text x="125" y="12" text-anchor="middle" font-size="10" fill="#999" font-style="italic">old: constant τ</text><polyline fill="none" stroke="#2d8a5a" stroke-width="3" points="50,15 84,15.4 115,16 148,19.3 180,26.5 212,40 245,63 272,87 292,108 310,117"/><rect x="245" y="10" width="65" height="130" fill="#c46a1e" fill-opacity="0.07" rx="2"/><text x="278" y="26" text-anchor="middle" font-size="10" fill="#c46a1e" font-weight="600">&gt;60°</text></svg><span class="rhp-note">Hemisphere-averaged diffuse picks up ≈ 0.88·τ(0).</span></span></span>, <span class="rich-hover">n = 1.526<span class="rich-hover-popup"><span class="rhp-title">Refractive index of common cover materials</span><span class="rhp-formula">Normal-incidence Fresnel reflectance: ρ(0) = ((n − 1)/(n + 1))²</span><span class="rhp-table"><span class="rhp-th">Material</span><span class="rhp-th rhp-right">n</span><span>Soda-lime glass (default GH)</span><span class="rhp-right"><strong>1.526</strong></span><span>Low-iron horticultural glass</span><span class="rhp-right">1.515</span><span>Borosilicate</span><span class="rhp-right">1.470</span><span>Polycarbonate (twin-wall)</span><span class="rhp-right">1.585</span><span>Acrylic / PMMA</span><span class="rhp-right">1.490</span><span>PE film</span><span class="rhp-right">1.510</span><span>ETFE film</span><span class="rhp-right">1.380</span><span>Air (reference)</span><span class="rhp-right">1.000</span></span></span></span>. Diffuse assumed <strong>isotropic</strong> (<a class="ref-link" href="#ref-LiuJordan1960" onclick="goToSlide('refs'); location.hash='#ref-LiuJordan1960'; return false;">Liu &amp; Jordan 1960</a>), so &tau;<sub>diff</sub> = 0.88&middot;&tau;<sub>0</sub> is the hemisphere integral of Fresnel (<a class="ref-link" href="#ref-DuffieBeckman2013" onclick="goToSlide('refs'); location.hash='#ref-DuffieBeckman2013'; return false;">Duffie &amp; Beckman 2013</a>, &sect;5.4): a fixed geometric constant, not a tuned coefficient, exact under isotropy.</p>
+          <p>Beam projected with solar position and transmitted through the cover with <span class="rich-hover">Fresnel &tau;(&theta;)<span class="rich-hover-popup"><span class="rhp-title">Fresnel τ(θ) / τ(0) for n = 1.526</span><svg viewBox="0 0 340 180" style="width:380px; display:block;" font-family="Inter, system-ui, sans-serif"><line x1="50" y1="10" x2="50" y2="140" stroke="#999" stroke-width="1"/><line x1="50" y1="140" x2="310" y2="140" stroke="#999" stroke-width="1"/><text x="14" y="78" text-anchor="middle" font-size="11" fill="#555" font-weight="600" transform="rotate(-90,14,78)">τ(θ) / τ(0)</text><text x="46" y="18" text-anchor="end" font-size="11" fill="#666">1.0</text><text x="46" y="78" text-anchor="end" font-size="11" fill="#666">0.5</text><text x="46" y="143" text-anchor="end" font-size="11" fill="#666">0</text><text x="50" y="156" text-anchor="middle" font-size="11" fill="#666">0°</text><text x="115" y="156" text-anchor="middle" font-size="11" fill="#666">20°</text><text x="180" y="156" text-anchor="middle" font-size="11" fill="#666">40°</text><text x="245" y="156" text-anchor="middle" font-size="11" fill="#666">60°</text><text x="310" y="156" text-anchor="middle" font-size="11" fill="#666">80°</text><text x="180" y="174" text-anchor="middle" font-size="11" fill="#555" font-weight="600">Incidence angle θ</text><line x1="50" y1="15" x2="310" y2="15" stroke="#aaa" stroke-width="1.2" stroke-dasharray="5,3"/><text x="125" y="12" text-anchor="middle" font-size="10" fill="#999" font-style="italic">old: constant τ</text><polyline fill="none" stroke="#2d8a5a" stroke-width="3" points="50,15 84,15.4 115,16 148,19.3 180,26.5 212,40 245,63 272,87 292,108 310,117"/><rect x="245" y="10" width="65" height="130" fill="#c46a1e" fill-opacity="0.07" rx="2"/><text x="278" y="26" text-anchor="middle" font-size="10" fill="#c46a1e" font-weight="600">&gt;60°</text></svg><span class="rhp-note">Hemisphere-averaged diffuse picks up ≈ 0.88·τ(0).</span></span></span>, <span class="rich-hover">n = 1.526<span class="rich-hover-popup"><span class="rhp-title">Refractive index of common cover materials</span><span class="rhp-formula">Normal-incidence Fresnel reflectance: ρ(0) = ((n − 1)/(n + 1))²</span><span class="rhp-table"><span class="rhp-th">Material</span><span class="rhp-th rhp-right">n</span><span>Soda-lime glass (default GH)</span><span class="rhp-right"><strong>1.526</strong></span><span>Low-iron horticultural glass</span><span class="rhp-right">1.515</span><span>Borosilicate</span><span class="rhp-right">1.470</span><span>Polycarbonate (twin-wall)</span><span class="rhp-right">1.585</span><span>Acrylic / PMMA</span><span class="rhp-right">1.490</span><span>PE film</span><span class="rhp-right">1.510</span><span>ETFE film</span><span class="rhp-right">1.380</span><span>Air (reference)</span><span class="rhp-right">1.000</span></span></span></span>. Diffuse assumed <strong>isotropic</strong> (<a class="ref-link" href="#ref-LiuJordan1960" onclick="goToSlide('refs'); location.hash='#ref-LiuJordan1960'; return false;">Liu &amp; Jordan 1960</a>), so &tau;<sub>diff</sub> = 0.88&middot;&tau;<sub>0</sub> is the hemisphere integral of Fresnel (<a class="ref-link" href="#ref-DuffieBeckman2013" onclick="goToSlide('refs'); location.hash='#ref-DuffieBeckman2013'; return false;">Duffie &amp; Beckman 2013</a>, &sect;5.4): <span class="rich-hover">a fixed geometric constant, not a tuned coefficient<span class="rich-hover-popup" style="max-width:none; width:520px;"><span class="rhp-title">Why 0.88 is a pure geometric integral</span><span class="rhp-formula">&tau;<sub>diff</sub> = (1/&pi;)&middot;&int;<sub>hemisphere</sub> &tau;<sub>beam</sub>(&theta;)&middot;cos&theta;&middot;sin&theta; d&theta; d&phi;</span><span style="display:block; font-size:0.82rem; line-height:1.45;">Inputs: Fresnel &tau;<sub>beam</sub>(&theta;) (only depends on <em>n</em>) + isotropic sky. No weather, no sun position.</span><span style="display:block; font-size:0.82rem; line-height:1.45; margin-top:3px;">For <em>n</em> = 1.526 on a horizontal cover &rarr; 0.88&middot;&tau;(0). Effective incidence angle &asymp; 60&deg;.</span><span style="display:block; font-size:0.82rem; line-height:1.45; margin-top:3px;">Change glass (new <em>n</em>) or tilt &phi; &rarr; new geometric number, recomputed analytically. Nothing is fitted to data.</span><span class="rhp-note"><a class="ref-link" href="#ref-DuffieBeckman2013" onclick="goToSlide('refs'); location.hash='#ref-DuffieBeckman2013'; return false;">Duffie &amp; Beckman (2013)</a> &sect;5.4.</span></span></span>, exact under isotropy.</p>
           <p style="color:#666; font-size:0.9rem; margin-top:0.3rem;">Planned: <strong>Perez</strong> anisotropic sky to benchmark on clear days.</p>
         </div>
 
@@ -1642,7 +1643,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
           <div class="term-unit">W &middot; remainder absorbed by floor</div>
           <p class="term-formula">Q<sub>sol,flr</sub> = R<sub>t,PAR</sub>&middot;e<sup>&minus;K<sub>1</sub>&middot;LAI</sup>&middot;(1&minus;&rho;<sub>flr,PAR</sub>) + R<sub>NIR</sub>&middot;&alpha;<sub>flr,NIR</sub></p>
           <p>Two pathways reach the floor:</p>
-          <p><strong>PAR.</strong> The fraction that escapes canopy extinction, i.e. the Beer-Lambert tail e<sup>&minus;K<sub>1</sub>&middot;LAI</sup>, then the floor absorbs all of it except its own reflectance &rho;<sub>flr,PAR</sub>.</p>
+          <p><strong>PAR.</strong> The fraction that escapes canopy extinction (the Beer-Lambert e<sup>&minus;K<sub>1</sub>&middot;LAI</sup>), is absorbed by the floor except its own reflectance &rho;<sub>flr,PAR</sub>.</p>
           <p><strong>NIR.</strong> A different accounting: the cover, canopy and floor each have their own &tau; / &rho; / &alpha;; they are composed in series with <span class="rich-hover"><code>multilayer_tau_rho</code><span class="rich-hover-popup" style="max-width:640px;"><span class="rhp-title">Two stacked semi-transparent layers (adding formula)</span><span class="rhp-formula">&tau;<sub>12</sub> = &tau;<sub>1</sub>·&tau;<sub>2</sub> / (1 &minus; &rho;<sub>1</sub>·&rho;<sub>2</sub>)&ensp;&ensp;&rho;<sub>12</sub> = &rho;<sub>1</sub> + &tau;<sub>1</sub>²·&rho;<sub>2</sub> / (1 &minus; &rho;<sub>1</sub>·&rho;<sub>2</sub>)</span><span style="display:block; font-size:0.82rem; line-height:1.45;"><strong>Derivation.</strong> Light entering layer 1 transmits with &tau;<sub>1</sub>, hits layer 2 and partially reflects with &rho;<sub>2</sub>, comes back, partially reflects again off the bottom of layer 1 with &rho;<sub>1</sub>, and so on. Summing the infinite geometric series of internal bounces gives 1 + &rho;<sub>1</sub>&rho;<sub>2</sub> + (&rho;<sub>1</sub>&rho;<sub>2</sub>)² + … = 1/(1 &minus; &rho;<sub>1</sub>&rho;<sub>2</sub>), which multiplies both the transmitted and the back-reflected fluxes.</span><span style="display:block; margin-top:6px; font-size:0.82rem; line-height:1.45;"><strong>Worked example</strong> (NIR, cover + canopy, LAI = 2):&ensp;&tau;<sub>1</sub>&thinsp;=&thinsp;0.87, &rho;<sub>1</sub>&thinsp;=&thinsp;0.10 (cover);&ensp;&tau;<sub>2</sub>&thinsp;=&thinsp;e<sup>&minus;0.27&middot;2</sup>&thinsp;&asymp;&thinsp;0.58, &rho;<sub>2</sub>&thinsp;&asymp;&thinsp;0.15 (canopy). Then 1&minus;&rho;<sub>1</sub>&rho;<sub>2</sub>&thinsp;=&thinsp;0.985, so &tau;<sub>12</sub>&thinsp;=&thinsp;0.87·0.58/0.985 &asymp; 0.512 and &rho;<sub>12</sub>&thinsp;=&thinsp;0.10 + (0.87²·0.15)/0.985 &asymp; 0.215. The code then stacks a third time with the floor to close the enclosure.</span><span style="display:block; margin-top:6px; background:#1e1e1e; color:#e8e8e8; border-radius:5px; padding:6px 8px; font-family:'Fira Code',monospace; font-size:0.78rem; line-height:1.45; white-space:pre-wrap;">@inline function multilayer_tau_rho(τ1, τ2, ρ1, ρ2)
     denom = 1 − ρ1·ρ2         # geometric-series sum
     τ12 = τ1·τ2 / denom        # compound transmittance
@@ -1673,20 +1674,20 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
     </header>
 
     <div class="balance-eq" style="font-size:30px">
-      <span class="lhs">C<sub>air</sub> &middot; dT<sub>air</sub>/dt =</span>
-      <span class="term warm" data-fragment="1">Q<sub>cnv,flr</sub></span>
+      <span class="lhs"><span class="term-hover" data-tip="C_air: thermal capacity of the indoor air (air volume + construction obstacles) [J·m⁻²·K⁻¹]">C<sub>air</sub></span> &middot; d<span class="term-hover" data-tip="T_air: indoor air temperature [K]">T<sub>air</sub></span>/dt =</span>
+      <span class="term warm" data-fragment="1"><span class="term-hover" data-tip="Q_cnv,flr: convective heat flux from the floor to the air [W·m⁻²]">Q<sub>cnv,flr</sub></span></span>
       <span class="op">+</span>
-      <span class="term warm" data-fragment="2">Q<sub>sol,air</sub></span>
+      <span class="term warm" data-fragment="2"><span class="term-hover" data-tip="Q_sol,air: shortwave absorbed directly by air (construction obstacles) [W·m⁻²]">Q<sub>sol,air</sub></span></span>
       <span class="op">+</span>
-      <span class="term warm" data-fragment="3">Q<sub>heat</sub></span>
+      <span class="term warm" data-fragment="3"><span class="term-hover" data-tip="Q_heat: heating input from pipes, heat pumps or CHP [W·m⁻²]">Q<sub>heat</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="4">Q<sub>cnv,cov</sub></span>
+      <span class="term cool" data-fragment="4"><span class="term-hover" data-tip="Q_cnv,cov: convective loss from air to the cover [W·m⁻²]">Q<sub>cnv,cov</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term bad" data-fragment="5">Q<sub>cnv,wall</sub></span>
+      <span class="term bad" data-fragment="5"><span class="term-hover" data-tip="Q_cnv,wall: convective loss to the walls [W·m⁻²]">Q<sub>cnv,wall</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="6">Q<sub>can</sub></span>
+      <span class="term cool" data-fragment="6"><span class="term-hover" data-tip="Q_can: net sensible heat exchange between canopy and air [W·m⁻²]">Q<sub>can</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="7">Q<sub>vent</sub></span>
+      <span class="term cool" data-fragment="7"><span class="term-hover" data-tip="Q_vent: enthalpy loss via natural ventilation [W·m⁻²]">Q<sub>vent</sub></span></span>
     </div>
 
     <div class="balance-body">
@@ -1891,14 +1892,14 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
     </header>
 
     <div class="balance-eq" style="font-size:38px">
-      <span class="lhs">C<sub>can</sub> &middot; dT<sub>can</sub>/dt =</span>
-      <span class="term warm" data-fragment="1">Q<sub>sol,can</sub></span>
+      <span class="lhs"><span class="term-hover" data-tip="C_can: canopy thermal capacity (leaf mass per ground area × specific heat) [J·m⁻²·K⁻¹]">C<sub>can</sub></span> &middot; d<span class="term-hover" data-tip="T_can: canopy (leaf) temperature [K]">T<sub>can</sub></span>/dt =</span>
+      <span class="term warm" data-fragment="1"><span class="term-hover" data-tip="Q_sol,can: shortwave absorbed by the canopy [W·m⁻²]">Q<sub>sol,can</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="2">H</span>
+      <span class="term cool" data-fragment="2"><span class="term-hover" data-tip="H: sensible heat flux from canopy to air [W·m⁻²]">H</span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="3">&lambda;E</span>
+      <span class="term cool" data-fragment="3"><span class="term-hover" data-tip="λE: latent heat flux (transpiration) [W·m⁻²]">&lambda;E</span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="4">Q<sub>rad,can&rarr;cov</sub></span>
+      <span class="term cool" data-fragment="4"><span class="term-hover" data-tip="Q_rad,can→cov: longwave radiative loss from canopy to cover [W·m⁻²]">Q<sub>rad,can&rarr;cov</sub></span></span>
     </div>
 
     <div class="balance-body">
@@ -2038,7 +2039,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
           <div class="term-label">Q<sub>rad,can&rarr;cov</sub></div>
           <div class="term-unit">W &middot; IR loss to cover</div>
           <p class="term-formula">Q<sub>rad,can&rarr;cov</sub> = &epsilon;<sub>can</sub>&middot;&epsilon;<sub>cov</sub>&middot;&sigma;&middot;A&middot;(T<sub>can</sub><sup>4</sup> &minus; T<sub>cov</sub><sup>4</sup>) &middot; FF</p>
-          <p>FF = 1 &minus; e<sup>&minus;0.94&middot;LAI</sup> is the canopy view factor. The cold cover at night drives this loss and creates the T<sub>can</sub> depression observed in greenhouses.</p>
+          <p><span class="term-hover" data-tip="FF (canopy form factor): fraction of canopy-emitted LW that clears the leaf layer and reaches the cover. Beer-Lambert with k ≈ 0.94 (leaves are near-opaque in thermal IR). FF → 0 at LAI = 0, FF ≈ 1 at LAI ≥ 3.">FF</span> = 1 &minus; e<sup>&minus;0.94&middot;LAI</sup> is the canopy form factor (view factor to the cover). The cold cover at night drives this loss and creates the T<sub>can</sub> depression observed in greenhouses.</p>
         </div>
       </div>
     </div>
@@ -2157,11 +2158,11 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
     </header>
 
     <div class="balance-eq">
-      <span class="lhs">dm<sub>w</sub>/dt =</span>
-      <span class="term cool" data-fragment="1">MV<sub>AirCov</sub></span>
+      <span class="lhs">d<span class="term-hover" data-tip="m_w: mass of condensed water per unit cover area [kg·m⁻²]">m<sub>w</sub></span>/dt =</span>
+      <span class="term cool" data-fragment="1"><span class="term-hover" data-tip="MV_AirCov: vapor mass flux condensing on the cover [kg·m⁻²·s⁻¹]">MV<sub>AirCov</sub></span></span>
       <span style="margin:0 1rem; color:var(--ink-dim);">|</span>
-      <span class="lhs">Q<sub>lat,cov</sub> =</span>
-      <span class="term warm" data-fragment="2">&lambda;<sub>vap</sub>&middot;MV<sub>AirCov</sub></span>
+      <span class="lhs"><span class="term-hover" data-tip="Q_lat,cov: latent heat released on the cover by condensation [W·m⁻²]">Q<sub>lat,cov</sub></span> =</span>
+      <span class="term warm" data-fragment="2"><span class="term-hover" data-tip="λ_vap · MV_AirCov: latent heat released on the cover by condensation [W·m⁻²]">&lambda;<sub>vap</sub>&middot;MV<sub>AirCov</sub></span></span>
     </div>
 
     <div class="balance-body">
@@ -2248,7 +2249,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
           <div class="term-unit">kg s&minus;1 &middot; air &rarr; cover</div>
           <p class="term-formula">MV<sub>AirCov</sub> = VEC<sub>AirCov</sub> &middot; max(0, P<sub>v,air</sub> &minus; P<sub>v,cov</sub>)</p>
           <p class="term-formula">VEC<sub>AirCov</sub> = 6.4 &times; 10<sup>&minus;9</sup> &middot; HEC<sub>AirCov</sub> (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983)</a></p>
-          <p>Saturation-pressure-driven diffusion. <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> ties the vapor exchange coefficient to the convective heat exchange coefficient via a constant Lewis-number ratio. Forced to zero when the cover is above the dewpoint (no evaporation back).</p>
+          <p>Saturation-pressure-driven diffusion. <a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> reuses the convective heat-exchange coefficient for vapor transfer, with a fixed ratio from the <span class="rich-hover">Lewis analogy<span class="rich-hover-popup" style="max-width:none; width:440px;"><span class="rhp-title">Lewis number Le = &alpha; / D</span><span class="rhp-formula">HMC = HEC / (&rho;&middot;c<sub>p</sub>&middot;Le<sup>2/3</sup>)</span><span style="display:block; font-size:0.82rem; line-height:1.45;">Heat and vapor share the same boundary-layer transport. For water vapor in air, Le &asymp; 0.85 &asymp; 1, so the Chilton-Colburn analogy lets us derive the mass coefficient from the measured heat coefficient, no extra calibration.</span></span></span>. Forced to zero when the cover is above the dewpoint (no evaporation back).</p>
         </div>
 
         <div class="term-card warm" data-fragment="2">
@@ -2274,16 +2275,16 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
     </header>
 
     <div class="balance-eq" style="font-size:30px">
-      <span class="lhs">V<sub>air</sub> &middot; dC<sub>v,air</sub>/dt =</span>
-      <span class="term warm" data-fragment="1">+ MV<sub>CanAir</sub></span>
+      <span class="lhs"><span class="term-hover" data-tip="V_air: air volume of the greenhouse [m³]">V<sub>air</sub></span> &middot; d<span class="term-hover" data-tip="C_v,air: water-vapor concentration in the indoor air [kg·m⁻³]">C<sub>v,air</sub></span>/dt =</span>
+      <span class="term warm" data-fragment="1">+ <span class="term-hover" data-tip="MV_CanAir: vapor mass added to air by canopy transpiration [kg·m⁻²·s⁻¹]">MV<sub>CanAir</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="2">MV<sub>AirOut</sub></span>
+      <span class="term cool" data-fragment="2"><span class="term-hover" data-tip="MV_AirOut: vapor lost to outside through ventilation [kg·m⁻²·s⁻¹]">MV<sub>AirOut</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="3">MV<sub>AirTop</sub></span>
+      <span class="term cool" data-fragment="3"><span class="term-hover" data-tip="MV_AirTop: vapor exchanged with the upper (above-screen) compartment [kg·m⁻²·s⁻¹]">MV<sub>AirTop</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="4">MV<sub>AirCov</sub></span>
+      <span class="term cool" data-fragment="4"><span class="term-hover" data-tip="MV_AirCov: vapor condensing on the cover [kg·m⁻²·s⁻¹]">MV<sub>AirCov</sub></span></span>
       <span class="op">&minus;</span>
-      <span class="term cool" data-fragment="5">MV<sub>AirScr</sub></span>
+      <span class="term cool" data-fragment="5"><span class="term-hover" data-tip="MV_AirScr: vapor condensing on the thermal screen [kg·m⁻²·s⁻¹]">MV<sub>AirScr</sub></span></span>
     </div>
 
     <div class="balance-body">
@@ -2451,7 +2452,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
     </header>
 
     <div class="balance-eq">
-      <span class="lhs">MV<sub>CanAir</sub> =</span>
+      <span class="lhs"><span class="term-hover" data-tip="MV_CanAir: transpiration water-vapor mass flux from canopy to air [kg·m⁻²·s⁻¹]">MV<sub>CanAir</sub></span> =</span>
       <span class="term warm" data-fragment="1">LAI &middot; (&Delta;&middot;R<sub>n</sub> + &rho;c<sub>p</sub>&middot;VPD/r<sub>a</sub>)</span>
       <span class="op">/</span>
       <span class="term cool" data-fragment="2">(&Delta; + &gamma;&middot;(1 + r<sub>s</sub>/r<sub>a</sub>))</span>
@@ -2808,6 +2809,121 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
     </div>
   </section>
 
+
+  <!-- ============================================================
+       SLIDE 11e - WHY STANGHELLINI, NOT FAO-PM (schematic)
+       ============================================================ -->
+  <section class="slide" data-slide="16c">
+    <header>
+      <span class="num">11e</span>
+      <h2>Why Stanghellini, not FAO Penman-Monteith</h2>
+    </header>
+
+    <div style="padding:0 2rem;">
+      <p style="text-align:center; font-size:1.05rem; margin:0.25rem 0 0.6rem; color:var(--ink);">
+        FAO-PM keeps the right backbone, but <strong>every calibrated constant assumes open-field grass</strong>.
+        <br><span style="font-size:0.92rem; color:var(--ink-dim);">Five assumptions are quantitatively violated inside a greenhouse; an empirical K<sub>c</sub> cannot fix them because they are coupled.</span>
+      </p>
+
+      <div style="display:flex; flex-direction:column; gap:0.9rem;">
+
+        <div style="display:grid; grid-template-columns: 0.7fr 2fr 2fr; gap:1rem; padding:0.2rem 0.2rem; font-size:0.95rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-dim); font-weight:700; border-bottom:1px solid var(--ink-line);">
+          <div>what fails</div>
+          <div style="color:#c46a1e;">FAO-PM (open-field grass)</div>
+          <div style="color:#2d8a5a;">Stanghellini 1987 / GJL</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 0.7fr 2fr 2fr; gap:1rem; align-items:center; padding:0.35rem 0.2rem; border-bottom:1px dotted var(--ink-line);">
+          <div style="font-weight:700; font-size:0.95rem;">&#9312; &nbsp;r<sub>a</sub><div style="font-weight:400; font-size:0.75rem; color:var(--ink-dim);">aerodynamic</div></div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#c46a1e;">r<sub>a</sub> = 208 / u<sub>2</sub></div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">log wind profile. Indoor u<sub>2</sub> &asymp; 0.1 m/s &rarr; r<sub>a</sub> &asymp; 2080 s/m &rarr; ET collapses 30&times;.</div>
+          </div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#2d8a5a;">r<sub>a</sub> = &rho;&middot;c<sub>p</sub>&middot;l / (Nu&middot;&lambda;<sub>air</sub>)</div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">Nusselt-based, mixed free + forced convection. Calibrated on heated greenhouse leaves.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 0.7fr 2fr 2fr; gap:1rem; align-items:center; padding:0.35rem 0.2rem; border-bottom:1px dotted var(--ink-line);">
+          <div style="font-weight:700; font-size:0.95rem;">&#9313; &nbsp;r<sub>s</sub><div style="font-weight:400; font-size:0.75rem; color:var(--ink-dim);">stomatal</div></div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#c46a1e;">r<sub>s</sub> = 70 s/m</div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">Fixed, baked into the 0.34&middot;u<sub>2</sub> term. Tomato at night: r<sub>s</sub> &asymp; 5000 s/m (&times; 70).</div>
+          </div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#2d8a5a;">g<sub>s</sub> = g<sub>0</sub> + (1 + g<sub>1</sub>/&radic;VPD)&middot;A<sub>n</sub>/C<sub>a</sub></div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">Dynamic <a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide(\'refs\'); location.hash=\'#ref-Medlyn2011\'; return false;">Medlyn 2011</a> stomatal model. Responds to PAR, CO<sub>2</sub>, VPD.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 0.7fr 2fr 2fr; gap:1rem; align-items:center; padding:0.35rem 0.2rem; border-bottom:1px dotted var(--ink-line);">
+          <div style="font-weight:700; font-size:0.95rem;">&#9314; &nbsp;R<sub>n</sub><div style="font-weight:400; font-size:0.75rem; color:var(--ink-dim);">net radiation</div></div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#c46a1e;">R<sub>n</sub> = (1&minus;&alpha;)&middot;R<sub>s</sub> &minus; R<sub>sky</sub></div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">Above-canopy proxy. No cover, no screen, no LW exchange with structure.</div>
+          </div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#2d8a5a;">R<sub>n</sub> = Q<sub>sol,can</sub> + Q<sub>LW</sub><sup>enclosure</sup></div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">SW cascade (<a href="javascript:void(0)" onclick="goToSlide(\'10c\')" style="color:#2d8a5a; text-decoration:underline;">08c</a>) + N-surface LW radiosity (<a href="javascript:void(0)" onclick="goToSlide(\'10b\')" style="color:#2d8a5a; text-decoration:underline;">08b</a>).</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 0.7fr 2fr 2fr; gap:1rem; align-items:center; padding:0.35rem 0.2rem; border-bottom:1px dotted var(--ink-line);">
+          <div style="font-weight:700; font-size:0.95rem;">&#9315; &nbsp;VPD<div style="font-weight:400; font-size:0.75rem; color:var(--ink-dim);">vapor deficit</div></div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#c46a1e;">VPD = e*(T<sub>out</sub>) &minus; e<sub>a,out</sub></div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">Outdoor, daily. No feedback as indoor air humidifies.</div>
+          </div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#2d8a5a;">d(VP<sub>air</sub>)/dt = (MV<sub>can</sub> &minus; MV<sub>out</sub> &minus; &hellip;)/V<sub>air</sub></div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">Indoor VPD is a state variable; self-damps &lambda;E near saturation.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 0.7fr 2fr 2fr; gap:1rem; align-items:center; padding:0.35rem 0.2rem; border-bottom:1px dotted var(--ink-line);">
+          <div style="font-weight:700; font-size:0.95rem;">&#9316; &nbsp;dt<div style="font-weight:400; font-size:0.75rem; color:var(--ink-dim);">time scale</div></div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#c46a1e;">ET<sub>0</sub> per day</div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">Coefficients 0.408, 900, 0.34 derived for the daily step. Controllers need minute step.</div>
+          </div>
+          <div>
+            <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#2d8a5a;">Sub-hourly ODE + night cover condensation</div>
+            <div style="font-size:0.85rem; color:var(--ink); line-height:1.35;">Water loop closes (<a href="javascript:void(0)" onclick="goToSlide(\'14\')" style="color:#2d8a5a; text-decoration:underline;">slide 11a</a>): condensed vapor re-enters the cover energy balance.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Irrigation bridge row (answers the Priarone email) -->
+      <div style="margin-top:0.9rem; display:grid; grid-template-columns: 1fr 1.2fr; gap:1rem; align-items:start;">
+
+        <div style="background:rgba(196,106,30,.06); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.65rem 0.95rem;">
+          <div style="font-weight:700; color:#c46a1e; font-size:0.98rem; margin-bottom:0.15rem;">Irrigation (FAO-PM path)</div>
+          <p style="font-family:var(--serif); font-style:italic; font-size:0.95rem; color:#c46a1e; margin:0.1rem 0;">I<sub>irr</sub> = K<sub>c</sub>&middot;ET<sub>0</sub> / &eta;<sub>irr</sub></p>
+          <p style="font-size:0.85rem; line-height:1.4; margin:0.15rem 0 0;">Estimates the water to supply, then assumes all of it evaporates inside the greenhouse. Needs a GH-specific K<sub>c</sub> that Stanghellini argued the FAO reference cannot provide.</p>
+        </div>
+
+        <div style="background:rgba(45,138,90,0.07); border-left:4px solid #2d8a5a; border-radius:0 8px 8px 0; padding:0.65rem 0.95rem;">
+          <div style="font-weight:700; color:#2d8a5a; font-size:0.98rem; margin-bottom:0.15rem;">Irrigation (Stanghellini path, GJL)</div>
+          <p style="font-family:var(--serif); font-style:italic; font-size:0.95rem; color:#2d8a5a; margin:0.1rem 0;">I<sub>irr</sub> = &int;(&lambda;E<sub>can</sub>+&lambda;E<sub>sub</sub>+&lambda;E<sub>flr</sub>)/&lambda;<sub>vap</sub> dt &minus; &int;MV<sub>cond</sub> dt, &divide; &eta;<sub>up</sub></p>
+          <p style="font-size:0.85rem; line-height:1.4; margin:0.15rem 0 0;">Same Stanghellini form from this slide, integrated daily. Captures stomatal closure, indoor VPD saturation, night condensation recapture. Reproduces a FAO estimate as a post-processing output for direct comparison.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:0.7rem; display:grid; grid-template-columns: 1fr 1.2fr; gap:1rem; align-items:start;">
+        <div style="background:rgba(45,138,90,0.07); border-left:4px solid #2d8a5a; border-radius:0 8px 8px 0; padding:0.8rem 1.1rem;">
+          <p style="font-family:var(--serif); font-style:italic; font-size:0.92rem; line-height:1.45; color:#1f5c35; margin:0;">&ldquo;Obviously, all these constraints make the combination method <strong>unsuitable, in this form</strong>, for the present purpose of determining the actual transpiration rate of a greenhouse crop.&rdquo;</p>
+          <p style="font-size:0.88rem; color:#2d8a5a; margin:0.4rem 0 0;"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide(\'refs\'); location.hash=\'#ref-Stanghellini1987\'; return false;">Stanghellini 1987</a>, Ch. 1.3</p>
+        </div>
+        <div style="background:rgba(40,118,184,.05); border-left:4px solid #1565C0; border-radius:0 8px 8px 0; padding:0.8rem 1.1rem;">
+          <div style="font-weight:700; color:#1565C0; margin-bottom:0.2rem; font-size:0.98rem;">Bottom line</div>
+          <p style="font-size:0.92rem; line-height:1.45; margin:0;">Five independent failures. A single K<sub>c</sub> cannot absorb them. GreenhousesJL implements Stanghellini's greenhouse-adapted form, with every sub-model replaced and irrigation derived as a model output rather than a lab-side estimate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- ============================================================
        SLIDE 12 - THREE IMPACTS (soil + walls + stomatal)
        ============================================================ -->
@@ -3073,12 +3189,21 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
       <div style="display:flex; flex-direction:column; gap:0.8rem;">
 
         <!-- Main equation box -->
-        <div style="background:rgba(40,118,184,.05); border:2px solid #2876b8; border-radius:10px; padding:0.8rem 1rem; text-align:center;">
-          <div style="font-family:var(--serif); font-style:italic; font-size:1.15rem; color:#2876b8; line-height:1.6;">
-            G = <sup>S</sup>&frasl;<sub>2</sub> &middot; A<sub>1</sub> &middot;
-            &radic;<span style="text-decoration:overline;">&thinsp;2g &middot; <sup>&Delta;T</sup>&frasl;<sub>T</sub> &middot; <sup>H</sup>&frasl;<sub>4</sub> + C<sub>w</sub> &middot; V²&thinsp;</span>
+        <div style="background:rgba(40,118,184,.05); border:2px solid #2876b8; border-radius:10px; padding:1rem 1.2rem; text-align:center;">
+          <div style="font-family:var(--serif); font-style:italic; font-size:1.45rem; color:#2876b8; line-height:1.7;">
+            <span class="term-hover" data-tip="G: natural ventilation air flow rate per unit floor area [m³·m⁻²·s⁻¹]">G</span> = <sup><span class="term-hover" data-tip="S: effective vent opening area [m²] — S = 2·L·H·sin(α/2) for a hinged roof vent of length L, height H, opening angle α">S</span></sup>&frasl;<sub>2</sub> &middot;
+            <span class="term-hover" data-tip="A₁: vent discharge coefficient (≈ 0.75 Venlo, 0.60 tunnel), dimensionless">A<sub>1</sub></span> &middot;
+            &radic;<span style="text-decoration:overline;">&thinsp;2<span class="term-hover" data-tip="g: gravitational acceleration = 9.81 m·s⁻²">g</span> &middot; <sup><span class="term-hover" data-tip="ΔT: indoor-outdoor temperature difference T_in − T_out [K] — drives buoyancy">&Delta;T</span></sup>&frasl;<sub><span class="term-hover" data-tip="T: absolute reference temperature (typically T_out in K) [K]">T</span></sub> &middot; <sup><span class="term-hover" data-tip="H: vertical height of the vent opening [m]">H</span></sup>&frasl;<sub>4</sub> + <span class="term-hover" data-tip="C_w: wind pressure coefficient (≈ 0.09 Venlo, 0.12 tunnel), dimensionless">C<sub>w</sub></span> &middot; <span class="term-hover" data-tip="V: outdoor wind speed at roof level [m·s⁻¹]">V</span>²&thinsp;</span>
           </div>
-          <div style="font-size:0.78rem; color:var(--ink-dim); margin-top:0.25rem;">Model M3 (Eq. 18), first-order buoyancy + turbulent wind, G in m³/s</div>
+          <div style="font-size:0.95rem; color:var(--ink-dim); margin-top:0.4rem;">Model M3 (Eq. 18), first-order buoyancy + turbulent wind, G in m³/s</div>
+        </div>
+
+        <!-- Leakage equation, hoverable -->
+        <div style="background:rgba(136,136,136,.08); border-left:3px solid #888; border-radius:0 8px 8px 0; padding:0.55rem 0.9rem;">
+          <div style="font-family:var(--serif); font-style:italic; font-size:1.15rem; color:#555;">
+            <span class="term-hover" data-tip="f_leak: background air infiltration rate per m² of cover, when the vents are closed [m³·m⁻²·s⁻¹]">f<sub>leak</sub></span> = max(0.25, <span class="term-hover" data-tip="V: outdoor wind speed at roof level [m·s⁻¹]">V</span>) &middot; <span class="term-hover" data-tip="c_leak: envelope leakage coefficient, 1.5·10⁻⁴ m³·m⁻²·s⁻¹ per m/s (Venlo) (De Jong 1990)">c<sub>leak</sub></span>
+          </div>
+          <div style="font-size:0.85rem; color:var(--ink-dim); margin-top:0.15rem;">Residual infiltration through the envelope when vents are closed. The floor (0.25 m/s) guarantees non-zero leakage on calm days.</div>
         </div>
 
         <!-- SVG: greenhouse cross-section with vent + air flow arrows -->
@@ -3120,8 +3245,8 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
           <!-- Buoyancy: warm air rising, curved arrows exiting through vents -->
           <path d="M220,190 C220,140 175,100 155,65" fill="none" stroke="#c46a1e" stroke-width="2.5" marker-end="url(#ar-vent-orange)" opacity="0.8"/>
           <path d="M300,190 C300,140 340,100 350,65" fill="none" stroke="#c46a1e" stroke-width="2.5" marker-end="url(#ar-vent-orange)" opacity="0.8"/>
-          <text x="250" y="175" text-anchor="middle" font-size="13" fill="#c46a1e" font-weight="600">T<tspan font-size="9" dy="3">in</tspan><tspan dy="-3"> &gt; T</tspan><tspan font-size="9" dy="3">out</tspan></text>
-          <text x="250" y="193" text-anchor="middle" font-size="11" fill="#c46a1e">stack effect</text>
+          <text x="260" y="135" text-anchor="middle" font-size="16" fill="#c46a1e" font-weight="700">T<tspan font-size="11" dy="3">in</tspan><tspan dy="-3"> &gt; T</tspan><tspan font-size="11" dy="3">out</tspan></text>
+          <text x="260" y="154" text-anchor="middle" font-size="14" fill="#c46a1e">stack effect</text>
 
           <!-- Wind arrows from left, stacked, hitting the greenhouse wall -->
           <line x1="15" y1="55" x2="85" y2="55" stroke="#2876b8" stroke-width="3" marker-end="url(#ar-vent-blue)"/>
@@ -3132,10 +3257,10 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
           <!-- Leakage small dashed arrows at wall base -->
           <line x1="108" y1="230" x2="88" y2="215" stroke="#888" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#ar-vent-blue)"/>
           <line x1="392" y1="230" x2="412" y2="215" stroke="#888" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#ar-vent-blue)"/>
-          <text x="250" y="270" text-anchor="middle" font-size="10" fill="#888">f<tspan font-size="8" dy="2">leak</tspan><tspan dy="-2"> = max(0.25, V) &middot; c</tspan><tspan font-size="8" dy="2">leak</tspan></text>
+          <text x="250" y="270" text-anchor="middle" font-size="14" fill="#555" font-weight="600">f<tspan font-size="11" dy="3">leak</tspan><tspan dy="-3"> = max(0.25, V) &middot; c</tspan><tspan font-size="11" dy="3">leak</tspan></text>
 
           <!-- S = effective vent area label near right vent -->
-          <text x="418" y="50" font-size="11" fill="#c46a1e" font-style="italic">S = 2LH sin(&alpha;/2)</text>
+          <text x="395" y="42" text-anchor="end" font-size="14" fill="#c46a1e" font-style="italic" font-weight="600">S = 2LH sin(&alpha;/2)</text>
         </svg>
 
         <!-- Parameter table with units -->
@@ -3185,14 +3310,146 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
           <p style="font-size:0.92rem; margin:0; line-height:1.5;">U = max(U<sub>T</sub>,&thinsp;U<sub>RH</sub>). Opens vents when RH&nbsp;&gt;&nbsp;85% even if T is below setpoint. Drying the air avoids fungal disease (<em>Botrytis</em>) and cover dripping. Costs +5-15% heating.</p>
         </div>
 
-        <div style="background:rgba(0,0,0,.03); border-radius:8px; padding:0.6rem 1rem; margin-top:auto;">
+        <div style="background:rgba(0,0,0,.03); border-radius:8px; padding:0.6rem 1rem;">
           <div style="font-size:0.88rem; color:var(--ink-dim); line-height:1.5;">
             <strong>Heat loss:</strong> Q<sub>vent</sub> = &rho;c<sub>p</sub> &middot; f &middot; A &middot; &Delta;T &ensp;[W]&ensp;|&ensp;
             <strong>Vapor:</strong> MV<sub>vent</sub> = A&middot;M<sub>H2O</sub>&middot;f/R &middot; (VP<sub>in</sub>/T<sub>in</sub> &minus; VP<sub>out</sub>/T<sub>out</sub>) &ensp;[kg/s]
           </div>
         </div>
+
+        <!-- Interactive example card (opens modal with inline scheme) -->
+        <a href="javascript:void(0)" onclick="document.getElementById('vent-demo').style.display='flex'; return false;"
+           style="display:block; margin-top:auto; background:linear-gradient(135deg, rgba(46,125,50,0.10), rgba(40,118,184,0.08)); border:1px solid #2E7D32; border-radius:10px; padding:0.9rem 1.1rem; color:var(--ink); text-decoration:none; cursor:pointer; transition: transform .12s ease, box-shadow .12s ease;"
+           onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(46,125,50,0.18)';"
+           onmouseout="this.style.transform=''; this.style.boxShadow='';">
+          <div style="display:flex; align-items:center; gap:0.6rem; font-weight:700; color:#2E7D32; font-size:1rem;">
+            <span style="font-size:1.3rem;">&#x1F3A2;</span> Interactive example &nbsp;<span style="font-size:0.9rem; color:#1565C0;">&#x25B6;</span>
+          </div>
+          <p style="font-size:0.88rem; line-height:1.45; margin:0.3rem 0 0;">Click to open a live cross-section: moving T, RH and wind-speed sliders drives the roof vents open or shut via the same controller used in the model.</p>
+        </a>
       </div>
     </div>
+
+    <!-- ================ INTERACTIVE VENT DEMO MODAL ================ -->
+    <div id="vent-demo" style="display:none; position:fixed; inset:0; background:rgba(20,24,34,0.72); z-index:9000; align-items:center; justify-content:center; padding:40px;" onclick="if (event.target === this) this.style.display='none';">
+      <div style="background:#fff; border-radius:14px; padding:22px 26px; width:min(1100px, 96vw); max-height:90vh; overflow:auto; box-shadow:0 24px 60px rgba(0,0,0,0.45); font-family:Inter, system-ui, sans-serif; position:relative;">
+        <button onclick="document.getElementById('vent-demo').style.display='none';"
+                style="position:absolute; top:10px; right:14px; background:none; border:none; font-size:26px; color:#666; cursor:pointer; line-height:1;">&times;</button>
+
+        <h3 style="margin:0 0 12px; color:#2E7D32;">Natural ventilation controller: interactive cross-section</h3>
+
+        <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:22px; align-items:start;">
+
+          <!-- Live SVG -->
+          <svg viewBox="0 0 480 280" style="width:100%; background:#fafafa; border:1px solid #eee; border-radius:8px;">
+            <defs>
+              <marker id="ar-demo-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2876b8"/></marker>
+              <marker id="ar-demo-orange" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#c46a1e"/></marker>
+            </defs>
+            <rect x="100" y="85" width="300" height="155" fill="rgba(196,106,30,.03)" stroke="#999" stroke-width="1.5"/>
+            <rect x="100" y="240" width="300" height="7" fill="#8a6f50" rx="2"/>
+            <line x1="100" y1="85" x2="250" y2="25" stroke="#1565C0" stroke-width="3"/>
+            <line x1="250" y1="25" x2="400" y2="85" stroke="#2E7D32" stroke-width="3"/>
+            <text x="250" y="17" text-anchor="middle" font-size="11" fill="#888">ridge</text>
+
+            <!-- Vent flaps, at rest lying flush along the roof slope.
+                 Opening rotates the flap up and away from the roof by U·45°. -->
+            <g id="demo-flap-left" transform="rotate(0 140 69)">
+              <line x1="140" y1="69" x2="170" y2="57" stroke="#c46a1e" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="140" cy="69" r="2.5" fill="#c46a1e"/>
+            </g>
+            <g id="demo-flap-right" transform="rotate(0 360 69)">
+              <line x1="360" y1="69" x2="330" y2="57" stroke="#c46a1e" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="360" cy="69" r="2.5" fill="#c46a1e"/>
+            </g>
+
+            <!-- Buoyancy arrows, opacity modulated by U -->
+            <path id="demo-flow-l" d="M220,190 C220,140 175,100 155,65" fill="none" stroke="#c46a1e" stroke-width="2.5" marker-end="url(#ar-demo-orange)" opacity="0"/>
+            <path id="demo-flow-r" d="M300,190 C300,140 340,100 350,65" fill="none" stroke="#c46a1e" stroke-width="2.5" marker-end="url(#ar-demo-orange)" opacity="0"/>
+
+            <!-- Wind -->
+            <g id="demo-wind">
+              <line x1="15" y1="55"  x2="85" y2="55"  stroke="#2876b8" stroke-width="3"   marker-end="url(#ar-demo-blue)"/>
+              <line x1="15" y1="80"  x2="85" y2="80"  stroke="#2876b8" stroke-width="2.2" marker-end="url(#ar-demo-blue)"/>
+              <line x1="15" y1="105" x2="85" y2="105" stroke="#2876b8" stroke-width="1.5" marker-end="url(#ar-demo-blue)"/>
+            </g>
+
+            <!-- Live readout band on floor -->
+            <text id="demo-readout" x="250" y="222" text-anchor="middle" font-size="13" fill="#1f2a3a" font-weight="600">T_in = 22 &deg;C, RH = 70 %</text>
+          </svg>
+
+          <!-- Controls + outputs -->
+          <div>
+            <label style="display:block; font-size:0.85rem; font-weight:700; color:#1f2a3a;">Indoor temperature T<sub>in</sub> <span style="font-weight:400; color:#888;">[&deg;C]</span></label>
+            <input type="range" id="demo-Tin"  min="15" max="35" step="0.5" value="22" style="width:100%;">
+            <div style="font-size:0.8rem; color:#666;" id="demo-Tin-val">22 &deg;C</div>
+
+            <label style="display:block; font-size:0.85rem; font-weight:700; color:#1f2a3a; margin-top:10px;">Indoor relative humidity RH <span style="font-weight:400; color:#888;">[%]</span></label>
+            <input type="range" id="demo-RH"   min="40" max="100" step="1" value="70" style="width:100%;">
+            <div style="font-size:0.8rem; color:#666;" id="demo-RH-val">70 %</div>
+
+            <label style="display:block; font-size:0.85rem; font-weight:700; color:#1f2a3a; margin-top:10px;">Outdoor wind V <span style="font-weight:400; color:#888;">[m/s]</span></label>
+            <input type="range" id="demo-V"    min="0" max="10" step="0.1" value="2" style="width:100%;">
+            <div style="font-size:0.8rem; color:#666;" id="demo-V-val">2.0 m/s</div>
+
+            <hr style="margin:14px 0; border:none; border-top:1px solid #eee;">
+
+            <div style="font-size:0.78rem; color:#666; line-height:1.5;">
+              <strong>Controller:</strong><br>
+              U<sub>T</sub> = K<sub>p</sub>&middot;max(T<sub>in</sub> &minus; 25, 0), K<sub>p</sub>=0.5 /&deg;C<br>
+              U<sub>RH</sub> = K<sub>p,RH</sub>&middot;max(RH &minus; 85, 0), K<sub>p,RH</sub>=0.05 /%<br>
+              U = min(1, max(U<sub>T</sub>, U<sub>RH</sub>))
+            </div>
+
+            <div style="margin-top:12px; background:#f5f8f3; border-left:4px solid #2E7D32; border-radius:0 6px 6px 0; padding:8px 12px;">
+              <div style="font-size:0.78rem; color:#2E7D32; font-weight:700; margin-bottom:3px;">Live outputs</div>
+              <div style="font-family:'Fira Code',monospace; font-size:0.82rem; line-height:1.55;">
+                U<sub>T</sub>  &nbsp;= <span id="demo-UT">0.00</span><br>
+                U<sub>RH</sub> = <span id="demo-URH">0.00</span><br>
+                <strong>U  &nbsp;&nbsp;= <span id="demo-U" style="color:#c46a1e;">0.00</span></strong><br>
+                <strong>aperture = <span id="demo-U-pct" style="color:#c46a1e;">0 %</span></strong><br>
+                <span style="color:#888;">(0 % = closed, 100 % = fully open)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:0.78rem; color:#888; margin:14px 0 0;">Same rule as the VentConfig struct (Boulard &amp; Baille 1995 geometry, K&ouml;rner &amp; Challa 2003 humidity override). Orange flap = live opening angle (U &middot; 45&deg;); orange arrows = buoyancy exhaust with opacity proportional to U.</p>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        const Tin  = document.getElementById('demo-Tin');
+        const RH   = document.getElementById('demo-RH');
+        const V    = document.getElementById('demo-V');
+        const T_on=25, Kp=0.5, RH_max=85, Kp_RH=0.05;
+        function update() {
+          const t = parseFloat(Tin.value), r = parseFloat(RH.value), v = parseFloat(V.value);
+          document.getElementById('demo-Tin-val').innerHTML = t.toFixed(1) + ' &deg;C';
+          document.getElementById('demo-RH-val').textContent  = r.toFixed(0) + ' %';
+          document.getElementById('demo-V-val').textContent   = v.toFixed(1) + ' m/s';
+          const U_T  = Math.min(1, Math.max(0, Kp*(t - T_on)));
+          const U_RH = Math.min(1, Math.max(0, Kp_RH*(r - RH_max)));
+          const U    = Math.min(1, Math.max(U_T, U_RH));
+          document.getElementById('demo-UT').textContent  = U_T.toFixed(2);
+          document.getElementById('demo-URH').textContent = U_RH.toFixed(2);
+          document.getElementById('demo-U').textContent   = U.toFixed(2);
+          document.getElementById('demo-U-pct').textContent = (U*100).toFixed(0) + ' %';
+          const ang = U * 45;
+          // Left flap: negative rotation lifts the tip up-right, off the left roof slope.
+          // Right flap: positive rotation mirrors the behaviour on the right roof slope.
+          document.getElementById('demo-flap-left').setAttribute('transform',  'rotate(' + (-ang) + ' 140 69)');
+          document.getElementById('demo-flap-right').setAttribute('transform', 'rotate(' + ( ang) + ' 360 69)');
+          document.getElementById('demo-flow-l').setAttribute('opacity', 0.15 + 0.75*U);
+          document.getElementById('demo-flow-r').setAttribute('opacity', 0.15 + 0.75*U);
+          document.getElementById('demo-readout').innerHTML =
+            'T_in = ' + t.toFixed(1) + ' &deg;C, RH = ' + r.toFixed(0) + ' %, V = ' + v.toFixed(1) + ' m/s';
+        }
+        [Tin, RH, V].forEach(el => el.addEventListener('input', update));
+        update();
+      })();
+    </script>
   </section>
 
   <!-- ============================================================
@@ -3653,7 +3910,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
         </svg>
 
         <div style="background:rgba(106,27,154,.04); border-radius:8px; padding:0.55rem 0.9rem;">
-          <p style="font-size:0.8rem; color:#555; margin:0; line-height:1.4;">Weight parameters w<sub>crop</sub>, w<sub>co2</sub>, w<sub>vent</sub> are placeholders. Calibrate against crop data or economic inputs (crop price, CO<sub>2</sub> cost/kg).</p>
+          <p style="font-size:0.8rem; color:#555; margin:0; line-height:1.4;">Weight parameters w<sub>crop</sub>, w<sub>co2</sub>, w<sub>vent</sub> still need tuning from crop response data or from economic inputs (crop price, CO<sub>2</sub> cost per kg).</p>
         </div>
 
         <div style="background:#1e1e1e; color:#e8e8e8; border-radius:8px; padding:0.55rem 0.8rem; font-family:'Fira Code',monospace; font-size:0.78rem; line-height:1.5;">
@@ -5894,7 +6151,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
         <h3>Computer-vision dataset</h3>
         <ol class="refs-list">
           <li id="ref-Hemming2020">Hemming S. <em>et al.</em> (2020). Remote Control of Greenhouse Vegetable Production with AI. <em>Sensors</em> 20(22), 6430 (<em>Autonomous Greenhouse Challenge, Bleiswijk</em>).</li>
-          <li id="ref-AGC_WUR">WUR. <em>Autonomous Greenhouse / Plant Growth Challenge</em> — datasets &amp; rules. <a href="https://www.autonomousgreenhouses.com/" target="_blank" rel="noopener">autonomousgreenhouses.com</a>.</li>
+          <li id="ref-AGC_WUR">WUR. <em>Autonomous Greenhouse / Plant Growth Challenge</em> — datasets &amp; rules. <a href="https://www.wur.nl/en/research/plant/autonomous-greenhouse-challenge" target="_blank" rel="noopener">wur.nl/autonomous-greenhouse-challenge</a>.</li>
         </ol>
 
         <h3>Julia plant-biophysics packages</h3>
