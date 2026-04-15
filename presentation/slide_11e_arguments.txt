@@ -1,0 +1,150 @@
+==============================================================================
+SLIDE 11e — WHY STANGHELLINI, NOT FAO-PM
+Arguments, source quotes, and side-by-side demonstrations
+==============================================================================
+
+1. ARGUMENT IN ONE LINE
+-----------------------
+FAO Penman-Monteith is a sound energy-balance backbone, but every one of its
+calibrated constants assumes "open-field reference grass". Five of those
+assumptions are quantitatively violated inside a greenhouse; a sixth
+(empirical Kc correction) cannot recover them because they are coupled.
+Stanghellini (1987) rebuilt each sub-model for greenhouse conditions.
+GreenhousesJL implements her form, with modern additions (Medlyn rs,
+multilayer radiosity).
+
+2. SOURCE QUOTES (Stanghellini 1987, Ch. 1)
+-------------------------------------------
+"A greenhouse crop has peculiarities which rule out the simple transcription
+of experimental techniques developed for crops in a more natural environment.
+The resistance to the vertical exchange of heat for a field crop is normally
+estimated by the assumption that the canopy is immersed in a boundary layer
+of wind, characterized by a well-defined (logarithmic) profile of the wind
+speed. THIS ASSUMPTION IS OBVIOUSLY UNTRUE for a canopy enclosed in a
+greenhouse."
+
+"As sources of radiation are present within a greenhouse canopy, such an
+experimental method [above-canopy Rn - ground flux] CANNOT BE APPLIED HERE."
+
+"Obviously, all these constraints make the combination method UNSUITABLE, IN
+THIS FORM, for the present purpose of determining the actual transpiration
+rate of a greenhouse crop."
+
+==============================================================================
+3. FIVE SIDE-BY-SIDE DIFFERENCES (demonstrations with numbers)
+==============================================================================
+
+---- (1) AERODYNAMIC RESISTANCE r_a -------------------------------------------
+FAO assumes:   r_a = 208 / u_2           [Allen 1998, eq.4 / FAO-56 box 4]
+                                          valid only for u_2 in a log wind
+                                          profile over 0.12 m grass
+Indoor fact:   u in greenhouse ≈ 0.1 to 0.3 m/s. Plug in u_2 = 0.1 → r_a =
+               2080 s/m, i.e. transpiration collapses by 30×. The log-profile
+               formula simply does not apply to a confined volume.
+
+Stanghellini: Nusselt-number formulation, free + forced convection mixed.
+               r_a = rho·cp·l / (Nu·lambda_air)   with Nu = f(Re, Gr, Pr)
+               l = characteristic leaf size. Calibrated in a greenhouse from
+               heated-leaf experiments (her Ch. 2).
+
+Takeaway:     FAO gives 3-30× wrong r_a indoors.
+
+---- (2) STOMATAL / CANOPY RESISTANCE r_s -------------------------------------
+FAO assumes:   r_s,reference = 70 s/m  (fixed, reference grass).
+               Hidden inside the 0.34·u_2 term:
+               rs/ra ≈ 70 / (208/u_2) = 70·u_2/208 → the 0.34·u_2.
+               r_s is NOT a parameter you can adjust; it's baked in.
+
+Indoor fact:   Tomato r_s is ~50 s/m midday but collapses to 5000 s/m at
+               night when PAR < 5 umol/m2/s (stomata close). Dependence on
+               VPD and CO_2 is also strong (factor 2-3 over daylight hours).
+
+Stanghellini/ours: r_s = r_s(PAR, CO_2, VPD) via Medlyn (2011):
+               g_s = g_0 + (1 + g_1/sqrt(VPD)) · A_n/C_a
+               r_s = 1/g_s
+               g_0, g_1 species-specific, fitted from leaf-level data.
+
+Takeaway:     Fixed 70 s/m cannot capture day/night or humidity/CO_2 effects.
+
+---- (3) NET RADIATION R_n ---------------------------------------------------
+FAO assumes:   R_n measured above a closed canopy, no obstruction between the
+               sun and the grass, no structure overhead.
+               Typically R_n = (1 - alpha_can) · R_s ↓ - R_sky ↑
+
+Indoor fact:   Solar is attenuated by cover (tau ≈ 0.85), possibly also by
+               screen (tau ≈ 0.5), possibly by PV panel (tau_PV). Canopy sees
+               a multi-bounce PAR + NIR distribution (slide 08c). Longwave:
+               cover radiates DOWN onto the canopy; screen, PV, floor also
+               participate.
+
+GreenhousesJL: R_n,can built from
+               - shortwave cascade (slide 08c): PAR/NIR split, multi-layer
+                 tau_rho up/down bounces, cover + canopy + floor;
+               - LW radiosity enclosure (slide 08b): N-surface network with
+                 view factors from 3D geometry, no above-canopy fiction.
+
+Takeaway:     FAO's R_n proxy misses both shortwave redistribution and
+               indoor LW exchange with the structure.
+
+---- (4) INDOOR VPD FEEDBACK -------------------------------------------------
+FAO assumes:   VPD = e*(T_air) - e_a, computed from the outside-air met
+               station (daily). Instantaneous value is not a state variable.
+
+Indoor fact:   Transpiration pumps vapor INTO a nearly closed enclosure.
+               Indoor RH rises toward 95-100 % within minutes when vents
+               are closed, so VPD_indoor → 0 → transpiration damps itself.
+               This feedback is the dominant dynamic on humid days.
+
+GreenhousesJL: VPD is derived from the indoor vapor balance (slide 11b) at
+               every timestep:
+               d(VP_air)/dt = (1/V_air) · (MV_CanAir - MV_AirCov - MV_AirOut
+                              - ...). Transpiration then sees VPD_indoor(t).
+
+Takeaway:     Without the feedback, FAO systematically OVER-ESTIMATES ET on
+               humid and/or poorly-ventilated days.
+
+---- (5) TIME SCALE AND CLOSURE ----------------------------------------------
+FAO assumes:   Daily integral (or hourly, with different constants: eq.53).
+               Coefficients 0.408, 900, 0.34 are DERIVED for the daily step.
+
+Indoor fact:   Climate controllers operate at second-to-minute step. Humidity
+               and CO_2 setpoints, vent-opening, and CHP dispatch all react
+               within 2-5 minutes.
+
+GreenhousesJL: Sub-hourly ODE integration (Tsit5), RH and VPD computed from
+               states; cover condensation at night is closed back into the
+               cover energy balance (slide 11a / slide 08). Water loop closes.
+
+Takeaway:     FAO daily form is not usable for controller design;
+               Stanghellini form is.
+
+==============================================================================
+4. BOTTOM-LINE TABLE
+==============================================================================
+
+                        FAO-PM (open-field grass)  |  Stanghellini 1987 + GJL
+------------------------+--------------------------+--------------------------
+r_a                     |  208 / u_2               |  rho·cp·l / (Nu·lambda)
+r_s                     |  70 s/m (fixed)          |  Medlyn(PAR, CO_2, VPD)
+R_n                     |  above-canopy proxy      |  SW cascade + LW radiosity
+VPD                     |  outdoor, daily          |  indoor, state-variable
+dt                      |  1 day                   |  seconds (ODE)
+Cover condensation      |  missing                 |  closes loop at night
+Calibration target      |  reference grass         |  tomato (her Ch. 3-4)
+Source                  |  Allen et al. 1998       |  Stanghellini 1987
+
+==============================================================================
+5. HOW TO DEFEND (one paragraph, thesis-ready)
+==============================================================================
+
+"GreenhousesJL implements the adaptation of the Penman-Monteith-Rijtema
+combination method developed by Stanghellini (1987, Ch. 2-3) specifically
+for greenhouse conditions, with a Nusselt-based aerodynamic resistance, a
+dynamic stomatal resistance from Medlyn et al. (2011), a net radiation term
+built from our own shortwave cascade and multi-surface longwave radiosity
+enclosure, and indoor VPD as a state variable that damps transpiration near
+saturation. The FAO-56 form (Allen et al. 1998) retains the Penman-Monteith
+backbone but uses reference-grass constants that Stanghellini explicitly
+flagged as unsuitable for greenhouses; in particular, the 208/u_2 aerodynamic
+resistance fails at indoor wind speeds below 0.5 m/s, and the 70 s/m fixed
+surface resistance cannot capture stomatal closure at night."
