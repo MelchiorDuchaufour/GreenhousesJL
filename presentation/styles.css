@@ -2963,3 +2963,32 @@ kbd {
 }
 .term-hover:hover::after,
 .term-hover:hover::before { opacity: 1; }
+
+/* ===================================================================
+   Image-preview on hover (used on slide 35 for "Zone heatmaps")
+   =================================================================== */
+.img-hover {
+  position: relative;
+  color: #1565C0;
+  border-bottom: 1px dotted #1565C0;
+  cursor: zoom-in;
+  font-weight: 600;
+}
+.img-hover-popup {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 10px;
+  width: 920px;
+  max-width: 80vw;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+  border-radius: 8px;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.35);
+  background: #fff;
+  z-index: 60;
+}
+.img-hover:hover .img-hover-popup {
+  opacity: 1;
+}
