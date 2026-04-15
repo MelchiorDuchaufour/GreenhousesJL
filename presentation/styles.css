@@ -3074,3 +3074,7 @@ kbd {
    Uses :has() (Chrome/Safari/Firefox recent). Falls back silently on older browsers. */
 .term-panel:has(.rich-hover:hover, .img-hover:hover) { overflow: visible; }
 .term-card:has(.rich-hover:hover, .img-hover:hover) { overflow: visible; }
+
+/* Let rich-hover popups escape the gh-step-panel clipping box too */
+.gh-step-panel:has(.rich-hover:hover, .img-hover:hover) { overflow: visible; }
+.gh-step-card:has(.rich-hover:hover, .img-hover:hover) { overflow: visible; }
