@@ -3007,8 +3007,8 @@ kbd {
 .rich-hover-popup {
   position: absolute;
   left: 0;
-  top: 100%;
-  margin-top: 8px;
+  bottom: 100%;
+  margin-bottom: 8px;
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
