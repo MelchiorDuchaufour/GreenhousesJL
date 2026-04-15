@@ -1575,7 +1575,7 @@
                 x1="250" y1="242" x2="250" y2="335"
                 stroke="#c46a1e" stroke-width="3" marker-end="url(#arr-warm-sw)"/>
           <text class="flux-lbl warm" data-fragment="3"
-                x="145" y="290" text-anchor="start"
+                x="140" y="290" text-anchor="start"
                 font-family="Iowan Old Style, Palatino, serif"
                 font-style="italic" font-size="15" fill="#c46a1e">Q_sol,can (PAR)</text>
 
@@ -1633,7 +1633,7 @@
     τ12 = τ1·τ2 / denom        # compound transmittance
     ρ12 = ρ1 + τ1²·ρ2 / denom  # compound reflectance
     return τ12, ρ12
-end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.Functions.MultiLayer_TauRho</code>; also called the "adding" or "doubling" rule for stacked semi transparent layers.</span></span></span>). R<sub>t,PAR</sub> = I<sub>eff</sub>&middot;&eta;<sub>PAR</sub>&middot;&tau;<sub>cov,PAR</sub>&middot;(1&minus;&eta;<sub>air</sub>). <em>K<sub>1</sub></em> is the per cultivar calibration target for the ray traced FSPM coupling. Drives R<sub>n,can</sub> (<a href="javascript:void(0)" onclick="goToSlide('12')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see canopy balance</a>).</p>
+end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.Functions.MultiLayer_TauRho</code>.</span></span></span>). R<sub>t,PAR</sub> = I<sub>eff</sub>&middot;&eta;<sub>PAR</sub>&middot;&tau;<sub>cov,PAR</sub>&middot;(1&minus;&eta;<sub>air</sub>). <em>K<sub>1</sub></em> is the per cultivar calibration target for the ray traced FSPM coupling. Drives R<sub>n,can</sub> (<a href="javascript:void(0)" onclick="goToSlide('12')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see canopy balance</a>).</p>
         </div>
 
         <div class="term-card warm" data-fragment="4">
@@ -1648,7 +1648,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
     τ12 = τ1·τ2 / denom        # compound transmittance
     ρ12 = ρ1 + τ1²·ρ2 / denom  # compound reflectance
     return τ12, ρ12
-end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.Functions.MultiLayer_TauRho</code>; also called the "adding" or "doubling" rule for stacked semi-transparent layers.</span></span></span> so that NIR bouncing up-and-down between layers is tracked. The effective floor absorptance &alpha;<sub>flr,NIR</sub> is the final transmittance reaching the floor after this compound composition; the part that the floor reflects goes back up and is closed in the interior radiosity enclosure (<a href="javascript:void(0)" onclick="goToSlide('10b')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see geometry engine</a>).</p>
+end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.Functions.MultiLayer_TauRho</code>.</span></span></span> so that NIR bouncing up-and-down between layers is tracked. The effective floor absorptance &alpha;<sub>flr,NIR</sub> is the final transmittance reaching the floor after this compound composition; the part that the floor reflects goes back up and is closed in the interior radiosity enclosure (<a href="javascript:void(0)" onclick="goToSlide('10b')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see geometry engine</a>).</p>
         </div>
 
         <div class="term-card cool" data-fragment="5">
@@ -2402,7 +2402,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
           <div class="term-label">MV<sub>CanAir</sub></div>
           <div class="term-unit">kg s&minus;1 &middot; canopy &rarr; air</div>
           <p class="term-formula">MV<sub>CanAir</sub> = (&lambda;E)<sub><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a></sub> / &lambda;<sub>vap</sub></p>
-          <p>The <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> latent flux from slide 10, converted from W to kg/s by dividing by &lambda;<sub>vap</sub> &asymp; 2.45 MJ/kg.</p>
+          <p>The <a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini</a> latent flux from <a href="javascript:void(0)" onclick="goToSlide('12')" style="color:#2d8a5a; font-weight:600; text-decoration:underline; cursor:pointer;">slide 10</a>, converted from W to kg/s by dividing by &lambda;<sub>vap</sub> &asymp; 2.45 MJ/kg.</p>
         </div>
 
         <div class="term-card cool" data-fragment="2">
@@ -2591,7 +2591,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
           <span class="term-tag">Canopy vapor side</span>
           <h3 class="term-label">Stanghellini, three resistances</h3>
           <p><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini 1987</a> is the <a class="ref-link" href="#ref-Monteith2013" onclick="goToSlide('refs'); location.hash='#ref-Monteith2013'; return false;">Penman-Monteith</a> equation rewritten for a greenhouse canopy. Three quantities decide how much vapor leaves the leaves: the available radiative energy, the aerodynamic resistance r<sub>a</sub>, and the stomatal resistance r<sub>s</sub>.</p>
-          <p>It is the same formula that drives the &lambda;E term on slide 10, divided by &lambda;<sub>vap</sub> to land in kg s<sup>&minus;1</sup>.</p>
+          <p>It is the same formula that drives the &lambda;E term on <a href="javascript:void(0)" onclick="goToSlide('12')" style="color:#2d8a5a; font-weight:600; text-decoration:underline; cursor:pointer;">slide 10</a>, divided by &lambda;<sub>vap</sub> to land in kg s<sup>&minus;1</sup>.</p>
         </div>
 
         <div class="term-card warm" data-fragment="1">
@@ -2636,11 +2636,11 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
       <div style="flex:1; background:rgba(196,106,30,.06); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.8rem 1.2rem;">
         <div style="font-size:1rem; font-weight:700; color:#c46a1e; margin-bottom:0.3rem;"><a class="ref-link" href="#ref-Baille1994" onclick="goToSlide('refs'); location.hash='#ref-Baille1994'; return false;">Baille (1994)</a> two-term model</div>
         <div style="font-family:var(--serif); font-style:italic; font-size:1.05rem; color:#c46a1e; line-height:1.6;">
-          &lambda;E<sub>floor</sub> = &alpha;<sub>floor</sub> &middot; R<sub>SunFlr</sub> &middot; (1 &minus; f<sub>sub</sub>)
+          <span class="term-hover" data-tip="λE_floor: latent heat flux from the bare floor fraction [W·m⁻²]">&lambda;E<sub>floor</sub></span> = <span class="term-hover" data-tip="α_floor: shortwave absorptance of the floor, dimensionless">&alpha;<sub>floor</sub></span> &middot; <span class="term-hover" data-tip="R_SunFlr: solar radiation reaching the floor [W·m⁻²]">R<sub>SunFlr</sub></span> &middot; (1 &minus; <span class="term-hover" data-tip="f_sub: fraction of floor area covered by substrate (rockwool, coco, NFT, etc.), dimensionless 0..1">f<sub>sub</sub></span>)
           &ensp;&ensp;|&ensp;&ensp;
-          &lambda;E<sub>sub</sub> = f<sub>wet</sub> (A &middot; R<sub>SunFlr</sub> &middot; f<sub>sub</sub> + B &middot; VPD &middot; f<sub>sub</sub>)
+          <span class="term-hover" data-tip="λE_sub: latent heat flux from the substrate fraction [W·m⁻²]">&lambda;E<sub>sub</sub></span> = <span class="term-hover" data-tip="f_wet: wet fraction of the substrate surface (drip wets only part of the slab), dimensionless 0..1">f<sub>wet</sub></span> (<span class="term-hover" data-tip="A: radiation-driven evaporation coefficient of the Baille (1994) two-term model [dimensionless]">A</span> &middot; <span class="term-hover" data-tip="R_SunFlr: solar radiation reaching the floor [W·m⁻²]">R<sub>SunFlr</sub></span> &middot; <span class="term-hover" data-tip="f_sub: fraction of floor area covered by substrate, dimensionless 0..1">f<sub>sub</sub></span> + <span class="term-hover" data-tip="B: VPD-driven evaporation coefficient of the Baille (1994) two-term model [W·m⁻²·Pa⁻¹]">B</span> &middot; <span class="term-hover" data-tip="VPD: vapor-pressure deficit of the greenhouse air [Pa]">VPD</span> &middot; <span class="term-hover" data-tip="f_sub: fraction of floor area covered by substrate, dimensionless 0..1">f<sub>sub</sub></span>)
         </div>
-        <div style="font-size:0.85rem; color:var(--ink-dim); margin-top:0.25rem;">MV<sub>evap</sub> = (&lambda;E<sub>floor</sub>+&lambda;E<sub>sub</sub>)/&lambda; added to dVP<sub>air</sub> &middot; &lambda;E subtracted from dT<sub>flr</sub></div>
+        <div style="font-size:0.85rem; color:var(--ink-dim); margin-top:0.25rem;"><span class="term-hover" data-tip="MV_evap: water-vapor mass flux added to the air by evaporation [kg·m⁻²·s⁻¹]">MV<sub>evap</sub></span> = (<span class="term-hover" data-tip="λE_floor: latent heat flux from the bare floor [W·m⁻²]">&lambda;E<sub>floor</sub></span>+<span class="term-hover" data-tip="λE_sub: latent heat flux from the substrate [W·m⁻²]">&lambda;E<sub>sub</sub></span>)/<span class="term-hover" data-tip="λ: latent heat of vaporization of water [J·kg⁻¹] (≈ 2.45·10⁶)">&lambda;</span> added to d<span class="term-hover" data-tip="VP_air: water-vapor partial pressure of the greenhouse air [Pa]">VP<sub>air</sub></span> &middot; <span class="term-hover" data-tip="λE: latent heat flux drawn out of the floor energy balance [W·m⁻²]">&lambda;E</span> subtracted from d<span class="term-hover" data-tip="T_flr: floor temperature [K or °C]">T<sub>flr</sub></span></div>
       </div>
     </div>
 
@@ -4310,13 +4310,13 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
 
         <p class="lede"><a class="ref-link" href="#ref-Stanghellini1987" onclick="goToSlide('refs'); location.hash='#ref-Stanghellini1987'; return false;">Stanghellini (1987)</a>: built for greenhouses.</p>
         <p class="formula">
-          <span class="term-hover" data-tip="T_r, mass flux of water vapor [kg·m⁻²·s⁻¹]">T<sub>r</sub></span> =
-          ((<span class="term-hover" data-tip="R_n, net radiation on the canopy [W·m⁻²]">R<sub>n</sub></span>
-          − <span class="term-hover" data-tip="G, soil / substrate heat flux [W·m⁻²]">G</span>)·<span class="term-hover" data-tip="Δ, slope of saturation vapor-pressure curve dE*/dT [Pa·K⁻¹]">Δ</span>
-          + <span class="term-hover" data-tip="ρ_a, moist-air density [kg·m⁻³]">ρ<sub>a</sub></span>·<span class="term-hover" data-tip="c_p, specific heat of moist air [J·kg⁻¹·K⁻¹]">c<sub>p</sub></span>·<span class="term-hover" data-tip="δe, vapor-pressure deficit of the air around the leaf [Pa]">δe</span>
-          / <span class="term-hover" data-tip="r_a, aerodynamic (boundary-layer) resistance [s·m⁻¹]">r<sub>a</sub></span>)
-          / (<span class="term-hover" data-tip="λ, latent heat of vaporization of water [J·kg⁻¹] (≈ 2.45·10⁶)">λ</span>·(<span class="term-hover" data-tip="Δ, slope of saturation vapor-pressure curve dE*/dT [Pa·K⁻¹]">Δ</span>
-          + <span class="term-hover" data-tip="γ, psychrometric constant [Pa·K⁻¹]">γ</span>·(1 + <span class="term-hover" data-tip="r_s, stomatal resistance [s·m⁻¹] (Medlyn 2011)">r<sub>s</sub></span>/<span class="term-hover" data-tip="r_a, aerodynamic (boundary-layer) resistance [s·m⁻¹]">r<sub>a</sub></span>)))
+          <span class="term-hover" data-tip="T_r: mass flux of water vapor [kg·m⁻²·s⁻¹]">T<sub>r</sub></span> =
+          ((<span class="term-hover" data-tip="R_n: net radiation on the canopy [W·m⁻²]">R<sub>n</sub></span>
+          − <span class="term-hover" data-tip="G: soil / substrate heat flux [W·m⁻²]">G</span>)·<span class="term-hover" data-tip="Δ: slope of saturation vapor-pressure curve dE*/dT [Pa·K⁻¹]">Δ</span>
+          + <span class="term-hover" data-tip="ρ_a: moist-air density [kg·m⁻³]">ρ<sub>a</sub></span>·<span class="term-hover" data-tip="c_p: specific heat of moist air [J·kg⁻¹·K⁻¹]">c<sub>p</sub></span>·<span class="term-hover" data-tip="δe: vapor-pressure deficit of the air around the leaf [Pa]">δe</span>
+          / <span class="term-hover" data-tip="r_a: aerodynamic (boundary-layer) resistance [s·m⁻¹]">r<sub>a</sub></span>)
+          / (<span class="term-hover" data-tip="λ: latent heat of vaporization of water [J·kg⁻¹] (≈ 2.45·10⁶)">λ</span>·(<span class="term-hover" data-tip="Δ: slope of saturation vapor-pressure curve dE*/dT [Pa·K⁻¹]">Δ</span>
+          + <span class="term-hover" data-tip="γ: psychrometric constant [Pa·K⁻¹]">γ</span>·(1 + <span class="term-hover" data-tip="r_s: stomatal resistance [s·m⁻¹] (Medlyn 2011)">r<sub>s</sub></span>/<span class="term-hover" data-tip="r_a: aerodynamic (boundary-layer) resistance [s·m⁻¹]">r<sub>a</sub></span>)))
         </p>
 
         <ul class="bullets">
@@ -5341,10 +5341,8 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
 
         <h3 class="sub-h tight">What's working</h3>
         <ul class="bullets">
-          <li>Tracking is <strong>stable across days</strong> on the WUR rig
-             , no plant lost, IDs persistent.</li>
-          <li>Day-to-day mean leaf area trajectory matches a smooth growth
-              curve.</li>
+          <li>Tracking is <strong>stable across days</strong> , no plant lost, IDs persistent.</li>
+          <li>Day-to-day mean leaf area trajectory.</li>
           <li><span class="img-hover">Zone heatmaps<img class="img-hover-popup" src="assets/growth_heatmap.png" alt="Zone heat map + zenithal"/></span> reveal heterogeneous growth across the bench, useful for spotting irrigation imbalances.</li>
         </ul>
 
