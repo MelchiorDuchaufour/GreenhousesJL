@@ -3069,3 +3069,8 @@ kbd {
   margin: 0 0 6px;
   font-size: 0.85rem;
 }
+
+/* Let rich-hover / img-hover popups escape the term-panel clipping box.
+   Uses :has() (Chrome/Safari/Firefox recent). Falls back silently on older browsers. */
+.term-panel:has(.rich-hover:hover, .img-hover:hover) { overflow: visible; }
+.term-card:has(.rich-hover:hover, .img-hover:hover) { overflow: visible; }
