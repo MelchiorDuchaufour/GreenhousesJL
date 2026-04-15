@@ -114,7 +114,7 @@
           <li>Cross-validation against EnergyPlus 25.1</li>
           <li>50&ndash;100&times; faster than OpenModelica / EP</li>
         </ul>
-        
+
       </article>
 
       <article class="axis-card" style="--c:#2d8a5a">
@@ -127,7 +127,7 @@
           <li>Two-level architecture: detailed &rarr; simplified</li>
           <li>Vanthoor <em>K</em> calibration via ray-traced PAR</li>
         </ul>
-       
+
       </article>
 
       <article class="axis-card" style="--c:#c46a1e">
@@ -140,8 +140,96 @@
           <li>Temporal tracking + growth curves</li>
           <li>FastAPI webapp &middot; WUR dataset</li>
         </ul>
-       
+
       </article>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SLIDE 02b - CONTENTS (clickable TOC)
+       ============================================================ -->
+  <section class="slide" data-slide="2b">
+    <header>
+      <span class="num">02b</span>
+      <h2>Contents</h2>
+    </header>
+
+    <div class="toc-grid">
+      <div class="toc-col">
+        <h4>Context</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('3')"><span class="tn">03</span> Greenhouse model principle</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('4')"><span class="tn">04</span> Modelica library architecture</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('5')"><span class="tn">05</span> Julia rewrite</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('7')"><span class="tn">06</span> Multi-node energy balance</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('9')"><span class="tn">07</span> Changes from Modelica</a>
+
+        <h4>Energy balances</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('10')"><span class="tn">08</span> Cover energy balance</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('10b')"><span class="tn">08b</span> View factor computation</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('10c')"><span class="tn">08c</span> Shortwave partitioning</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('11')"><span class="tn">09</span> Air energy balance</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('12')"><span class="tn">10</span> Canopy energy balance</a>
+
+        <h4>Water balance</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('13')"><span class="tn">11</span> Water vapor overview</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('14')"><span class="tn">11a</span> Cover condensation</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('15')"><span class="tn">11b</span> Air vapor balance</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('16')"><span class="tn">11c</span> Transpiration (Stanghellini)</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('16b')"><span class="tn">11d</span> Floor &amp; substrate evaporation</a>
+      </div>
+
+      <div class="toc-col">
+        <h4>HVAC &amp; control</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('17')"><span class="tn">12</span> Soil sink, walls, stomatal closure</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('19')"><span class="tn">13</span> PV panel convection</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('20')"><span class="tn">14</span> Natural ventilation</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('20b')"><span class="tn">14b</span> Thermal screens &amp; insulation</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('20c')"><span class="tn">14c</span> Heating &amp; cooling equipment</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('20d')"><span class="tn">14d</span> PI control &amp; setpoints</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('20e')"><span class="tn">14e</span> CO<sub>2</sub> enrichment</a>
+
+        <h4>Crop submodels &amp; benchmarks</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('21')"><span class="tn">15</span> Crop submodels, plug-in interface</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('22')"><span class="tn">16</span> Why EnergyPlus</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('23')"><span class="tn">17</span> Bare greenhouse, Brussels Dec</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('24')"><span class="tn">18</span> EnergyPlus limitations</a>
+
+        <h4>Agrivoltaics &amp; FSPM</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('29')"><span class="tn">19</span> Agrivoltaic motivation</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('30')"><span class="tn">20</span> Two-level architecture</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('33b')"><span class="tn">21</span> VPL case, 100 days</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('32')"><span class="tn">22</span> Penman-Monteith vs Stanghellini</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('34')"><span class="tn">23</span> K is not a constant</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('36')"><span class="tn">24</span> Pivot to published calibration</a>
+      </div>
+
+      <div class="toc-col">
+        <h4>FSPM tomato build</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('38')"><span class="tn">25</span> FSPM tomato, Sarlikioti 2011</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('39')"><span class="tn">26</span> One phytomer in detail</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('40')"><span class="tn">27</span> Leaflet angle gradient</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('41')"><span class="tn">28</span> Ceptometer validation</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('42')"><span class="tn">29</span> Per-leaf PAR: rays vs Beer-Lambert</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('44b')"><span class="tn">30</span> Porting the 3D tomato to VPL</a>
+
+        <h4>Computer vision</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('45')"><span class="tn">31</span> LAI from camera images</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('46')"><span class="tn">32</span> Vision pipeline</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('47')"><span class="tn">33</span> YOLO plant detection</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('48')"><span class="tn">34</span> SAM 3 leaf segmentation</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('49')"><span class="tn">35</span> Growth tracking curves</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('50')"><span class="tn">36</span> ERMESS GREEN webapp</a>
+
+        <h4>Closing</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('51')"><span class="tn">37</span> GreenhousesJL doc site</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('53')"><span class="tn">38</span> Next steps (Gantt)</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('bonus-K1')"><span class="tn">B1</span> Bonus, <em>K</em> from FSPM</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('bonus-K2')"><span class="tn">B2</span> Vanthoor K vs published K(LAI)</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('bonus-FSPM1')"><span class="tn">B3</span> Bonus, FSPM 60-day growth</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('59')"><span class="tn">40</span> Supp: Farquhar (FvCB)</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('refs')"><span class="tn">R</span> References</a>
+      </div>
     </div>
   </section>
 

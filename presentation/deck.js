@@ -6,6 +6,20 @@
   const stage   = document.getElementById('stage');
   const slides  = document.querySelectorAll('.slide');
   const total   = slides.length;
+
+  // ----- Inject a subtle "↩ summary" link on every slide that isn't the
+  // title, the summary, or the contents, so viewers can always jump back
+  // to the clickable table of contents (slide 2b).
+  slides.forEach((s) => {
+    const ds = s.dataset.slide;
+    if (ds === '1' || ds === '2' || ds === '2b') return;
+    const a = document.createElement('a');
+    a.className = 'back-to-summary';
+    a.href = 'javascript:void(0)';
+    a.textContent = '↩ contents';
+    a.addEventListener('click', (e) => { e.preventDefault(); window.goToSlide('2b'); });
+    s.appendChild(a);
+  });
   const counter = document.getElementById('counter');
   const prev    = document.getElementById('prev');
   const next    = document.getElementById('next');
