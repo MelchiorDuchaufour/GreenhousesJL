@@ -576,7 +576,7 @@
     <p class="footnote" style="text-align:center; margin-top:6px">
       Five layers compose into a runnable greenhouse simulation. Each layer
       depends only on the layer above.
-      Reference: Altes-Buch et al. <em>Modelica Conf.</em> 2019.
+      Reference: <a class="ref-link" href="#ref-AltesBuch2019" onclick="goToSlide('refs'); location.hash='#ref-AltesBuch2019'; return false;">Altes-Buch et al. <em>Modelica Conf.</em> 2019</a>.
     </p>
   </section>
 
@@ -1339,7 +1339,7 @@
           <div class="term-label">Q<sub>cnv,out</sub></div>
           <div class="term-unit">W &middot; cover &rarr; outside convection</div>
           <p class="term-formula">Q<sub>cnv,out</sub> = [(1&minus;c)&middot;h<sub><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a></sub> + c&middot;h<sub>PV</sub>] &middot; (T<sub>cov</sub> &minus; T<sub>out</sub>) &middot; A</p>
-          <p><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> on bare glass, +30% roughness on PV-covered area. Tilted PV: wind-directional h (<a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples 1998)</a> + cavity gap (<a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands 1976)</a>. See PV convection slide.</p>
+          <p><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot (1983)</a> on bare glass, +30% roughness on PV-covered area. Tilted PV: wind-directional h (<a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples 1998)</a> + cavity gap (<a class="ref-link" href="#ref-Hollands1976" onclick="goToSlide('refs'); location.hash='#ref-Hollands1976'; return false;">Hollands 1976)</a>. <a href="javascript:void(0)" onclick="goToSlide('19')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">See PV convection slide</a>.</p>
         </div>
 
         <div class="term-card cool" data-fragment="5">
@@ -1380,7 +1380,7 @@
         <div style="background:rgba(196,106,30,.04); border-left:4px solid #c46a1e; border-radius:0 8px 8px 0; padding:0.9rem 1.2rem; font-size:1.05rem; line-height:2.0;">
           <div><span style="color:#c46a1e; font-weight:700; font-family:var(--mono); font-size:0.95rem;">Surface</span> &ensp;Polygon with 3D vertices, &epsilon;, &alpha;<sub>solar</sub>, &tau;<sub>solar</sub>, capacity</div>
           <div><span style="color:#c46a1e; font-weight:700; font-family:var(--mono); font-size:0.95rem;">View factors</span> &ensp;Monte Carlo double-area integration (N=100k)</div>
-          <div><span style="color:#c46a1e; font-weight:700; font-family:var(--mono); font-size:0.95rem;">Radiosity</span> &ensp;N-surface grey-body enclosure (I&minus;&rho;F)&middot;J = &epsilon;&middot;&sigma;&middot;T&sup4;</div>
+          <div><span style="color:#c46a1e; font-weight:700; font-family:var(--mono); font-size:0.95rem;">Radiosity</span> &ensp;N-surface grey-body enclosure (I&minus;&rho;F)&middot;J = &epsilon;&middot;&sigma;&middot;T⁴</div>
           <div><span style="color:#c46a1e; font-weight:700; font-family:var(--mono); font-size:0.95rem;">Extensible</span> &ensp;Add any object (pipe, bench, screen) as a new surface</div>
         </div>
 
@@ -1431,7 +1431,7 @@
           <text x="90" y="38" font-size="17" fill="#1565C0" font-weight="700">30&deg;</text>
           <text x="228" y="38" font-size="17" fill="#2E7D32" font-weight="700">60&deg;</text>
           <text x="168" y="11" text-anchor="middle" font-size="13" fill="#888">ridge</text>
-          <text x="150" y="103" text-anchor="middle" font-size="17" fill="#c46a1e" font-weight="600">floor 25 m&sup2;</text>
+          <text x="150" y="103" text-anchor="middle" font-size="17" fill="#c46a1e" font-weight="600">floor 25 m²</text>
           <text x="150" y="150" text-anchor="middle" font-size="12" fill="#888">7 surfaces, exact 3D vertices</text>
         </svg>
 
@@ -1602,8 +1602,9 @@
         <div class="term-card" data-fragment="0">
           <span class="term-tag">Shortwave partitioning</span>
           <h3 class="term-label">Direct + diffuse, PAR + NIR</h3>
-          <p>I<sub>glob</sub> split into beam + diffuse via <a class="ref-link" href="#ref-Erbs1982" onclick="goToSlide('refs'); location.hash='#ref-Erbs1982'; return false;">Erbs (1982)</a>. Beam projected with solar position &theta; and transmitted with Fresnel &tau;(&theta;); diffuse isotropic (<a class="ref-link" href="#ref-LiuJordan1960" onclick="goToSlide('refs'); location.hash='#ref-LiuJordan1960'; return false;">Liu &amp; Jordan 1960</a>), hemisphere-averaged &tau;<sub>diff</sub> = 0.88&middot;&tau;<sub>0</sub>.</p>
-          <p>Each I<sub>eff</sub> photon then lands in one of the five buckets on the right — they sum to I<sub>glob</sub>&middot;A.</p>
+          <p>I<sub>glob</sub> split into beam + diffuse: measured channels from the EPW when present, otherwise via <a class="ref-link" href="#ref-Erbs1982" onclick="goToSlide('refs'); location.hash='#ref-Erbs1982'; return false;">Erbs (1982)</a>.</p>
+          <p>Beam projected with solar position and transmitted through the cover with <span class="rich-hover">Fresnel &tau;(&theta;)<span class="rich-hover-popup"><span class="rhp-title">Fresnel τ(θ) / τ(0) for n = 1.526</span><svg viewBox="0 0 340 180" style="width:380px; display:block;" font-family="Inter, system-ui, sans-serif"><line x1="50" y1="10" x2="50" y2="140" stroke="#999" stroke-width="1"/><line x1="50" y1="140" x2="310" y2="140" stroke="#999" stroke-width="1"/><text x="14" y="78" text-anchor="middle" font-size="11" fill="#555" font-weight="600" transform="rotate(-90,14,78)">τ(θ) / τ(0)</text><text x="46" y="18" text-anchor="end" font-size="11" fill="#666">1.0</text><text x="46" y="78" text-anchor="end" font-size="11" fill="#666">0.5</text><text x="46" y="143" text-anchor="end" font-size="11" fill="#666">0</text><text x="50" y="156" text-anchor="middle" font-size="11" fill="#666">0°</text><text x="115" y="156" text-anchor="middle" font-size="11" fill="#666">20°</text><text x="180" y="156" text-anchor="middle" font-size="11" fill="#666">40°</text><text x="245" y="156" text-anchor="middle" font-size="11" fill="#666">60°</text><text x="310" y="156" text-anchor="middle" font-size="11" fill="#666">80°</text><text x="180" y="174" text-anchor="middle" font-size="11" fill="#555" font-weight="600">Incidence angle θ</text><line x1="50" y1="15" x2="310" y2="15" stroke="#aaa" stroke-width="1.2" stroke-dasharray="5,3"/><text x="125" y="12" text-anchor="middle" font-size="10" fill="#999" font-style="italic">old: constant τ</text><polyline fill="none" stroke="#2d8a5a" stroke-width="3" points="50,15 84,15.4 115,16 148,19.3 180,26.5 212,40 245,63 272,87 292,108 310,117"/><rect x="245" y="10" width="65" height="130" fill="#c46a1e" fill-opacity="0.07" rx="2"/><text x="278" y="26" text-anchor="middle" font-size="10" fill="#c46a1e" font-weight="600">&gt;60°</text></svg><span class="rhp-note">Hemisphere-averaged diffuse picks up ≈ 0.88·τ(0).</span></span></span>, <span class="rich-hover">n = 1.526<span class="rich-hover-popup"><span class="rhp-title">Refractive index of common cover materials</span><span class="rhp-formula">Normal-incidence Fresnel reflectance: ρ(0) = ((n − 1)/(n + 1))²</span><span class="rhp-table"><span class="rhp-th">Material</span><span class="rhp-th rhp-right">n</span><span>Soda-lime glass (default GH)</span><span class="rhp-right"><strong>1.526</strong></span><span>Low-iron horticultural glass</span><span class="rhp-right">1.515</span><span>Borosilicate</span><span class="rhp-right">1.470</span><span>Polycarbonate (twin-wall)</span><span class="rhp-right">1.585</span><span>Acrylic / PMMA</span><span class="rhp-right">1.490</span><span>PE film</span><span class="rhp-right">1.510</span><span>ETFE film</span><span class="rhp-right">1.380</span><span>Air (reference)</span><span class="rhp-right">1.000</span></span></span></span>. Diffuse assumed <strong>isotropic</strong> (<a class="ref-link" href="#ref-LiuJordan1960" onclick="goToSlide('refs'); location.hash='#ref-LiuJordan1960'; return false;">Liu &amp; Jordan 1960</a>), so &tau;<sub>diff</sub> = 0.88&middot;&tau;<sub>0</sub> is the hemisphere integral of Fresnel (<a class="ref-link" href="#ref-DuffieBeckman2013" onclick="goToSlide('refs'); location.hash='#ref-DuffieBeckman2013'; return false;">Duffie &amp; Beckman 2013</a>, &sect;5.4): a fixed geometric constant, not a tuned coefficient, exact under isotropy.</p>
+          <p style="color:#666; font-size:0.9rem; margin-top:0.3rem;">Planned: <strong>Perez</strong> anisotropic sky to benchmark on clear days.</p>
         </div>
 
         <div class="term-card warm" data-fragment="1">
@@ -1611,7 +1612,7 @@
           <div class="term-label">Q<sub>sol,cov</sub></div>
           <div class="term-unit">W &middot; absorbed in glass</div>
           <p class="term-formula">Q<sub>sol,cov</sub> = (&alpha;<sub>cov,PAR</sub>&middot;&eta;<sub>PAR</sub> + &alpha;<sub>cov,NIR</sub>&middot;&eta;<sub>NIR</sub>) &middot; I<sub>eff</sub> &middot; A</p>
-          <p>I<sub>eff</sub> = ((1&minus;c) + c&middot;&tau;<sub>PV</sub>)&middot;I<sub>glob</sub> (PV shading). PAR/NIR split &eta;<sub>PAR</sub> = &eta;<sub>NIR</sub> = 0.5 (from <a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a> / Modelica). &alpha;<sub>cov</sub> = 1&minus;&tau;<sub>cov</sub>&minus;&rho;<sub>cov</sub>, with &tau;<sub>cov</sub> = &tau;<sub>0</sub>&middot;(w<sub>beam</sub>&middot;f<sub>&tau;</sub>(&theta;) + w<sub>diff</sub>&middot;0.88) — the beam/diffuse split lives in &tau;. Feeds slide 10 term 1 (<a href="javascript:void(0)" onclick="goToSlide('10')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see cover balance</a>).</p>
+          <p>I<sub>eff</sub> = ((1&minus;c) + c&middot;&tau;<sub>PV</sub>)&middot;I<sub>glob</sub> (PV shading). PAR/NIR split &eta;<sub>PAR</sub> = &eta;<sub>NIR</sub> = 0.5 (from <a class="ref-link" href="#ref-Vanthoor2011a" onclick="goToSlide('refs'); location.hash='#ref-Vanthoor2011a'; return false;">Vanthoor 2011</a> / Modelica). &alpha;<sub>cov</sub> = 1&minus;&tau;<sub>cov</sub>&minus;&rho;<sub>cov</sub>, with &tau;<sub>cov</sub> = &tau;<sub>0</sub>&middot;(w<sub>beam</sub>&middot;f<sub>&tau;</sub>(&theta;) + w<sub>diff</sub>&middot;0.88). The beam/diffuse split only enters &tau; here, not &alpha;. Feeds slide 10 term 1 (<a href="javascript:void(0)" onclick="goToSlide('10')" style="color:#c46a1e; font-weight:600; text-decoration:underline; cursor:pointer;">see cover balance</a>).</p>
         </div>
 
         <div class="term-card warm" data-fragment="2">
@@ -2779,8 +2780,8 @@
             <tr>
               <td style="padding:0.2rem 0.2rem;">Water</td>
               <td style="text-align:center;">, </td>
-              <td style="text-align:center;">49.3 L/m&sup2;</td>
-              <td style="text-align:center; font-size:0.75rem;">1.6 L/m&sup2;/day</td>
+              <td style="text-align:center;">49.3 L/m²</td>
+              <td style="text-align:center; font-size:0.75rem;">1.6 L/m²/day</td>
             </tr>
           </table>
         </div>
@@ -2999,7 +3000,7 @@
         <div style="background:var(--card-bg); border:1px solid var(--ink-line); border-radius:8px; padding:0.8rem 1rem; margin-bottom:0.6rem;">
           <div style="font-family:var(--serif); font-weight:600; color:#2876b8; font-size:1.0rem;">Top face: <a class="ref-link" href="#ref-Sharples1998" onclick="goToSlide('refs'); location.hash='#ref-Sharples1998'; return false;">Sharples &amp; Charlesworth (1998)</a></div>
           <p style="font-family:var(--serif); font-style:italic; font-size:0.9rem; margin:0.3rem 0; color:var(--ink);">
-            h<sub>top</sub> = 1.3 &middot; &radic;(h<sub>forced</sub>&sup2; + h<sub>nat</sub>&sup2;)<br/>
+            h<sub>top</sub> = 1.3 &middot; &radic;(h<sub>forced</sub>² + h<sub>nat</sub>²)<br/>
             h<sub>forced</sub> = h<sub><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot</a></sub>(u) &middot; |cos(&theta;<sub>wind</sub>)|<sup>0.6</sup> / cos(&phi;<sub>panel</sub>)
           </p>
           <p style="font-size:0.82rem; color:var(--ink-dim); margin:0;">
@@ -3014,7 +3015,7 @@
             h<sub>cavity</sub> = Nu &middot; k<sub>air</sub> / H<sub>gap</sub>
           </p>
           <p style="font-size:0.82rem; color:var(--ink-dim); margin:0;">
-            Ra = g&middot;&beta;&middot;&Delta;T&middot;H&sup3;/(&nu;&sup2;)&middot;Pr. Typical gap: 5&ndash;12 cm. At &Delta;T=5°C, gap=8cm: h &asymp; 20 W/(m&sup2;K).
+            Ra = g&middot;&beta;&middot;&Delta;T&middot;H³/(&nu;²)&middot;Pr. Typical gap: 5&ndash;12 cm. At &Delta;T=5°C, gap=8cm: h &asymp; 20 W/(m²K).
           </p>
         </div>
 
@@ -3063,9 +3064,9 @@
         <div style="background:rgba(40,118,184,.05); border:2px solid #2876b8; border-radius:10px; padding:0.8rem 1rem; text-align:center;">
           <div style="font-family:var(--serif); font-style:italic; font-size:1.15rem; color:#2876b8; line-height:1.6;">
             G = <sup>S</sup>&frasl;<sub>2</sub> &middot; A<sub>1</sub> &middot;
-            &radic;<span style="text-decoration:overline;">&thinsp;2g &middot; <sup>&Delta;T</sup>&frasl;<sub>T</sub> &middot; <sup>H</sup>&frasl;<sub>4</sub> + C<sub>w</sub> &middot; V&sup2;&thinsp;</span>
+            &radic;<span style="text-decoration:overline;">&thinsp;2g &middot; <sup>&Delta;T</sup>&frasl;<sub>T</sub> &middot; <sup>H</sup>&frasl;<sub>4</sub> + C<sub>w</sub> &middot; V²&thinsp;</span>
           </div>
-          <div style="font-size:0.78rem; color:var(--ink-dim); margin-top:0.25rem;">Model M3 (Eq. 18), first-order buoyancy + turbulent wind, G in m&sup3;/s</div>
+          <div style="font-size:0.78rem; color:var(--ink-dim); margin-top:0.25rem;">Model M3 (Eq. 18), first-order buoyancy + turbulent wind, G in m³/s</div>
         </div>
 
         <!-- SVG: greenhouse cross-section with vent + air flow arrows -->
@@ -3138,10 +3139,10 @@
           </thead>
           <tbody>
             <tr><td style="padding:0.35rem 0.5rem;">A<sub>1</sub> (C<sub>d</sub>)</td><td style="font-size:0.85rem;">[&ndash;]</td><td style="text-align:center;">0.75</td><td style="text-align:center;">0.60</td><td style="padding:0.35rem; font-size:0.85rem;"><a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a>, Tab. 3</td></tr>
-            <tr style="background:#f5f5f5;"><td style="padding:0.35rem 0.5rem;">C<sub>w</sub></td><td style="font-size:0.85rem;">[&ndash;]</td><td style="text-align:center;">0.09</td><td style="text-align:center;">0.12</td><td style="padding:0.35rem; font-size:0.85rem;">Tab. 1-2, R&sup2;=0.92</td></tr>
+            <tr style="background:#f5f5f5;"><td style="padding:0.35rem 0.5rem;">C<sub>w</sub></td><td style="font-size:0.85rem;">[&ndash;]</td><td style="text-align:center;">0.09</td><td style="text-align:center;">0.12</td><td style="padding:0.35rem; font-size:0.85rem;">Tab. 1-2, R²=0.92</td></tr>
             <tr><td style="padding:0.35rem 0.5rem;">&eta;<sub>roof</sub></td><td style="font-size:0.85rem;">[&ndash;]</td><td style="text-align:center;">0.10</td><td style="text-align:center;">0.20</td><td style="padding:0.35rem; font-size:0.85rem;">A<sub>roof</sub>/A<sub>floor</sub></td></tr>
             <tr style="background:#f5f5f5;"><td style="padding:0.35rem 0.5rem;">h<sub>vent</sub></td><td style="font-size:0.85rem;">[m]</td><td style="text-align:center;">0.68</td><td style="text-align:center;">1.20</td><td style="padding:0.35rem; font-size:0.85rem;">vertical opening</td></tr>
-            <tr><td style="padding:0.35rem 0.5rem;">c<sub>leak</sub></td><td style="font-size:0.85rem;">[m&sup3;/(m&sup2;&middot;s)/(m/s)]</td><td style="text-align:center;">1.5e-4</td><td style="text-align:center;">3e-4</td><td style="padding:0.35rem; font-size:0.85rem;"><a class="ref-link" href="#ref-DeJong1990" onclick="goToSlide('refs'); location.hash='#ref-DeJong1990'; return false;">De Jong 1990</a></td></tr>
+            <tr><td style="padding:0.35rem 0.5rem;">c<sub>leak</sub></td><td style="font-size:0.85rem;">[m³/(m²&middot;s)/(m/s)]</td><td style="text-align:center;">1.5e-4</td><td style="text-align:center;">3e-4</td><td style="padding:0.35rem; font-size:0.85rem;"><a class="ref-link" href="#ref-DeJong1990" onclick="goToSlide('refs'); location.hash='#ref-DeJong1990'; return false;">De Jong 1990</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -3254,7 +3255,7 @@
           <div style="font-family:var(--serif); font-style:italic; font-size:1rem; color:#7B1FA2; line-height:1.5;">
             HEC = &rho;<sub>air</sub> &middot; c<sub>p</sub> &middot; f(K, &Delta;T)
           </div>
-          <div style="font-size:0.78rem; color:var(--ink-dim); margin-top:0.2rem;">Heat exchange coefficient [W/(m&sup2;&middot;K)] from air flow through screen</div>
+          <div style="font-size:0.78rem; color:var(--ink-dim); margin-top:0.2rem;">Heat exchange coefficient [W/(m²&middot;K)] from air flow through screen</div>
         </div>
 
         <!-- K values table -->
@@ -3507,7 +3508,7 @@
         </div>
 
         <div style="background:rgba(0,0,0,.03); border-radius:8px; padding:0.6rem 1rem; margin-top:auto;">
-          <p style="font-size:0.88rem; margin:0; line-height:1.4; color:var(--ink-dim);">All strategies are composable: PI loop + screen + day/night + ventilation RH override. Simulated over a full year to compare kWh/m&sup2;.</p>
+          <p style="font-size:0.88rem; margin:0; line-height:1.4; color:var(--ink-dim);">All strategies are composable: PI loop + screen + day/night + ventilation RH override. Simulated over a full year to compare kWh/m².</p>
         </div>
       </div>
     </div>
@@ -3561,7 +3562,7 @@
         </div>
 
         <!-- Implementation status (moved from right for balance) -->
-        <div style="background:rgba(106,27,154,.04); border-radius:8px; padding:0.5rem 0.8rem; margin-top:auto;">
+        <div style="background:rgba(106,27,154,.04); border-radius:8px; padding:0.6rem 0.9rem; margin-top:0.4rem;">
           <div style="font-weight:700; color:#6A1B9A; font-size:0.88rem; margin-bottom:0.2rem;">Implementation</div>
           <table style="font-size:0.78rem; border-collapse:collapse; width:100%; line-height:1.3;">
             <tr style="border-bottom:1px solid #E1BEE7;">
@@ -3588,7 +3589,7 @@
           <div style="font-family:'Fira Code',monospace; font-size:0.88rem; line-height:1.6; color:#4A148C;">
             &part;H/&part;U<sub>c</sub> = &eta;<sub>c</sub> &minus; c<sub>co2</sub> = 0<br>
             <span style="color:#888;">&eta;<sub>c</sub></span> &asymp; w<sub>crop</sub> &times; PAR &times; dA<sub>n</sub>/dCO<sub>2</sub><br>
-            <span style="color:#888;">dA<sub>n</sub>/dCO<sub>2</sub></span> = (K<sub>m</sub> + &Gamma;*) / (CO<sub>2</sub> + K<sub>m</sub>)&sup2;
+            <span style="color:#888;">dA<sub>n</sub>/dCO<sub>2</sub></span> = (K<sub>m</sub> + &Gamma;*) / (CO<sub>2</sub> + K<sub>m</sub>)²
           </div>
           <div style="font-size:0.8rem; color:#666; margin-top:0.4rem; line-height:1.3;">
             &eta;<sub>c</sub> = approximate costate (marginal value of CO<sub>2</sub>)<br>
@@ -4214,7 +4215,7 @@
     </p>
 
     <p class="footnote">
-      Inspired by Rémi Vezy's PlantBiophysics.jl architecture and the discussions
+      Inspired by <a class="ref-link" href="https://www.remivezy.com/" target="_blank" rel="noopener">Rémi Vezy</a>'s <a class="ref-link" href="#ref-Vezy2025" onclick="goToSlide('refs'); location.hash='#ref-Vezy2025'; return false;">PlantBiophysics.jl</a> architecture and the discussions
       with the CIRAD/CEA team (PhD Corentin Coutellier).
     </p>
   </section>
@@ -4345,7 +4346,7 @@
           <!-- Box 3: PAR per leaf -->
           <g>
             <rect x="40" y="280" width="400" height="80" rx="12" fill="rgba(200,161,58,.15)" stroke="#c8a13a" stroke-width="2.5"/>
-            <text x="240" y="312" text-anchor="middle" font-family="Inter" font-size="22" font-weight="600" fill="var(--ink)">PAR per leaf (&micro;mol m&minus;&sup2; s&minus;&sup1;)</text>
+            <text x="240" y="312" text-anchor="middle" font-family="Inter" font-size="22" font-weight="600" fill="var(--ink)">PAR per leaf (&micro;mol m&minus;² s&minus;&sup1;)</text>
             <text x="240" y="340" text-anchor="middle" font-family="Inter" font-size="16" fill="var(--ink-dim)">organ-level shading fields</text>
           </g>
 
@@ -4446,7 +4447,7 @@
       <div class="bleed-text">
         <p class="lede">
           The FSPM lives in <code>src/tomato_fspm.jl</code>, calibrated on
-          de&nbsp;Visser 2014 vtc parameters and <a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti 2011</a> measurements
+          <a class="ref-link" href="#ref-deVisser2014" onclick="goToSlide('refs'); location.hash='#ref-deVisser2014'; return false;">de&nbsp;Visser 2014</a> vtc parameters and <a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti 2011</a> measurements
           on cv. Komeett.
         </p>
         <ul class="keys">
@@ -4696,7 +4697,7 @@
           Schematic and parameter set inspired by <a class="ref-link" href="#ref-Najla2009" onclick="goToSlide('refs'); location.hash='#ref-Najla2009'; return false;">Najla et al. 2009</a>
           (<em>Botany</em> 87, Fig. 1) and <a class="ref-link" href="#ref-Sarlikioti2011" onclick="goToSlide('refs'); location.hash='#ref-Sarlikioti2011'; return false;">Sarlikioti et al. 2011</a>
           (<em>Annals of Botany</em> 107, cv. Komeett); cultivar values
-          read from de&nbsp;Visser 2014 vtc Merlice.
+          read from <a class="ref-link" href="#ref-deVisser2014" onclick="goToSlide('refs'); location.hash='#ref-deVisser2014'; return false;">de&nbsp;Visser 2014</a> vtc Merlice.
         </p>
       </div>
     </div>
@@ -5154,8 +5155,7 @@
         <ul class="bullets">
           <li>96 m² per compartment, cv. <em>Axiany</em> / Maxifort</li>
           <li>HPS + LED, screens, fogging, CO<sub>2</sub>, 2 heating circuits</li>
-          <li>Hourly photosynthesis from KASPRO + INTKAM digital twin</li>
-          <li>Daily PAR, energy, biomass, leaf area, yield</li>
+          <li>Daily ground truth on the bench: <strong>leaf area</strong> (our calibration target), plus PAR, energy, biomass, yield.</li>
         </ul>
         <p class="callout">
           → Extract LAI from <code>cam_19</code> RGB &rarr; cleanest validation target in the field.
@@ -5727,7 +5727,7 @@
           <li><strong>V<sub>cmax</sub></strong>: maximum carboxylation rate, temperature-dependent (Arrhenius)</li>
           <li><strong>J</strong>: electron transport rate, depends on absorbed PAR via a hyperbolic response</li>
           <li><strong>C<sub>i</sub></strong>: intercellular CO<sub>2</sub>, linked to stomatal conductance g<sub>s</sub> (<a class="ref-link" href="#ref-Medlyn2011" onclick="goToSlide('refs'); location.hash='#ref-Medlyn2011'; return false;">Medlyn 2011)</a></li>
-          <li><strong>R<sub>d</sub></strong>: dark respiration (~1&ndash;2 &micro;mol/m&sup2;/s at 25 &deg;C)</li>
+          <li><strong>R<sub>d</sub></strong>: dark respiration (~1&ndash;2 &micro;mol/m²/s at 25 &deg;C)</li>
         </ul>
       </div>
 
@@ -5885,6 +5885,11 @@
         <ol class="refs-list">
           <li id="ref-Hemming2020">Hemming S. <em>et al.</em> (2020). Remote Control of Greenhouse Vegetable Production with AI. <em>Sensors</em> 20(22), 6430 (<em>Autonomous Greenhouse Challenge, Bleiswijk</em>).</li>
           <li id="ref-AGC_WUR">WUR. <em>Autonomous Greenhouse / Plant Growth Challenge</em> — datasets &amp; rules. <a href="https://www.autonomousgreenhouses.com/" target="_blank" rel="noopener">autonomousgreenhouses.com</a>.</li>
+        </ol>
+
+        <h3>Julia plant-biophysics packages</h3>
+        <ol class="refs-list">
+          <li id="ref-Vezy2025">Vezy R., Heidmann-Solheim J. <em>et al.</em> (2025). <em>PlantBiophysics.jl</em>: a Julia package for plant biophysical processes. <em>in silico Plants</em> 7(2), diaf021. <a href="https://academic.oup.com/insilicoplants/article/7/2/diaf021/8285686" target="_blank" rel="noopener">oup.com</a>. Author site: <a href="https://www.remivezy.com/" target="_blank" rel="noopener">remivezy.com</a>.</li>
         </ol>
       </div>
 
