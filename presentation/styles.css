@@ -2659,6 +2659,8 @@ kbd {
   opacity: .85;
 }
 .footer-logos img.footer-ermess { height: 58px; }
+.footer-logos img[alt^="USMB"],
+.footer-logos img[alt^="Universit\00e9 Savoie"] { height: 53px; }
 .footer-meta {
   display: flex;
   align-items: center;
@@ -2932,7 +2934,10 @@ kbd {
   left: 50%;
   bottom: calc(100% + 6px);
   transform: translateX(-50%);
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 460px;
+  width: max-content;
+  text-align: left;
   background: #1f2a3a;
   color: #f5f5f5;
   font-family: Inter, system-ui, sans-serif;
