@@ -157,7 +157,8 @@
 
     <div class="toc-grid">
       <div class="toc-col">
-        <h4>Context</h4>
+        <h4>Part I &middot; Envelope &amp; HVAC</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('part1')" style="color:#2876b8;"><span class="tn">I</span> Chapter cover</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('3')"><span class="tn">03</span> Greenhouse model principle</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('4')"><span class="tn">04</span> Modelica library architecture</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('5')"><span class="tn">05</span> Julia rewrite</a>
@@ -195,7 +196,8 @@
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('23')"><span class="tn">16</span> Bare greenhouse, Brussels Dec</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('24')"><span class="tn">17</span> EnergyPlus limitations</a>
 
-        <h4>Agrivoltaics &amp; FSPM</h4>
+        <h4>Part II &middot; Crop biophysics</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('part2')" style="color:#2d8a5a;"><span class="tn">II</span> Chapter cover</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('29')"><span class="tn">18</span> Agrivoltaic motivation</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('30')"><span class="tn">19</span> Two-level architecture</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('33b')"><span class="tn">20</span> VPL case, 100 days</a>
@@ -213,7 +215,8 @@
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('42')"><span class="tn">28</span> Per-leaf PAR: rays vs Beer-Lambert</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('44b')"><span class="tn">29</span> Porting the 3D tomato to VPL</a>
 
-        <h4>Computer vision</h4>
+        <h4>Part III &middot; Computer vision</h4>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('part3')" style="color:#c46a1e;"><span class="tn">III</span> Chapter cover</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('45')"><span class="tn">30</span> LAI from camera images</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('46')"><span class="tn">31</span> Vision pipeline</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('47')"><span class="tn">32</span> YOLO plant detection</a>
@@ -237,6 +240,19 @@
   <!-- ============================================================
        SLIDE 03 - WHY MODEL A GREENHOUSE
        ============================================================ -->
+  <!-- ============================================================
+       PART I COVER (Envelope & HVAC)
+       ============================================================ -->
+  <section class="slide part-cover" data-slide="part1">
+    <div class="part-cover-inner">
+      <div class="part-eyebrow" style="color:#2876b8;">Chapter 1 of 3</div>
+      <div class="part-numeral" style="color:#2876b8;">I</div>
+      <div class="part-accent-bar" style="background:#2876b8;"></div>
+      <h1 class="part-title">Envelope &amp; HVAC</h1>
+    </div>
+  </section>
+
+
   <section class="slide" data-slide="3">
     <header>
       <span class="num">03</span>
@@ -4243,7 +4259,7 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
 
         <table class="metrics">
           <tr><th>Coefficient</th><th>EMS prescribed</th><th>EP reported</th></tr>
-          <tr><td>h<sub>ext</sub> (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983)</a></td><td>7.0 W/(m²K)</td><td class="warn">52.6 W/(m²K)</td></tr>
+          <tr><td><span class="rich-hover">h<sub>ext</sub> (<a class="ref-link" href="#ref-Bot1983" onclick="goToSlide('refs'); location.hash='#ref-Bot1983'; return false;">Bot 1983</a>)<span class="rich-hover-popup" style="max-width:none; width:560px;"><span class="rhp-title">Bot 1983 vs ISO 15099 at Lyon Savona, summer</span><span class="rhp-formula">Bot 1983 (greenhouse): h = 2.8 + 1.2&middot;u<br>ISO 15099 (building facade): h = 4.7 + 7.6&middot;V</span><span class="rhp-table" style="grid-template-columns:auto auto auto; font-size:0.82rem;"><span class="rhp-th">wind</span><span class="rhp-th rhp-right">Bot</span><span class="rhp-th rhp-right">ISO 15099</span><span>u = 3.5 m/s (roof, sheltered)</span><span class="rhp-right">7.0</span><span class="rhp-right">31.3</span><span>V = 6.5 m/s (met station)</span><span class="rhp-right">10.6</span><span class="rhp-right">54.1</span></span><span style="display:block; font-size:0.8rem; line-height:1.4;">Same EPW (same T and wind) in both tools. ISO 15099 has both a higher intercept <em>and</em> a 6&times; steeper slope, so even at identical wind it sits 4-5&times; above Bot. On top, ISO uses the raw met-station V; Bot was fitted on sheltered roof wind &asymp; 0.5&middot;V. Combined effect at Savona summer: EP reports 52.6, Bot would give 7.0.</span></span></span></td><td>7.0 W/(m²K)</td><td class="warn">52.6 W/(m²K)</td></tr>
           <tr><td>h<sub>int</sub> (<a class="ref-link" href="#ref-Balemans1989" onclick="goToSlide('refs'); location.hash='#ref-Balemans1989'; return false;">Balemans 1989)</a></td><td>3.1 W/(m²K)</td><td class="good">3.1 W/(m²K) ✓</td></tr>
         </table>
 
@@ -4267,6 +4283,19 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
   <!-- ============================================================
        SLIDE 24 - GOING BEYOND STATIC CROP + FIRST VPL NUMBERS
        ============================================================ -->
+  <!-- ============================================================
+       PART II COVER (Crop biophysics)
+       ============================================================ -->
+  <section class="slide part-cover" data-slide="part2">
+    <div class="part-cover-inner">
+      <div class="part-eyebrow" style="color:#2d8a5a;">Chapter 2 of 3</div>
+      <div class="part-numeral" style="color:#2d8a5a;">II</div>
+      <div class="part-accent-bar" style="background:#2d8a5a;"></div>
+      <h1 class="part-title">Crop biophysics</h1>
+    </div>
+  </section>
+
+
   <section class="slide" data-slide="29">
     <header>
       <span class="num">18</span>
@@ -5448,6 +5477,19 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
   <!-- ============================================================
        SLIDE 40 - CLOSING THE LOOP, LAI TRACKING (new)
        ============================================================ -->
+  <!-- ============================================================
+       PART III COVER (Computer vision)
+       ============================================================ -->
+  <section class="slide part-cover" data-slide="part3">
+    <div class="part-cover-inner">
+      <div class="part-eyebrow" style="color:#c46a1e;">Chapter 3 of 3</div>
+      <div class="part-numeral" style="color:#c46a1e;">III</div>
+      <div class="part-accent-bar" style="background:#c46a1e;"></div>
+      <h1 class="part-title">Computer vision</h1>
+    </div>
+  </section>
+
+
   <section class="slide" data-slide="45">
     <header>
       <span class="num">30</span>

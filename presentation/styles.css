@@ -3083,3 +3083,54 @@ kbd {
 /* Let rich-hover popups escape the gh-step-panel clipping box too */
 .gh-step-panel:has(.rich-hover:hover, .img-hover:hover) { overflow: visible; }
 .gh-step-card:has(.rich-hover:hover, .img-hover:hover) { overflow: visible; }
+
+/* ===================================================================
+   Chapter transition slides (Part I / II / III covers)
+   =================================================================== */
+.slide.part-cover {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.part-cover-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+.part-eyebrow {
+  font-family: Inter, system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 1rem;
+  color: var(--ink-dim);
+  margin-bottom: 22px;
+}
+.part-numeral {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 290px;
+  font-weight: 700;
+  line-height: 0.9;
+  margin: 6px 0 10px;
+}
+.part-title {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 4.2rem;
+  font-weight: 600;
+  margin: 4px 0 18px;
+  color: var(--ink);
+}
+.part-subtitle {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 1.25rem;
+  color: var(--ink-dim);
+  line-height: 1.55;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.part-accent-bar {
+  height: 6px;
+  width: 120px;
+  margin: 22px auto 28px;
+  border-radius: 3px;
+}
