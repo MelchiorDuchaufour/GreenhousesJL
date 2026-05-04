@@ -30,8 +30,8 @@
       <p class="eyebrow">PhD cotutelle · USMB ↔ UniGe · April 2026</p>
       <h1>Greenhouses<span class="accent">JL</span></h1>
       <p class="subtitle">
-        A Julia greenhouse–crop–HVAC simulator, its EnergyPlus cross-validation,
-        and a computer-vision pipeline for LAI tracking.
+        A Julia greenhouse–crop–HVAC simulator and a computer-vision
+        pipeline for LAI tracking.
       </p>
       <p class="byline">Melchior Duchaufour · ERMESS GREEN project · LOCIE / DIME</p>
 
@@ -214,6 +214,7 @@
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('41')"><span class="tn">27</span> Ceptometer validation</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('42')"><span class="tn">28</span> Per-leaf PAR: rays vs Beer-Lambert</a>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('44b')"><span class="tn">29</span> Porting the 3D tomato to VPL</a>
+        <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('44c')"><span class="tn">29b</span> Pao FSPM, interactive 3D viewer</a>
 
         <h4>Part III &middot; Computer vision</h4>
         <a class="toc-link" href="javascript:void(0)" onclick="goToSlide('part3')" style="color:#c46a1e;"><span class="tn">III</span> Chapter cover</a>
@@ -5556,6 +5557,46 @@ end</span><span class="rhp-note">Same formula as the Modelica <code>Greenhouses.
         <img src="assets/fspm/tomato_full_architecture.png" alt="FSPM tomato 3D model" style="max-width:100%; max-height:62vh; display:block; border-radius:6px;"/>
         <figcaption style="margin-top:0.4rem; font-size:0.85rem; color:var(--ink-dim); text-align:center;">Current Julia FSPM, target VPL scene.</figcaption>
       </figure>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SLIDE 29b - Pao FSPM 3D interactive viewer (end of Crop biophysics)
+       ============================================================ -->
+  <section class="slide" data-slide="44c">
+    <header>
+      <span class="num">29b</span>
+      <h2>Pao FSPM, interactive 3D viewer</h2>
+    </header>
+
+    <div style="display:flex; gap:1.2rem; height:calc(100% - 60px);">
+      <!-- Left : live iframe of the Pao 3D webapp, auto-loaded on Day 50 diff -->
+      <div style="flex:1; min-width:0; border:2px solid var(--ink-line); border-radius:var(--radius); overflow:hidden; background:white;">
+        <iframe src="../webapp/public/pao.html?demo=1"
+                style="width:100%; height:100%; border:none;"
+                allow="fullscreen"
+                title="Pao FSPM 3D viewer"></iframe>
+      </div>
+      <!-- Right : context sidebar -->
+      <div style="width:280px; flex-shrink:0; display:flex; flex-direction:column; gap:0.7rem; font-size:0.88rem;">
+        <div style="background:var(--card-bg); border:1px solid var(--ink-line); border-radius:8px; padding:0.7rem 0.9rem;">
+          <div style="font-weight:700; color:var(--green); margin-bottom:0.3rem;">Day 50, LAI 2.28</div>
+          <p style="margin:0; color:var(--ink-dim); font-size:0.82rem;">
+            Opaque PV minus no-PV reference, ground irradiation at noon (clear-sky scenario).
+          </p>
+        </div>
+        <div style="background:var(--card-bg); border:1px solid var(--ink-line); border-radius:8px; padding:0.6rem 0.9rem;">
+          <div class="site-meta" style="display:flex; flex-direction:column; gap:0.4rem;">
+            <div style="display:flex; justify-content:space-between;"><strong>3</strong><span style="color:var(--ink-dim);">PV panels on south slope</span></div>
+            <div style="display:flex; justify-content:space-between;"><strong>4</strong><span style="color:var(--ink-dim);">PV configurations</span></div>
+            <div style="display:flex; justify-content:space-between;"><strong>15</strong><span style="color:var(--ink-dim);">plants in canopy</span></div>
+          </div>
+        </div>
+        <div style="font-size:0.74rem; color:var(--ink-dim); padding:0.4rem 0.6rem;">
+          Source: <code>webapp/public/pao.html</code> with <code>?demo=1</code>.
+        </div>
+      </div>
     </div>
   </section>
 
