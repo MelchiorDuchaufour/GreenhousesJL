@@ -403,9 +403,11 @@
   dirLight.position.set(3, 8, 3);
   scene.add(dirLight);
 
-  // Coordinate axes (Pao raw : y vertical)
+  // Coordinate axes (Pao raw : y vertical) — placed outside the canopy
+  // and slightly above the ground so the X/Z axes stay visible.
   const axesGroup = new THREE.Group();
-  axesGroup.add(new THREE.AxesHelper(0.6));
+  axesGroup.add(new THREE.AxesHelper(1.2));
+  axesGroup.position.set(-3.0, 0.05, -3.0);
   scene.add(axesGroup);
 
   // Grid 0.5m on ground (10m × 10m)
@@ -1672,10 +1674,13 @@
     document.getElementById('dayVal').textContent = '50';
     document.getElementById('parModeChk').checked = true;
     document.getElementById('parControls').style.display = '';
+    document.getElementById('parChartPanel').style.display = '';
+    document.getElementById('parColorBar').style.display = '';
     document.querySelector('input[name="pvcfg"][value="opaque"]').checked = true;
     document.querySelector('input[name="parSurface"][value="ground"]').checked = true;
     document.getElementById('diffMode').checked = true;
 
+    updateColorBar();
     await setDay(50);
   }
   document.getElementById('demoDay50').addEventListener('click', runDemoDay50);
