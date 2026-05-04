@@ -1137,7 +1137,12 @@
     status.textContent = `loading master OBJ day ${day}…`;
     const resp = await fetch(url);
     if (!resp.ok) {
-      status.textContent = `master OBJ for day ${day} not found`;
+      // Fallback : no master OBJ for this day, show the layered canopy without PAR.
+      status.textContent = `no PAR data for day ${day}, showing canopy only`;
+      for (const k of ['leaves', 'stems', 'fruits']) {
+        if (organGroups[k]) organGroups[k].visible = true;
+      }
+      await _origLoadDay(day);
       return;
     }
     const text = await resp.text();
